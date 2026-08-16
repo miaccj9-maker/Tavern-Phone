@@ -1574,3 +1574,8 @@ mount.style.cssText = `
   };
 
 })();
+
+})();
+
+// ✅ 加在整个文件的最后一行
+export default window.QixianPhone;
