@@ -3,7 +3,7 @@
   "js":"nicoPhone.js",
   "version": "1.0.0",
   "author": "miaccj9",
-  "loading order": 10,
-  "auto update": true,
+  "loading_order": 10,
+  "auto_update": true,
   "description": "Qixian 拟真手机组件 for SillyTavern",
 }
