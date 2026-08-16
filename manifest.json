@@ -1,8 +1,9 @@
 {
-  "name": "Tavern-Phone",
+ "display_name":"Qixian 手机组件",
+  "js":"nicoPhone.js",
   "version": "1.0.0",
+  "author": "miaccj9",
+  "loading order": 10,
+  "auto update": true,
   "description": "Qixian 拟真手机组件 for SillyTavern",
-  "author": "miaccj9-maker",
-  "script": "nicoPhone.js",
-  "type": "user"
 }
