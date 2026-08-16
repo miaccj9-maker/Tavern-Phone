@@ -1,9 +1,14 @@
 {
-    "display_name": "Qixian 手机组件",
-    "js": "nicoPhone.js",
-    "version": "1.0.0",
-    "author": "miaccj9",
-    "loading_order": 10,
-    "auto_update": true,
-    "description": "沉浸式聊天手机UI组件，支持通话、转账、朋友圈等剧情交互"
+  "name": "qixian-phone",
+  "display_name": "Qixian 手机组件",
+  "version": "1.0.0",
+  "author": "miaccj9",
+  "description": "沉浸式聊天手机UI组件，支持通话、转账、朋友圈等剧情功能",
+  "load": "after",
+  "loading_order": 10,
+  "auto_update": true,
+  "script": [
+    "nicoPhone.js"
+  ],
+  "css": []
 }
