@@ -520,15 +520,15 @@ input[type=number]{-moz-appearance:textfield;}
 
   // ===================== 2. 注入 HTML 结构 =====================
   const phoneHTML = `
-<div class="Qixian-stage"><div class="Qixian-phone-wrap" id="Qx-Phone-Wrapper"><div class="Qixian-phone"><div class="Qixian-home-screen Qixian-jhome"><div class="Qixian-ios-statusbar"><div class="Qixian-jhome-time">12:00</div><div class="Qixian-ios-statusbar-right"><svg viewBox="0 0 24 24"><path d="M12 20h2V10h-2v10zm-4 0h2v-6H8v6zm8-14v14h2V6h-2zM4 20h2v-3H4v3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 3c-4.8 0-9.1 1.9-12.3 5l1.4 1.4C4.1 6.5 7.9 4.8 12 4.8s7.9 1.7 10.9 4.6l1.4-1.4C21.1 4.9 16.8 3 12 3zm0 5.5c-3.2 0-6.2 1.2-8.5 3.3l1.4 1.4c1.9-1.7 4.4-2.7 7.1-2.7s5.2 1 7.1 2.7l1.4-1.4C18.2 9.7 15.2 8.5 12 8.5zm0 5c-1.6 0-3.1.6-4.2 1.6l1.4 1.4c.8-.7 1.8-1 2.8-1s2 .3 2.8 1l1.4-1.4c-1.1-1-2.6-1.6-4.2-1.6zm0 4.5c-.8 0-1.5.7-1.5 1.5S11.2 21 12 21s1.5-.7 1.5-1.5S12.8 18 12 18z"/></svg><div class="Qixian-ios-battery"><div class="Qixian-ios-battery-level"></div></div></div></div><div class="Qixian-sticky-note"><div class="Qixian-sticky-tape"></div><textarea class="Qixian-sticky-textarea Qixian-jsticky-txt" placeholder="在这里写下便签..."></textarea><button class="Qixian-sticky-btn Qixian-jsticky-save">保存更新</button></div><div class="Qixian-dock"><div class="Qixian-dock-icon" id="app-wechat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="Qixian-dock-icon" id="app-phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div></div><div class="Qixian-sys-app Qixian-japp-panel"><div class="Qixian-sys-app-hd"><div class="Qixian-japp-back" style="cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></div><span class="Qixian-japp-title" style="flex:1; text-align:center; padding-right:24px;">电话</span></div><div class="Qixian-sys-app-body Qixian-japp-body"><div class="Qixian-phone-app-container"><div class="Qixian-phone-content" id="phone-content"></div><div class="Qixian-phone-tabbar"><div class="Qixian-ptab active" data-target="recents"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>最近通话</div><div class="Qixian-ptab" data-target="contacts"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>联系人</div><div class="Qixian-ptab" data-target="dialpad"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"></circle><circle cx="12" cy="6" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="6" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle><circle cx="18" cy="12" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="12" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>拨号键盘</div></div></div></div></div><div class="Qixian-content-layer Qixian-root"><div class="Qixian-bg Qixian-jbg"></div><div class="Qixian-call Qixian-jcall state-out"><div class="Qixian-call-mini-hint"></div><div class="Qixian-call-vbg Qixian-bind-lav-bg"></div><div class="Qixian-call-pip Qixian-bind-rav-bg"></div><div class="Qixian-call-mini-top Qixian-jcall-mini-top"><svg viewBox="0 0 24 24"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg></div><div class="Qixian-call-ct"><div class="Qixian-call-avs"><div class="Qixian-call-av Qixian-jcall-lav Qixian-bind-lav"></div><div class="Qixian-call-av Qixian-jcall-rav Qixian-bind-rav"></div></div><div class="Qixian-call-nm Qixian-jcall-nm Qixian-bind-lnm"></div><div class="Qixian-call-timer Qixian-jcall-timer">00:00</div><div class="Qixian-call-st Qixian-jcall-st">正在呼叫...</div><div class="Qixian-call-bubs Qixian-jcall-bubs"></div><div class="Qixian-call-ft"><div class="Qixian-call-btns btns-in"><div class="Qixian-call-btn hangup Qixian-jcall-reject"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><div class="Qixian-call-btn answer Qixian-jcall-answer"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div><div class="Qixian-call-btns btns-out"><div class="Qixian-call-btn cancel Qixian-jcall-cancel"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div></div><div class="Qixian-call-inrow"><div class="Qixian-call-btn hangup mini Qixian-jcall-end" title="挂断"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><input type="text" class="Qixian-call-in Qixian-jcall-in" placeholder="发送实时消息..."><button class="Qixian-call-send Qixian-jcall-send">发送</button></div></div></div></div><div class="Qixian-hd Qixian-jhd"><div class="Qixian-notch"></div><div class="Qixian-hd-back Qixian-jhd-back" title="返回主界面"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Qixian-hd-ph" style="display:none;"></div><div class="Qixian-hd-mid"><div class="Qixian-ubox Qixian-jpat-l"><div class="Qixian-uav Qixian-bind-lav" title="点击修改拍一拍"></div><div class="Qixian-uname Qixian-bind-lnm" title="点击修改对方备注"></div></div><div class="Qixian-waves"><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span></div><div class="Qixian-ubox Qixian-jpat-r"><div class="Qixian-uav Qixian-bind-rav" title="点击修改拍一拍"></div><div class="Qixian-uname Qixian-bind-rnm" title="点击修改自己备注"></div></div></div><div class="Qixian-icons-rt"><div class="Qixian-icbtn pyq Qixian-jpyqbtn" title="朋友圈"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="Qixian-icbtn Qixian-jset-open" title="设置"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="19" r="2.5"/></svg></div></div><div class="Qixian-hd-pull Qixian-jhd-toggle"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div></div><div class="Qixian-chat Qixian-jchat"></div><div class="Qixian-pyq-panel Qixian-jpyqpanel"><div class="Qixian-pyq-hd"><div class="Qixian-pyq-back Qixian-jpyqback" title="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Qixian-pyq-addbtn Qixian-jpyqadd"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Qixian-pyq-scroll"><div class="Qixian-pyq-cover Qixian-jpyq-cover" title="点击更换背景"><div class="Qixian-pyq-user"><div class="Qixian-pyq-uname Qixian-bind-rnm"></div><div class="Qixian-pyq-uav Qixian-jpyq-uav" title="点击更换头像"></div></div></div><div class="Qixian-pyq-list Qixian-jpyqlist"></div></div></div><div class="Qixian-txt-zoom Qixian-jtxtzoom"><div class="Qixian-txt-zoom-in Qixian-jtxtzoomin"></div></div><div class="Qixian-set Qixian-jset"><div class="Qixian-set-h">视觉控制台<span class="Qixian-set-x Qixian-jset-close">&times;</span></div><div class="Qixian-set-r"><label>左侧名称</label><div class="Qixian-color-wrap"><input type="text" class="Qixian-hex-in Qixian-jset-lnm" placeholder="输入名称" style="width:100px;"></div></div><div class="Qixian-set-r"><label>右侧名称</label><div class="Qixian-color-wrap"><input type="text" class="Qixian-hex-in Qixian-jset-rnm" placeholder="输入名称" style="width:100px;"></div></div><div class="Qixian-set-r"><label>拉黑拦截控制</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jblk-l" title="右侧拉黑左侧，左侧发出的消息带叹号">右侧拉黑左侧</button><button class="Qixian-bg-btn Qixian-jblk-r" title="左侧拉黑右侧，右侧发出的消息带叹号">左侧拉黑右侧</button></div></div><div class="Qixian-set-r"><label>主页/聊天背景</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jbg-upload">上传/更换</button><button class="Qixian-bg-btn Qixian-jbg-clear">恢复默认</button></div></div><div class="Qixian-set-r"><label>头像形状</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jav-rnd active">圆形</button><button class="Qixian-bg-btn Qixian-jav-sq">方形</button></div></div><div class="Qixian-set-r"><label>质感风格</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jglass-glass active">毛玻璃</button><button class="Qixian-bg-btn Qixian-jglass-solid">纯实色</button></div></div><div class="Qixian-set-r"><label>手机外壳</label><div class="Qixian-color-wrap"><input type="text" id="Qx-wrap-txt" class="Qixian-hex-in"><input type="color" id="Qx-wrap"></div></div><div class="Qixian-set-r"><label>顶部栏背景</label><div class="Qixian-color-wrap"><input type="text" id="Qx-hdr-txt" class="Qixian-hex-in"><input type="color" id="Qx-hdr"></div></div><div class="Qixian-set-r"><label>顶部下拉键</label><div class="Qixian-color-wrap"><input type="text" id="Qx-pull-txt" class="Qixian-hex-in"><input type="color" id="Qx-pull"></div></div><div class="Qixian-set-r"><label>波浪呼吸条</label><div class="Qixian-color-wrap"><input type="text" id="Qx-wv-txt" class="Qixian-hex-in"><input type="color" id="Qx-wv"></div></div><div class="Qixian-set-r"><label>交互卡片底色</label><div class="Qixian-color-wrap"><input type="text" id="Qx-card-txt" class="Qixian-hex-in"><input type="color" id="Qx-card"></div></div><div class="Qixian-set-r"><label>底部输入区</label><div class="Qixian-color-wrap"><input type="text" id="Qx-ftr-txt" class="Qixian-hex-in"><input type="color" id="Qx-ftr"></div></div><div class="Qixian-set-r"><label>我方气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-bub-txt" class="Qixian-hex-in"><input type="color" id="Qx-bub"></div></div><div class="Qixian-set-r"><label>对方气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-bubl-txt" class="Qixian-hex-in"><input type="color" id="Qx-bubl"></div></div><div class="Qixian-set-r"><label>气泡文字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-tm-txt" class="Qixian-hex-in"><input type="color" id="Qx-tm"></div></div><div class="Qixian-set-r"><label>交互卡片字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cdt-txt" class="Qixian-hex-in"><input type="color" id="Qx-cdt"></div></div><div class="Qixian-set-r"><label>交互卡片图标</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cic-txt" class="Qixian-hex-in"><input type="color" id="Qx-cic"></div></div><div class="Qixian-set-r"><label>顶部栏文字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-hdt-txt" class="Qixian-hex-in"><input type="color" id="Qx-hdt"></div></div><div class="Qixian-set-r"><label>顶部栏图标</label><div class="Qixian-color-wrap"><input type="text" id="Qx-hdi-txt" class="Qixian-hex-in"><input type="color" id="Qx-hdi"></div></div><div class="Qixian-set-r"><label>系统提示字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-sys-txt" class="Qixian-hex-in"><input type="color" id="Qx-sys"></div></div><div class="Qixian-set-r"><label>通话左气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cbubl-txt" class="Qixian-hex-in"><input type="color" id="Qx-cbubl"></div></div><div class="Qixian-set-r"><label>通话右气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cbub-txt" class="Qixian-hex-in"><input type="color" id="Qx-cbub"></div></div><div class="Qixian-set-r"><label>通话气泡字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cbtxt-txt" class="Qixian-hex-in"><input type="color" id="Qx-cbtxt"></div></div></div><div class="Qixian-ft"><div class="Qixian-reply-bar Qixian-jrepbar"><span class="Qixian-reply-txt Qixian-jreptxt"></span><div class="Qixian-reply-close Qixian-jrepclose">×</div></div><div class="Qixian-in-area"><div class="Qixian-lang Qixian-jlang">CN</div><div class="Qixian-plus Qixian-jplus"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><input type="text" class="Qixian-input Qixian-jinput" placeholder="输入文字发送..."><div class="Qixian-mic Qixian-jmic"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg></div><div class="Qixian-send Qixian-jsend"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></div></div><div class="Qixian-panel Qixian-jpanel"><div class="Qixian-pi Qixian-jbtn-voice"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="Qixian-ptx">语音呼叫</div></div><div class="Qixian-pi Qixian-jbtn-video"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div class="Qixian-ptx">视频呼叫</div></div><div class="Qixian-pi Qixian-jimgbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div><div class="Qixian-ptx">发原图</div></div><div class="Qixian-pi Qixian-jtxtimg"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div><div class="Qixian-ptx">发文字图</div></div><div class="Qixian-pi Qixian-jgiftbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg></div><div class="Qixian-ptx">送礼物</div></div><div class="Qixian-pi Qixian-jlinkbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="Qixian-ptx">发链接</div></div><div class="Qixian-pi Qixian-jtf"><div class="Qixian-pic"><svg viewBox="0 0 24 24" class="fl"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div class="Qixian-ptx">转账</div></div><div class="Qixian-pi Qixian-jemo"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="Qixian-ptx">表情包</div></div><div class="Qixian-pi Qixian-jmusic"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div><div class="Qixian-ptx">一起听歌</div></div><div class="Qixian-pi Qixian-jcp"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="Qixian-ptx">情侣空间</div></div><div class="Qixian-pi Qixian-jbtn-loc"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div class="Qixian-ptx">共享位置</div></div><div class="Qixian-pi Qixian-jbtn-food"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div class="Qixian-ptx">点外卖</div></div><div class="Qixian-pi Qixian-jbtn-draw"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></div><div class="Qixian-ptx">手绘便签</div></div></div></div><div class="Qixian-mf Qixian-jmsgact"><div class="Qixian-mbox" style="height:auto; padding-bottom:24px;"><div class="Qixian-act-btn Qixian-jact-reply">引用回复</div><div class="Qixian-act-btn Qixian-jact-revoke" style="display:none; color:#222;">撤回消息</div><div class="Qixian-act-space"></div><div class="Qixian-act-btn Qixian-jact-cancel" style="color:#888;">取消</div></div></div><div class="Qixian-cen Qixian-jaddfriendmodal w260"><div class="Qixian-cen-box"><h4>重新添加好友</h4><input type="text" class="Qixian-cen-inp Qixian-jaddgreet" placeholder="打个招呼吧..."><div class="Qixian-cen-btns"><button class="cc Qixian-jaddfcancel">取消</button><button class="ok Qixian-jaddfok">发送申请</button></div></div></div><div class="Qixian-cen Qixian-jtfactmodal w260"><div class="Qixian-cen-box"><h4>转账处理</h4><div style="font-size:13px;color:#888;text-align:center;font-weight:300;">请选择对该笔转账的操作</div><div class="Qixian-cen-btns"><button class="cc Qixian-jtfact-return">退回</button><button class="ok Qixian-jtfact-receive">收款</button></div><div class="Qixian-cen-btns" style="margin-top:-6px;"><button class="cc Qixian-jtfact-cancel" style="width:100%;">取消</button></div></div></div><div class="Qixian-cen Qixian-jlocinputmodal w260"><div class="Qixian-cen-box"><h4>发送位置分享</h4><input type="text" class="Qixian-cen-inp Qixian-jlocin-pos" placeholder="我的位置 (如:朝阳区)"><input type="text" class="Qixian-cen-inp Qixian-jlocin-dist" placeholder="相距距离 (如:12.5 km)"><div class="Qixian-cen-btns"><button class="cc Qixian-jlocincancel">取消</button><button class="ok Qixian-jlocinok">发送</button></div></div></div><div class="Qixian-cen Qixian-jdrawmodal w260"><div class="Qixian-cen-box" style="width:290px; padding:20px;"><h4>手绘涂鸦</h4><canvas class="Qixian-draw-canvas Qixian-jdrawcanvas" width="246" height="246"></canvas><div class="Qixian-draw-tools"><input type="color" class="Qixian-draw-color Qixian-jdrawcolor" value="#222222"><input type="range" class="Qixian-draw-range Qixian-jdrawwidth" min="1" max="20" value="3"><div class="Qixian-draw-btn-icon Qixian-jdraweraser" title="橡皮擦"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H7L3 16C2.5 15.5 2.5 14.5 3 14L13 4C13.5 3.5 14.5 3.5 15 4L20 9C20.5 9.5 20.5 10.5 20 11L11 20H20V20Z"/></svg></div><div class="Qixian-draw-btn-icon Qixian-jdrawundo" title="撤销"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h10a5 5 0 0 1 5 5v2"/><polyline points="7 6 3 10 7 14"/></svg></div><div class="Qixian-draw-btn-icon Qixian-jdrawclear" title="清空画布"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div></div><div class="Qixian-cen-btns"><button class="cc Qixian-jdrawcancel">取消</button><button class="ok Qixian-jdrawok">发送</button></div></div></div><div class="Qixian-cen Qixian-jgiftmodal w260"><div class="Qixian-cen-box"><h4>送专属礼物</h4><input type="text" class="Qixian-cen-inp Qixian-jgiftdesc" placeholder="礼物名称或描述"><div class="Qixian-tf-grp"><span>¥</span><input type="number" class="Qixian-jgiftpr" placeholder="0.00"></div><input type="text" class="Qixian-cen-inp Qixian-jgiftnote" placeholder="备注留言"><div class="Qixian-cen-btns"><button class="cc Qixian-jgiftcancel">取消</button><button class="ok Qixian-jgiftok">送出</button></div></div></div><div class="Qixian-cen Qixian-jlinkmodal w260"><div class="Qixian-cen-box"><h4>分享外链</h4><input type="text" class="Qixian-cen-inp Qixian-jlinkurl" placeholder="网址URL..."><input type="text" class="Qixian-cen-inp Qixian-jlinktitle" placeholder="分享标题..."><div class="Qixian-cen-btns"><button class="cc Qixian-jlinkcancel">取消</button><button class="ok Qixian-jlinkok">分享</button></div></div></div><div class="Qixian-cen Qixian-jtfmodal"><div class="Qixian-cen-box"><h4>发起转账</h4><div class="Qixian-tf-grp"><span>¥</span><input type="number" class="Qixian-jtfamt" placeholder="0.00"></div><input type="text" class="Qixian-cen-inp Qixian-jtftitle" placeholder="转账说明"><div class="Qixian-cen-btns"><button class="cc Qixian-jtfcancel">取消</button><button class="ok Qixian-jtfok">确认</button></div></div></div><div class="Qixian-cen Qixian-jimgmodal w260"><div class="Qixian-cen-box"><h4>发送原图直链</h4><input type="text" class="Qixian-cen-inp Qixian-jimgurl" placeholder="图片URL直链/AI提示词..."><input type="text" class="Qixian-cen-inp Qixian-jimgdesc" placeholder="图片描述"><div class="Qixian-cen-btns"><button class="cc Qixian-jimgcancel">取消</button><button class="ok Qixian-jimgok">发送直链</button></div></div></div><div class="Qixian-cen Qixian-jtxtimgmodal w260"><div class="Qixian-cen-box"><h4>文字图气泡</h4><textarea class="Qixian-jtxtimgin" rows="3" placeholder="输入气泡中的文字..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jtxtimgcancel">取消</button><button class="ok Qixian-jtxtimgok">发送</button></div></div></div><div class="Qixian-cen Qixian-jfoodmodal w260"><div class="Qixian-cen-box"><h4>高级外卖</h4><input type="text" class="Qixian-cen-inp Qixian-jfoodshop" placeholder="店铺名称 (如: 肯德基)"><input type="text" class="Qixian-cen-inp Qixian-jfooditems" placeholder="外卖内容 (如: 炸鸡套餐)"><input type="text" class="Qixian-cen-inp Qixian-jfoodaddr" placeholder="配送地址"><input type="text" class="Qixian-cen-inp Qixian-jfoodname" placeholder="收件人姓名"><input type="text" class="Qixian-cen-inp Qixian-jfoodphone" placeholder="收件人电话"><div class="Qixian-cen-btns"><button class="cc Qixian-jfoodcancel">取消</button><button class="ok Qixian-jfoodok">下单并发送</button></div></div></div><div class="Qixian-cen Qixian-jvoicemodal w260"><div class="Qixian-cen-box"><h4>语音异常/降级</h4><textarea class="Qixian-jvoicetxt" rows="3" placeholder="麦克风受限，请输入文字..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jvoicecancel">取消</button><button class="ok Qixian-jvoiceok">生成语音条</button></div></div></div><div class="Qixian-cen Qixian-jpatmodal w260"><div class="Qixian-cen-box"><h4>修改拍一拍后缀</h4><div style="font-size:12px;color:#888;text-align:center;font-weight:300;">双击头像时生效</div><input type="text" class="Qixian-cen-inp Qixian-jpatin" placeholder="例如：的脑袋"><div class="Qixian-cen-btns"><button class="cc Qixian-jpatcancel">取消</button><button class="ok Qixian-jpatok">确定</button></div></div></div><div class="Qixian-cen Qixian-jaddemomodal w260"><div class="Qixian-cen-box"><h4>添加自定义表情</h4><input type="text" class="Qixian-cen-inp Qixian-jaddemourl" placeholder="图片URL直链..."><input type="text" class="Qixian-cen-inp Qixian-jaddemotxt" placeholder="说明文字"><div class="Qixian-cen-btns"><button class="cc Qixian-jaddemocancel">取消</button><button class="ok Qixian-jaddemook">保存</button></div></div></div><div class="Qixian-cen Qixian-jviewmodal w260"><div class="Qixian-cen-box"><h4>撤回原文</h4><textarea class="Qixian-cen-inp Qixian-jviewtxt" rows="4" readonly style="background:rgba(255,255,255,.8);"></textarea><div class="Qixian-cen-btns"><button class="ok Qixian-jviewclose" style="width:100%;">关闭</button></div></div></div><div class="Qixian-cen Qixian-jpyqsendmodal w260"><div class="Qixian-cen-box"><h4>发朋友圈</h4><textarea class="Qixian-cen-inp Qixian-jpyqsendtxt" rows="3" placeholder="这一刻的想法..."></textarea><input type="text" class="Qixian-cen-inp Qixian-jpyqsendimg" placeholder="配图URL直链 (可选)"><textarea class="Qixian-cen-inp Qixian-jpyqsendtxtimg" rows="2" placeholder="或者直接发文字图，输入内容..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jpyqsendcancel">取消</button><button class="ok Qixian-jpyqsendok">发表</button></div></div></div><div class="Qixian-cen Qixian-jpyqcommodal w260"><div class="Qixian-cen-box"><h4>评论动态</h4><textarea class="Qixian-cen-inp Qixian-jpyqcomtxt" rows="3" placeholder="说点什么..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jpyqcomcancel">取消</button><button class="ok Qixian-jpyqcomok">评论</button></div></div></div><div class="Qixian-mf Qixian-jlocmodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>位置共享</span><div class="Qixian-mc Qixian-jlocclose">&times;</div></div><div class="Qixian-loc-wrap"><div class="Qixian-cp-top" style="z-index:10;"><div class="Qixian-cp-avs"><div class="Qixian-cp-face Qixian-bind-lav"></div><div class="Qixian-cp-face Qixian-jcpf2 Qixian-bind-rav"></div></div><div class="Qixian-loc-dist">相距 <span id="Qx-loc-dist">未知</span></div></div><div class="Qixian-radar"><div class="Qixian-radar-wave"></div><div class="Qixian-radar-wave w2"></div><div class="Qixian-anchor a1"><div class="Qixian-anchor-av Qixian-bind-lav"></div><div class="Qixian-anchor-tip t1">未获取位置</div></div><div class="Qixian-anchor a2"><div class="Qixian-anchor-av Qixian-bind-rav"></div><div class="Qixian-anchor-tip t2">未获取位置</div></div></div><button class="Qixian-loc-send Qixian-jlocsend">发送当前定位</button></div></div></div><div class="Qixian-mf Qixian-jemomodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>选择表情与互动</span><div class="Qixian-mc Qixian-jemoclose">&times;</div></div><div class="Qixian-emo-games"><div class="Qixian-emo-gamebtn jemo-poke"><svg viewBox="0 0 24 24"><path d="M11 2a2 2 0 0 0-2 2v5H6a2 2 0 0 0-2 2v2c0 4.4 3.6 8 8 8h3a5 5 0 0 0 5-5v-6a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-2-2z"/></svg>戳一戳</div><div class="Qixian-emo-gamebtn jemo-dice"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="8.5" r="1.5"/><circle cx="8.5" cy="15.5" r="1.5"/><circle cx="12" cy="12" r="1.5"/></svg>摇骰子</div><div class="Qixian-emo-gamebtn jemo-rps"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>猜拳</div><div class="Qixian-emo-addbtn Qixian-jaddemobtn" title="添加表情"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Qixian-emo Qixian-jemolist"></div></div></div><div class="Qixian-mf Qixian-jmumodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>一起听歌</span><div class="Qixian-mc Qixian-jmuclose">&times;</div></div><div class="Qixian-mu"><div class="Qixian-mu-stage"><div class="Qixian-mu-face Qixian-jmuf1 Qixian-bind-lav"></div><div class="Qixian-mu-waves Qixian-jmuwaves"><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span></div><div class="Qixian-mu-face Qixian-jmuf2 Qixian-bind-rav"></div></div><div class="Qixian-mu-time-disp">累计听歌: <span id="Qx-mutime-val">0</span> 分钟</div><div class="Qixian-mu-now Qixian-jmunow" style="text-align:center;font-size:13px;color:#555;font-weight:400;">未在播放</div><div class="Qixian-mu-ctrl"><div class="Qixian-mu-btn Qixian-jmuprev"><svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20" fill="none" stroke="#222" stroke-width="1.5"/><line x1="5" y1="19" x2="5" y2="5" stroke="#222" stroke-width="1.5"/></svg></div><div class="Qixian-mu-btn main Qixian-jmuplay"><svg class="Qixian-jmuicon" viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4" fill="#222"/></svg></div><div class="Qixian-mu-btn Qixian-jmunext"><svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4" fill="none" stroke="#222" stroke-width="1.5"/><line x1="19" y1="5" x2="19" y2="19" stroke="#222" stroke-width="1.5"/></svg></div></div><div class="Qixian-mu-inp-wrap"><input type="text" class="Qixian-mu-name Qixian-jmuname" placeholder="歌曲名称"><input type="text" class="Qixian-mu-artist Qixian-jmuartist" placeholder="歌手名"></div><div class="Qixian-mu-inp-wrap" style="margin-top:-8px;"><input type="text" class="Qixian-mu-cover Qixian-jmucover" placeholder="专辑封面URL直链 (可选)"></div><div class="Qixian-mu-inp-wrap" style="margin-top:-8px;"><input type="text" class="Qixian-mu-inp Qixian-jmuinp" placeholder="单曲直链或网易云ID"><button class="Qixian-mu-add Qixian-jmuaddbtn">添加</button></div><div class="Qixian-mu-list Qixian-jmulist"></div><button class="Qixian-mu-invbtn Qixian-jmuinv">发送一起听歌邀请</button></div></div></div><div class="Qixian-mf Qixian-jcpmodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>情侣空间</span><div class="Qixian-mc Qixian-jcpclose">&times;</div></div><div class="Qixian-cp"><div class="Qixian-cp-top"><div class="Qixian-cp-avs"><div class="Qixian-cp-face Qixian-bind-lav"></div><div class="Qixian-cp-face Qixian-jcpf2 Qixian-bind-rav"></div></div><div class="Qixian-cp-id-group"><span class="Qixian-bind-lnm"></span> & <span class="Qixian-bind-rnm"></span></div></div><div class="Qixian-cp-rel Qixian-jcprel"></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> 个性签名</div><div class="Qixian-sign-mod"><div class="Qixian-sign-hd"><div class="Qixian-cp-face Qixian-bind-lav" style="width:30px;height:30px;border-width:.5px;"></div><div class="Qixian-cp-id-group Qixian-bind-lnm" style="font-size:12px;"></div></div><div class="Qixian-sign-bd Qixian-jcsign"></div></div><div class="Qixian-sign-mod" style="margin-top:12px; background:rgba(255,255,255,.9); border:.5px solid rgba(0,0,0,.03);"><div class="Qixian-sign-hd"><div class="Qixian-cp-face Qixian-bind-rav" style="width:30px;height:30px;margin-left:0;border-width:.5px;"></div><div class="Qixian-cp-id-group Qixian-bind-rnm" style="font-size:12px;"></div><div class="Qixian-signdel Qixian-jsigndel" title="删除个签"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div></div><div class="Qixian-sign-bd Qixian-jusign-disp"></div><div class="Qixian-sign-act"><input type="text" class="Qixian-jusignin" placeholder="输入新签名..."><button class="Qixian-jusignsave">发布更新</button></div></div></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 想做的小事</div><div class="Qixian-cp-things Qixian-jcpthings"></div><div class="Qixian-cp-addrow"><select class="Qixian-jcpwho"><option value="Me">我</option><option value="You">对方</option></select><input type="text" class="Qixian-jcpthingin" placeholder="添加待办..."><button class="Qixian-jcpthingadd">加</button></div></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 纪念日</div><div class="Qixian-cp-days Qixian-jcpdays"></div><div class="Qixian-cp-addrow"><input type="text" class="Qixian-jcpdayname" placeholder="事件名称"><input type="date" class="Qixian-jcpdaydate"><button class="Qixian-jcpdayadd">加</button></div></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 相册与图文</div><div class="Qixian-cp-albums Qixian-jcpalbums"></div><div class="Qixian-cp-addrow"><input type="text" class="Qixian-jcpalbumtxt" placeholder="这一刻的想法..." style="min-width:30px;"><input type="text" class="Qixian-jcpalbumimg" placeholder="图片URL直链(可选)" style="min-width:50px;"><button class="Qixian-jcpalbumadd">上传</button></div></div></div></div></div></div></div></div>
+<div class="Qixian-stage"><div class="Qixian-phone-wrap" id="Qx-Phone-Wrapper"><div class="Qixian-phone"><div class="Qixian-home-screen Qixian-jhome"><div class="Qixian-ios-statusbar"><div class="Qixian-jhome-time">12:00</div><div class="Qixian-ios-statusbar-right"><svg viewBox="0 0 24 24"><path d="M12 20h2V10h-2v10zm-4 0h2v-6H8v6zm8-14v14h2V6h-2zM4 20h2v-3H4v3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 3c-4.8 0-9.1 1.9-12.3 5l1.4 1.4C4.1 6.5 7.9 4.8 12 4.8s7.9 1.7 10.9 4.6l1.4-1.4C21.1 4.9 16.8 3 12 3zm0 5.5c-3.2 0-6.2 1.2-8.5 3.3l1.4 1.4c1.9-1.7 4.4-2.7 7.1-2.7s5.2 1 7.1 2.7l1.4-1.4C18.2 9.7 15.2 8.5 12 8.5zm0 5c-1.6 0-3.1.6-4.2 1.6l1.4 1.4c.8-.7 1.8-1 2.8-1s2 .3 2.8 1l1.4-1.4c-1.1-1-2.6-1.6-4.2-1.6zm0 4.5c-.8 0-1.5.7-1.5 1.5S11.2 21 12 21s1.5-.7 1.5-1.5S12.8 18 12 18z"/></svg><div class="Qixian-ios-battery"><div class="Qixian-ios-battery-level"></div></div></div></div><div class="Qixian-sticky-note"><div class="Qixian-sticky-tape"></div><textarea class="Qixian-sticky-textarea Qixian-jsticky-txt" placeholder="在这里写下便签..."></textarea><button class="Qixian-sticky-btn Qixian-jsticky-save">保存更新</button></div><div class="Qixian-dock"><div class="Qixian-dock-icon" id="app-wechat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="Qixian-dock-icon" id="app-phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div></div><div class="Qixian-sys-app Qixian-japp-panel"><div class="Qixian-sys-app-hd"><div class="Qixian-japp-back" style="cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></div><span class="Qixian-japp-title" style="flex:1; text-align:center; padding-right:24px;">电话</span></div><div class="Qixian-sys-app-body Qixian-japp-body"><div class="Qixian-phone-app-container"><div class="Qixian-phone-content" id="phone-content"></div><div class="Qixian-phone-tabbar"><div class="Qixian-ptab active" data-target="recents"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>最近通话</div><div class="Qixian-ptab" data-target="contacts"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>联系人</div><div class="Qixian-ptab" data-target="dialpad"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"></circle><circle cx="12" cy="6" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="6" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle><circle cx="18" cy="12" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="12" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>拨号键盘</div></div></div></div></div><div class="Qixian-content-layer Qixian-root"><div class="Qixian-bg Qixian-jbg"></div><div class="Qixian-call Qixian-jcall state-out"><div class="Qixian-call-mini-hint"></div><div class="Qixian-call-vbg Qixian-bind-lav-bg"></div><div class="Qixian-call-pip Qixian-bind-rav-bg"></div><div class="Qixian-call-mini-top Qixian-jcall-mini-top"><svg viewBox="0 0 24 24"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg></div><div class="Qixian-call-ct"><div class="Qixian-call-avs"><div class="Qixian-call-av Qixian-jcall-lav Qixian-bind-lav"></div><div class="Qixian-call-av Qixian-jcall-rav Qixian-bind-rav"></div></div><div class="Qixian-call-nm Qixian-jcall-nm Qixian-bind-lnm"></div><div class="Qixian-call-timer Qixian-jcall-timer">00:00</div><div class="Qixian-call-st Qixian-jcall-st">正在呼叫...</div><div class="Qixian-call-bubs Qixian-jcall-bubs"></div><div class="Qixian-call-ft"><div class="Qixian-call-btns btns-in"><div class="Qixian-call-btn hangup Qixian-jcall-reject"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><div class="Qixian-call-btn answer Qixian-jcall-answer"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div><div class="Qixian-call-btns btns-out"><div class="Qixian-call-btn cancel Qixian-jcall-cancel"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div></div><div class="Qixian-call-inrow"><div class="Qixian-call-btn hangup mini Qixian-jcall-end" title="挂断"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><input type="text" class="Qixian-call-in Qixian-jcall-in" placeholder="发送实时消息..."><button class="Qixian-call-send Qixian-jcall-send">发送</button></div></div></div></div><div class="Qixian-hd Qixian-jhd"><div class="Qixian-notch"></div><div class="Qixian-hd-back Qixian-jhd-back" title="返回主界面"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Qixian-hd-ph" style="display:none;"></div><div class="Qixian-hd-mid"><div class="Qixian-ubox Qixian-jpat-l"><div class="Qixian-uav Qixian-bind-lav" title="点击修改拍一拍"></div><div class="Qixian-uname Qixian-bind-lnm" title="点击修改对方备注"></div></div><div class="Qixian-waves"><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span></div><div class="Qixian-ubox Qixian-jpat-r"><div class="Qixian-uav Qixian-bind-rav" title="点击修改拍一拍"></div><div class="Qixian-uname Qixian-bind-rnm" title="点击修改自己备注"></div></div></div><div class="Qixian-icons-rt"><div class="Qixian-icbtn pyq Qixian-jpyqbtn" title="朋友圈"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="Qixian-icbtn Qixian-jset-open" title="设置"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="19" r="2.5"/></svg></div></div><div class="Qixian-hd-pull Qixian-jhd-toggle"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div></div><div class="Qixian-chat Qixian-jchat"></div><div class="Qixian-pyq-panel Qixian-jpyqpanel"><div class="Qixian-pyq-hd"><div class="Qixian-pyq-back Qixian-jpyqback" title="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Qixian-pyq-addbtn Qixian-jpyqadd"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Qixian-pyq-scroll"><div class="Qixian-pyq-cover Qixian-jpyq-cover" title="点击更换背景"><div class="Qixian-pyq-user"><div class="Qixian-pyq-uname Qixian-bind-rnm"></div><div class="Qixian-pyq-uav Qixian-jpyq-uav" title="点击更换头像"></div></div></div><div class="Qixian-pyq-list Qixian-jpyqlist"></div></div></div><div class="Qixian-txt-zoom Qixian-jtxtzoom"><div class="Qixian-txt-zoom-in Qixian-jtxtzoomin"></div></div><div class="Qixian-set Qixian-jset"><div class="Qixian-set-h">视觉控制台<span class="Qixian-set-x Qixian-jset-close">&times;</span></div><div class="Qixian-set-r"><label>左侧名称</label><div class="Qixian-color-wrap"><input type="text" class="Qixian-hex-in Qixian-jset-lnm" placeholder="输入名称" style="width:100px;"></div></div><div class="Qixian-set-r"><label>右侧名称</label><div class="Qixian-color-wrap"><input type="text" class="Qixian-hex-in Qixian-jset-rnm" placeholder="输入名称" style="width:100px;"></div></div><div class="Qixian-set-r"><label>拉黑拦截控制</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jblk-l" title="右侧拉黑左侧，左侧发出的消息带叹号">右侧拉黑左侧</button><button class="Qixian-bg-btn Qixian-jblk-r" title="左侧拉黑右侧，右侧发出的消息带叹号">左侧拉黑右侧</button></div></div><div class="Qixian-set-r"><label>主页/聊天背景</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jbg-upload">上传/更换</button><button class="Qixian-bg-btn Qixian-jbg-clear">恢复默认</button></div></div><div class="Qixian-set-r"><label>头像形状</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jav-rnd active">圆形</button><button class="Qixian-bg-btn Qixian-jav-sq">方形</button></div></div><div class="Qixian-set-r"><label>质感风格</label><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jglass-glass active">毛玻璃</button><button class="Qixian-bg-btn Qixian-jglass-solid">纯实色</button></div></div><div class="Qixian-set-r"><label>手机外壳</label><div class="Qixian-color-wrap"><input type="text" id="Qx-wrap-txt" class="Qixian-hex-in"><input type="color" id="Qx-wrap"></div></div><div class="Qixian-set-r"><label>顶部栏背景</label><div class="Qixian-color-wrap"><input type="text" id="Qx-hdr-txt" class="Qixian-hex-in"><input type="color" id="Qx-hdr"></div></div><div class="Qixian-set-r"><label>顶部下拉键</label><div class="Qixian-color-wrap"><input type="text" id="Qx-pull-txt" class="Qixian-hex-in"><input type="color" id="Qx-pull"></div></div><div class="Qixian-set-r"><label>波浪呼吸条</label><div class="Qixian-color-wrap"><input type="text" id="Qx-wv-txt" class="Qixian-hex-in"><input type="color" id="Qx-wv"></div></div><div class="Qixian-set-r"><label>交互卡片底色</label><div class="Qixian-color-wrap"><input type="text" id="Qx-card-txt" class="Qixian-hex-in"><input type="color" id="Qx-card"></div></div><div class="Qixian-set-r"><label>底部输入区</label><div class="Qixian-color-wrap"><input type="text" id="Qx-ftr-txt" class="Qixian-hex-in"><input type="color" id="Qx-ftr"></div></div><div class="Qixian-set-r"><label>我方气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-bub-txt" class="Qixian-hex-in"><input type="color" id="Qx-bub"></div></div><div class="Qixian-set-r"><label>对方气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-bubl-txt" class="Qixian-hex-in"><input type="color" id="Qx-bubl"></div></div><div class="Qixian-set-r"><label>气泡文字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-tm-txt" class="Qixian-hex-in"><input type="color" id="Qx-tm"></div></div><div class="Qixian-set-r"><label>交互卡片字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cdt-txt" class="Qixian-hex-in"><input type="color" id="Qx-cdt"></div></div><div class="Qixian-set-r"><label>交互卡片图标</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cic-txt" class="Qixian-hex-in"><input type="color" id="Qx-cic"></div></div><div class="Qixian-set-r"><label>顶部栏文字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-hdt-txt" class="Qixian-hex-in"><input type="color" id="Qx-hdt"></div></div><div class="Qixian-set-r"><label>顶部栏图标</label><div class="Qixian-color-wrap"><input type="text" id="Qx-hdi-txt" class="Qixian-hex-in"><input type="color" id="Qx-hdi"></div></div><div class="Qixian-set-r"><label>系统提示字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-sys-txt" class="Qixian-hex-in"><input type="color" id="Qx-sys"></div></div><div class="Qixian-set-r"><label>通话左气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cbubl-txt" class="Qixian-hex-in"><input type="color" id="Qx-cbubl"></div></div><div class="Qixian-set-r"><label>通话右气泡</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cbub-txt" class="Qixian-hex-in"><input type="color" id="Qx-cbub"></div></div><div class="Qixian-set-r"><label>通话气泡字</label><div class="Qixian-color-wrap"><input type="text" id="Qx-cbtxt-txt" class="Qixian-hex-in"><input type="color" id="Qx-cbtxt"></div></div></div><div class="Qixian-ft"><div class="Qixian-reply-bar Qixian-jrepbar"><span class="Qixian-reply-txt Qixian-jreptxt"></span><div class="Qixian-reply-close Qixian-jrepclose">×</div></div><div class="Qixian-in-area"><div class="Qixian-lang Qixian-jlang">CN</div><div class="Qixian-plus Qixian-jplus"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><input type="text" class="Qixian-input Qixian-jinput" placeholder="输入文字发送..."><div class="Qixian-mic Qixian-jmic"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg></div><div class="Qixian-send Qixian-jsend"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></div></div><div class="Qixian-panel Qixian-jpanel"><div class="Qixian-pi Qixian-jbtn-voice"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="Qixian-ptx">语音呼叫</div></div><div class="Qixian-pi Qixian-jbtn-video"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div class="Qixian-ptx">视频呼叫</div></div><div class="Qixian-pi Qixian-jimgbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div><div class="Qixian-ptx">发原图</div></div><div class="Qixian-pi Qixian-jtxtimg"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div><div class="Qixian-ptx">发文字图</div></div><div class="Qixian-pi Qixian-jgiftbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg></div><div class="Qixian-ptx">送礼物</div></div><div class="Qixian-pi Qixian-jlinkbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="Qixian-ptx">发链接</div></div><div class="Qixian-pi Qixian-jtf"><div class="Qixian-pic"><svg viewBox="0 0 24 24" class="fl"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div class="Qixian-ptx">转账</div></div><div class="Qixian-pi Qixian-jemo"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="Qixian-ptx">表情包</div></div><div class="Qixian-pi Qixian-jmusic"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div><div class="Qixian-ptx">一起听歌</div></div><div class="Qixian-pi Qixian-jcp"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="Qixian-ptx">情侣空间</div></div><div class="Qixian-pi Qixian-jbtn-loc"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div class="Qixian-ptx">共享位置</div></div><div class="Qixian-pi Qixian-jbtn-food"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div class="Qixian-ptx">点外卖</div></div><div class="Qixian-pi Qixian-jbtn-draw"><div class="Qixian-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></div><div class="Qixian-ptx">手绘便签</div></div></div></div><div class="Qixian-mf Qixian-jmsgact"><div class="Qixian-mbox" style="height:auto; padding-bottom:24px;"><div class="Qixian-act-btn Qixian-jact-reply">引用回复</div><div class="Qixian-act-btn Qixian-jact-revoke" style="display:none; color:#222;">撤回消息</div><div class="Qixian-act-space"></div><div class="Qixian-act-btn Qixian-jact-cancel" style="color:#888;">取消</div></div></div><div class="Qixian-cen Qixian-jaddfriendmodal w260"><div class="Qixian-cen-box"><h4>重新添加好友</h4><input type="text" class="Qixian-cen-inp Qixian-jaddgreet" placeholder="打个招呼吧..."><div class="Qixian-cen-btns"><button class="cc Qixian-jaddfcancel">取消</button><button class="ok Qixian-jaddfok">发送申请</button></div></div></div><div class="Qixian-cen Qixian-jtfactmodal w260"><div class="Qixian-cen-box"><h4>转账处理</h4><div style="font-size:13px;color:#888;text-align:center;font-weight:300;">请选择对该笔转账的操作</div><div class="Qixian-cen-btns"><button class="cc Qixian-jtfact-return">退回</button><button class="ok Qixian-jtfact-receive">收款</button></div><div class="Qixian-cen-btns" style="margin-top:-6px;"><button class="cc Qixian-jtfact-cancel" style="width:100%;">取消</button></div></div></div><div class="Qixian-cen Qixian-jlocinputmodal w260"><div class="Qixian-cen-box"><h4>发送位置分享</h4><input type="text" class="Qixian-cen-inp Qixian-jlocin-pos" placeholder="我的位置 (如:朝阳区)"><input type="text" class="Qixian-cen-inp Qixian-jlocin-dist" placeholder="相距距离 (如:12.5 km)"><div class="Qixian-cen-btns"><button class="cc Qixian-jlocincancel">取消</button><button class="ok Qixian-jlocinok">发送</button></div></div></div><div class="Qixian-cen Qixian-jdrawmodal w260"><div class="Qixian-cen-box" style="width:290px; padding:20px;"><h4>手绘涂鸦</h4><canvas class="Qixian-draw-canvas Qixian-jdrawcanvas" width="246" height="246"></canvas><div class="Qixian-draw-tools"><input type="color" class="Qixian-draw-color Qixian-jdrawcolor" value="#222222"><input type="range" class="Qixian-draw-range Qixian-jdrawwidth" min="1" max="20" value="3"><div class="Qixian-draw-btn-icon Qixian-jdraweraser" title="橡皮擦"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H7L3 16C2.5 15.5 2.5 14.5 3 14L13 4C13.5 3.5 14.5 3.5 15 4L20 9C20.5 9.5 20.5 10.5 20 11L11 20H20V20Z"/></svg></div><div class="Qixian-draw-btn-icon Qixian-jdrawundo" title="撤销"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h10a5 5 0 0 1 5 5v2"/><polyline points="7 6 3 10 7 14"/></svg></div><div class="Qixian-draw-btn-icon Qixian-jdrawclear" title="清空画布"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div></div><div class="Qixian-cen-btns"><button class="cc Qixian-jdrawcancel">取消</button><button class="ok Qixian-jdrawok">发送</button></div></div></div><div class="Qixian-cen Qixian-jgiftmodal w260"><div class="Qixian-cen-box"><h4>送专属礼物</h4><input type="text" class="Qixian-cen-inp Qixian-jgiftdesc" placeholder="礼物名称或描述"><div class="Qixian-tf-grp"><span>¥</span><input type="number" class="Qixian-jgiftpr" placeholder="0.00"></div><input type="text" class="Qixian-cen-inp Qixian-jgiftnote" placeholder="备注留言"><div class="Qixian-cen-btns"><button class="cc Qixian-jgiftcancel">取消</button><button class="ok Qixian-jgiftok">送出</button></div></div></div><div class="Qixian-cen Qixian-jlinkmodal w260"><div class="Qixian-cen-box"><h4>分享外链</h4><input type="text" class="Qixian-cen-inp Qixian-jlinkurl" placeholder="网址URL..."><input type="text" class="Qixian-cen-inp Qixian-jlinktitle" placeholder="分享标题..."><div class="Qixian-cen-btns"><button class="cc Qixian-jlinkcancel">取消</button><button class="ok Qixian-jlinkok">分享</button></div></div></div><div class="Qixian-cen Qixian-jtfmodal"><div class="Qixian-cen-box"><h4>发起转账</h4><div class="Qixian-tf-grp"><span>¥</span><input type="number" class="Qixian-jtfamt" placeholder="0.00"></div><input type="text" class="Qixian-cen-inp Qixian-jtftitle" placeholder="转账说明"><div class="Qixian-cen-btns"><button class="cc Qixian-jtfcancel">取消</button><button class="ok Qixian-jtfok">确认</button></div></div></div><div class="Qixian-cen Qixian-jimgmodal w260"><div class="Qixian-cen-box"><h4>发送原图直链</h4><input type="text" class="Qixian-cen-inp Qixian-jimgurl" placeholder="图片URL直链/AI提示词..."><input type="text" class="Qixian-cen-inp Qixian-jimgdesc" placeholder="图片描述"><div class="Qixian-cen-btns"><button class="cc Qixian-jimgcancel">取消</button><button class="ok Qixian-jimgok">发送直链</button></div></div></div><div class="Qixian-cen Qixian-jtxtimgmodal w260"><div class="Qixian-cen-box"><h4>文字图气泡</h4><textarea class="Qixian-jtxtimgin" rows="3" placeholder="输入气泡中的文字..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jtxtimgcancel">取消</button><button class="ok Qixian-jtxtimgok">发送</button></div></div></div><div class="Qixian-cen Qixian-jfoodmodal w260"><div class="Qixian-cen-box"><h4>高级外卖</h4><input type="text" class="Qixian-cen-inp Qixian-jfoodshop" placeholder="店铺名称 (如: 肯德基)"><input type="text" class="Qixian-cen-inp Qixian-jfooditems" placeholder="外卖内容 (如: 炸鸡套餐)"><input type="text" class="Qixian-cen-inp Qixian-jfoodaddr" placeholder="配送地址"><input type="text" class="Qixian-cen-inp Qixian-jfoodname" placeholder="收件人姓名"><input type="text" class="Qixian-cen-inp Qixian-jfoodphone" placeholder="收件人电话"><div class="Qixian-cen-btns"><button class="cc Qixian-jfoodcancel">取消</button><button class="ok Qixian-jfoodok">下单并发送</button></div></div></div><div class="Qixian-cen Qixian-jvoicemodal w260"><div class="Qixian-cen-box"><h4>语音异常/降级</h4><textarea class="Qixian-jvoicetxt" rows="3" placeholder="麦克风受限，请输入文字..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jvoicecancel">取消</button><button class="ok Qixian-jvoiceok">生成语音条</button></div></div></div><div class="Qixian-cen Qixian-jpatmodal w260"><div class="Qixian-cen-box"><h4>修改拍一拍后缀</h4><div style="font-size:12px;color:#888;text-align:center;font-weight:300;">双击头像时生效</div><input type="text" class="Qixian-cen-inp Qixian-jpatin" placeholder="例如：的脑袋"><div class="Qixian-cen-btns"><button class="cc Qixian-jpatcancel">取消</button><button class="ok Qixian-jpatok">确定</button></div></div></div><div class="Qixian-cen Qixian-jaddemomodal w260"><div class="Qixian-cen-box"><h4>添加自定义表情</h4><input type="text" class="Qixian-cen-inp Qixian-jaddemourl" placeholder="图片URL直链..."><input type="text" class="Qixian-cen-inp Qixian-jaddemotxt" placeholder="说明文字"><div class="Qixian-cen-btns"><button class="cc Qixian-jaddemocancel">取消</button><button class="ok Qixian-jaddemook">保存</button></div></div></div><div class="Qixian-cen Qixian-jviewmodal w260"><div class="Qixian-cen-box"><h4>撤回原文</h4><textarea class="Qixian-cen-inp Qixian-jviewtxt" rows="4" readonly style="background:rgba(255,255,255,.8);"></textarea><div class="Qixian-cen-btns"><button class="ok Qixian-jviewclose" style="width:100%;">关闭</button></div></div></div><div class="Qixian-cen Qixian-jpyqsendmodal w260"><div class="Qixian-cen-box"><h4>发朋友圈</h4><textarea class="Qixian-cen-inp Qixian-jpyqsendtxt" rows="3" placeholder="这一刻的想法..."></textarea><input type="text" class="Qixian-cen-inp Qixian-jpyqsendimg" placeholder="配图URL直链 (可选)"><textarea class="Qixian-cen-inp Qixian-jpyqsendtxtimg" rows="2" placeholder="或者直接发文字图，输入内容..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jpyqsendcancel">取消</button><button class="ok Qixian-jpyqsendok">发表</button></div></div></div><div class="Qixian-cen Qixian-jpyqcommodal w260"><div class="Qixian-cen-box"><h4>评论动态</h4><textarea class="Qixian-cen-inp Qixian-jpyqcomtxt" rows="3" placeholder="说点什么..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jpyqcomcancel">取消</button><button class="ok Qixian-jpyqcomok">评论</button></div></div></div><div class="Qixian-mf Qixian-jlocmodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>位置共享</span><div class="Qixian-mc Qixian-jlocclose">&times;</div></div><div class="Qixian-loc-wrap"><div class="Qixian-cp-top" style="z-index:10;"><div class="Qixian-cp-avs"><div class="Qixian-cp-face Qixian-bind-lav"></div><div class="Qixian-cp-face Qixian-jcpf2 Qixian-bind-rav"></div></div><div class="Qixian-loc-dist">相距 <span id="Qx-loc-dist">未知</span></div></div><div class="Qixian-radar"><div class="Qixian-radar-wave"></div><div class="Qixian-radar-wave w2"></div><div class="Qixian-anchor a1"><div class="Qixian-anchor-av Qixian-bind-lav"></div><div class="Qixian-anchor-tip t1">未获取位置</div></div><div class="Qixian-anchor a2"><div class="Qixian-anchor-av Qixian-bind-rav"></div><div class="Qixian-anchor-tip t2">未获取位置</div></div></div><button class="Qixian-loc-send Qixian-jlocsend">发送当前定位</button></div></div></div><div class="Qixian-mf Qixian-jemomodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>选择表情与互动</span><div class="Qixian-mc Qixian-jemoclose">&times;</div></div><div class="Qixian-emo-games"><div class="Qixian-emo-gamebtn jemo-poke"><svg viewBox="0 0 24 24"><path d="M11 2a2 2 0 0 0-2 2v5H6a2 2 0 0 0-2 2v2c0 4.4 3.6 8 8 8h3a5 5 0 0 0 5-5v-6a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-2-2z"/></svg>戳一戳</div><div class="Qixian-emo-gamebtn jemo-dice"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="8.5" r="1.5"/><circle cx="8.5" cy="15.5" r="1.5"/><circle cx="12" cy="12" r="1.5"/></svg>摇骰子</div><div class="Qixian-emo-gamebtn jemo-rps"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>猜拳</div><div class="Qixian-emo-addbtn Qixian-jaddemobtn" title="添加表情"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Qixian-emo Qixian-jemolist"></div></div></div><div class="Qixian-mf Qixian-jmumodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>一起听歌</span><div class="Qixian-mc Qixian-jmuclose">&times;</div></div><div class="Qixian-mu"><div class="Qixian-mu-stage"><div class="Qixian-mu-face Qixian-jmuf1 Qixian-bind-lav"></div><div class="Qixian-mu-waves Qixian-jmuwaves"><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span></div><div class="Qixian-mu-face Qixian-jmuf2 Qixian-bind-rav"></div></div><div class="Qixian-mu-time-disp">累计听歌: <span id="Qx-mutime-val">0</span> 分钟</div><div class="Qixian-mu-now Qixian-jmunow" style="text-align:center;font-size:13px;color:#555;font-weight:400;">未在播放</div><div class="Qixian-mu-ctrl"><div class="Qixian-mu-btn Qixian-jmuprev"><svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20" fill="none" stroke="#222" stroke-width="1.5"/><line x1="5" y1="19" x2="5" y2="5" stroke="#222" stroke-width="1.5"/></svg></div><div class="Qixian-mu-btn main Qixian-jmuplay"><svg class="Qixian-jmuicon" viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4" fill="#222"/></svg></div><div class="Qixian-mu-btn Qixian-jmunext"><svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4" fill="none" stroke="#222" stroke-width="1.5"/><line x1="19" y1="5" x2="19" y2="19" stroke="#222" stroke-width="1.5"/></svg></div></div><div class="Qixian-mu-inp-wrap"><input type="text" class="Qixian-mu-name Qixian-jmuname" placeholder="歌曲名称"><input type="text" class="Qixian-mu-artist Qixian-jmuartist" placeholder="歌手名"></div><div class="Qixian-mu-inp-wrap" style="margin-top:-8px;"><input type="text" class="Qixian-mu-cover Qixian-jmucover" placeholder="专辑封面URL直链 (可选)"></div><div class="Qixian-mu-inp-wrap" style="margin-top:-8px;"><input type="text" class="Qixian-mu-inp Qixian-jmuinp" placeholder="单曲直链或网易云ID"><button class="Qixian-mu-add Qixian-jmuaddbtn">添加</button></div><div class="Qixian-mu-list Qixian-jmulist"></div><button class="Qixian-mu-invbtn Qixian-jmuinv">发送一起听歌邀请</button></div></div></div><div class="Qixian-mf Qixian-jcpmodal"><div class="Qixian-mbox"><div class="Qixian-mh"><span>情侣空间</span><div class="Qixian-mc Qixian-jcpclose">&times;</div></div><div class="Qixian-cp"><div class="Qixian-cp-top"><div class="Qixian-cp-avs"><div class="Qixian-cp-face Qixian-bind-lav"></div><div class="Qixian-cp-face Qixian-jcpf2 Qixian-bind-rav"></div></div><div class="Qixian-cp-id-group"><span class="Qixian-bind-lnm"></span> & <span class="Qixian-bind-rnm"></span></div></div><div class="Qixian-cp-rel Qixian-jcprel"></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> 个性签名</div><div class="Qixian-sign-mod"><div class="Qixian-sign-hd"><div class="Qixian-cp-face Qixian-bind-lav" style="width:30px;height:30px;border-width:.5px;"></div><div class="Qixian-cp-id-group Qixian-bind-lnm" style="font-size:12px;"></div></div><div class="Qixian-sign-bd Qixian-jcsign"></div></div><div class="Qixian-sign-mod" style="margin-top:12px; background:rgba(255,255,255,.9); border:.5px solid rgba(0,0,0,.03);"><div class="Qixian-sign-hd"><div class="Qixian-cp-face Qixian-bind-rav" style="width:30px;height:30px;margin-left:0;border-width:.5px;"></div><div class="Qixian-cp-id-group Qixian-bind-rnm" style="font-size:12px;"></div><div class="Qixian-signdel Qixian-jsigndel" title="删除个签"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div></div><div class="Qixian-sign-bd Qixian-jusign-disp"></div><div class="Qixian-sign-act"><input type="text" class="Qixian-jusignin" placeholder="输入新签名..."><button class="Qixian-jusignsave">发布更新</button></div></div></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 想做的小事</div><div class="Qixian-cp-things Qixian-jcpthings"></div><div class="Qixian-cp-addrow"><select class="Qixian-jcpwho"><option value="Me">我</option><option value="You">对方</option></select><input type="text" class="Qixian-jcpthingin" placeholder="添加待办..."><button class="Qixian-jcpthingadd">加</button></div></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 纪念日</div><div class="Qixian-cp-days Qixian-jcpdays"></div><div class="Qixian-cp-addrow"><input type="text" class="Qixian-jcpdayname" placeholder="事件名称"><input type="date" class="Qixian-jcpdaydate"><button class="Qixian-jcpdayadd">加</button></div></div><div class="Qixian-cp-sec"><div class="Qixian-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 相册与图文</div><div class="Qixian-cp-albums Qixian-jcpalbums"></div><div class="Qixian-cp-addrow"><input type="text" class="Qixian-jcpalbumtxt" placeholder="这一刻的想法..." style="min-width:30px;"><input type="text" class="Qixian-jcpalbumimg" placeholder="图片URL直链(可选)" style="min-width:50px;"><button class="Qixian-jcpalbumadd">上传</button></div></div></div></div></div></div></div></div></div>
   `;
 
-    // 创建根容器
+  // 创建根容器
   const mount = document.createElement('div');
   mount.id = 'Qixian-Phone-Root';
   mount.innerHTML = phoneHTML;
 
-  // 默认样式：固定右下角，不占用文档流
+  // 固定悬浮在右下角，不占用文档流，不干扰酒馆布局
   mount.style.cssText = `
     position: fixed;
     right: 30px;
@@ -549,7 +549,7 @@ input[type=number]{-moz-appearance:textfield;}
   const $ = (sel) => scope.querySelector(sel);
   const $$ = (sel) => scope.querySelectorAll(sel);
 
-  // 默认昵称与状态
+  // 默认昵称
   const leftName = '对方';
   const rightName = '我';
   let blockLeft = false;
@@ -557,128 +557,16 @@ input[type=number]{-moz-appearance:textfield;}
   let replyTarget = null;
   let activeMsgId = 0;
   let msgMap = {};
-  let leftPat = '的肩膀';
-  let rightPat = '的脑袋';
 
-  // 本地存储封装
-  const QxStore = {
-    get(k) {
-      try { return window.parent.localStorage.getItem(k) || localStorage.getItem(k); }
-      catch(e) { try { return localStorage.getItem(k); } catch(e2) { return null; } }
-    },
-    set(k, v) {
-      try { window.parent.localStorage.setItem(k, v); } catch(e){}
-      try { localStorage.setItem(k, v); } catch(e2) {}
-    }
-  };
-
-  // 酒馆输入框同步指令
-  function appendCmd(cmd) {
-    const inputEl = window.parent.document.querySelector('#mufy_chat_input_box textarea') 
-      || window.parent.document.querySelector('.commentInput') 
-      || window.parent.document.querySelector('textarea');
-    if(!inputEl) return;
-    const setter = Object.getOwnPropertyDescriptor(window.parent.HTMLTextAreaElement.prototype, "value").set;
-    const cur = inputEl.value || '';
-    const nv = cur ? (cur + '\n' + cmd) : cmd;
-    if(setter) setter.call(inputEl, nv);
-    else inputEl.value = nv;
-    inputEl.dispatchEvent(new Event('input', { bubbles: true }));
-  }
-
-  // 头像自动同步酒馆
-  function resolveAvatar(isChar) {
-    try {
-      const doc = window.parent.document;
-      if (isChar) {
-        const img = doc.querySelector('#avatar, .char-avatar img, .avatar img, [data-testid="char-avatar"]');
-        if (img && img.src) return img.src;
-        const bg = doc.querySelector('.char-avatar, .character-avatar');
-        if (bg) {
-          const m = getComputedStyle(bg).backgroundImage.match(/url\(["']?([^"']+)["']?\)/);
-          if (m && m[1]) return m[1];
-        }
-      } else {
-        const img = doc.querySelector('#user_avatar, .user-avatar img, [data-testid="user-avatar"]');
-        if (img && img.src) return img.src;
-        const bg = doc.querySelector('.user-avatar, .user-icon');
-        if (bg) {
-          const m = getComputedStyle(bg).backgroundImage.match(/url\(["']?([^"']+)["']?\)/);
-          if (m && m[1]) return m[1];
-        }
-      }
-    } catch(e) {}
-    return '';
-  }
-
-  // 初始化名称与头像
+  // 初始化名称
   function initNames() {
     $$('.Qixian-bind-lnm').forEach(el => el.textContent = leftName);
     $$('.Qixian-bind-rnm').forEach(el => el.textContent = rightName);
     $('.Qixian-jset-lnm').value = leftName;
     $('.Qixian-jset-rnm').value = rightName;
-
-    const leftAv = resolveAvatar(true);
-    const rightAv = resolveAvatar(false);
-    if (leftAv) {
-      $$('.Qixian-bind-lav, .Qixian-bind-lav-bg').forEach(el => {
-        el.style.backgroundImage = `url('${leftAv}')`;
-      });
-    }
-    if (rightAv) {
-      $$('.Qixian-bind-rav, .Qixian-bind-rav-bg').forEach(el => {
-        el.style.backgroundImage = `url('${rightAv}')`;
-      });
-    }
   }
 
-  // 时间工具
-  function nowTime() {
-    const d = new Date();
-    return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
-  }
-
-  // 音效
-  let actx = null;
-  function getCtx() {
-    if(!actx) try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){}
-    return actx;
-  }
-  function playSwoosh() {
-    const c = getCtx(); if(!c) return;
-    try {
-      if(c.state === 'suspended') c.resume();
-      const o = c.createOscillator(), g = c.createGain();
-      o.type = 'sine';
-      o.frequency.setValueAtTime(600, c.currentTime);
-      o.frequency.exponentialRampToValueAtTime(1200, c.currentTime + 0.1);
-      g.gain.setValueAtTime(0, c.currentTime);
-      g.gain.linearRampToValueAtTime(0.2, c.currentTime + 0.05);
-      g.gain.linearRampToValueAtTime(0, c.currentTime + 0.1);
-      o.connect(g); g.connect(c.destination);
-      o.start(); o.stop(c.currentTime + 0.1);
-    } catch(e){}
-  }
-
-  // 完整铃声地址
-  const customRingUrl = 'https://img.tofaka.com/autoupload/fr/FEa8MSJpCzGxfJi7iutvFIt1IPL8766yrPDdOXw-v_Gyl5f0KlZfm6UsKj-HyTuv/20260710/p0sY/fbeb6ae52fc3e760622f341158564a53.mp3';
-  let callRingMp3 = null;
-  try { callRingMp3 = new window.parent.Audio(customRingUrl); callRingMp3.loop = true; }
-  catch(e) { callRingMp3 = new Audio(customRingUrl); callRingMp3.loop = true; }
-  function playRing() { if(callRingMp3) callRingMp3.play().catch(()=>{}); }
-  function stopRing() { if(callRingMp3) { callRingMp3.pause(); callRingMp3.currentTime = 0; } }
-
-  // 系统消息
-  function renderSysMsg(text) {
-    const chatEl = $('.Qixian-jchat');
-    const m = document.createElement('div');
-    m.className = 'Qixian-sys-msg';
-    m.innerHTML = text;
-    chatEl.appendChild(m);
-    setTimeout(() => chatEl.scrollTop = chatEl.scrollHeight, 60);
-  }
-
-  // 追加消息（核心公开方法）
+  // 追加消息
   function appendMessage(side, text, options = {}) {
     const chatEl = $('.Qixian-jchat');
     const row = document.createElement('div');
@@ -702,12 +590,12 @@ input[type=number]{-moz-appearance:textfield;}
       <div class="Qixian-ct">
         ${quoteHtml}
         <div class="Qixian-bub">${text}</div>
-        <div class="Qixian-meta">${nowTime()} <span class="Qixian-tick">✓✓</span></div>
+        <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
       </div>
       <div class="Qixian-err-icon" title="消息已被拦截">!</div>
     `;
 
-    // 右键菜单
+    // 长按/右键菜单
     row.addEventListener('contextmenu', (e) => {
       e.preventDefault();
       activeMsgId = msgId;
@@ -727,1370 +615,954 @@ input[type=number]{-moz-appearance:textfield;}
 
   // 撤回消息
   function revokeMessage(msgId) {
-    const row = scope.querySelector(`[data-msg-id="${msgId}"]`);
+    const row = scope.querySelector(`.Qixian-row[data-msg-id="${msgId}"]`);
     if (!row || !msgMap[msgId]) return;
+    const originalText = msgMap[msgId].text;
     msgMap[msgId].revoked = true;
-    const m = document.createElement('div');
-    m.className = 'Qixian-sys-msg';
-    m.innerHTML = `${rightName} 撤回了一条消息 <span class="Qixian-view-rev" data-txt="${msgMap[msgId].text.replace(/"/g, '&quot;')}">重新编辑</span>`;
-    row.parentNode.replaceChild(m, row);
-    appendCmd(`$[撤回:${rightName}|${msgMap[msgId].text}]`);
-  }
+    const sysRow = document.createElement('div');
+    sysRow.className = 'Qixian-sys-msg';
+    sysRow.innerHTML = `${msgMap[msgId].side === 'right' ? '你' : '对方'} 撤回了一条消息 <span class="Qixian-view-rev" data-text="${encodeURIComponent(originalText)}">查看原文</span>`;
+    row.replaceWith(sysRow);
 
-  // ========== 主屏幕与电话应用 ==========
-  const homeScreen = $('.Qixian-jhome');
-  const appPanel = $('.Qixian-japp-panel');
-  const phoneContent = $('#phone-content');
-
-  let phoneContacts = [
-    { id: '1', name: leftName, phone: '13800138000' },
-    { id: '2', name: rightName + ' (我)', phone: '13900139000' }
-  ];
-  let phoneHistory = [];
-
-  // 状态栏时间
-  setInterval(() => {
-    const t = $('.Qixian-jhome-time');
-    if(t) {
-      const d = new Date();
-      t.textContent = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
-    }
-  }, 1000);
-
-  // 便签功能
-  const stickyTxt = $('.Qixian-jsticky-txt');
-  const stickyBtn = $('.Qixian-jsticky-save');
-  if (stickyTxt && stickyBtn) {
-    const saved = QxStore.get('Qx-sticky-note');
-    if(saved) stickyTxt.value = saved;
-    stickyBtn.addEventListener('click', () => {
-      QxStore.set('Qx-sticky-note', stickyTxt.value);
-      playSwoosh();
-      appendCmd(`$[更新便签:${stickyTxt.value}]`);
-      renderSysMsg('主界面便签已更新并同步');
-      stickyTxt.blur();
+    sysRow.querySelector('.Qixian-view-rev').addEventListener('click', (e) => {
+      $('.Qixian-jviewtxt').value = decodeURIComponent(e.target.dataset.text);
+      $('.Qixian-jviewmodal').classList.add('show');
     });
   }
 
-  // 界面导航
-  $('.Qixian-jhd-back').addEventListener('click', () => homeScreen.classList.add('active'));
-  $('#app-wechat').addEventListener('click', () => homeScreen.classList.remove('active'));
-  $('.Qixian-japp-back').addEventListener('click', () => appPanel.classList.remove('show'));
+  // 系统消息
+  function appendSystemMsg(text) {
+    const chatEl = $('.Qixian-jchat');
+    const row = document.createElement('div');
+    row.className = 'Qixian-sys-msg';
+    row.textContent = text;
+    chatEl.appendChild(row);
+    chatEl.scrollTop = chatEl.scrollHeight;
+  }
 
-  $('#app-phone').addEventListener('click', () => {
-    appPanel.classList.add('show');
-    renderPhoneTab('recents');
-  });
+  // 呼出通话
+  function showCall(name, type = 'voice') {
+    const callEl = $('.Qixian-jcall');
+    $('.Qixian-jcall-nm').textContent = name || leftName;
+    callEl.classList.add('show', 'state-out');
+    callEl.classList.remove('state-in', 'active', 'minimized', 'video');
 
-  $$('.Qixian-ptab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      $$('.Qixian-ptab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      renderPhoneTab(tab.getAttribute('data-target'));
-    });
-  });
-
-  function renderPhoneTab(type) {
-    phoneContent.innerHTML = '';
-    if(type === 'recents') {
-      if(phoneHistory.length === 0) {
-        phoneContent.innerHTML = '<div style="text-align:center;padding-top:100px;color:#aaa;font-size:14px;">暂无通话记录</div>';
-      } else {
-        let html = '';
-        phoneHistory.forEach(h => {
-          html += `<div class="Qixian-list-item">
-            <div>
-              <div class="Qixian-item-title" style="color:${h.type==='out'?'#222':'#555'};">${h.name}</div>
-              <div class="Qixian-item-sub">手机 - ${h.time}</div>
-            </div>
-            <div class="Qixian-item-arrow"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
-          </div>`;
-        });
-        phoneContent.innerHTML = html;
-      }
-    } else if(type === 'contacts') {
-      let html = '';
-      phoneContacts.forEach((c, i) => {
-        html += `<div class="Qixian-list-item j-contact" data-idx="${i}"><div class="Qixian-item-title">${c.name}</div></div>`;
-      });
-      phoneContent.innerHTML = html;
-      $$('.j-contact').forEach(el => {
-        el.addEventListener('click', () => {
-          const idx = parseInt(el.getAttribute('data-idx'));
-          renderContactDetail(phoneContacts[idx], idx);
-        });
-      });
-    } else if(type === 'dialpad') {
-      let html = `<div style="text-align:center;font-size:32px;font-weight:300;margin:30px 0 20px;height:40px;letter-spacing:2px;color:#222;" id="dial-disp"></div>
-        <div class="Qixian-dial-grid">`;
-      ['1','2','3','4','5','6','7','8','9','*','0','#'].forEach(k => {
-        html += `<div class="Qixian-dial-key">${k}</div>`;
-      });
-      html += `</div><div class="Qixian-dial-callbtn"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>`;
-      phoneContent.innerHTML = html;
-      const ddisp = $('#dial-disp');
-      $$('.Qixian-dial-key').forEach(el => {
-        el.addEventListener('click', () => { ddisp.textContent += el.textContent; playSwoosh(); });
-      });
-      $('.Qixian-dial-callbtn').addEventListener('click', () => {
-        const num = ddisp.textContent;
-        if(!num) return;
-        const match = phoneContacts.find(c => c.phone === num);
-        triggerCall(match ? match.name : num, num);
-      });
+    if (type === 'video') {
+      callEl.classList.add('video');
     }
   }
 
-  function renderContactDetail(contact, idx) {
-    const letter = contact.name.charAt(0).toUpperCase();
-    phoneContent.innerHTML = `
-      <div class="Qixian-contact-detail">
-        <div class="Qixian-c-av-wrap"><div class="Qixian-c-av">${letter}</div></div>
-        <div class="Qixian-c-input-grp"><label>姓名</label><input type="text" class="Qixian-c-input" id="c-edit-name" value="${contact.name}"></div>
-        <div class="Qixian-c-input-grp"><label>手机号</label><input type="text" class="Qixian-c-input" id="c-edit-phone" value="${contact.phone}"></div>
-        <div class="Qixian-c-btns">
-          <button class="Qixian-c-btn save j-c-save">保存</button>
-          <button class="Qixian-c-btn call j-c-call">呼叫</button>
-        </div>
-      </div>`;
-    $('.j-c-save').addEventListener('click', () => {
-      const nn = $('#c-edit-name').value.trim();
-      const np = $('#c-edit-phone').value.trim();
-      if(nn && np) {
-        phoneContacts[idx].name = nn;
-        phoneContacts[idx].phone = np;
-        playSwoosh();
-        renderPhoneTab('contacts');
-      }
-    });
-    $('.j-c-call').addEventListener('click', () => triggerCall(contact.name, contact.phone));
+  // 接听通话
+  function answerCall() {
+    const callEl = $('.Qixian-jcall');
+    callEl.classList.remove('state-out', 'state-in');
+    callEl.classList.add('active', 'state-active');
+    startCallTimer();
   }
 
-  function triggerCall(name, num) {
-    phoneHistory.unshift({ name, phone: num, time: nowTime(), type: 'out' });
-    appPanel.classList.remove('show');
-    homeScreen.classList.remove('active');
-    openCallUI('voice', 'out');
-    appendCmd(blockRight ? '$[呼叫失败，拒收]' : '$[呼叫:语音通话]');
+  // 挂断通话
+  function hangupCall() {
+    const callEl = $('.Qixian-jcall');
+    callEl.classList.remove('show', 'active', 'state-active', 'state-out', 'state-in', 'minimized', 'video');
+    stopCallTimer();
   }
 
-  // ========== 顶部栏与设置 ==========
-  $('.Qixian-jhd-toggle').addEventListener('click', () => {
-    $('.Qixian-jhd').classList.toggle('collapsed');
-    $('.Qixian-jchat').classList.toggle('collapsed');
-  });
-
-  $('.Qixian-jset-open').addEventListener('click', () => $('.Qixian-jset').classList.add('show'));
-  $('.Qixian-jset-close').addEventListener('click', () => $('.Qixian-jset').classList.remove('show'));
-
-  // 颜色自定义
-  const colorMap = [
-    { id: 'Qx-wrap', v: '--wrap-bg' }, { id: 'Qx-hdr', v: '--hdr-bg' }, { id: 'Qx-pull', v: '--pull-bg' },
-    { id: 'Qx-wv', v: '--wv-bg' }, { id: 'Qx-card', v: '--card-bg' }, { id: 'Qx-ftr', v: '--ftr-bg' },
-    { id: 'Qx-bub', v: '--bub-r' }, { id: 'Qx-bubl', v: '--bub-l' }, { id: 'Qx-tm', v: '--txt-main' },
-    { id: 'Qx-cdt', v: '--card-txt' }, { id: 'Qx-cic', v: '--card-ic' }, { id: 'Qx-hdt', v: '--hdr-txt' },
-    { id: 'Qx-hdi', v: '--hdr-ic' }, { id: 'Qx-sys', v: '--sys-txt' }, { id: 'Qx-cbubl', v: '--call-bub-l' },
-    { id: 'Qx-cbub', v: '--call-bub-r' }, { id: 'Qx-cbtxt', v: '--call-bub-txt' }
-  ];
-  const root = $('.Qixian-root');
-  colorMap.forEach(c => {
-    const picker = $('#' + c.id);
-    const txtInp = $('#' + c.id + '-txt');
-    if(!picker || !txtInp) return;
-    const saved = QxStore.get(c.id);
-    if(saved) {
-      root.style.setProperty(c.v, saved, 'important');
-      picker.value = saved.length === 7 ? saved : '#ffffff';
-      txtInp.value = saved;
-    }
-    picker.addEventListener('input', () => {
-      root.style.setProperty(c.v, picker.value, 'important');
-      txtInp.value = picker.value;
-      QxStore.set(c.id, picker.value);
-    });
-    txtInp.addEventListener('change', () => {
-      if(/^#[0-9A-Fa-f]{6}$/.test(txtInp.value.trim())) {
-        root.style.setProperty(c.v, txtInp.value.trim(), 'important');
-        picker.value = txtInp.value.trim();
-        QxStore.set(c.id, txtInp.value.trim());
-      } else {
-        txtInp.value = QxStore.get(c.id) || '#ffffff';
-      }
-    });
-  });
-
-  // 头像形状
-  const btnRnd = $('.Qixian-jav-rnd'), btnSq = $('.Qixian-jav-sq');
-  if(QxStore.get('Qx-av-shape') === 'sq') {
-    root.classList.add('av-sq');
-    btnRnd.classList.remove('active');
-    btnSq.classList.add('active');
-  }
-  btnRnd.addEventListener('click', () => {
-    root.classList.remove('av-sq'); btnRnd.classList.add('active'); btnSq.classList.remove('active');
-    QxStore.set('Qx-av-shape', 'rnd');
-  });
-  btnSq.addEventListener('click', () => {
-    root.classList.add('av-sq'); btnSq.classList.add('active'); btnRnd.classList.remove('active');
-    QxStore.set('Qx-av-shape', 'sq');
-  });
-
-  // 毛玻璃/实色
-  const btnGlass = $('.Qixian-jglass-glass'), btnSolid = $('.Qixian-jglass-solid');
-  if(QxStore.get('Qx-glass-mode') === 'solid') {
-    root.classList.add('solid-mode');
-    btnGlass.classList.remove('active');
-    btnSolid.classList.add('active');
-  }
-  btnGlass.addEventListener('click', () => {
-    root.classList.remove('solid-mode'); btnGlass.classList.add('active'); btnSolid.classList.remove('active');
-    QxStore.set('Qx-glass-mode', 'glass');
-  });
-  btnSolid.addEventListener('click', () => {
-    root.classList.add('solid-mode'); btnSolid.classList.add('active'); btnGlass.classList.remove('active');
-    QxStore.set('Qx-glass-mode', 'solid');
-  });
-
-  // 背景上传
-  $('.Qixian-jbg-upload').addEventListener('click', () => {
-    const fileInp = document.createElement('input');
-    fileInp.type = 'file';
-    fileInp.accept = 'image/*';
-    fileInp.onchange = e => {
-      const f = e.target.files[0]; if(!f) return;
-      const reader = new FileReader();
-      reader.onload = re => {
-        const b64 = re.target.result;
-        QxStore.set('Qx-bg-img', b64);
-        $$('.Qixian-jbg, .Qixian-jhome').forEach(el => el.style.backgroundImage = `url('${b64}')`);
-      };
-      reader.readAsDataURL(f);
-    };
-    fileInp.click();
-  });
-  $('.Qixian-jbg-clear').addEventListener('click', () => {
-    QxStore.set('Qx-bg-img', 'none');
-    $$('.Qixian-jbg, .Qixian-jhome').forEach(el => el.style.backgroundImage = 'none');
-  });
-
-  // 名称设置
-  $('.Qixian-jset-lnm').addEventListener('input', e => {
-    $$('.Qixian-bind-lnm').forEach(el => el.textContent = e.target.value || '对方');
-  });
-  $('.Qixian-jset-rnm').addEventListener('input', e => {
-    $$('.Qixian-bind-rnm').forEach(el => el.textContent = e.target.value || '我');
-  });
-
-  // 拉黑拦截
-  $('.Qixian-jblk-l').addEventListener('click', function() {
-    blockLeft = !blockLeft;
-    this.classList.toggle('active', blockLeft);
-    renderSysMsg(blockLeft ? `已被 ${leftName} 拉入黑名单` : `已移出黑名单`);
-  });
-  $('.Qixian-jblk-r').addEventListener('click', function() {
-    blockRight = !blockRight;
-    this.classList.toggle('active', blockRight);
-    renderSysMsg(blockRight ? `已将 ${leftName} 加入黑名单` : `已将 ${leftName} 移出黑名单`);
-  });
-
-  // 拍一拍
-  let curPatTarget = 'left';
-  $('.Qixian-jpat-l').addEventListener('click', e => {
-    if(e.target.classList.contains('Qixian-uav')) {
-      curPatTarget = 'left';
-      $('.Qixian-jpatin').value = leftPat;
-      $('.Qixian-jpatmodal').classList.add('show');
-    }
-  });
-  $('.Qixian-jpat-r').addEventListener('click', e => {
-    if(e.target.classList.contains('Qixian-uav')) {
-      curPatTarget = 'right';
-      $('.Qixian-jpatin').value = rightPat;
-      $('.Qixian-jpatmodal').classList.add('show');
-    }
-  });
-  $('.Qixian-jpatcancel').addEventListener('click', () => $('.Qixian-jpatmodal').classList.remove('show'));
-  $('.Qixian-jpatok').addEventListener('click', () => {
-    const val = $('.Qixian-jpatin').value.trim() || '的肩膀';
-    if(curPatTarget === 'left') { leftPat = val; appendCmd(`$[${leftName} 的拍一拍后缀设为:${val}]`); }
-    else { rightPat = val; appendCmd(`$[${rightName} 的拍一拍后缀设为:${val}]`); }
-    $('.Qixian-jpatmodal').classList.remove('show');
-  });
-
-  // 双击头像拍一拍
-  let lastClickTime = 0, lastClickTarget = null;
-  $('.Qixian-jchat').addEventListener('click', e => {
-    const isLav = e.target.closest('.Qixian-lav, .Qixian-bind-lav');
-    const isRav = e.target.closest('.Qixian-rav, .Qixian-bind-rav');
-    const now = Date.now();
-    if ((isLav || isRav) && now - lastClickTime < 300 && lastClickTarget === e.target) {
-      if(isLav) {
-        renderSysMsg(`${rightName} 拍了拍 ${leftName} ${leftPat}`);
-        appendCmd(`$[拍一拍:${rightName} 拍了拍 ${leftName} ${leftPat}]`);
-      } else {
-        renderSysMsg(`${rightName} 拍了拍自己 ${rightPat}`);
-        appendCmd(`$[拍一拍:${rightName} 拍了拍自己 ${rightPat}]`);
-      }
-      lastClickTime = 0;
-      return;
-    }
-    lastClickTime = now;
-    lastClickTarget = e.target;
-  });
-
-  // ========== 通话系统 ==========
-  let callIntv = null, callSec = 0, callState = 'none';
-  function formatTime(sec) {
-    const m = String(Math.floor(sec/60)).padStart(2,'0');
-    const s = String(sec%60).padStart(2,'0');
-    return m+':'+s;
-  }
-
-  function openCallUI(type, state) {
-    const c = $('.Qixian-jcall');
-    c.className = `Qixian-call Qixian-jcall show state-${state} ${type==='video' ? 'video' : ''}`;
-    callSec = 0; callState = state; clearInterval(callIntv);
-    $('.Qixian-jpanel').classList.remove('show');
-    $('.Qixian-jplus').classList.remove('on');
-    if(state === 'in') playRing();
-  }
-
-  function setActiveCall() {
-    if(callState === 'active') return;
-    callState = 'active'; stopRing();
-    const c = $('.Qixian-jcall');
-    c.classList.remove('state-in', 'state-out', 'minimized');
-    c.classList.add('active', 'show');
-    $('.Qixian-jcall-timer').textContent = '00:00';
-    callSec = 0; clearInterval(callIntv);
-    callIntv = setInterval(() => {
-      callSec++;
-      $('.Qixian-jcall-timer').textContent = formatTime(callSec);
+  // 通话计时
+  let callTimer = null;
+  let callSeconds = 0;
+  function startCallTimer() {
+    callSeconds = 0;
+    updateCallTimer();
+    callTimer = setInterval(() => {
+      callSeconds++;
+      updateCallTimer();
     }, 1000);
   }
-
-  function closeCall() {
-    stopRing(); clearInterval(callIntv);
-    $('.Qixian-jcall').classList.remove('show', 'active', 'state-in', 'state-out', 'video', 'minimized');
-    callState = 'none';
+  function stopCallTimer() {
+    if (callTimer) clearInterval(callTimer);
+    callTimer = null;
+    callSeconds = 0;
+  }
+  function updateCallTimer() {
+    const m = String(Math.floor(callSeconds / 60)).padStart(2, '0');
+    const s = String(callSeconds % 60).padStart(2, '0');
+    $('.Qixian-jcall-timer').textContent = `${m}:${s}`;
   }
 
-  function addCallBubble(dir, text) {
-    const wrap = document.createElement('div');
-    wrap.className = `Qixian-cb-wrap ${dir}`;
-    const bub = document.createElement('div');
-    bub.className = 'Qixian-cb';
-    bub.textContent = text;
-    wrap.appendChild(bub);
-    $('.Qixian-jcall-bubs').appendChild(wrap);
-    $('.Qixian-jcall-bubs').scrollTop = $('.Qixian-jcall-bubs').scrollHeight;
-  }
-
-  // 通话按钮
-  $('.Qixian-jbtn-voice').addEventListener('click', () => {
-    openCallUI('voice', 'out');
-    appendCmd(blockRight ? '$[呼叫失败，拒收]' : '$[呼叫:语音通话]');
-  });
-  $('.Qixian-jbtn-video').addEventListener('click', () => {
-    openCallUI('video', 'out');
-    appendCmd(blockRight ? '$[呼叫失败，拒收]' : '$[呼叫:视频通话]');
-  });
-  $('.Qixian-jcall-cancel').addEventListener('click', e => {
-    e.stopPropagation(); closeCall(); appendCmd('$[挂断通话]');
-  });
-  $('.Qixian-jcall-answer').addEventListener('click', e => {
-    e.stopPropagation(); setActiveCall(); appendCmd('$[接听通话]');
-  });
-  $('.Qixian-jcall-reject').addEventListener('click', e => {
-    e.stopPropagation();
-    closeCall();
-    appendMessage('right', '<div style="display:flex;align-items:center;gap:6px;"><div style="width:18px;height:18px;display:flex;align-items:center;justify-content:center;color:#666;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><span style="font-size:13px;color:#333;">已拒绝</span></div>', false);
-    appendCmd('$[拒绝通话]');
-  });
-  $('.Qixian-jcall-end').addEventListener('click', e => {
-    e.stopPropagation();
-    const dur = formatTime(callSec);
-    closeCall();
-    appendCmd(`$[挂断通话:${dur}]`);
-  });
-  $('.Qixian-jcall-send').addEventListener('click', () => {
-    const t = $('.Qixian-jcall-in').value.trim();
-    if(!t) return;
-    const isVid = $('.Qixian-jcall').classList.contains('video');
-    addCallBubble('right', t);
-    playSwoosh();
-    appendCmd(isVid ? `$[视频:${t}]` : `$[通话:${t}]`);
-    $('.Qixian-jcall-in').value = '';
-  });
-
-  // 通话悬浮窗拖拽
-  const callDrag = $('.Qixian-jcall');
-  let cDragging = false, cStartX = 0, cStartY = 0, cOffX = 0, cOffY = 0;
-  function cDragStart(e) {
-    if (!callDrag.classList.contains('minimized')) return;
-    const cx = e.touches ? e.touches[0].clientX : e.clientX;
-    const cy = e.touches ? e.touches[0].clientY : e.clientY;
-    cStartX = cx - cOffX; cStartY = cy - cOffY;
-    cDragging = true;
-  }
-  function cDragMove(e) {
-    if (!cDragging) return;
-    const cx = e.touches ? e.touches[0].clientX : e.clientX;
-    const cy = e.touches ? e.touches[0].clientY : e.clientY;
-    cOffX = cx - cStartX; cOffY = cy - cStartY;
-    callDrag.style.transform = `translate(${cOffX}px, ${cOffY}px)`;
-  }
-  function cDragEnd() { cDragging = false; }
-  callDrag.addEventListener('mousedown', cDragStart);
-  document.addEventListener('mousemove', cDragMove);
-  document.addEventListener('mouseup', cDragEnd);
-  callDrag.addEventListener('touchstart', cDragStart, {passive: false});
-  document.addEventListener('touchmove', cDragMove, {passive: false});
-  document.addEventListener('touchend', cDragEnd);
-
-  callDrag.addEventListener('click', e => {
-    if(callDrag.classList.contains('minimized') && !cDragging) {
-      callDrag.classList.remove('minimized');
-      cOffX = 0; cOffY = 0;
-      callDrag.style.transform = 'none';
-    }
-  });
-  $('.Qixian-jcall-mini-top').addEventListener('click', e => {
-    e.stopPropagation();
-    $('.Qixian-jcall').classList.add('minimized');
-  });
-
-  // ========== 输入框与加号面板 ==========
-  const textInput = $('.Qixian-jinput');
-  const sendBtn = $('.Qixian-jsend');
-  const plusBtn = $('.Qixian-jplus');
-  const panel = $('.Qixian-jpanel');
-
-  function sendText() {
-    const v = textInput.value.trim();
-    if(!v) return;
-    appendMessage('right', v);
-    appendCmd(blockRight ? '$[消息被拒收]' : `${rightName} | ${v}`);
-    textInput.value = '';
-    playSwoosh();
-  }
-  sendBtn.addEventListener('click', sendText);
-  textInput.addEventListener('keydown', e => {
-    if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendText(); }
-  });
-
-  plusBtn.addEventListener('click', () => {
-    plusBtn.classList.toggle('on');
-    panel.classList.toggle('show');
-  });
-
-  function openModal(sel) {
-    $$('.Qixian-mf, .Qixian-cen').forEach(el => el.classList.remove('show'));
-    $(sel).classList.add('show');
-    panel.classList.remove('show');
-    plusBtn.classList.remove('on');
-  }
-
-  // 各功能入口
-  $('.Qixian-jgiftbtn').addEventListener('click', () => openModal('.Qixian-jgiftmodal'));
-  $('.Qixian-jlinkbtn').addEventListener('click', () => openModal('.Qixian-jlinkmodal'));
-  $('.Qixian-jtf').addEventListener('click', () => openModal('.Qixian-jtfmodal'));
-  $('.Qixian-jemo').addEventListener('click', () => openModal('.Qixian-jemomodal'));
-  $('.Qixian-jmusic').addEventListener('click', () => openModal('.Qixian-jmumodal'));
-  $('.Qixian-jcp').addEventListener('click', () => openModal('.Qixian-jcpmodal'));
-  $('.Qixian-jtxtimg').addEventListener('click', () => openModal('.Qixian-jtxtimgmodal'));
-  $('.Qixian-jimgbtn').addEventListener('click', () => openModal('.Qixian-jimgmodal'));
-  $('.Qixian-jbtn-loc').addEventListener('click', () => openModal('.Qixian-jlocmodal'));
-  $('.Qixian-jbtn-food').addEventListener('click', () => openModal('.Qixian-jfoodmodal'));
-  $('.Qixian-jbtn-draw').addEventListener('click', () => openModal('.Qixian-jdrawmodal'));
-
-  // 关闭所有弹窗
-  $$('.Qixian-jgiftcancel, .Qixian-jlinkcancel, .Qixian-jtfcancel, .Qixian-jimgcancel, .Qixian-jtxtimgcancel, .Qixian-jfoodcancel, .Qixian-jlocincancel, .Qixian-jdrawcancel, .Qixian-jvoicecancel, .Qixian-jaddemocancel, .Qixian-jaddfcancel, .Qixian-jtfact-cancel, .Qixian-jact-cancel, .Qixian-jviewclose').forEach(el => {
-    el.addEventListener('click', () => {
-      el.closest('.Qixian-mf, .Qixian-cen').classList.remove('show');
+  // ===================== 事件绑定 =====================
+  function bindEvents() {
+    // 发送消息
+    $('.Qixian-jsend').addEventListener('click', sendInputMsg);
+    $('.Qixian-jinput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendInputMsg();
     });
-  });
 
-  // 礼物
-  $('.Qixian-jgiftok').addEventListener('click', () => {
-    const pr = $('.Qixian-jgiftpr').value || '0';
-    const desc = $('.Qixian-jgiftdesc').value || '精美礼物';
-    const note = $('.Qixian-jgiftnote').value || '';
-    appendMessage('right', `
-      <div class="Qixian-link-card Qixian-gift-card">
-        <div class="Qixian-link-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"></path></svg></div>
-        <div class="Qixian-tf-info">
-          <div class="Qixian-tf-t">${desc}</div>
-          <div class="Qixian-tf-a">¥ ${parseFloat(pr).toFixed(2)}${note ? ' - ' + note : ''}</div>
-        </div>
-      </div>`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[礼物:${pr}|${desc}|${note}]`);
-    $('.Qixian-jgiftmodal').classList.remove('show');
-    $('.Qixian-jgiftpr').value = '';
-    $('.Qixian-jgiftdesc').value = '';
-    $('.Qixian-jgiftnote').value = '';
-  });
-
-  // 链接
-  $('.Qixian-jlinkok').addEventListener('click', () => {
-    const url = $('.Qixian-jlinkurl').value.trim();
-    const title = $('.Qixian-jlinktitle').value.trim() || '网页链接';
-    if(!url) return;
-    appendMessage('right', `
-      <a href="javascript:;" class="Qixian-link-card">
-        <div class="Qixian-link-ic"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
-        <div class="Qixian-tf-info">
-          <div class="Qixian-tf-t">${title}</div>
-          <div class="Qixian-tf-a">${url}</div>
-        </div>
-      </a>`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[链接分享:${title}|${url}]`);
-    $('.Qixian-jlinkmodal').classList.remove('show');
-    $('.Qixian-jlinkurl').value = '';
-    $('.Qixian-jlinktitle').value = '';
-  });
-
-  // 转账
-  $('.Qixian-jtfok').addEventListener('click', () => {
-    const amt = $('.Qixian-jtfamt').value;
-    const title = $('.Qixian-jtftitle').value || '转账';
-    if(amt <= 0) return;
-    appendMessage('right', `
-      <div class="Qixian-tf Qixian-j-pure-tf" data-amt="${parseFloat(amt).toFixed(2)}">
-        <div class="Qixian-tf-ic">¥</div>
-        <div class="Qixian-tf-info">
-          <div class="Qixian-tf-t">${title}</div>
-          <div class="Qixian-tf-a">¥ ${parseFloat(amt).toFixed(2)}</div>
-          <div class="Qixian-tf-f">微信转账</div>
-        </div>
-      </div>`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[转账:${parseFloat(amt).toFixed(2)}:${title}]`);
-    $('.Qixian-jtfmodal').classList.remove('show');
-    $('.Qixian-jtfamt').value = '';
-    $('.Qixian-jtftitle').value = '';
-  });
-
-  // 转账操作弹窗
-  let targetTfNode = null;
-  $('.Qixian-jchat').addEventListener('click', e => {
-    const tf = e.target.closest('.Qixian-j-pure-tf');
-    if(tf && !tf.classList.contains('got') && !tf.classList.contains('returned')) {
-      targetTfNode = tf;
-      $('.Qixian-jtfactmodal').classList.add('show');
+    function sendInputMsg() {
+      const input = $('.Qixian-jinput');
+      const text = input.value.trim();
+      if (!text) return;
+      appendMessage('right', text, { replyId: replyTarget });
+      input.value = '';
+      closeReplyBar();
     }
-  });
-  $('.Qixian-jtfact-receive').addEventListener('click', () => {
-    if(targetTfNode) {
-      targetTfNode.classList.add('got');
-      targetTfNode.querySelector('.Qixian-tf-t').textContent = '已收款';
-      const amt = targetTfNode.getAttribute('data-amt') || '0.00';
-      appendCmd(`$[收款:${amt}]`);
-      playSwoosh();
+
+    // 加号面板
+    $('.Qixian-jplus').addEventListener('click', () => {
+      $('.Qixian-jpanel').classList.toggle('show');
+      $('.Qixian-jplus').classList.toggle('on');
+    });
+
+    // 顶部收起
+    $('.Qixian-jhd-toggle').addEventListener('click', () => {
+      $('.Qixian-jhd').classList.toggle('collapsed');
+      $('.Qixian-jchat').classList.toggle('collapsed');
+    });
+
+    // 设置面板
+    $('.Qixian-jset-open').addEventListener('click', () => $('.Qixian-jset').classList.add('show'));
+    $('.Qixian-jset-close').addEventListener('click', () => $('.Qixian-jset').classList.remove('show'));
+
+    // 修改名称
+    $('.Qixian-jset-lnm').addEventListener('input', (e) => {
+      $$('.Qixian-bind-lnm').forEach(el => el.textContent = e.target.value);
+    });
+    $('.Qixian-jset-rnm').addEventListener('input', (e) => {
+      $$('.Qixian-bind-rnm').forEach(el => el.textContent = e.target.value);
+    });
+
+    // 拉黑开关
+    $('.Qixian-jblk-l').addEventListener('click', (e) => {
+      blockLeft = !blockLeft;
+      e.target.classList.toggle('active', blockLeft);
+    });
+    $('.Qixian-jblk-r').addEventListener('click', (e) => {
+      blockRight = !blockRight;
+      e.target.classList.toggle('active', blockRight);
+    });
+
+    // 头像形状
+    $('.Qixian-jav-rnd').addEventListener('click', () => {
+      $('.Qixian-root').classList.remove('av-sq');
+      $('.Qixian-jav-rnd').classList.add('active');
+      $('.Qixian-jav-sq').classList.remove('active');
+    });
+    $('.Qixian-jav-sq').addEventListener('click', () => {
+      $('.Qixian-root').classList.add('av-sq');
+      $('.Qixian-jav-sq').classList.add('active');
+      $('.Qixian-jav-rnd').classList.remove('active');
+    });
+
+    // 毛玻璃/实色
+    $('.Qixian-jglass-glass').addEventListener('click', () => {
+      $('.Qixian-root').classList.remove('solid-mode');
+      $('.Qixian-jglass-glass').classList.add('active');
+      $('.Qixian-jglass-solid').classList.remove('active');
+    });
+    $('.Qixian-jglass-solid').addEventListener('click', () => {
+      $('.Qixian-root').classList.add('solid-mode');
+      $('.Qixian-jglass-solid').classList.add('active');
+      $('.Qixian-jglass-glass').classList.remove('active');
+    });
+
+    // 语音呼叫
+    $('.Qixian-jbtn-voice').addEventListener('click', () => {
+      showCall(leftName, 'voice');
+    });
+
+    // 视频呼叫
+    $('.Qixian-jbtn-video').addEventListener('click', () => {
+      showCall(leftName, 'video');
+    });
+
+    // 通话按钮
+    $('.Qixian-jcall-cancel').addEventListener('click', hangupCall);
+    $('.Qixian-jcall-reject').addEventListener('click', hangupCall);
+    $('.Qixian-jcall-answer').addEventListener('click', answerCall);
+    $('.Qixian-jcall-end').addEventListener('click', hangupCall);
+
+    // 消息操作菜单
+    $('.Qixian-jact-reply').addEventListener('click', () => {
+      replyTarget = activeMsgId;
+      $('.Qixian-jreptxt').textContent = msgMap[activeMsgId]?.text?.slice(0, 30) || '';
+      $('.Qixian-jrepbar').classList.add('show');
+      $('.Qixian-jmsgact').classList.remove('show');
+    });
+    $('.Qixian-jact-revoke').addEventListener('click', () => {
+      revokeMessage(activeMsgId);
+      $('.Qixian-jmsgact').classList.remove('show');
+    });
+    $('.Qixian-jact-cancel').addEventListener('click', () => $('.Qixian-jmsgact').classList.remove('show'));
+
+    // 关闭引用栏
+    $('.Qixian-jrepclose').addEventListener('click', closeReplyBar);
+    function closeReplyBar() {
+      replyTarget = null;
+      $('.Qixian-jrepbar').classList.remove('show');
     }
-    $('.Qixian-jtfactmodal').classList.remove('show');
-  });
-  $('.Qixian-jtfact-return').addEventListener('click', () => {
-    if(targetTfNode) {
-      targetTfNode.classList.add('returned');
-      targetTfNode.querySelector('.Qixian-tf-t').textContent = '已退回';
-      const amt = targetTfNode.getAttribute('data-amt') || '0.00';
-      appendCmd(`$[退回:${amt}]`);
-      playSwoosh();
-    }
-    $('.Qixian-jtfactmodal').classList.remove('show');
-  });
 
-  // 图片
-  $('.Qixian-jimgok').addEventListener('click', () => {
-    const url = $('.Qixian-jimgurl').value.trim();
-    const desc = $('.Qixian-jimgdesc').value.trim() || '图片';
-    if(!url) return;
-    appendMessage('right', `<img src="${url}" class="Qixian-img" alt="${desc}">`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[图:${url}|${desc}]`);
-    $('.Qixian-jimgmodal').classList.remove('show');
-    $('.Qixian-jimgurl').value = '';
-    $('.Qixian-jimgdesc').value = '';
-  });
-
-  // 文字图
-  $('.Qixian-jtxtimgok').addEventListener('click', () => {
-    const txt = $('.Qixian-jtxtimgin').value.trim();
-    if(!txt) return;
-    appendMessage('right', `<div class="Qixian-txt-img">${txt}</div>`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[文图:${txt}]`);
-    $('.Qixian-jtxtimgmodal').classList.remove('show');
-    $('.Qixian-jtxtimgin').value = '';
-  });
-
-  // 外卖
-  $('.Qixian-jfoodok').addEventListener('click', () => {
-    const shop = $('.Qixian-jfoodshop').value.trim() || '外卖派送';
-    const items = $('.Qixian-jfooditems').value.trim() || '神秘大餐';
-    const addr = $('.Qixian-jfoodaddr').value.trim() || '默认地址';
-    appendMessage('right', `
-      <div class="Qixian-tf Qixian-food-card">
-        <div class="Qixian-food-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path><line x1="6" y1="2" x2="6" y2="4"></line><line x1="10" y1="2" x2="10" y2="4"></line><line x1="14" y1="2" x2="14" y2="4"></line></svg></div>
-        <div class="Qixian-tf-info">
-          <div class="Qixian-tf-t">${shop}</div>
-          <div class="Qixian-tf-a">${items}</div>
-          <div class="Qixian-tf-f">${addr}</div>
-        </div>
-      </div>`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[外卖订单:${shop}|${items}|${addr}]`);
-    $('.Qixian-jfoodmodal').classList.remove('show');
-  });
-
-  // 位置
-  $('.Qixian-jlocsend').addEventListener('click', () => openModal('.Qixian-jlocinputmodal'));
-  $('.Qixian-jlocinok').addEventListener('click', () => {
-    const pos = $('.Qixian-jlocin-pos').value.trim() || '我的位置';
-    const dist = $('.Qixian-jlocin-dist').value.trim() || '未知距离';
-    appendMessage('right', `
-      <div class="Qixian-tf Qixian-loc-card">
-        <div class="Qixian-link-ic" style="border-radius:50%;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
-        <div class="Qixian-tf-info">
-          <div class="Qixian-tf-t">${pos}</div>
-          <div class="Qixian-tf-a">${dist.includes('距离') ? dist : '距离 ' + dist}</div>
-        </div>
-      </div>`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[定位分享:${pos}|${dist}]`);
-    $('.Qixian-jlocinputmodal').classList.remove('show');
-    $('.Qixian-jlocmodal').classList.remove('show');
-  });
-
-  // ========== 手绘涂鸦 ==========
-  const drawCanvas = $('.Qixian-jdrawcanvas');
-  const drawCtx = drawCanvas.getContext('2d');
-  let isDrawing = false, drawLastX = 0, drawLastY = 0, isEraser = false;
-  let drawHistory = [];
-
-  function resetDrawBoard() {
-    drawCtx.globalCompositeOperation = 'source-over';
-    drawCtx.fillStyle = '#ffffff';
-    drawCtx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
-    drawHistory = [];
-  }
-  function saveDrawState() {
-    drawHistory.push(drawCanvas.toDataURL());
-    if(drawHistory.length > 20) drawHistory.shift();
-  }
-  function getDrawPos(e) {
-    const r = drawCanvas.getBoundingClientRect();
-    const cx = e.touches ? e.touches[0].clientX : e.clientX;
-    const cy = e.touches ? e.touches[0].clientY : e.clientY;
-    return { x: cx - r.left, y: cy - r.top };
-  }
-  function startDraw(e) {
-    e.preventDefault();
-    isDrawing = true;
-    saveDrawState();
-    const p = getDrawPos(e);
-    drawLastX = p.x; drawLastY = p.y;
-  }
-  function runDraw(e) {
-    if(!isDrawing) return;
-    e.preventDefault();
-    const p = getDrawPos(e);
-    drawCtx.beginPath();
-    drawCtx.moveTo(drawLastX, drawLastY);
-    drawCtx.lineTo(p.x, p.y);
-    drawCtx.globalCompositeOperation = isEraser ? 'destination-out' : 'source-over';
-    drawCtx.strokeStyle = $('.Qixian-jdrawcolor').value;
-    drawCtx.lineWidth = isEraser ? Math.max(10, $('.Qixian-jdrawwidth').value * 2) : $('.Qixian-jdrawwidth').value;
-    drawCtx.lineCap = 'round';
-    drawCtx.lineJoin = 'round';
-    drawCtx.stroke();
-    drawLastX = p.x; drawLastY = p.y;
-  }
-  function stopDraw(e) { e.preventDefault(); isDrawing = false; }
-
-  drawCanvas.addEventListener('mousedown', startDraw);
-  drawCanvas.addEventListener('mousemove', runDraw);
-  drawCanvas.addEventListener('mouseup', stopDraw);
-  drawCanvas.addEventListener('mouseout', stopDraw);
-  drawCanvas.addEventListener('touchstart', startDraw, {passive: false});
-  drawCanvas.addEventListener('touchmove', runDraw, {passive: false});
-  drawCanvas.addEventListener('touchend', stopDraw);
-
-  $('.Qixian-jdrawclear').addEventListener('click', resetDrawBoard);
-  $('.Qixian-jdrawundo').addEventListener('click', () => {
-    if(drawHistory.length > 0) {
-      const img = new Image();
-      img.src = drawHistory.pop();
-      img.onload = () => {
-        drawCtx.globalCompositeOperation = 'source-over';
-        drawCtx.clearRect(0,0,drawCanvas.width,drawCanvas.height);
-        drawCtx.drawImage(img,0,0);
-      };
-    } else resetDrawBoard();
-  });
-  $('.Qixian-jdraweraser').addEventListener('click', function() {
-    isEraser = !isEraser;
-    this.style.background = isEraser ? '#eeeeee' : '';
-  });
-  $('.Qixian-jdrawok').addEventListener('click', () => {
-    drawCtx.globalCompositeOperation = 'source-over';
-    const b64 = drawCanvas.toDataURL('image/jpeg', 0.6);
-    const shortId = 'local-draw-' + Date.now();
-    try { QxStore.set('Qx-' + shortId, b64); } catch(e){}
-    appendMessage('right', `<img src="${b64}" class="Qixian-img" alt="手绘涂鸦">`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[图:${shortId}|手绘涂鸦]`);
-    $('.Qixian-jdrawmodal').classList.remove('show');
-  });
-
-  // ========== 表情包 ==========
-  const baseEmojiArr = [
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/29/14bc30cf3153af0f.png', t: '不乘打屁屁咯' },
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/29/f28c9fdf5230efc0.png', t: '你也很为我着迷吧' },
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/29/603a9d2dd3ba1db1.png', t: '偶哭叻，你满意了吧' },
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/29/56d88bd75de484f0.png', t: '电你，在心跳吗' },
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/26/a2350084ec1eb9e1.jpg', t: '我要吃软饭' },
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/26/9638432efdd2a0dc.png', t: '哞哞哒' },
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/26/1a553718ed2b2347.png', t: '这个世界有问题' },
-    { i: 'https://tuchuang.org.cn/imgs/2026/03/27/b68c231476fd9735.png', t: '愿意做我的坏坏臭宝贝吗' }
-  ];
-  let customEmoArr = [];
-  try { customEmoArr = JSON.parse(QxStore.get('Qx-custom-emos') || '[]'); } catch(e){}
-
-  function renderEmoList() {
-    const all = customEmoArr.concat(baseEmojiArr);
-    $('.Qixian-jemolist').innerHTML = all.map(x => 
-      `<div class="Qixian-emo-card" data-url="${x.i}" data-txt="${x.t}">
-        <img class="Qixian-emo-img" src="${x.i}">
-        <div class="Qixian-emo-t">${x.t}</div>
-      </div>`
-    ).join('');
-    $$('.Qixian-emo-card').forEach(c => {
-      c.addEventListener('click', () => {
-        appendMessage('right', `<img src="${c.getAttribute('data-url')}" class="Qixian-img" alt="${c.getAttribute('data-txt')}">`, true);
-        playSwoosh();
-        appendCmd(blockRight ? '$[发送失败]' : `![${c.getAttribute('data-txt')}](${c.getAttribute('data-url')})`);
-        $('.Qixian-jemomodal').classList.remove('show');
+    // 关闭所有弹窗蒙层
+    $$('.Qixian-cen').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('show');
       });
     });
-  }
-  renderEmoList();
-
-  $('.Qixian-jaddemobtn').addEventListener('click', () => {
-    $('.Qixian-jemomodal').classList.remove('show');
-    $('.Qixian-jaddemomodal').classList.add('show');
-  });
-  $('.Qixian-jaddemook').addEventListener('click', () => {
-    const u = $('.Qixian-jaddemourl').value.trim();
-    const t = $('.Qixian-jaddemotxt').value.trim() || '自定义表情';
-    if(u) {
-      customEmoArr.unshift({i:u, t:t});
-      QxStore.set('Qx-custom-emos', JSON.stringify(customEmoArr));
-      renderEmoList();
-      $('.Qixian-jaddemourl').value = '';
-      $('.Qixian-jaddemotxt').value = '';
-    }
-    $('.Qixian-jaddemomodal').classList.remove('show');
-    $('.Qixian-jemomodal').classList.add('show');
-  });
-
-  // 互动游戏
-  $('.jemo-poke').addEventListener('click', () => {
-    appendMessage('right', `<div class="Qixian-interact-item Qixian-anim-poke"><svg viewBox="0 0 24 24"><path d="M11 2a2 2 0 0 0-2 2v5H6a2 2 0 0 0-2 2v2c0 4.4 3.6 8 8 8h3a5 5 0 0 0 5-5v-6a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-2-2z"/></svg></div>`, true);
-    appendCmd(blockRight ? '$[发送失败]' : `$[戳一戳:${rightName} 戳了戳 ${leftName}]`);
-    playSwoosh();
-    $('.Qixian-jemomodal').classList.remove('show');
-  });
-  $('.jemo-dice').addEventListener('click', () => {
-    const pt = Math.floor(Math.random() * 6) + 1;
-    appendMessage('right', `<div class="Qixian-interact-item Qixian-anim-dice"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="12" cy="12" r="1.5"/></svg></div>`, true);
-    appendCmd(blockRight ? '$[发送失败]' : `$[摇骰子:${pt}点]`);
-    playSwoosh();
-    $('.Qixian-jemomodal').classList.remove('show');
-  });
-  $('.jemo-rps').addEventListener('click', () => {
-    const arr = ['剪刀', '石头', '布'];
-    const res = arr[Math.floor(Math.random() * 3)];
-    appendMessage('right', `<div class="Qixian-interact-item Qixian-anim-rps"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/></svg></div>`, true);
-    appendCmd(blockRight ? '$[发送失败]' : `$[猜拳:${res}]`);
-    playSwoosh();
-    $('.Qixian-jemomodal').classList.remove('show');
-  });
-
-  // ========== 一起听歌 ==========
-  let musicList = [];
-  let curMusicIdx = -1;
-  let isMusicPlaying = false;
-
-  function renderMusicList() {
-    const listEl = $('.Qixian-jmulist');
-    if(musicList.length === 0) {
-      listEl.innerHTML = '<div style="text-align:center;color:#aaa;font-size:12px;padding:20px 0;">暂无歌曲，添加一首吧</div>';
-      return;
-    }
-    listEl.innerHTML = musicList.map((m, i) => 
-      `<div class="Qixian-mu-item ${i===curMusicIdx?'active':''}" data-idx="${i}">
-        <span>${m.name} - ${m.artist}</span>
-        <span class="jmudel" style="color:#aaa;font-size:11px;cursor:pointer;">删除</span>
-      </div>`
-    ).join('');
-    $$('.Qixian-mu-item').forEach(el => {
-      el.addEventListener('click', () => {
-        const idx = parseInt(el.getAttribute('data-idx'));
-        curMusicIdx = idx;
-        isMusicPlaying = true;
-        updateMusicUI();
+    $$('.Qixian-mf').forEach(mf => {
+      mf.addEventListener('click', (e) => {
+        if (e.target === mf) mf.classList.remove('show');
       });
     });
-  }
-
-  function updateMusicUI() {
-    const waves = $('.Qixian-jmuwaves');
-    const nowEl = $('.Qixian-jmunow');
-    const icon = $('.Qixian-jmuicon');
-    if(curMusicIdx < 0 || !musicList[curMusicIdx]) {
-      nowEl.textContent = '未在播放';
-      waves.classList.remove('playing');
-      icon.innerHTML = '<polygon points="7 4 19 12 7 20 7 4" fill="#222"/>';
-      return;
-    }
-    const m = musicList[curMusicIdx];
-    nowEl.textContent = `${m.name} - ${m.artist}`;
-    if(isMusicPlaying) {
-      waves.classList.add('playing');
-      icon.innerHTML = '<rect x="6" y="4" width="4" height="16" fill="#222"/><rect x="14" y="4" width="4" height="16" fill="#222"/>';
-    } else {
-      waves.classList.remove('playing');
-      icon.innerHTML = '<polygon points="7 4 19 12 7 20 7 4" fill="#222"/>';
-    }
-  }
-
-  $('.Qixian-jmuaddbtn').addEventListener('click', () => {
-    const name = $('.Qixian-jmuname').value.trim();
-    const artist = $('.Qixian-jmuartist').value.trim() || '未知歌手';
-    if(!name) return;
-    musicList.push({ name, artist, url: $('.Qixian-jmuinp').value.trim(), cover: $('.Qixian-jmucover').value.trim() });
-    renderMusicList();
-    $('.Qixian-jmuname').value = '';
-    $('.Qixian-jmuartist').value = '';
-    $('.Qixian-jmuinp').value = '';
-    $('.Qixian-jmucover').value = '';
-    playSwoosh();
-  });
-
-  $('.Qixian-jmuplay').addEventListener('click', () => {
-    if(curMusicIdx < 0 && musicList.length > 0) curMusicIdx = 0;
-    if(curMusicIdx < 0) return;
-    isMusicPlaying = !isMusicPlaying;
-    updateMusicUI();
-  });
-
-  $('.Qixian-jmuprev').addEventListener('click', () => {
-    if(musicList.length === 0) return;
-    curMusicIdx = (curMusicIdx - 1 + musicList.length) % musicList.length;
-    updateMusicUI();
-  });
-  $('.Qixian-jmunext').addEventListener('click', () => {
-    if(musicList.length === 0) return;
-    curMusicIdx = (curMusicIdx + 1) % musicList.length;
-    updateMusicUI();
-  });
-
-  $('.Qixian-jmuinv').addEventListener('click', () => {
-    if(curMusicIdx < 0) return;
-    const m = musicList[curMusicIdx];
-    appendMessage('right', `
-      <div class="Qixian-tf Qixian-music-share-card">
-        <div class="Qixian-msc-top">
-          <div class="Qixian-msc-cover" style="background-image:url('${m.cover || ''}');">
-            <div class="Qixian-msc-playic"><svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg></div>
-          </div>
-          <div class="Qixian-msc-info">
-            <div class="Qixian-msc-name">${m.name}</div>
-            <div class="Qixian-msc-artist">${m.artist}</div>
-          </div>
-        </div>
-        <div class="Qixian-msc-bot"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg> 一起听歌</div>
-      </div>`, true);
-    playSwoosh();
-    appendCmd(`$[一起听歌邀请:${m.name}|${m.artist}]`);
-    $('.Qixian-jmumodal').classList.remove('show');
-  });
-
-  renderMusicList();
-
-  // ========== 情侣空间 ==========
-  let cpThings = [];
-  let cpDays = [];
-  let cpAlbums = [];
-  let userSign = '';
-
-  function renderCpThings() {
-    const el = $('.Qixian-jcpthings');
-    if(cpThings.length === 0) {
-      el.innerHTML = '<div style="text-align:center;color:#aaa;font-size:12px;padding:10px 0;">还没有添加小事</div>';
-      return;
-    }
-    el.innerHTML = cpThings.map((t, i) => 
-      `<div class="Qixian-cp-thing ${t.done?'done':''}" data-idx="${i}">
-        <div class="dot"></div>
-        <span>${t.who}: ${t.text}</span>
-      </div>`
-    ).join('');
-    $$('.Qixian-cp-thing .dot').forEach(el => {
-      el.addEventListener('click', () => {
-        const idx = parseInt(el.closest('.Qixian-cp-thing').getAttribute('data-idx'));
-        cpThings[idx].done = !cpThings[idx].done;
-        renderCpThings();
-      });
-    });
-  }
-
-  function renderCpDays() {
-    const el = $('.Qixian-jcpdays');
-    if(cpDays.length === 0) {
-      el.innerHTML = '<div style="text-align:center;color:#aaa;font-size:12px;padding:10px 0;">还没有纪念日</div>';
-      return;
-    }
-    el.innerHTML = cpDays.map(d => {
-      const diff = Math.ceil((new Date() - new Date(d.date)) / (1000*60*60*24));
-      return `<div class="Qixian-cp-day"><span>${d.name}</span><b>${diff} 天</b></div>`;
-    }).join('');
-  }
-
-  function renderCpAlbums() {
-    const el = $('.Qixian-jcpalbums');
-    if(cpAlbums.length === 0) {
-      el.innerHTML = '<div style="text-align:center;color:#aaa;font-size:12px;padding:10px 0;grid-column:1/-1;">还没有照片</div>';
-      return;
-    }
-    el.innerHTML = cpAlbums.map(a => 
-      `<div class="Qixian-cp-album-card">
-        ${a.img ? `<div class="Qixian-cp-album-img" style="background-image:url('${a.img}');"></div>` : `<div class="Qixian-cp-album-txt-only">${a.txt}</div>`}
-        <div class="Qixian-cp-album-txt">${a.txt || '照片'}</div>
-      </div>`
-    ).join('');
-  }
-
-  $('.Qixian-jcpthingadd').addEventListener('click', () => {
-    const who = $('.Qixian-jcpwho').value;
-    const text = $('.Qixian-jcpthingin').value.trim();
-    if(!text) return;
-    cpThings.push({ who, text, done: false });
-    renderCpThings();
-    $('.Qixian-jcpthingin').value = '';
-    playSwoosh();
-  });
-
-  $('.Qixian-jcpdayadd').addEventListener('click', () => {
-    const name = $('.Qixian-jcpdayname').value.trim();
-    const date = $('.Qixian-jcpdaydate').value;
-    if(!name || !date) return;
-    cpDays.push({ name, date });
-    renderCpDays();
-    $('.Qixian-jcpdayname').value = '';
-    playSwoosh();
-  });
-
-  $('.Qixian-jcpalbumadd').addEventListener('click', () => {
-    const txt = $('.Qixian-jcpalbumtxt').value.trim();
-    const img = $('.Qixian-jcpalbumimg').value.trim();
-    if(!txt && !img) return;
-    cpAlbums.push({ txt, img });
-    renderCpAlbums();
-    $('.Qixian-jcpalbumtxt').value = '';
-    $('.Qixian-jcpalbumimg').value = '';
-    playSwoosh();
-  });
-
-  $('.Qixian-jusignsave').addEventListener('click', () => {
-    userSign = $('.Qixian-jusignin').value.trim();
-    $('.Qixian-jusign-disp').textContent = userSign;
-    appendCmd(`$[更新个签:${userSign}]`);
-    playSwoosh();
-  });
-
-  // 初始化情侣空间
-  $('.Qixian-jcprel').textContent = '在一起';
-  $('.Qixian-jcsign').textContent = '对方的个性签名';
-  renderCpThings();
-  renderCpDays();
-  renderCpAlbums();
-
-  // ========== 朋友圈 ==========
-  let pyqList = [];
-
-  function renderPyq() {
-    const listEl = $('.Qixian-jpyqlist');
-    if(pyqList.length === 0) {
-      listEl.innerHTML = '<div style="text-align:center;color:#aaa;font-size:14px;padding:60px 0;">还没有动态</div>';
-      return;
-    }
-    listEl.innerHTML = pyqList.map((p, i) => `
-      <div class="Qixian-pyq-item">
-        <div class="Qixian-pyq-delbtn jpyqdel" data-idx="${i}"><svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div>
-        <div class="Qixian-pyq-iav Qixian-bind-rav"></div>
-        <div class="Qixian-pyq-ict">
-          <div class="Qixian-pyq-inm">${rightName}</div>
-          ${p.txt ? `<div class="Qixian-pyq-itxt">${p.txt}</div>` : ''}
-          ${p.img ? `<img src="${p.img}" class="Qixian-pyq-iimg">` : ''}
-          ${p.txtImg ? `<div class="Qixian-pyq-txtimg Qixian-txt-img">${p.txtImg}</div>` : ''}
-          <div class="Qixian-pyq-ibot">
-            <span>${p.time}</span>
-            <div class="Qixian-pyq-iacts">
-              <div class="Qixian-pyq-btn jpyqlike" data-idx="${i}"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-              <div class="Qixian-pyq-btn jpyqcom" data-idx="${i}"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+   
+    // 转账弹窗
+    $('.Qixian-jtf').addEventListener('click', () => $('.Qixian-jtfmodal').classList.add('show'));
+    $('.Qixian-jtfcancel').addEventListener('click', () => $('.Qixian-jtfmodal').classList.remove('show'));
+    $('.Qixian-jtfok').addEventListener('click', () => {
+      const amt = $('.Qixian-jtfamt').value;
+      const title = $('.Qixian-jtftitle').value || '转账';
+      if (!amt) return;
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-tf">
+            <div class="Qixian-tf-ic">¥</div>
+            <div class="Qixian-tf-info">
+              <div class="Qixian-tf-t">${title}</div>
+              <div class="Qixian-tf-a">¥${amt}</div>
             </div>
           </div>
-          ${p.likes || p.comments ? `
-          <div class="Qixian-pyq-ints">
-            ${p.likes ? `<div class="Qixian-pyq-likes"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> ${p.likes} 人觉得很赞</div>` : ''}
-            ${p.comments && p.comments.length ? `<div class="Qixian-pyq-coms">${p.comments.map(c => `<div class="Qixian-pyq-com"><span>${c.name}</span>：${c.text}</div>`).join('')}</div>` : ''}
-          </div>` : ''}
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
         </div>
-      </div>
-    `).join('');
-
-    $$('.jpyqlike').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.getAttribute('data-idx'));
-        pyqList[idx].likes = (pyqList[idx].likes || 0) + 1;
-        renderPyq();
-        playSwoosh();
-        appendCmd('$[点赞朋友圈]');
-      });
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jtfmodal').classList.remove('show');
+      $('.Qixian-jtfamt').value = '';
+      $('.Qixian-jtftitle').value = '';
     });
 
-    $$('.jpyqcom').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.getAttribute('data-idx'));
-        curPyqIdx = idx;
-        $('.Qixian-jpyqcommodal').classList.add('show');
-      });
-    });
-
-    $$('.jpyqdel').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.getAttribute('data-idx'));
-        pyqList.splice(idx, 1);
-        renderPyq();
-        playSwoosh();
-        appendCmd('$[删除朋友圈]');
-      });
-    });
-  }
-
-  let curPyqIdx = -1;
-
-  $('.Qixian-jpyqbtn').addEventListener('click', () => $('.Qixian-jpyqpanel').classList.add('show'));
-  $('.Qixian-jpyqback').addEventListener('click', () => $('.Qixian-jpyqpanel').classList.remove('show'));
-  $('.Qixian-jpyqadd').addEventListener('click', () => $('.Qixian-jpyqsendmodal').classList.add('show'));
-
-  $('.Qixian-jpyqsendok').addEventListener('click', () => {
-    const txt = $('.Qixian-jpyqsendtxt').value.trim();
-    const img = $('.Qixian-jpyqsendimg').value.trim();
-    const txtImg = $('.Qixian-jpyqsendtxtimg').value.trim();
-    if(!txt && !img && !txtImg) return;
-    pyqList.unshift({ txt, img, txtImg, time: '刚刚', likes: 0, comments: [] });
-    renderPyq();
-    playSwoosh();
-    appendCmd(`$[发布朋友圈:${txt || ''}]`);
-    $('.Qixian-jpyqsendmodal').classList.remove('show');
-    $('.Qixian-jpyqsendtxt').value = '';
-    $('.Qixian-jpyqsendimg').value = '';
-    $('.Qixian-jpyqsendtxtimg').value = '';
-  });
-
-  $('.Qixian-jpyqcomok').addEventListener('click', () => {
-    const t = $('.Qixian-jpyqcomtxt').value.trim();
-    if(!t || curPyqIdx < 0) return;
-    if(!pyqList[curPyqIdx].comments) pyqList[curPyqIdx].comments = [];
-    pyqList[curPyqIdx].comments.push({ name: rightName, text: t });
-    renderPyq();
-    playSwoosh();
-    appendCmd(`$[评论朋友圈:${t}]`);
-    $('.Qixian-jpyqcommodal').classList.remove('show');
-    $('.Qixian-jpyqcomtxt').value = '';
-  });
-
-  renderPyq();
-
-  // ========== 语音功能 ==========
-  const micBtn = $('.Qixian-jmic');
-  let isRec = false;
-  const SR = window.parent.SpeechRecognition || window.parent.webkitSpeechRecognition || window.SpeechRecognition || window.webkitSpeechRecognition;
-  let voiceObj = null;
-  let finalVoiceTxt = '';
-
-  function voiceBubble(txt, dur) {
-    appendMessage('right', `
-      <div class="Qixian-au" data-txt="${txt}">
-        <div class="Qixian-au-main">
-          <div class="Qixian-au-play"></div>
-          <div class="Qixian-au-bars"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-          <div class="Qixian-au-dur">${dur}</div>
+    // 原图弹窗
+    $('.Qixian-jimgbtn').addEventListener('click', () => $('.Qixian-jimgmodal').classList.add('show'));
+    $('.Qixian-jimgcancel').addEventListener('click', () => $('.Qixian-jimgmodal').classList.remove('show'));
+    $('.Qixian-jimgok').addEventListener('click', () => {
+      const url = $('.Qixian-jimgurl').value;
+      if (!url) return;
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <img class="Qixian-img" src="${url}" alt="">
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
         </div>
-        <div class="Qixian-au-wrap"><div class="Qixian-au-txt">${txt}</div></div>
-      </div>`, true);
-    playSwoosh();
-    appendCmd(blockRight ? '$[发送失败]' : `$[语音:${dur}|${txt}]`);
-  }
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jimgmodal').classList.remove('show');
+      $('.Qixian-jimgurl').value = '';
+    });
 
-  function voiceFallback(err) {
-    $('.Qixian-jvoicemodal').classList.add('show');
-    $('.Qixian-jvoicetxt').placeholder = (err ? err + '，' : '') + '麦克风降级，请手动输入语音文字...';
-  }
+    // 文字图弹窗
+    $('.Qixian-jtxtimg').addEventListener('click', () => $('.Qixian-jtxtimgmodal').classList.add('show'));
+    $('.Qixian-jtxtimgcancel').addEventListener('click', () => $('.Qixian-jtxtimgmodal').classList.remove('show'));
+    $('.Qixian-jtxtimgok').addEventListener('click', () => {
+      const text = $('.Qixian-jtxtimgin').value;
+      if (!text) return;
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-txt-img">${text}</div>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jtxtimgmodal').classList.remove('show');
+      $('.Qixian-jtxtimgin').value = '';
+    });
 
-  function setupSR() {
-    if(voiceObj) return true;
-    if(!SR) return false;
-    try {
-      voiceObj = new SR();
-      voiceObj.continuous = true;
-      voiceObj.interimResults = true;
-      voiceObj.onresult = ev => {
-        for(let i = ev.resultIndex; i < ev.results.length; i++) {
-          if(ev.results[i].isFinal) finalVoiceTxt += ev.results[i][0].transcript;
-        }
-      };
-      voiceObj.onerror = ev => {
-        if(ev.error !== 'no-speech') {
-          isRec = false;
-          micBtn.classList.remove('rec');
-          voiceFallback(ev.error === 'not-allowed' ? '权限被拒' : '识别中断');
-        }
-      };
-      voiceObj.onend = () => {
-        if(isRec) { try { voiceObj.start(); } catch(e){} }
-        else {
-          micBtn.classList.remove('rec');
-          if(finalVoiceTxt.trim()) voiceBubble(finalVoiceTxt.trim(), Math.max(1, Math.round(finalVoiceTxt.length/4)) + '"');
-        }
-      };
-      return true;
-    } catch(e) { return false; }
-  }
+    // 礼物弹窗
+    $('.Qixian-jgiftbtn').addEventListener('click', () => $('.Qixian-jgiftmodal').classList.add('show'));
+    $('.Qixian-jgiftcancel').addEventListener('click', () => $('.Qixian-jgiftmodal').classList.remove('show'));
+    $('.Qixian-jgiftok').addEventListener('click', () => {
+      const desc = $('.Qixian-jgiftdesc').value || '专属礼物';
+      const price = $('.Qixian-jgiftpr').value || '';
+      const note = $('.Qixian-jgiftnote').value || '';
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-gift-card">
+            <div class="Qixian-link-ic">🎁</div>
+            <div class="Qixian-tf-info">
+              <div class="Qixian-tf-t">${desc}</div>
+              <div class="Qixian-tf-a">${price ? '¥' + price : ''} ${note}</div>
+            </div>
+          </div>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jgiftmodal').classList.remove('show');
+    });
 
-  micBtn.addEventListener('click', e => {
-    e.preventDefault();
-    if(isRec) {
-      isRec = false;
-      micBtn.classList.remove('rec');
-      if(voiceObj) { try { voiceObj.stop(); } catch(err){} }
-    } else {
-      if(SR && setupSR()) {
-        finalVoiceTxt = '';
-        try {
-          voiceObj.start();
-          isRec = true;
-          micBtn.classList.add('rec');
-        } catch(err) {
-          isRec = false;
-          micBtn.classList.remove('rec');
-          voiceFallback('引擎启动失败');
+    // 链接弹窗
+    $('.Qixian-jlinkbtn').addEventListener('click', () => $('.Qixian-jlinkmodal').classList.add('show'));
+    $('.Qixian-jlinkcancel').addEventListener('click', () => $('.Qixian-jlinkmodal').classList.remove('show'));
+    $('.Qixian-jlinkok').addEventListener('click', () => {
+      const url = $('.Qixian-jlinkurl').value;
+      const title = $('.Qixian-jlinktitle').value || '分享链接';
+      if (!url) return;
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <a class="Qixian-link-card" href="${url}" target="_blank">
+            <div class="Qixian-link-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+            <div class="Qixian-tf-info">
+              <div class="Qixian-tf-t">${title}</div>
+              <div class="Qixian-tf-a">${url}</div>
+            </div>
+          </a>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jlinkmodal').classList.remove('show');
+    });
+
+    // 外卖弹窗
+    $('.Qixian-jbtn-food').addEventListener('click', () => $('.Qixian-jfoodmodal').classList.add('show'));
+    $('.Qixian-jfoodcancel').addEventListener('click', () => $('.Qixian-jfoodmodal').classList.remove('show'));
+    $('.Qixian-jfoodok').addEventListener('click', () => {
+      const shop = $('.Qixian-jfoodshop').value || '外卖订单';
+      const items = $('.Qixian-jfooditems').value || '';
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-food-card">
+            <div class="Qixian-food-ic">🍱</div>
+            <div class="Qixian-tf-info">
+              <div class="Qixian-tf-t">${shop}</div>
+              <div class="Qixian-tf-a">${items}</div>
+            </div>
+          </div>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jfoodmodal').classList.remove('show');
+    });
+
+    // 手绘弹窗
+    $('.Qixian-jbtn-draw').addEventListener('click', () => {
+      $('.Qixian-jdrawmodal').classList.add('show');
+      initDrawCanvas();
+    });
+    $('.Qixian-jdrawcancel').addEventListener('click', () => $('.Qixian-jdrawmodal').classList.remove('show'));
+    
+    // 手绘画布逻辑
+    let drawCtx = null;
+    let isDrawing = false;
+    let drawHistory = [];
+    function initDrawCanvas() {
+      const canvas = $('.Qixian-jdrawcanvas');
+      drawCtx = canvas.getContext('2d');
+      drawCtx.fillStyle = '#ffffff';
+      drawCtx.fillRect(0, 0, canvas.width, canvas.height);
+      drawCtx.lineCap = 'round';
+      drawCtx.lineJoin = 'round';
+      drawHistory = [canvas.toDataURL()];
+
+      const getPos = (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+          x: (clientX - rect.left) * scaleX,
+          y: (clientY - rect.top) * scaleY
+        };
+      };
+
+      const start = (e) => {
+        e.preventDefault();
+        isDrawing = true;
+        const pos = getPos(e);
+        drawCtx.beginPath();
+        drawCtx.moveTo(pos.x, pos.y);
+      };
+      const move = (e) => {
+        if (!isDrawing) return;
+        e.preventDefault();
+        const pos = getPos(e);
+        drawCtx.lineTo(pos.x, pos.y);
+        drawCtx.stroke();
+      };
+      const end = () => {
+        if (!isDrawing) return;
+        isDrawing = false;
+        drawHistory.push(canvas.toDataURL());
+      };
+
+      canvas.addEventListener('mousedown', start);
+      canvas.addEventListener('mousemove', move);
+      canvas.addEventListener('mouseup', end);
+      canvas.addEventListener('mouseleave', end);
+      canvas.addEventListener('touchstart', start);
+      canvas.addEventListener('touchmove', move);
+      canvas.addEventListener('touchend', end);
+
+      // 颜色、笔宽
+      $('.Qixian-jdrawcolor').addEventListener('input', (e) => {
+        drawCtx.strokeStyle = e.target.value;
+      });
+      $('.Qixian-jdrawwidth').addEventListener('input', (e) => {
+        drawCtx.lineWidth = e.target.value;
+      });
+      // 橡皮擦
+      $('.Qixian-jdraweraser').addEventListener('click', () => {
+        drawCtx.strokeStyle = '#ffffff';
+      });
+      // 撤销
+      $('.Qixian-jdrawundo').addEventListener('click', () => {
+        if (drawHistory.length > 1) {
+          drawHistory.pop();
+          const img = new Image();
+          img.src = drawHistory[drawHistory.length - 1];
+          img.onload = () => drawCtx.drawImage(img, 0, 0);
         }
-      } else {
-        voiceFallback('设备不支持语音识别');
+      });
+      // 清空
+      $('.Qixian-jdrawclear').addEventListener('click', () => {
+        drawCtx.fillStyle = '#ffffff';
+        drawCtx.fillRect(0, 0, canvas.width, canvas.height);
+        drawHistory.push(canvas.toDataURL());
+      });
+    }
+    $('.Qixian-jdrawok').addEventListener('click', () => {
+      const canvas = $('.Qixian-jdrawcanvas');
+      const dataUrl = canvas.toDataURL('image/png');
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <img class="Qixian-img" src="${dataUrl}" alt="">
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jdrawmodal').classList.remove('show');
+    });
+
+    // 位置共享
+    $('.Qixian-jbtn-loc').addEventListener('click', () => $('.Qixian-jlocmodal').classList.add('show'));
+    $('.Qixian-jlocclose').addEventListener('click', () => $('.Qixian-jlocmodal').classList.remove('show'));
+    $('.Qixian-jlocsend').addEventListener('click', () => $('.Qixian-jlocinputmodal').classList.add('show'));
+    $('.Qixian-jlocincancel').addEventListener('click', () => $('.Qixian-jlocinputmodal').classList.remove('show'));
+    $('.Qixian-jlocinok').addEventListener('click', () => {
+      const pos = $('.Qixian-jlocin-pos').value || '当前位置';
+      const dist = $('.Qixian-jlocin-dist').value || '';
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-loc-card">
+            <div class="Qixian-link-ic">📍</div>
+            <div class="Qixian-tf-info">
+              <div class="Qixian-tf-t">${pos}</div>
+              <div class="Qixian-tf-a">${dist}</div>
+            </div>
+          </div>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+      $('.Qixian-jlocinputmodal').classList.remove('show');
+      $('.Qixian-jlocmodal').classList.remove('show');
+    });
+
+    // 表情包面板
+    $('.Qixian-jemo').addEventListener('click', () => $('.Qixian-jemomodal').classList.add('show'));
+    $('.Qixian-jemoclose').addEventListener('click', () => $('.Qixian-jemomodal').classList.remove('show'));
+    
+    // 互动游戏：戳一戳、骰子、猜拳
+    $('.jemo-poke').addEventListener('click', () => {
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-interact-item Qixian-anim-poke">
+            <svg viewBox="0 0 24 24"><path d="M11 2a2 2 0 0 0-2 2v5H6a2 2 0 0 0-2 2v2c0 4.4 3.6 8 8 8h3a5 5 0 0 0 5-5v-6a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-2-2z"/></svg>
+          </div>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    });
+    $('.jemo-dice').addEventListener('click', () => {
+      const result = Math.floor(Math.random() * 6) + 1;
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-interact-item Qixian-anim-dice">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><text x="12" y="16" text-anchor="middle" font-size="12" fill="#222">${result}</text></svg>
+          </div>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    });
+    $('.jemo-rps').addEventListener('click', () => {
+      const items = ['✊', '✌️', '🖐️'];
+      const result = items[Math.floor(Math.random() * 3)];
+      const chatEl = $('.Qixian-jchat');
+      const row = document.createElement('div');
+      row.className = 'Qixian-row right';
+      row.innerHTML = `
+        <div class="Qixian-rav Qixian-bind-rav"></div>
+        <div class="Qixian-ct">
+          <div class="Qixian-interact-item Qixian-anim-rps" style="font-size:36px;">${result}</div>
+          <div class="Qixian-meta"><span class="Qixian-tick">✓✓</span></div>
+        </div>
+      `;
+      chatEl.appendChild(row);
+      chatEl.scrollTop = chatEl.scrollHeight;
+    });
+
+    // 一起听歌
+    $('.Qixian-jmusic').addEventListener('click', () => $('.Qixian-jmumodal').classList.add('show'));
+    $('.Qixian-jmuclose').addEventListener('click', () => $('.Qixian-jmumodal').classList.remove('show'));
+    
+    let musicList = [];
+    let currentMusicIndex = -1;
+    let isMusicPlaying = false;
+    
+    $('.Qixian-jmuaddbtn').addEventListener('click', () => {
+      const name = $('.Qixian-jmuname').value;
+      const artist = $('.Qixian-jmuartist').value || '未知歌手';
+      if (!name) return;
+      musicList.push({ name, artist });
+      renderMusicList();
+      $('.Qixian-jmuname').value = '';
+      $('.Qixian-jmuartist').value = '';
+    });
+    
+    function renderMusicList() {
+      const listEl = $('.Qixian-jmulist');
+      listEl.innerHTML = '';
+      musicList.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = `Qixian-mu-item ${idx === currentMusicIndex ? 'active' : ''}`;
+        div.innerHTML = `
+          <span>${item.name} - ${item.artist}</span>
+          <span class="jmudel" style="color:#aaa;font-size:11px;cursor:pointer;">删除</span>
+        `;
+        div.addEventListener('click', () => {
+          currentMusicIndex = idx;
+          isMusicPlaying = true;
+          $('.Qixian-jmunow').textContent = `正在播放：${item.name}`;
+          $('.Qixian-jmuwaves').classList.add('playing');
+          renderMusicList();
+        });
+        listEl.appendChild(div);
+      });
+    }
+    
+    $('.Qixian-jmuplay').addEventListener('click', () => {
+      if (musicList.length === 0) return;
+      if (currentMusicIndex < 0) currentMusicIndex = 0;
+      isMusicPlaying = !isMusicPlaying;
+      $('.Qixian-jmuwaves').classList.toggle('playing', isMusicPlaying);
+      const item = musicList[currentMusicIndex];
+      $('.Qixian-jmunow').textContent = isMusicPlaying ? `正在播放：${item.name}` : `已暂停：${item.name}`;
+    });
+    
+    $('.Qixian-jmuprev').addEventListener('click', () => {
+      if (musicList.length === 0) return;
+      currentMusicIndex = (currentMusicIndex - 1 + musicList.length) % musicList.length;
+      $('.Qixian-jmunow').textContent = `正在播放：${musicList[currentMusicIndex].name}`;
+      renderMusicList();
+    });
+    
+    $('.Qixian-jmunext').addEventListener('click', () => {
+      if (musicList.length === 0) return;
+      currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
+      $('.Qixian-jmunow').textContent = `正在播放：${musicList[currentMusicIndex].name}`;
+      renderMusicList();
+    });
+
+    // 情侣空间
+    $('.Qixian-jcp').addEventListener('click', () => $('.Qixian-jcpmodal').classList.add('show'));
+    $('.Qixian-jcpclose').addEventListener('click', () => $('.Qixian-jcpmodal').classList.remove('show'));
+    
+    // 情侣空间：个签、待办、纪念日、相册
+    $('.Qixian-jusignsave').addEventListener('click', () => {
+      const val = $('.Qixian-jusignin').value.trim();
+      if (val) {
+        $('.Qixian-jusign-disp').textContent = val;
+        $('.Qixian-jusignin').value = '';
+      }
+    });
+    
+    let cpThings = [];
+    $('.Qixian-jcpthingadd').addEventListener('click', () => {
+      const val = $('.Qixian-jcpthingin').value.trim();
+      const who = $('.Qixian-jcpwho').value;
+      if (!val) return;
+      cpThings.push({ text: val, who, done: false });
+      renderCpThings();
+      $('.Qixian-jcpthingin').value = '';
+    });
+    
+    function renderCpThings() {
+      const el = $('.Qixian-jcpthings');
+      el.innerHTML = '';
+      cpThings.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = `Qixian-cp-thing ${item.done ? 'done' : ''}`;
+        div.innerHTML = `<div class="dot"></div><span>${item.who === 'Me' ? '我' : '对方'}：${item.text}</span>`;
+        div.querySelector('.dot').addEventListener('click', () => {
+          cpThings[idx].done = !cpThings[idx].done;
+          renderCpThings();
+        });
+        el.appendChild(div);
+      });
+    }
+    
+    let cpDays = [];
+    $('.Qixian-jcpdayadd').addEventListener('click', () => {
+      const name = $('.Qixian-jcpdayname').value.trim();
+      const date = $('.Qixian-jcpdaydate').value;
+      if (!name || !date) return;
+      cpDays.push({ name, date });
+      renderCpDays();
+      $('.Qixian-jcpdayname').value = '';
+    });
+    
+    function renderCpDays() {
+      const el = $('.Qixian-jcpdays');
+      el.innerHTML = '';
+      const today = new Date();
+      cpDays.forEach(item => {
+        const target = new Date(item.date);
+        const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+        const text = diff >= 0 ? `还有 ${diff} 天` : `已过 ${Math.abs(diff)} 天`;
+        const div = document.createElement('div');
+        div.className = 'Qixian-cp-day';
+        div.innerHTML = `<span>${item.name}</span><b>${text}</b>`;
+        el.appendChild(div);
+      });
+    }
+    
+    let cpAlbums = [];
+    $('.Qixian-jcpalbumadd').addEventListener('click', () => {
+      const txt = $('.Qixian-jcpalbumtxt').value.trim();
+      const img = $('.Qixian-jcpalbumimg').value.trim();
+      if (!txt && !img) return;
+      cpAlbums.push({ text: txt, img, who: 'Me' });
+      renderCpAlbums();
+      $('.Qixian-jcpalbumtxt').value = '';
+      $('.Qixian-jcpalbumimg').value = '';
+    });
+    
+    function renderCpAlbums() {
+      const el = $('.Qixian-jcpalbums');
+      el.innerHTML = '';
+      cpAlbums.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'Qixian-cp-album-card';
+        if (item.img) {
+          div.innerHTML = `
+            <div class="Qixian-cp-album-img" style="background-image:url('${item.img}');"></div>
+            <div class="Qixian-cp-album-who">${item.who === 'Me' ? '我' : '对方'}</div>
+            <div class="Qixian-cp-album-txt">${item.text || ''}</div>
+          `;
+        } else {
+          div.innerHTML = `<div class="Qixian-cp-album-txt-only">${item.text}</div>`;
+        }
+        el.appendChild(div);
+      });
+    }
+
+    // 朋友圈
+    $('.Qixian-jpyqbtn').addEventListener('click', () => $('.Qixian-jpyqpanel').classList.add('show'));
+    $('.Qixian-jpyqback').addEventListener('click', () => $('.Qixian-jpyqpanel').classList.remove('show'));
+    
+    let pyqList = [];
+    $('.Qixian-jpyqadd').addEventListener('click', () => $('.Qixian-jpyqsendmodal').classList.add('show'));
+    $('.Qixian-jpyqsendcancel').addEventListener('click', () => $('.Qixian-jpyqsendmodal').classList.remove('show'));
+    
+    $('.Qixian-jpyqsendok').addEventListener('click', () => {
+      const txt = $('.Qixian-jpyqsendtxt').value.trim();
+      const img = $('.Qixian-jpyqsendimg').value.trim();
+      const txtImg = $('.Qixian-jpyqsendtxtimg').value.trim();
+      if (!txt && !img && !txtImg) return;
+      pyqList.unshift({
+        name: rightName,
+        avatar: '',
+        text: txt,
+        img: img,
+        txtImg: txtImg,
+        likes: 0,
+        comments: [],
+        time: '刚刚'
+      });
+      renderPyqList();
+      $('.Qixian-jpyqsendmodal').classList.remove('show');
+      $('.Qixian-jpyqsendtxt').value = '';
+      $('.Qixian-jpyqsendimg').value = '';
+      $('.Qixian-jpyqsendtxtimg').value = '';
+    });
+    
+    function renderPyqList() {
+      const el = $('.Qixian-jpyqlist');
+      el.innerHTML = '';
+      pyqList.forEach((item, idx) => {
+        const div = document.createElement('div');
+        div.className = 'Qixian-pyq-item';
+        let imgHtml = '';
+        if (item.img) imgHtml = `<img class="Qixian-pyq-iimg" src="${item.img}" alt="">`;
+        if (item.txtImg) imgHtml = `<div class="Qixian-pyq-txtimg">${item.txtImg}</div>`;
+        
+        div.innerHTML = `
+          <div class="Qixian-pyq-iav Qixian-bind-rav"></div>
+          <div class="Qixian-pyq-ict">
+            <div class="Qixian-pyq-inm">${item.name}</div>
+            <div class="Qixian-pyq-itxt">${item.text || ''}</div>
+            ${imgHtml}
+            <div class="Qixian-pyq-ibot">
+              <span>${item.time}</span>
+              <div class="Qixian-pyq-iacts">
+                <div class="Qixian-pyq-btn jpyq-like" data-idx="${idx}">
+                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  赞
+                </div>
+                <div class="Qixian-pyq-btn jpyq-comment" data-idx="${idx}">
+                  <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  评论
+                </div>
+              </div>
+            </div>
+            ${item.likes > 0 || item.comments.length > 0 ? `
+            <div class="Qixian-pyq-ints">
+              ${item.likes > 0 ? `<div class="Qixian-pyq-likes"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>等${item.likes}人觉得很赞</div>` : ''}
+              ${item.comments.length > 0 ? `
+              <div class="Qixian-pyq-coms">
+                ${item.comments.map(c => `<div class="Qixian-pyq-com"><span>${c.name}：</span>${c.text}</div>`).join('')}
+              </div>` : ''}
+            </div>` : ''}
+          </div>
+        `;
+        el.appendChild(div);
+      });
+      
+      // 点赞
+      $$('.jpyq-like').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const idx = e.currentTarget.dataset.idx;
+          pyqList[idx].likes++;
+          renderPyqList();
+        });
+      });
+      // 评论
+      $$('.jpyq-comment').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const idx = e.currentTarget.dataset.idx;
+          $('.Qixian-jpyqcommodal').classList.add('show');
+          $('.Qixian-jpyqcomok').onclick = () => {
+            const text = $('.Qixian-jpyqcomtxt').value.trim();
+            if (text) {
+              pyqList[idx].comments.push({ name: rightName, text });
+              renderPyqList();
+            }
+            $('.Qixian-jpyqcommodal').classList.remove('show');
+            $('.Qixian-jpyqcomtxt').value = '';
+          };
+        });
+      });
+    }
+
+    // 颜色选择器双向绑定
+    const colorMap = [
+      { id: 'Qx-wrap', var: '--wrap-bg' },
+      { id: 'Qx-hdr', var: '--hdr-bg' },
+      { id: 'Qx-pull', var: '--pull-bg' },
+      { id: 'Qx-wv', var: '--wv-bg' },
+      { id: 'Qx-card', var: '--card-bg' },
+      { id: 'Qx-ftr', var: '--ftr-bg' },
+      { id: 'Qx-bub', var: '--bub-r' },
+      { id: 'Qx-bubl', var: '--bub-l' },
+      { id: 'Qx-tm', var: '--txt-main' },
+      { id: 'Qx-cdt', var: '--card-txt' },
+      { id: 'Qx-cic', var: '--card-ic' },
+      { id: 'Qx-hdt', var: '--hdr-txt' },
+      { id: 'Qx-hdi', var: '--hdr-ic' },
+      { id: 'Qx-sys', var: '--sys-txt' },
+      { id: 'Qx-cbubl', var: '--call-bub-l' },
+      { id: 'Qx-cbub', var: '--call-bub-r' },
+      { id: 'Qx-cbtxt', var: '--call-bub-txt' }
+    ];
+    
+    colorMap.forEach(item => {
+      const picker = document.getElementById(item.id);
+      const input = document.getElementById(item.id + '-txt');
+      if (!picker || !input) return;
+      
+      picker.addEventListener('input', (e) => {
+        input.value = e.target.value;
+        scope.style.setProperty(item.var, e.target.value);
+      });
+      input.addEventListener('input', (e) => {
+        picker.value = e.target.value;
+        scope.style.setProperty(item.var, e.target.value);
+      });
+    });
+
+    // 主界面返回
+    $('.Qixian-jhd-back').addEventListener('click', () => {
+      $('.Qixian-home-screen').classList.add('active');
+    });
+    
+    // 桌面APP入口
+    $('#app-wechat').addEventListener('click', () => {
+      $('.Qixian-home-screen').classList.remove('active');
+    });
+    $('#app-phone').addEventListener('click', () => {
+      $('.Qixian-japp-panel').classList.add('show');
+      $('.Qixian-home-screen').classList.remove('active');
+    });
+    
+    // 系统APP返回
+    $('.Qixian-japp-back').addEventListener('click', () => {
+      $('.Qixian-japp-panel').classList.remove('show');
+    });
+    
+    // 电话Tab切换
+    $$('.Qixian-ptab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        $$('.Qixian-ptab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.dataset.target;
+        renderPhoneTab(target);
+      });
+    });
+    
+    function renderPhoneTab(target) {
+      const content = $('#phone-content');
+      if (target === 'dialpad') {
+        content.innerHTML = `
+          <div style="text-align:center; font-size:24px; font-weight:300; padding:20px 0; min-height:60px;" class="Qixian-jdial-num"></div>
+          <div class="Qixian-dial-grid">
+            ${[1,2,3,4,5,6,7,8,9,'*',0,'#'].map(n => `<div class="Qixian-dial-key" data-num="${n}">${n}</div>`).join('')}
+          </div>
+          <div class="Qixian-dial-callbtn Qixian-jdial-call">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+        `;
+        $$('.Qixian-dial-key').forEach(key => {
+          key.addEventListener('click', () => {
+            $('.Qixian-jdial-num').textContent += key.dataset.num;
+          });
+        });
+        $('.Qixian-jdial-call').addEventListener('click', () => {
+          const num = $('.Qixian-jdial-num').textContent || '未知号码';
+          showCall(num, 'voice');
+          $('.Qixian-japp-panel').classList.remove('show');
+        });
+      } else if (target === 'recents') {
+        content.innerHTML = `<div style="padding:20px; text-align:center; color:#aaa; font-size:13px;">暂无通话记录</div>`;
+      } else if (target === 'contacts') {
+        content.innerHTML = `<div style="padding:20px; text-align:center; color:#aaa; font-size:13px;">暂无联系人</div>`;
       }
     }
-  });
+    // 初始化拨号页
+    renderPhoneTab('recents');
 
-  $('.Qixian-jvoiceok').addEventListener('click', () => {
-    const txt = $('.Qixian-jvoicetxt').value.trim();
-    if(txt) voiceBubble(txt, Math.max(1, Math.round(txt.length/4)) + '"');
-    $('.Qixian-jvoicemodal').classList.remove('show');
-  });
+    // 查看撤回原文关闭
+    $('.Qixian-jviewclose').addEventListener('click', () => $('.Qixian-jviewmodal').classList.remove('show'));
 
-  // ========== 消息右键菜单 ==========
-  $('.Qixian-jact-reply').addEventListener('click', () => {
-    if(msgMap[activeMsgId]) {
-      replyTarget = activeMsgId;
-      $('.Qixian-jreptxt').textContent = msgMap[activeMsgId].text.slice(0, 30);
-      $('.Qixian-jrepbar').classList.add('show');
-    }
-    $('.Qixian-jmsgact').classList.remove('show');
-  });
-
-  $('.Qixian-jact-revoke').addEventListener('click', () => {
-    revokeMessage(activeMsgId);
-    $('.Qixian-jmsgact').classList.remove('show');
-  });
-
-  $('.Qixian-jrepclose').addEventListener('click', () => {
-    replyTarget = null;
-    $('.Qixian-jrepbar').classList.remove('show');
-  });
-
-  // 点击叹号加好友
-  $('.Qixian-jchat').addEventListener('click', e => {
-    if(e.target.closest('.Qixian-err-icon')) {
-      e.stopPropagation();
-      $('.Qixian-jaddfriendmodal').classList.add('show');
-    }
-  });
-
-  $('.Qixian-jaddfok').addEventListener('click', () => {
-    const greet = $('.Qixian-jaddgreet').value.trim() || '你好，加个好友吧';
-    playSwoosh();
-    renderSysMsg('已发送好友请求');
-    appendCmd(`$[发送好友请求:${greet}]`);
-    $('.Qixian-jaddfriendmodal').classList.remove('show');
-    $('.Qixian-jaddgreet').value = '';
-  });
-
-  // 查看撤回原文
-  $('.Qixian-jchat').addEventListener('click', e => {
-    const rev = e.target.closest('.Qixian-view-rev');
-    if(rev) {
-      e.stopPropagation();
-      $('.Qixian-jviewtxt').value = rev.getAttribute('data-txt') || '';
-      $('.Qixian-jviewmodal').classList.add('show');
-    }
-  });
-
-  // 文字放大
-  const zoom = $('.Qixian-jtxtzoom');
-  const zoomIn = $('.Qixian-jtxtzoomin');
-  $('.Qixian-jchat').addEventListener('click', e => {
-    const txt = e.target.closest('.Qixian-txt-img');
-    const gift = e.target.closest('.Qixian-gift-card');
-    if(txt) {
-      zoomIn.innerHTML = txt.innerHTML;
-      zoomIn.className = 'Qixian-txt-zoom-in txt-img-zoom';
-      zoom.classList.add('show');
-    } else if(gift) {
-      zoomIn.innerHTML = gift.innerHTML;
-      zoomIn.className = 'Qixian-txt-zoom-in gift-zoom';
-      zoom.classList.add('show');
-    }
-  });
-  zoom.addEventListener('click', e => { if(e.target === zoom) zoom.classList.remove('show'); });
-
-  // ========== 悬浮拖拽（整机） ==========
-  function enableDrag() {
-    const el = mount;
-    let isDragging = false;
-    let startX = 0, startY = 0;
-    let initLeft = 0, initTop = 0;
-    let hasMoved = false;
-
-    // 读取保存位置
-    let savedPos = null;
-    try {
-      const raw = localStorage.getItem('QixianPhone_Pos');
-      if(raw) savedPos = JSON.parse(raw);
-    } catch(e) {}
-
-    if(savedPos && typeof savedPos.left === 'number') {
-      el.style.right = 'auto';
-      el.style.bottom = 'auto';
-      el.style.left = savedPos.left + 'px';
-      el.style.top = savedPos.top + 'px';
-    }
-
-    function savePos() {
-      const rect = el.getBoundingClientRect();
-      try {
-        localStorage.setItem('QixianPhone_Pos', JSON.stringify({
-          left: rect.left,
-          top: rect.top
-        }));
-      } catch(e) {}
-    }
-
-    function clampPosition(left, top) {
-      const rect = el.getBoundingClientRect();
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const maxLeft = vw - rect.width;
-      const maxTop = vh - rect.height;
-      return {
-        left: Math.max(0, Math.min(left, maxLeft)),
-        top: Math.max(0, Math.min(top, maxTop))
-      };
-    }
-
-    function onStart(e) {
-      // 忽略可交互元素
-      const target = e.target;
-      if(target.closest('input, textarea, button, .Qixian-dial-key, .Qixian-list-item, .Qixian-mu-item, .Qixian-emo-card')) return;
-      
-      isDragging = true;
-      hasMoved = false;
-      const cx = e.touches ? e.touches[0].clientX : e.clientX;
-      const cy = e.touches ? e.touches[0].clientY : e.clientY;
-      
-      const rect = el.getBoundingClientRect();
-      initLeft = rect.left;
-      initTop = rect.top;
-      startX = cx - initLeft;
-      startY = cy - initTop;
-
-      el.style.right = 'auto';
-      el.style.bottom = 'auto';
-      el.style.opacity = '0.92';
-      document.body.style.userSelect = 'none';
-    }
-
-    function onMove(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      const cx = e.touches ? e.touches[0].clientX : e.clientX;
-      const cy = e.touches ? e.touches[0].clientY : e.clientY;
-      
-      let newLeft = cx - startX;
-      let newTop = cy - startY;
-      const clamped = clampPosition(newLeft, newTop);
-      
-      if (Math.abs(newLeft - initLeft) > 5 || Math.abs(newTop - initTop) > 5) {
-        hasMoved = true;
-      }
-
-      el.style.left = clamped.left + 'px';
-      el.style.top = clamped.top + 'px';
-    }
-
-    function onEnd() {
-      if (!isDragging) return;
-      isDragging = false;
-      el.style.opacity = '1';
-      document.body.style.userSelect = '';
-      if (hasMoved) savePos();
-    }
-
-    el.addEventListener('mousedown', onStart);
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('mouseup', onEnd);
-    el.addEventListener('touchstart', onStart, { passive: false });
-    document.addEventListener('touchmove', onMove, { passive: false });
-    document.addEventListener('touchend', onEnd);
-
-    window.addEventListener('resize', () => {
-      const rect = el.getBoundingClientRect();
-      const clamped = clampPosition(rect.left, rect.top);
-      el.style.left = clamped.left + 'px';
-      el.style.top = clamped.top + 'px';
-      savePos();
+    // 拍一拍
+    let patSuffix = '的脑袋';
+    $('.Qixian-jpat-l').addEventListener('dblclick', () => {
+      appendSystemMsg(`你拍了拍 ${leftName} ${patSuffix}`);
+    });
+    $('.Qixian-jpat-r').addEventListener('dblclick', () => {
+      appendSystemMsg(`${leftName} 拍了拍你 ${patSuffix}`);
     });
   }
 
-  // ========== 初始化执行 ==========
-  initNames();
-
-  // 恢复背景
-  const savedBg = QxStore.get('Qx-bg-img');
-  if(savedBg && savedBg !== 'none') {
-    $$('.Qixian-jbg, .Qixian-jhome').forEach(el => el.style.backgroundImage = `url('${savedBg}')`);
+  // ===================== 初始化 =====================
+  function init() {
+    initNames();
+    bindEvents();
+    appendSystemMsg('当前为聊天界面');
   }
 
-  // 默认欢迎消息
-  appendMessage('left', '你好呀～');
+  // 执行初始化
+  init();
 
-  // ========== 对外暴露 API ==========
+  // ===================== 暴露全局API（酒馆剧情联动用） =====================
   window.QixianPhone = {
+    /**
+     * 往聊天框追加消息
+     * @param {string} side left=对方 right=我方
+     * @param {string} text 消息内容
+     */
+    addMessage(side, text) {
+      return appendMessage(side, text);
+    },
+
+    /**
+     * 追加系统提示消息
+     * @param {string} text 提示内容
+     */
+    addSystemTip(text) {
+      appendSystemMsg(text);
+    },
+
+    /**
+     * 呼出通话界面
+     * @param {string} name 来电人名称
+     * @param {string} type voice=语音 video=视频
+     */
+    showCall(name, type = 'voice') {
+      showCall(name, type);
+    },
+
+    answerCall,
+    hangupCall,
+    revokeMessage,
+
     /**
      * 将手机挂载到指定容器
      * @param {HTMLElement} container 目标DOM容器
@@ -2103,31 +1575,9 @@ input[type=number]{-moz-appearance:textfield;}
 
     getRoot() {
       return mount;
-    },
-
-    /**
-     * 添加一条聊天消息
-     * @param {'left'|'right'} side 左右侧
-     * @param {string} text 消息内容
-     * @param {object} options 可选参数
-     */
-    addMessage(side, text, options = {}) {
-      return appendMessage(side, text, options);
-    },
-
-    /**
-     * 添加系统提示
-     * @param {string} text 提示文字
-     */
-    addSystemTip(text) {
-      renderSysMsg(text);
-    },
-
-    /**
-     * 启用整机悬浮拖拽
-     */
-    enableDrag
+    }
   };
+
 })();
 
 /* ================================================
@@ -2149,16 +1599,9 @@ input[type=number]{-moz-appearance:textfield;}
     z-index: 9998 !important;
     transform: scale(0.82) !important;
     transform-origin: right bottom;
-    transition: opacity .2s;
-    cursor: grab;
   `;
 
-  // ---------- 2. 启用整机悬浮拖拽 ----------
-  if (typeof window.QixianPhone.enableDrag === 'function') {
-    window.QixianPhone.enableDrag();
-  }
-
-  // ---------- 3. 自动同步当前角色名称 ----------
+  // ---------- 2. 自动同步当前角色名称 ----------
   function syncCharacterName() {
     const charName = window.SillyTavern?.character?.name;
     if (!charName) return;
@@ -2171,7 +1614,7 @@ input[type=number]{-moz-appearance:textfield;}
   syncCharacterName();
   $(document).on('character_loaded', syncCharacterName);
 
-  // ---------- 4. 酒馆消息自动同步到手机 ----------
+  // ---------- 3. 酒馆消息自动同步到手机 ----------
   $(document).on('chat_message_received', (_event, msg) => {
     if (!msg?.message || msg.is_system || msg.is_cmd) return;
     
@@ -2183,7 +1626,7 @@ input[type=number]{-moz-appearance:textfield;}
     window.QixianPhone.addMessage(side, pureText);
   });
 
-  // ---------- 5. 切换对话时清空手机聊天记录 ----------
+  // ---------- 4. 切换对话时清空手机聊天记录 ----------
   $(document).on('chat_changed', () => {
     const chatBox = document.querySelector('.Qixian-jchat');
     if (chatBox) chatBox.innerHTML = '';
@@ -2191,7 +1634,7 @@ input[type=number]{-moz-appearance:textfield;}
     syncCharacterName();
   });
 
-  // ---------- 6. 快捷键：Ctrl+P 显示/隐藏手机 ----------
+  // ---------- 5. 快捷键：Ctrl+P 显示/隐藏手机 ----------
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.key.toLowerCase() === 'p') {
       e.preventDefault();
@@ -2199,5 +1642,5 @@ input[type=number]{-moz-appearance:textfield;}
     }
   });
 
-  console.log('[QixianPhone] 酒馆适配已加载，支持拖拽移动，Ctrl+P 切换显示');
+  console.log('[QixianPhone] 酒馆适配已加载，Ctrl+P 切换显示');
 })();
