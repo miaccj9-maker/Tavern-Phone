@@ -1627,6 +1627,7 @@ micBtn.addEventListener('click', function(e){
 }
 
 function bindExtraEvents() {
+Q('.Qixian-jmuaddbtn').addEventListener('click', function(){
     var name = Q('.Qixian-jmuname').value.trim() || '未知歌曲';
     var artist = Q('.Qixian-jmuartist').value.trim() || '未知歌手';
     var cover = Q('.Qixian-jmucover').value.trim() || '';
