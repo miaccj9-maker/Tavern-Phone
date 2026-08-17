@@ -1,4 +1,4 @@
-/* Nicole Phone - SillyTavern Extension v2.0 */
+/* Nico2 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1898,11 +1898,12 @@ function startStoryListener(){
                     var node=added[ai];
                     if(node.nodeType!==1) continue;
                     if(node.closest&&node.closest('#'+PANEL_ID)) continue;
-                    scanNodeForPhoneMsg2(node);
+                    if(!node.closest||!node.closest('[data-nc-scanned]')){scanNodeForPhoneMsg2(node);}
                     if(node.querySelectorAll){
                         var children=node.querySelectorAll('div,p,span,li');
                         for(var ci=0;ci<children.length;ci++){
                             if(children[ci].closest&&children[ci].closest('#'+PANEL_ID)) continue;
+                            if(children[ci].closest&&children[ci].closest('[data-nc-scanned]')) continue;
                             scanNodeForPhoneMsg2(children[ci]);
                         }
                     }
@@ -1950,6 +1951,7 @@ function scanNodeForPhoneMsg2(node){
     if(!hasMarker){if(/\[[^\[\]:]+(通话|视频|电话)[：:]/.test(txt))hasMarker=true;}
     if(!hasMarker) return;
     processedStoryNodes2.add(node);
+    try{node.setAttribute('data-nc-scanned','1');}catch(e){}
     var isUser=ncGuessIsUser(node);
     // 我专用格式（优先匹配，强制右侧）
     var fm;
@@ -2165,7 +2167,21 @@ function loadChatForChar(charName){
 }
 function renderPhoneMessage(text,type,isUser){
     try{
+        // 去重：检查最近一条消息是否完全相同
         var panel=document.getElementById(PANEL_ID);
+        if(panel){
+            var chatBox=panel.querySelector('.Nicole-jchat');
+            if(chatBox&&chatBox.lastElementChild){
+                var last=chatBox.lastElementChild;
+                var lastTxt=last.textContent||'';
+                var lastType=last.getAttribute('data-nc-type')||'';
+                var lastDir=last.getAttribute('data-nc-dir')||'';
+                if(lastTxt.trim()===String(text).trim()&&lastType===type&&lastDir===(isUser?'right':'left')){
+                    console.log('[Nicole] 重复消息跳过:', text.substring(0,30));
+                    return;
+                }
+            }
+        }
         if(!panel) return;
         var chatBox=panel.querySelector('.Nicole-jchat');
         if(!chatBox) return;
