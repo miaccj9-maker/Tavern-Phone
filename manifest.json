@@ -1,6 +1,6 @@
 {
-    "display_name": "Qixian Phone Extension",
-    "command": "qixian-phone",
+    "display_name": "nico Phone Extension",
+    "command": "nico-phone",
     "author": "Cotton Fluff",
     "description": "小手机组件。支持双向交互、朋友圈、通话视觉特效及UI美化。全局响应，动态挂载。",
     "version": "1.0.0",
