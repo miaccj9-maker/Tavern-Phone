@@ -462,6 +462,7 @@ function getTavernUser(){
 
 /* ============ 核心逻辑 (完整移植原版，scope 传入) ============ */
 function runPhoneLogic(scope, charInfo, userInfo){
+try {
     var Q = function(s){ return scope.querySelector(s) || document.querySelector(s); };
     var QA = function(s){ var res = scope.querySelectorAll(s); return res.length ? res : document.querySelectorAll(s); };
     function getVal(id) {
@@ -563,7 +564,8 @@ function runPhoneLogic(scope, charInfo, userInfo){
     function appendCmd(cmd){
         var inputEl = document.querySelector('#send_textarea') || document.querySelector('.commentInput') || document.querySelector('textarea');
         if(!inputEl) return;
-        var setter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value").set;
+        var desc = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, "value");
+        var setter = desc ? desc.set : null;
         var cur = inputEl.value || ''; var nv = cur ? (cur + '\n' + cmd) : cmd;
         if(setter){ setter.call(inputEl, nv); } else { inputEl.value = nv; }
         inputEl.dispatchEvent(new Event('input', { bubbles: true }));
@@ -1032,6 +1034,10 @@ function runPhoneLogic(scope, charInfo, userInfo){
     renderPyq();
 
     renderSysMsg('Qixian 手机已连接 · '+finalLName);
+} catch(e) {
+    console.error('[Qixian Phone v3] runPhoneLogic 错误:', e);
+    console.error(e.stack);
+}
 }
 
 /* ============ 扩展初始化 ============ */
@@ -1068,13 +1074,21 @@ function buildExtension(){
 
 var currentCharName = '';
 function doInit(){
-    var built = buildExtension();
-    if(!built) return;
-    var charInfo = getTavernChar();
-    var userInfo = getTavernUser();
-    currentCharName = charInfo.name;
-    runPhoneLogic(built.panel, charInfo, userInfo);
-    console.log('[Qixian Phone v3] 初始化完成，角色：'+charInfo.name);
+    try {
+        console.log('[Qixian Phone v3] 开始初始化...');
+        var built = buildExtension();
+        if(!built){ console.log('[Qixian Phone v3] 已存在，跳过'); return; }
+        console.log('[Qixian Phone v3] DOM 构建完成');
+        var charInfo = getTavernChar();
+        var userInfo = getTavernUser();
+        console.log('[Qixian Phone v3] 角色:', charInfo.name, '用户:', userInfo.name);
+        currentCharName = charInfo.name;
+        runPhoneLogic(built.panel, charInfo, userInfo);
+        console.log('[Qixian Phone v3] 初始化完成，角色：'+charInfo.name);
+    } catch(e) {
+        console.error('[Qixian Phone v3] 初始化失败:', e);
+        console.error(e.stack);
+    }
 }
 function checkCharSwitch(){
     try{
