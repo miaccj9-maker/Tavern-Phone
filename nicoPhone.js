@@ -1,4 +1,4 @@
-/* Nicole Phone - SillyTavern Extension v2.0 */
+/* 你扣二 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1767,29 +1767,61 @@ function initPhone(scope, charInfo, userInfo){
 var finalLName='',finalRName='',finalLAv='',finalRAv='',safeLAv='',safeRAv='',currentCharName='',currentChatId2='',ncManualChar=false;
 var currentCharName='';
 async function doInit(){
-    var built=buildExtension();
-    if(!built)return;
-    var charInfo=getTavernChar();
-    var userInfo=getTavernUser();
-    // 用 triggerSlash 获取准确的 {{char}} 名字和头像
     try{
-        if(typeof triggerSlash==='function'){
-            try{var cn=await triggerSlash('/pass {{char}}');if(cn&&cn.trim()){charInfo.name=cn.trim();console.log('[Nicole] triggerSlash char name:',cn);}}catch(e){}
-            try{var ca=await triggerSlash('/pass {{charAvatarPath}}');if(ca&&ca.trim()){charInfo.avatar=ca.trim();console.log('[Nicole] triggerSlash char avatar:',ca);}}catch(e){}
-            try{var un=await triggerSlash('/pass {{user}}');if(un&&un.trim()){userInfo.name=un.trim();}}catch(e){}
-            try{var ua=await triggerSlash('/pass {{userAvatarPath}}');if(ua&&ua.trim()){userInfo.avatar=ua.trim();}}catch(e){}
+        console.log('[Nicole] doInit开始');
+        var built=buildExtension();
+        if(!built){console.log('[Nicole] buildExtension返回空');return;}
+        var charInfo=getTavernChar();
+        var userInfo=getTavernUser();
+        // triggerSlash加超时防止卡住
+        function triggerWithTimeout(cmd){
+            return new Promise(function(resolve){
+                var done=false;
+                var timer=setTimeout(function(){if(!done){done=true;resolve(null);}},3000);
+                try{
+                    var p=triggerSlash(cmd);
+                    if(p&&typeof p.then==='function'){
+                        p.then(function(r){if(!done){done=true;clearTimeout(timer);resolve(r);}}).catch(function(){if(!done){done=true;clearTimeout(timer);resolve(null);}});
+                    }else{if(!done){done=true;clearTimeout(timer);resolve(p);}}
+                }catch(e){if(!done){done=true;clearTimeout(timer);resolve(null);}}
+            });
         }
-    }catch(e){console.log('[Nicole] triggerSlash failed:',e);}
-    currentCharName=charInfo.name;
-    initPhone(built.panel,charInfo,userInfo);
-    console.log('[Nicole Phone] 初始化完成，角色：'+charInfo.name);
-    // 暴露API供剧情联动
-    window.NcAPI={
-        openCallUI:function(type,dir){try{var call=document.querySelector('.Nicole-jcall');if(call){call.classList.remove('state-out','state-in');call.classList.add(dir==='in'?'state-in':'state-out');call.classList.add('show');var st=call.querySelector('.Nicole-jcall-st');if(st)st.textContent=dir==='in'?'对方发起通话...':'正在呼叫...';var nm=call.querySelector('.Nicole-jcall-nm');if(nm)nm.textContent=finalLName;}}catch(e){}},
-        addPyq:function(txt,img){try{var modal=document.querySelector('.Nicole-jpyqsendtxt');if(modal){modal.value=txt||'';}var imgInp=document.querySelector('.Nicole-jpyqsendimg');if(imgInp){imgInp.value=img||'';}var btn=document.querySelector('.Nicole-jpyqsendok');if(btn)btn.click();}catch(e){}},
-        renderSysMsg:function(txt){try{renderSysMsg(txt);}catch(e){}}
-    };
-    startStoryListener();
+        try{
+            if(typeof triggerSlash==='function'){
+                var cn=await triggerWithTimeout('/pass {{char}}');
+                if(cn&&cn.trim())charInfo.name=cn.trim();
+                var ca=await triggerWithTimeout('/pass {{charAvatarPath}}');
+                if(ca&&ca.trim())charInfo.avatar=ca.trim();
+                var un=await triggerWithTimeout('/pass {{user}}');
+                if(un&&un.trim())userInfo.name=un.trim();
+                var ua=await triggerWithTimeout('/pass {{userAvatarPath}}');
+                if(ua&&ua.trim())userInfo.avatar=ua.trim();
+            }
+        }catch(e){console.log('[Nicole] triggerSlash failed:',e);}
+        currentCharName=charInfo.name;
+        initPhone(built.panel,charInfo,userInfo);
+        console.log('[Nicole Phone] 初始化完成，角色：'+charInfo.name);
+        window.NcAPI={
+            openCallUI:function(type,dir){try{var call=document.querySelector('.Nicole-jcall');if(call){call.classList.remove('state-out','state-in');call.classList.add('show','state-'+dir);call.setAttribute('data-type',type);}}catch(e){}},
+            addPyq:function(txt,img){try{var modal=document.querySelector('.Nicole-jpyqsendtxt');if(modal)modal.value=txt||'';var imgInp=document.querySelector('.Nicole-jpyqsendimg');if(imgInp)imgInp.value=img||'';document.querySelector('.Nicole-jpyqsendbtn')?.click();}catch(e){}},
+            renderSysMsg:function(txt){try{renderSysMsg(txt);}catch(e){}}
+        };
+        startStoryListener();
+        setTimeout(function(){var f=document.getElementById(FLOAT_ID);if(f){f.style.display='block';console.log('[Nicole] 浮动按钮已显示');}},500);
+    }catch(e){
+        console.error('[Nicole] doInit致命错误:',e);
+        try{
+            if(!document.getElementById(FLOAT_ID)){
+                var floatEl=document.createElement('div');
+                floatEl.id=FLOAT_ID;
+                floatEl.style.cssText='position:fixed;bottom:20px;right:20px;z-index:9999999;width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 4px 16px rgba(0,0,0,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:24px;';
+                floatEl.innerHTML='📱';
+                floatEl.title='nico Phone（出错，点击刷新）';
+                floatEl.addEventListener('click',function(){location.reload();});
+                document.body.appendChild(floatEl);
+            }
+        }catch(e2){}
+    }
 }
 var currentChatId2='';
 function checkCharSwitch(){
