@@ -1,9 +1,7 @@
 {
-  "display_name": "Qixian 手机组件",
-  "js": "nicoPhone.js",
-  "version": "1.0.0",
-  "author": "miaccj9",
-  "loading_order": 10,
-  "auto_update": true,
-  "description": "Qixian 拟真手机组件 for SillyTavern"
+    "display_name": "Qixian Phone Extension",
+    "command": "qixian-phone",
+    "author": "Cotton Fluff",
+    "description": "小手机组件。支持双向交互、朋友圈、通话视觉特效及UI美化。全局响应，动态挂载。",
+    "version": "1.0.0"
 }
