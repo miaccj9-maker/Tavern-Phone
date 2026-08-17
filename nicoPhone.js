@@ -466,6 +466,8 @@ input[type=number]{-moz-appearance:textfield;}
     let chatBox = null;
     let callBubsBox = null;
     let pendingReply = '';
+    let langMap = [{ l: 'zh-CN', n: '中' }];
+    let langIdx = 0;
 
     // 本地存储封装
     const QxStore = {
@@ -521,6 +523,7 @@ input[type=number]{-moz-appearance:textfield;}
         } catch(e){}
     }
 
+    function stopRing() {}
     // ===================== 3. 酒馆环境适配 =====================
     // 获取当前角色信息
     function getTavernCharacter() {
@@ -598,6 +601,12 @@ input[type=number]{-moz-appearance:textfield;}
             const sendBtn = document.querySelector('#send_but');
             if (sendBtn) sendBtn.click();
         } catch(e) {}
+    }
+
+    // 核心：发送指令/消息到酒馆（补全缺失函数）
+    function appendCmd(text) {
+        if (!text) return;
+        sendToTavern(text);
     }
 
     // ===================== 4. 核心渲染函数 =====================
@@ -892,7 +901,6 @@ input[type=number]{-moz-appearance:textfield;}
             });
         });
     }
-
     function renderCpDays() {
         var el = Q('.Qixian-jcpdays');
         if(!el) return;
@@ -1270,99 +1278,6 @@ Q('.Qixian-jdrawok').addEventListener('click', function(){
     Q('.Qixian-jdrawmodal').classList.remove('show');
 });
 
-// ========== 通话系统核心逻辑 ==========
-var callIntv = null,
-    callSec = 0,
-    callState = 'none';
-
-function formatTime(sec){
-    var m = String(Math.floor(sec/60)).padStart(2,'0');
-    var s = String(sec%60).padStart(2,'0');
-    return m+':'+s;
-}
-
-function openCallUI(type, state) {
-    var c = Q('.Qixian-jcall');
-    c.className = 'Qixian-call Qixian-jcall show state-' + state + (type==='video' ? ' video' : '');
-    c.style.transform = 'none';
-    
-    if (type === 'video') {
-        Q('.Qixian-call-vbg').style.backgroundImage = 'url(\''+safeRAv+'\')';
-        Q('.Qixian-bind-rav-bg').style.backgroundImage = 'url(\''+safeLAv+'\')';
-    } else {
-        var savedBg = QxStore.get('Qx-bg-img');
-        var defaultBg = window.getComputedStyle(Q('.Qixian-jbg')).backgroundImage;
-        if (savedBg && savedBg !== 'none') {
-            Q('.Qixian-call-vbg').style.backgroundImage = 'url(\''+savedBg.replace(/'/g,'%27')+'\')';
-        } else if (defaultBg && defaultBg !== 'none') {
-            Q('.Qixian-call-vbg').style.backgroundImage = defaultBg;
-        } else {
-            Q('.Qixian-call-vbg').style.backgroundImage = '';
-        }
-    }
-    
-    callSec = 0;
-    callState = state;
-    clearInterval(callIntv);
-    panel.classList.remove('show');
-    plusBtn.classList.remove('on');
-}
-
-function setActiveCall(forceType) {
-    if(callState === 'active') return;
-    callState = 'active';
-    stopRing();
-    var c = Q('.Qixian-jcall');
-    c.classList.remove('state-in', 'state-out', 'minimized');
-    c.classList.add('active', 'show');
-    
-    if(forceType === 'video') {
-        c.classList.add('video');
-        Q('.Qixian-call-vbg').style.backgroundImage = 'url(\''+safeRAv+'\')';
-        Q('.Qixian-bind-rav-bg').style.backgroundImage = 'url(\''+safeLAv+'\')';
-    }
-    
-    Q('.Qixian-jcall-timer').textContent = '00:00';
-    callSec = 0;
-    clearInterval(callIntv);
-    callIntv = setInterval(function(){
-        callSec++;
-        Q('.Qixian-jcall-timer').textContent = formatTime(callSec);
-    }, 1000);
-}
-
-function closeCall() {
-    stopRing();
-    clearInterval(callIntv);
-    Q('.Qixian-jcall').classList.remove('show', 'active', 'state-in', 'state-out', 'video', 'minimized');
-    callState = 'none';
-}
-
-function addCallBubble(dir, text, doType) {
-    var wrap = document.createElement('div');
-    wrap.className = 'Qixian-cb-wrap ' + dir;
-    var bub = document.createElement('div');
-    bub.className = 'Qixian-cb';
-    wrap.appendChild(bub);
-    callBubsBox.appendChild(wrap);
-    if(doType) {
-        var i = 0;
-        var timer = setInterval(function() {
-            if(i < text.length) {
-                bub.innerHTML += text.charAt(i);
-                i++;
-                callBubsBox.scrollTop = callBubsBox.scrollHeight;
-            } else {
-                clearInterval(timer);
-            }
-        }, 60);
-    } else {
-        bub.innerHTML = text;
-        setTimeout(function(){
-            callBubsBox.scrollTop = callBubsBox.scrollHeight;
-        }, 50);
-    }
-}
 
 // 通话按钮事件绑定
 Q('.Qixian-jcall-cancel').addEventListener('click', function(e){
@@ -1563,31 +1478,6 @@ Q('.jemo-rps').addEventListener('click', function(){
     Q('.Qixian-jemomodal').classList.remove('show');
 });
 
-// ========== 输入框与发送逻辑 ==========
-var textInput = Q('.Qixian-jinput'),
-    sendBtn = Q('.Qixian-jsend');
-
-function sendText(){
-    var v = textInput.value.trim();
-    if(!v) return;
-    if(pendingReply) {
-        renderRight('<div class="Qixian-quote-box">' + pendingReply + '</div>' + v, false, isBlkRight);
-        appendCmd(isBlkRight ? '$[拉黑拒收]' : (finalRName + ' | [引用:' + pendingReply + '] ' + v));
-        Q('.Qixian-jrepclose').click();
-    } else {
-        renderRight(v, false, isBlkRight);
-        appendCmd(isBlkRight ? '$[消息被拒收]' : (finalRName + ' | '+v));
-    }
-    textInput.value='';
-    playSwoosh();
-}
-sendBtn.addEventListener('click', sendText);
-textInput.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendText();
-    }
-});
 
 // 语音输入与录音降级
 var micBtn = Q('.Qixian-jmic'),
@@ -1713,48 +1603,6 @@ micBtn.addEventListener('click', function(e){
     }
 });
 
-// ========== 一起听歌模块 ==========
-var muList = [];
-var muIndex = -1;
-var muPlaying = false;
-var muTimer = null;
-var muTotalMin = 0;
-
-function renderMuList() {
-    var html = '';
-    muList.forEach(function(item, i){
-        html += '<div class="Qixian-mu-item'+(i===muIndex?' active':'')+'" data-idx="'+i+'"><div><div style="font-weight:500;">'+item.name+'</div><div style="font-size:11px;color:#888;margin-top:2px;">'+item.artist+'</div></div><div class="jmudel" style="color:#aaa;cursor:pointer;font-size:12px;" data-idx="'+i+'">删</div></div>';
-    });
-    Q('.Qixian-jmulist').innerHTML = html;
-    
-    QA('.Qixian-mu-item').forEach(function(el){
-        el.addEventListener('click', function(){
-            var idx = parseInt(this.getAttribute('data-idx'));
-            muIndex = idx;
-            muPlaying = true;
-            updateMuPlayer();
-            renderMuList();
-        });
-    });
-    QA('.jmudel').forEach(function(el){
-        el.addEventListener('click', function(e){
-            e.stopPropagation();
-            var idx = parseInt(this.getAttribute('data-idx'));
-            muList.splice(idx, 1);
-            if(muIndex >= muList.length) muIndex = muList.length - 1;
-            renderMuList();
-        });
-    });
-}
-
-function updateMuPlayer() {
-    if(muIndex < 0 || muIndex >= muList.length) {
-        Q('.Qixian-jmunow').textContent = '未在播放';
-        Q('.Qixian-jmuwaves').classList.remove('playing');
-        Q('.Qixian-jmuicon').innerHTML = '<polygon points="7 4 19 12 7 20 7 4" fill="#222"/>';
-        muPlaying = false;
-        return;
-    }
     var song = muList[muIndex];
     Q('.Qixian-jmunow').textContent = song.name + ' - ' + song.artist;
     if(muPlaying) {
@@ -1791,18 +1639,18 @@ Q('.Qixian-jmuplay').addEventListener('click', function(){
     if(muList.length === 0) return;
     if(muIndex < 0) muIndex = 0;
     muPlaying = !muPlaying;
-    updateMuPlayer();
+            updateMuPlayState();
 });
 Q('.Qixian-jmuprev').addEventListener('click', function(){
     if(muList.length === 0) return;
     muIndex = (muIndex - 1 + muList.length) % muList.length;
-    updateMuPlayer();
+            updateMuPlayState();
     renderMuList();
 });
 Q('.Qixian-jmunext').addEventListener('click', function(){
     if(muList.length === 0) return;
     muIndex = (muIndex + 1) % muList.length;
-    updateMuPlayer();
+            updateMuPlayState();
     renderMuList();
 });
 
@@ -1815,45 +1663,7 @@ Q('.Qixian-jmuinv').addEventListener('click', function(){
     Q('.Qixian-jmumodal').classList.remove('show');
 });
 
-// ========== 情侣空间模块 ==========
-var cpThings = [];
-var cpDays = [];
-var cpAlbums = [];
 
-function renderCpThings() {
-    var html = '';
-    cpThings.forEach(function(item, i){
-        html += '<div class="Qixian-cp-thing'+(item.done?' done':'')+'" data-idx="'+i+'"><div class="dot"></div><span>'+item.who+'：'+item.text+'</span></div>';
-    });
-    Q('.Qixian-jcpthings').innerHTML = html;
-    QA('.Qixian-cp-thing .dot').forEach(function(el, i){
-        el.addEventListener('click', function(){
-            cpThings[i].done = !cpThings[i].done;
-            renderCpThings();
-        });
-    });
-}
-
-function renderCpDays() {
-    var html = '';
-    cpDays.forEach(function(item){
-        var diff = Math.ceil((new Date() - new Date(item.date)) / (1000*60*60*24));
-        html += '<div class="Qixian-cp-day"><span>'+item.name+'</span><b>第 '+Math.max(1, diff)+' 天</b></div>';
-    });
-    Q('.Qixian-jcpdays').innerHTML = html;
-}
-
-function renderCpAlbums() {
-    var html = '';
-    cpAlbums.forEach(function(item){
-        if(item.img) {
-            html += '<div class="Qixian-cp-album-card"><div class="Qixian-cp-album-img" style="background-image:url(\''+item.img+'\');"></div><div class="Qixian-cp-album-who">'+item.who+'</div><div class="Qixian-cp-album-txt">'+item.txt+'</div></div>';
-        } else {
-            html += '<div class="Qixian-cp-album-card"><div class="Qixian-cp-album-txt-only">'+item.txt+'</div></div>';
-        }
-    });
-    Q('.Qixian-jcpalbums').innerHTML = html;
-}
 
 Q('.Qixian-jcpthingadd').addEventListener('click', function(){
     var who = Q('.Qixian-jcpwho').value;
@@ -2071,113 +1881,226 @@ if(savedPyqUav) {
         el.style.backgroundImage = 'url(\''+savedPyqUav.replace(/'/g,'%27')+'\')';
     });
 }
+      // ===================== 7. 主入口 =====================
 
-// ========== 以下为缺失的 第7部分：SillyTavern 挂载与生命周期钩子 ==========
-// 必须接在前面代码的底部，并放在 (function(){ ... })(); 的内部！
+    function buildHTML() {
+        var wrap = document.createElement('div');
+        wrap.id = CONTAINER_ID;
+        wrap.innerHTML = '<div class="Qixian-root Qixian-stage" id="qixian-root">' +
+            '<div class="Qixian-phone-wrap"><div class="Qixian-phone">' +
+            '<div class="Qixian-bg Qixian-jbg"></div>' +
+            '<div class="Qixian-notch"></div>' +
+            // 顶部栏
+            '<div class="Qixian-hd Qixian-jhd">' +
+            '<div class="Qixian-hd-pull Qixian-jhd-toggle"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>' +
+            '<div class="Qixian-hd-mid">' +
+            '<div class="Qixian-ubox"><div class="Qixian-uav Qixian-bind-lav char-avatar"></div><div class="Qixian-uname" contenteditable="true">角色</div></div>' +
+            '<div class="Qixian-waves"><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span></div>' +
+            '</div>' +
+            '<div class="Qixian-icons-rt"><div class="Qixian-icbtn Qixian-jset-open"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div></div>' +
+            '</div>' +
+            // 聊天区
+            '<div class="Qixian-chat Qixian-jchat"></div>' +
+            // 底部输入区
+            '<div class="Qixian-ft">' +
+            '<div class="Qixian-reply-bar"><span class="Qixian-reply-txt"></span><span class="Qixian-reply-close Qixian-jrepclose">×</span></div>' +
+            '<div class="Qixian-in-area">' +
+            '<div class="Qixian-lang">中</div>' +
+            '<input class="Qixian-input Qixian-jinput" placeholder="说点什么..." />' +
+            '<div class="Qixian-mic Qixian-jmic"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>' +
+            '<div class="Qixian-plus Qixian-jplus"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>' +
+            '<div class="Qixian-send Qixian-jsend"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>' +
+            '</div>' +
+            // 加号面板
+            '<div class="Qixian-panel Qixian-jpanel">' +
+            '<div class="Qixian-pi Qixian-jbtn-voice"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="Qixian-ptx">语音通话</div></div>' +
+            '<div class="Qixian-pi Qixian-jbtn-video"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div class="Qixian-ptx">视频通话</div></div>' +
+            '<div class="Qixian-pi Qixian-jimgbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><div class="Qixian-ptx">图片</div></div>' +
+            '<div class="Qixian-pi Qixian-jtxtimg"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg></div><div class="Qixian-ptx">文字图</div></div>' +
+            '<div class="Qixian-pi Qixian-jgiftbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg></div><div class="Qixian-ptx">礼物</div></div>' +
+            '<div class="Qixian-pi Qixian-jlinkbtn"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="Qixian-ptx">链接</div></div>' +
+            '<div class="Qixian-pi Qixian-jtf"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="Qixian-ptx">转账</div></div>' +
+            '<div class="Qixian-pi Qixian-jemo"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="Qixian-ptx">表情</div></div>' +
+            '<div class="Qixian-pi Qixian-jmusic"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="Qixian-ptx">一起听歌</div></div>' +
+            '<div class="Qixian-pi Qixian-jcp"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="Qixian-ptx">情侣空间</div></div>' +
+            '<div class="Qixian-pi Qixian-jbtn-loc"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="Qixian-ptx">位置</div></div>' +
+            '<div class="Qixian-pi Qixian-jbtn-food"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="Qixian-ptx">外卖</div></div>' +
+            '<div class="Qixian-pi Qixian-jbtn-draw"><div class="Qixian-pic"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div><div class="Qixian-ptx">涂鸦</div></div>' +
+            '</div></div>' +
+            // 通话层
+            '<div class="Qixian-call Qixian-jcall">' +
+            '<div class="Qixian-call-vbg"></div><div class="Qixian-call-pip Qixian-bind-rav-bg"></div>' +
+            '<div class="Qixian-call-mini-top"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></div>' +
+            '<div class="Qixian-call-mini-hint"></div>' +
+            '<div class="Qixian-call-ct">' +
+            '<div class="Qixian-call-avs"><div class="Qixian-call-av Qixian-jcall-lav Qixian-bind-lav char-avatar"></div><div class="Qixian-call-av Qixian-jcall-rav Qixian-bind-rav user-avatar"></div></div>' +
+            '<div class="Qixian-call-nm">角色</div><div class="Qixian-call-st">等待接听...</div><div class="Qixian-call-timer Qixian-jcall-timer">00:00</div>' +
+            '<div class="Qixian-call-bubs Qixian-jcall-bubs"></div>' +
+            '<div class="Qixian-call-ft">' +
+            '<div class="Qixian-call-btns btns-out"><div class="Qixian-call-btn cancel Qixian-jcall-cancel"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>' +
+            '<div class="Qixian-call-btns btns-in"><div class="Qixian-call-btn hangup Qixian-jcall-reject"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div><div class="Qixian-call-btn answer Qixian-jcall-answer"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div>' +
+            '<div class="Qixian-call-inrow"><div class="Qixian-call-btn mini Qixian-jcall-end"><svg viewBox="0 0 24 24"><path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.42 19.42 0 0 1-3.33-2.67m-2.67-3.34a19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91"/></svg></div><input class="Qixian-call-in Qixian-jcall-in" placeholder="通话中..." /><button class="Qixian-call-send Qixian-jcall-send">发送</button></div>' +
+            '</div></div></div>' +
+            // 设置面板
+            '<div class="Qixian-set Qixian-jset"><div class="Qixian-set-h">设置<span class="Qixian-set-x Qixian-jset-close">×</span></div>' +
+            '<div class="Qixian-set-r"><span>头像形状</span><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jav-round active">圆</button><button class="Qixian-bg-btn Qixian-jav-sq">方</button></div></div>' +
+            '<div class="Qixian-set-r"><span>毛玻璃</span><div class="Qixian-color-wrap"><button class="Qixian-bg-btn Qixian-jglass-on active">开</button><button class="Qixian-bg-btn Qixian-jglass-off">关</button></div></div>' +
+            '<div class="Qixian-set-r"><span>聊天背景</span><div class="Qixian-color-wrap"><input type="color" class="Qixian-jbg-color" value="#f7f7f7"><button class="Qixian-bg-btn Qixian-jbg-reset">重置</button></div></div>' +
+            '</div>' +
+            // 各模态框
+            // 图片模态框
+            '<div class="Qixian-cen Qixian-jimgmodal"><div class="Qixian-cen-box"><h4>发送图片</h4><input class="Qixian-cen-inp Qixian-jimgurl" placeholder="图片URL" /><input class="Qixian-cen-inp Qixian-jimgdesc" placeholder="描述（可选）" /><div class="Qixian-cen-btns"><button class="cc Qixian-jimgcancel">取消</button><button class="ok Qixian-jimgok">发送</button></div></div></div>' +
+            // 文字图
+            '<div class="Qixian-cen Qixian-jtxtimgmodal"><div class="Qixian-cen-box"><h4>文字图气泡</h4><textarea class="Qixian-jtxtimgin" rows="3" placeholder="输入文字..."></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jtxtimgcancel">取消</button><button class="ok Qixian-jtxtimgok">发送</button></div></div></div>' +
+            // 礼物
+            '<div class="Qixian-cen Qixian-jgiftmodal"><div class="Qixian-cen-box"><h4>送礼物</h4><input class="Qixian-cen-inp Qixian-jgiftpr" type="number" placeholder="金额" /><input class="Qixian-cen-inp Qixian-jgiftdesc" placeholder="礼物名称" /><input class="Qixian-cen-inp Qixian-jgiftnote" placeholder="附言（可选）" /><div class="Qixian-cen-btns"><button class="cc Qixian-jgiftcancel">取消</button><button class="ok Qixian-jgiftok">送出</button></div></div></div>' +
+            // 链接
+            '<div class="Qixian-cen Qixian-jlinkmodal"><div class="Qixian-cen-box"><h4>分享链接</h4><input class="Qixian-cen-inp Qixian-jlinkurl" placeholder="https://..." /><input class="Qixian-cen-inp Qixian-jlinktitle" placeholder="标题" /><div class="Qixian-cen-btns"><button class="cc Qixian-jlinkcancel">取消</button><button class="ok Qixian-jlinkok">分享</button></div></div></div>' +
+            // 转账
+            '<div class="Qixian-cen Qixian-jtfmodal"><div class="Qixian-cen-box"><h4>转账</h4><div class="Qixian-tf-grp"><span>¥</span><input type="number" class="Qixian-jtfamt" placeholder="0.00" /></div><input class="Qixian-cen-inp Qixian-jtftitle" placeholder="转账说明（可选）" /><div class="Qixian-cen-btns"><button class="cc Qixian-jtfcancel">取消</button><button class="ok Qixian-jtfok">转账</button></div></div></div>' +
+            // 表情面板
+            '<div class="Qixian-mf Qixian-jemomodal"><div class="mbox"><div class="Qixian-mh">表情<span class="Qixian-mc Qixian-jemoclose">×</span></div>' +
+            '<div class="Qixian-emo-games"><div class="Qixian-emo-gamebtn jemo-poke"><svg viewBox="0 0 24 24"><path d="M11 2a2 2 0 0 0-2 2v5H6a2 2 0 0 0-2 2v2c0 4.4 3.6 8 8 8h3a5 5 0 0 0 5-5v-6a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-2-2z"/></svg>戳一戳</div>' +
+            '<div class="Qixian-emo-gamebtn jemo-dice"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/></svg>摇骰子</div>' +
+            '<div class="Qixian-emo-gamebtn jemo-rps"><svg viewBox="0 0 24 24"><path d="M10 15V4a2 2 0 0 1 4 0v11"/></svg>猜拳</div>' +
+            '<div class="Qixian-emo-addbtn Qixian-jaddemobtn"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>' +
+            '<div class="Qixian-emo Qixian-jemolist"></div></div></div>' +
+            // 添加表情
+            '<div class="Qixian-cen Qixian-jaddemomodal"><div class="Qixian-cen-box"><h4>添加表情</h4><input class="Qixian-cen-inp Qixian-jaddemourl" placeholder="表情图片URL" /><input class="Qixian-cen-inp Qixian-jaddemotxt" placeholder="表情文字" /><div class="Qixian-cen-btns"><button class="cc Qixian-jaddemocancel">取消</button><button class="ok Qixian-jaddemook">添加</button></div></div></div>' +
+            // 语音降级
+            '<div class="Qixian-cen Qixian-jvoicemodal"><div class="Qixian-cen-box"><h4>语音转文字</h4><textarea class="Qixian-cen-inp Qixian-jvoicetxt" rows="3"></textarea><div class="Qixian-cen-btns"><button class="cc Qixian-jvoicecancel">取消</button><button class="ok Qixian-jvoiceok">发送</button></div></div></div>' +
+            // 一起听歌
+            '<div class="Qixian-mf Qixian-jmumodal"><div class="mbox"><div class="Qixian-mh">一起听歌<span class="Qixian-mc" onclick="this.closest(\'.Qixian-jmumodal\').classList.remove(\'show\')">×</span></div>' +
+            '<div class="Qixian-mu"><div class="Qixian-mu-stage"><div class="Qixian-mu-face Qixian-bind-lav char-avatar"></div><div class="Qixian-mu-waves Qixian-jmuwaves"><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span><span class="Qixian-wave"></span></div></div>' +
+            '<div class="Qixian-mu-now Qixian-jmunow">未在播放</div>' +
+            '<div class="Qixian-mu-time-disp">一起听了 <span id="Qx-mutime-val">0</span> 分钟</div>' +
+            '<div class="Qixian-mu-ctrl"><div class="Qixian-mu-btn Qixian-jmuprev"><svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"/><line x1="5" y1="19" x2="5" y2="5"/></svg></div><div class="Qixian-mu-btn main Qixian-jmuplay"><svg viewBox="0 0 24 24" class="Qixian-jmuicon"><polygon points="7 4 19 12 7 20 7 4"/></svg></div><div class="Qixian-mu-btn Qixian-jmunext"><svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg></div></div>' +
+            '<div class="Qixian-mu-list Qixian-jmulist"></div>' +
+            '<div class="Qixian-mu-inp-wrap"><input class="Qixian-mu-name Qixian-jmuname" placeholder="歌曲名" /><input class="Qixian-mu-artist Qixian-jmuartist" placeholder="歌手" /><button class="Qixian-mu-add Qixian-jmuaddbtn">添加</button></div>' +
+            '<input class="Qixian-mu-cover Qixian-jmucover" placeholder="封面URL（可选）" style="display:none" /><input class="Qixian-mu-inp Qixian-jmuinp" placeholder="音频URL（可选）" style="display:none" />' +
+            '<button class="Qixian-mu-invbtn Qixian-jmuinv">邀请对方一起听</button></div></div></div>' +
+            // 情侣空间
+            '<div class="Qixian-mf Qixian-jcpmodal"><div class="mbox" style="height:85%"><div class="Qixian-mh">情侣空间<span class="Qixian-mc" onclick="this.closest(\'.Qixian-jcpmodal\').classList.remove(\'show\')">×</span></div>' +
+            '<div class="Qixian-cp"><div class="Qixian-cp-top"><div class="Qixian-cp-avs"><div class="Qixian-cp-face Qixian-bind-lav char-avatar"></div><div class="Qixian-cp-face Qixian-jcpf2 Qixian-bind-rav user-avatar"></div></div>' +
+            '<div class="Qixian-cp-id-group">❤ <span class="Qixian-jcprel">相恋中</span> ❤</div></div>' +
+            '<div class="Qixian-cp-sec"><div class="Qixian-cp-h">个签</div>' +
+            '<div class="Qixian-sign-mod"><div class="Qixian-sign-hd"><div class="Qixian-cp-face" style="width:32px;height:32px;"></div><div style="font-size:13px;font-weight:500;">对方</div><span class="Qixian-signdel">×</span></div><div class="Qixian-sign-bd Qixian-jcsign">暂无签名</div></div>' +
+            '<div class="Qixian-sign-mod"><div class="Qixian-sign-hd"><div class="Qixian-cp-face Qixian-bind-rav user-avatar" style="width:32px;height:32px;"></div><div style="font-size:13px;font-weight:500;">我</div></div><div class="Qixian-sign-bd Qixian-jusign-disp">点击下方发布你的个签</div>' +
+            '<div class="Qixian-sign-act"><input class="Qixian-jusignin" placeholder="写个签..." /><button class="Qixian-jusignsave">发布</button></div></div></div>' +
+            '<div class="Qixian-cp-sec"><div class="Qixian-cp-h">恋爱清单</div><div class="Qixian-cp-things Qixian-jcpthings"></div>' +
+            '<div class="Qixian-cp-addrow"><select class="Qixian-jcpwho"><option>一起</option><option>对方</option><option>我</option></select><input class="Qixian-jcpthingin" placeholder="想做的事" /><button class="Qixian-jcpthingadd">+</button></div></div>' +
+            '<div class="Qixian-cp-sec"><div class="Qixian-cp-h">纪念日</div><div class="Qixian-cp-days Qixian-jcpdays"></div>' +
+            '<div class="Qixian-cp-addrow"><input class="Qixian-jcpdayname" placeholder="纪念日名称" /><input type="date" class="Qixian-jcpdaydate" /><button class="Qixian-jcpdayadd">+</button></div></div>' +
+            '<div class="Qixian-cp-sec"><div class="Qixian-cp-h">相册</div><div class="Qixian-cp-albums Qixian-jcpalbums"></div>' +
+            '<div class="Qixian-cp-addrow"><input class="Qixian-jcpalbumtxt" placeholder="文字/描述" /><input class="Qixian-jcpalbumimg" placeholder="图片URL（可选）" /><button class="Qixian-jcpalbumadd">+</button></div></div>' +
+            '</div></div></div>' +
+            // 位置
+            '<div class="Qixian-mf Qixian-jlocmodal"><div class="mbox"><div class="Qixian-mh">位置共享<span class="Qixian-mc Qixian-jlocclose">×</span></div>' +
+            '<div class="Qixian-loc-wrap"><div class="Qixian-radar"><div class="Qixian-radar-wave"></div><div class="Qixian-radar-wave w2"></div>' +
+            '<div class="Qixian-anchor a1"><div class="Qixian-anchor-tip t1">我的位置</div><div class="Qixian-anchor-av Qixian-bind-rav user-avatar"></div></div>' +
+            '<div class="Qixian-anchor a2"><div class="Qixian-anchor-tip t2">对方位置</div><div class="Qixian-anchor-av Qixian-bind-lav char-avatar"></div></div></div>' +
+            '<div class="Qixian-loc-dist" id="Qx-loc-dist">相距未知</div>' +
+            '<button class="Qixian-loc-send Qixian-jlocsend">分享我的位置</button></div></div></div>' +
+            '<div class="Qixian-cen Qixian-jlocinputmodal"><div class="Qixian-cen-box"><h4>位置信息</h4><input class="Qixian-cen-inp Qixian-jlocin-pos" placeholder="位置描述" /><input class="Qixian-cen-inp Qixian-jlocin-dist" placeholder="距离" /><div class="Qixian-cen-btns"><button class="cc Qixian-jlocincancel">取消</button><button class="ok Qixian-jlocinok">发送</button></div></div></div>' +
+            // 外卖
+            '<div class="Qixian-cen Qixian-jfoodmodal w260"><div class="Qixian-cen-box"><h4>点外卖</h4><input class="Qixian-cen-inp Qixian-jfoodshop" placeholder="店铺名" /><input class="Qixian-cen-inp Qixian-jfooditems" placeholder="菜品" /><input class="Qixian-cen-inp Qixian-jfoodaddr" placeholder="收货地址" /><input class="Qixian-cen-inp Qixian-jfoodname" placeholder="收件人" /><input class="Qixian-cen-inp Qixian-jfoodphone" placeholder="电话" /><div class="Qixian-cen-btns"><button class="cc Qixian-jfoodcancel">取消</button><button class="ok Qixian-jfoodok">下单</button></div></div></div>' +
+            // 涂鸦
+            '<div class="Qixian-mf Qixian-jdrawmodal"><div class="mbox"><div class="Qixian-mh">手绘涂鸦<span class="Qixian-mc Qixian-jdrawcancel">×</span></div>' +
+            '<div style="padding:16px;display:flex;flex-direction:column;align-items:center;gap:10px;">' +
+            '<canvas class="Qixian-draw-canvas Qixian-jdrawcanvas" width="280" height="280"></canvas>' +
+            '<div class="Qixian-draw-tools"><input type="color" class="Qixian-draw-color Qixian-jdrawcolor" value="#222222" /><input type="range" class="Qixian-draw-range Qixian-jdrawwidth" min="1" max="20" value="3" /><div class="Qixian-draw-btn-icon Qixian-jdraweraser" title="橡皮"><svg viewBox="0 0 24 24"><path d="M20 20H7L3 16a2 2 0 0 1 0-2.8L13.2 3a2 2 0 0 1 2.8 0l5 5a2 2 0 0 1 0 2.8L12 20"/></svg></div><div class="Qixian-draw-btn-icon Qixian-jdrawundo" title="撤销"><svg viewBox="0 0 24 24"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6.7 3L3 13"/></svg></div><div class="Qixian-draw-btn-icon Qixian-jdrawclear" title="清空"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></div></div>' +
+            '<button class="Qixian-loc-send Qixian-jdrawok" style="margin-top:0;">发送涂鸦</button></div></div></div>' +
+            // 朋友圈面板
+            '<div class="Qixian-pyq-panel Qixian-jpyqpanel"><div class="Qixian-pyq-hd"><div class="Qixian-pyq-back Qixian-jpyqback"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div><div style="font-size:16px;font-weight:500;">朋友圈</div><div class="Qixian-pyq-addbtn Qixian-jpyqadd"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>' +
+            '<div class="Qixian-pyq-scroll"><div class="Qixian-pyq-cover Qixian-jpyq-cover"><div class="Qixian-pyq-user"><div class="Qixian-pyq-uname">我</div><div class="Qixian-pyq-uav Qixian-jpyq-uav Qixian-bind-rav user-avatar"></div></div></div>' +
+            '<div class="Qixian-pyq-list Qixian-jpyqlist"></div></div></div>' +
+            // 发朋友圈
+            '<div class="Qixian-cen Qixian-jpyqsendmodal"><div class="Qixian-cen-box"><h4>发朋友圈</h4><textarea class="Qixian-cen-inp Qixian-jpyqsendtxt" rows="2" placeholder="说点什么..."></textarea><input class="Qixian-cen-inp Qixian-jpyqsendimg" placeholder="图片URL（可选）" /><input class="Qixian-cen-inp Qixian-jpyqsendtxtimg" placeholder="纯文字图内容（可选）" /><div class="Qixian-cen-btns"><button class="cc Qixian-jpyqsendcancel">取消</button><button class="ok Qixian-jpyqsendok">发布</button></div></div></div>' +
+            // 评论
+            '<div class="Qixian-cen Qixian-jpyqcommodal"><div class="Qixian-cen-box"><h4>评论</h4><input class="Qixian-cen-inp Qixian-jpyqcomtxt" placeholder="写评论..." /><div class="Qixian-cen-btns"><button class="cc Qixian-jpyqcomcancel">取消</button><button class="ok Qixian-jpyqcomok">发送</button></div></div></div>' +
+            '</div></div></div></div>';
 
-    // 初始化全局角色/用户数据
-    function initAvatars() {
-        var charData = getTavernCharacter();
-        var userData = getTavernUser();
-        finalLName = charData.name;
-        finalRName = userData.name;
-        safeLAv = charData.avatar;
-        safeRAv = userData.avatar;
+        document.body.appendChild(wrap);
+
+        scope = wrap.querySelector('#qixian-root');
+        chatBox = Q('.Qixian-jchat');
+        callBubsBox = Q('.Qixian-jcall-bubs');
+
+        // 悬浮按钮
+        var toggle = document.createElement('div');
+        toggle.id = 'qixian-toggle-btn';
+        toggle.innerHTML = '<svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>';
+        document.body.appendChild(toggle);
+        toggle.addEventListener('click', function(){
+            wrap.classList.toggle('hidden');
+            toggle.classList.toggle('hidden');
+        });
+        wrap.addEventListener('click', function(e){
+            if(e.target === wrap) {
+                wrap.classList.add('hidden');
+                toggle.classList.remove('hidden');
+            }
+        });
     }
 
-    jQuery(document).ready(function () {
-        // 1. 注入 CSS
-        const styleNode = document.createElement('style');
-        styleNode.id = CSS_ID;
-        styleNode.textContent = fullCSS;
-        document.head.appendChild(styleNode);
-
-        // 2. 注入 HTML (悬浮按钮 + 手机主骨架)
-        const appHTML = `
-        <div id="qixian-toggle-btn">
-          <svg viewBox="0 0 24 24"><path d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z" stroke="currentColor" fill="none" stroke-width="1.5"/><path d="M8 12H16M12 8V16" stroke="currentColor" stroke-width="1.5"/></svg>
-        </div>
-        <div id="${CONTAINER_ID}" class="hidden Qixian-root">
-          <div class="Qixian-phone-wrap">
-          <div class="Qixian-phone">
-          <div class="Qixian-bg Qixian-jbg"></div>
-          <div class="Qixian-content-layer">
-          <div class="Qixian-hd Qixian-jhd">
-          <div class="Qixian-notch"></div>
-          <div class="Qixian-hd-pull Qixian-jhd-toggle"><svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
-          <div class="Qixian-hd-mid">
-          <div class="Qixian-uav Qixian-bind-lav char-avatar"></div>
-          <div class="Qixian-ubox">
-          <div class="Qixian-uname Qixian-jcharnm">加载中...</div>
-          <div class="Qixian-meta">在线</div>
-          </div>
-          </div>
-          </div>
-          <div class="Qixian-chat Qixian-jchat"></div>
-          <div class="Qixian-ft Qixian-jft">
-          <div class="Qixian-in-area">
-          <div class="Qixian-plus Qixian-jplus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
-          <input type="text" class="Qixian-input Qixian-jinput" placeholder="发消息...">
-          <div class="Qixian-mic Qixian-jsend"><svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-        </div>`;
-        
-        $('body').append(appHTML);
-
-        // 3. 获取核心 DOM 并绑定
-        scope = document.getElementById(CONTAINER_ID);
-        chatBox = scope.querySelector('.Qixian-jchat');
-        callBubsBox = document.createElement('div'); // 预留通话气泡容器映射
-        
-        initAvatars();
-        const nmEl = scope.querySelector('.Qixian-jcharnm');
-        if(nmEl) nmEl.textContent = finalLName;
-
-        const charAvs = scope.querySelectorAll('.Qixian-bind-lav');
-        charAvs.forEach(el => el.style.backgroundImage = 'url("'+safeLAv+'")');
-
-        // 执行事件绑定功能 (调用上面写好的 bindAllEvents)
-        if (typeof bindAllEvents === 'function') {
-          bindAllEvents();
+    function init() {
+        // 注入CSS
+        if (!document.getElementById(CSS_ID)) {
+            var style = document.createElement('style');
+            style.id = CSS_ID;
+            style.textContent = fullCSS;
+            document.head.appendChild(style);
         }
-
-        // 4. 悬浮按钮开关交互
-        const toggleBtn = document.getElementById('qixian-toggle-btn');
-        toggleBtn.addEventListener('click', function () {
-          scope.classList.toggle('hidden');
-        });
-
-        // 5. 监听酒馆原生聊天区变化 (神级拦截逻辑)
-        // 这个监视器会读取酒馆原生对话框，将其中的 $[指令] 同步到小手机的画面中
-        const chatObserver = new MutationObserver((mutations) => {
-          mutations.forEach((mutation) => {
-          mutation.addedNodes.forEach((node) => {
-          if (node.nodeType === 1 && node.classList.contains('mes')) {
-          const msgText = node.querySelector('.mes_text')?.textContent || '';
-          const isUser = node.hasAttribute('is_user');
-          
-          // 确保头像数据是最新的
-          initAvatars(); 
-          
-          // 如果包含括号指令集，触发组件视觉渲染
-          if (msgText.includes('$[') || msgText.includes(']')) {
-          syncTavernMessage({
-          is_user: isUser,
-          message: msgText
-          });
-          }
-          }
-          });
-          });
-        });
-
-        const chatContainer = document.getElementById('chat');
-        if (chatContainer) {
-          chatObserver.observe(chatContainer, { childList: true, subtree: true });
+        // 构建DOM
+        buildHTML();
+        // 读取角色/用户信息
+        var charInfo = getTavernCharacter();
+        var userInfo = getTavernUser();
+        finalLName = charInfo.name;
+        finalRName = userInfo.name;
+        finalLAv = charInfo.avatar;
+        finalRAv = userInfo.avatar;
+        safeLAv = finalLAv ? finalLAv.replace(/'/g, '%27') : '';
+        safeRAv = finalRAv ? finalRAv.replace(/'/g, '%27') : '';
+        // 更新头像和名字
+        QA('.Qixian-bind-lav').forEach(function(el){ if(safeLAv) el.style.backgroundImage = 'url(\''+safeLAv+'\')'; });
+        QA('.Qixian-bind-rav').forEach(function(el){ if(safeRAv) el.style.backgroundImage = 'url(\''+safeRAv+'\')'; });
+        var uname = Q('.Qixian-uname');
+        if(uname) uname.textContent = finalLName;
+        var callNm = Q('.Qixian-call-nm');
+        if(callNm) callNm.textContent = finalLName;
+        // 绑定事件
+        bindAllEvents();
+        // 初始化数据
+        initCpData();
+        renderMuList();
+        renderEmoList();
+        renderPyqList();
+        // 监听酒馆消息
+        if (window.SillyTavern && window.SillyTavern.addEventListener) {
+            window.SillyTavern.addEventListener('message', syncTavernMessage);
+            window.SillyTavern.addEventListener('character_loaded', function(){
+                var c = getTavernCharacter();
+                finalLName = c.name;
+                finalLAv = c.avatar;
+                safeLAv = finalLAv ? finalLAv.replace(/'/g, '%27') : '';
+                QA('.Qixian-bind-lav').forEach(function(el){ if(safeLAv) el.style.backgroundImage = 'url(\''+safeLAv+'\')'; });
+                if(uname) uname.textContent = finalLName;
+                if(callNm) callNm.textContent = finalLName;
+            });
         }
-    });
+        // 欢迎消息
+        setTimeout(function(){ renderSysMsg('已连接到 ' + finalLName); }, 300);
+    }
+
+    // 等待酒馆就绪后启动
+    function waitForTavern() {
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            init();
+        } else {
+            document.addEventListener('DOMContentLoaded', init);
+        }
+    }
+    waitForTavern();
+
 })();
