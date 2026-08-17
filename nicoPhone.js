@@ -2093,12 +2093,12 @@ if(savedPyqUav) {
         setTimeout(function(){ renderSysMsg('已连接到 ' + finalLName); }, 300);
     }
 
-    // 等待酒馆就绪后启动
+       // 等待酒馆就绪后启动
     function waitForTavern() {
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        if (document.body) {
             init();
         } else {
-            document.addEventListener('DOMContentLoaded', init);
+            setTimeout(waitForTavern, 100);
         }
     }
     waitForTavern();
