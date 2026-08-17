@@ -717,16 +717,15 @@ input[type=number]{-moz-appearance:textfield;}
 
 .Nicole-set.show{transform:translateX(0);}
 .nc-inline-row{margin:6px 0;animation:nc-inline-pop .3s ease-out;clear:both!important;box-sizing:border-box;}
-.nc-inline-row.nc-left{max-width:70%;display:grid;grid-template-columns:auto 1fr;gap:10px;grid-template-rows:auto auto;align-items:start;margin-left:10px;}
-.nc-inline-row.nc-right{max-width:70%;margin-left:auto;display:grid;grid-template-columns:1fr auto;gap:10px;grid-template-rows:auto auto;justify-items:end;text-align:right;align-items:start;margin-right:11px;}
+.nc-inline-row.nc-left{max-width:75%;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:start;margin-left:6px;}
+.nc-inline-row.nc-right{max-width:75%;margin-left:auto;display:grid;grid-template-columns:1fr auto;gap:8px;justify-items:end;text-align:right;align-items:start;margin-right:6px;}
 .nc-inline-av-wrap{display:flex;flex-direction:column;align-items:center;gap:3px;flex-shrink:0;}
-.nc-inline-row.nc-right .nc-inline-av-wrap{grid-column:2;grid-row:1/3;}
-.nc-inline-row.nc-left .nc-inline-av-wrap{grid-column:1;grid-row:1/3;}
 .nc-inline-av{width:36px;height:36px;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0;background:#f0f0f0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#999;border:1px solid rgba(0,0,0,.08);}
-.nc-inline-name{font-size:10px;color:#999;white-space:nowrap;max-width:50px;overflow:hidden;text-overflow:ellipsis;}
+.nc-inline-content{display:flex;flex-direction:column;gap:2px;min-width:0;max-width:100%;}
+.nc-inline-row.nc-right .nc-inline-content{align-items:flex-end;}
+.nc-inline-row.nc-left .nc-inline-content{align-items:flex-start;}
+.nc-inline-name{font-size:11px;color:#999;white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis;margin:0 2px;line-height:1.2;}
 .nc-inline-bub{padding:9px 14px;border-radius:14px;font-size:14px;line-height:1.55;word-break:break-word;width:-moz-fit-content;width:fit-content;max-width:100%;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.06);text-align:left;}
-.nc-inline-row.nc-right .nc-inline-bub{grid-column:1;grid-row:1;justify-self:end;}
-.nc-inline-row.nc-left .nc-inline-bub{grid-column:2;grid-row:1;justify-self:start;}
 .nc-inline-voice{display:flex;align-items:center;gap:8px;min-width:80px;}
 .nc-inline-voice-bars{display:flex;align-items:center;gap:2px;height:16px;}
 .nc-inline-voice-bars span{width:3px;background:currentColor;opacity:.6;border-radius:2px;}
@@ -1067,6 +1066,33 @@ input[type=number]{-moz-appearance:textfield;}
 #nicole-phone-panel{position:absolute;bottom:60px;right:0;width:var(--nc-phone-w,360px);height:var(--nc-phone-h,680px);max-height:90vh;display:none;animation:nicole-fade-in .3s ease;}
 #nicole-phone-panel.show{display:block;}
 @keyframes nicole-fade-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ============ 移动端适配 ============ */
+@media (max-width:768px){
+    #nicole-float{bottom:calc(20px + env(safe-area-inset-bottom,0px));right:16px;z-index:9999999;}
+    #nicole-toggle-btn{width:44px;height:44px;}
+    #nicole-toggle-btn svg{width:22px;height:22px;}
+    #nicole-phone-panel{
+        position:fixed!important;
+        bottom:0!important;
+        right:0!important;
+        left:0!important;
+        top:auto!important;
+        width:100vw!important;
+        max-width:100vw!important;
+        height:85vh!important;
+        max-height:85vh!important;
+        border-radius:16px 16px 0 0!important;
+        transform:none!important;
+    }
+    #nicole-phone-panel.show{display:flex!important;flex-direction:column;}
+    .Nicole-phone{height:100%!important;max-height:100%!important;}
+}
+@media (max-width:480px){
+    #nicole-float{bottom:calc(16px + env(safe-area-inset-bottom,0px));right:12px;}
+    #nicole-toggle-btn{width:40px;height:40px;}
+    #nicole-toggle-btn svg{width:20px;height:20px;}
+}
 `;
 
 /* ============ HTML TEMPLATE ============ */
@@ -1847,6 +1873,13 @@ function startStoryListener(){
         console.log('[Nicole] 剧情监听器已启动（3秒冷却中）');
     }catch(e){console.log('[Nicole] 剧情监听器失败:',e);}
 }
+// 获取所有需要匹配的角色名（备注名+原始角色卡名）
+function getCharNames(){
+    var names=[];
+    if(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'&&finalLName!=='我')names.push(finalLName);
+    if(currentCharName&&currentCharName!=='角色'&&currentCharName!=='Unknown'&&currentCharName!=='我'&&names.indexOf(currentCharName)===-1)names.push(currentCharName);
+    return names;
+}
 function ncGuessIsUser(node){
     if(!node) return false;
     var el=node;
@@ -1872,7 +1905,7 @@ function scanNodeForPhoneMsg2(node){
     if(processedStoryNodes2.has(node)) return;
     var txt=node.textContent||node.innerText||'';
     if(!txt||txt.length<3) return;
-    var hasMarker=/\[(微信|语音|红包|图片|转账|手机|电话|朋友圈|拍一拍|系统|拉黑|加好友|收款|退回|正在输入|角色|我|角色语音|角色红包|角色图片|角色转账|角色表情|我语音|我红包|我图片|我转账|我表情|我朋友圈|我拍一拍|我拉黑|我取消拉黑|我加好友)[：:]|\[(我拉黑|我取消拉黑)\]|!\[[^\]]*\]\(/.test(txt)||/<msg>/.test(txt)||(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'&&new RegExp('\\['+finalLName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(朋友圈|拍一拍|拉黑|取消拉黑|加好友)?[：:]?').test(txt));
+    var hasMarker=/\[(微信|语音|红包|图片|转账|手机|电话|朋友圈|拍一拍|系统|拉黑|加好友|收款|退回|正在输入|角色|我|角色语音|角色红包|角色图片|角色转账|角色表情|我语音|我红包|我图片|我转账|我表情|我朋友圈|我拍一拍|我拉黑|我取消拉黑|我加好友|我电话)[：:]|\[(我拉黑|我取消拉黑)\]|!\[[^\]]*\]\(/.test(txt)||/<msg>/.test(txt)||(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'&&new RegExp('\\['+finalLName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(朋友圈|拍一拍|拉黑|取消拉黑|加好友)?[：:]?').test(txt));
     if(!hasMarker) return;
     processedStoryNodes2.add(node);
     var isUser=ncGuessIsUser(node);
@@ -1884,20 +1917,24 @@ function scanNodeForPhoneMsg2(node){
     if((fm=txt.match(/\[我转账[：:]([^\]]*?)\]/))&&fm[1].trim()){renderPhoneMessage(fm[1].trim(),'transfer',true);}
     var meEmoRe=/\[我表情[：:](!\[[^\]]*\]\([^)]*\)|[^\]]*)\]/;if((fm=txt.match(meEmoRe))&&fm[1].trim()){renderPhoneMessage(fm[1].trim(),'image',true);}
     if((fm=txt.match(/\[我[：:]([\s\S]*?)\]/))&&fm[1].trim()){renderPhoneMessage(fm[1].trim(),'text',true);}
-    // 动态角色名格式：[角色名:内容]
-    if(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'&&finalLName!=='我'){
+    // 动态角色名格式：[角色名:内容] - 遍历所有别名（备注名+原始角色卡名）
+    var charNames=getCharNames();
+    for(var cni=0;cni<charNames.length;cni++){
         try{
-            var cnEsc=finalLName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-            var dm=txt.match(new RegExp('\\['+cnEsc+'[：:]([\\s\\S]*?)\\]'));
-            if(dm&&dm[1].trim()){renderPhoneMessage(dm[1].trim(),'text',false);}
-            var dm2=txt.match(new RegExp('\\['+cnEsc+'语音[：:]([^\\]]*?)\\]'));
-            if(dm2&&dm2[1].trim()){renderPhoneMessage(dm2[1].trim(),'voice',false);}
-            var dm3=txt.match(new RegExp('\\['+cnEsc+'红包[：:]([^\\]]*?)\\]'));
-            if(dm3&&dm3[1].trim()){renderPhoneMessage(dm3[1].trim(),'redpacket',false);}
-            var dm4=txt.match(new RegExp('\\['+cnEsc+'图片[：:]([^\\]]*?)\\]'));
-            if(dm4&&dm4[1].trim()){renderPhoneMessage(dm4[1].trim(),'image',false);}
-            var dm5=txt.match(new RegExp('\\['+cnEsc+'转账[：:]([^\\]]*?)\\]'));
-            if(dm5&&dm5[1].trim()){renderPhoneMessage(dm5[1].trim(),'transfer',false);}
+            var cnEsc=charNames[cni].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+            var dmRe=new RegExp('\\['+cnEsc+'[：:]([\\s\\S]*?)\\]','g');
+            var dm;while((dm=dmRe.exec(txt))!==null){if(dm[1].trim())renderPhoneMessage(dm[1].trim(),'text',false);}
+            var dm2Re=new RegExp('\\['+cnEsc+'语音[：:]([^\\]]*?)\\]','g');
+            while((dm=dm2Re.exec(txt))!==null){if(dm[1].trim())renderPhoneMessage(dm[1].trim(),'voice',false);}
+            var dm3Re=new RegExp('\\['+cnEsc+'红包[：:]([^\\]]*?)\\]','g');
+            while((dm=dm3Re.exec(txt))!==null){if(dm[1].trim())renderPhoneMessage(dm[1].trim(),'redpacket',false);}
+            var dm4Re=new RegExp('\\['+cnEsc+'图片[：:]([^\\]]*?)\\]','g');
+            while((dm=dm4Re.exec(txt))!==null){if(dm[1].trim())renderPhoneMessage(dm[1].trim(),'image',false);}
+            var dm5Re=new RegExp('\\['+cnEsc+'转账[：:]([^\\]]*?)\\]','g');
+            while((dm=dm5Re.exec(txt))!==null){if(dm[1].trim())renderPhoneMessage(dm[1].trim(),'transfer',false);}
+            // 表情包
+            var dm6Re=new RegExp('\\['+cnEsc+'表情[：:]([^\\]]*)\\]','g');
+            while((dm=dm6Re.exec(txt))!==null){if(dm[1].trim())renderPhoneMessage(dm[1].trim(),'image',false);}
         }catch(e){}
     }
     // 角色专用格式（强制左侧）
@@ -1909,7 +1946,19 @@ function scanNodeForPhoneMsg2(node){
     if(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'){try{var cnEmo=finalLName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');var emRe=new RegExp('\\['+cnEmo+'表情[：:](!\\[[^\\]]*\\]\\([^)]*\\)|[^\\]]*)\\]');var em=txt.match(emRe);if(em&&em[1].trim()){renderPhoneMessage(em[1].trim(),'image',false);}}catch(e){}}
     if((fm=txt.match(/\[角色[：:]([\s\S]*?)\]/))&&fm[1].trim()){renderPhoneMessage(fm[1].trim(),'text',false);}
 
-    // 功能触发
+    // 功能触发 - 通话
+    // 用户呼出：[我电话:语音] / [我电话:视频]
+    if(/\[我电话[：:](语音|视频)/.test(txt)&&window.NcAPI){var cm2=txt.match(/\[我电话[：:](语音|视频)/);window.NcAPI.openCallUI(cm2[1]==='视频'?'video':'voice','out');}
+    // 角色来电：[角色名电话:语音] / [角色名电话:视频]（遍历别名）
+    var _callNames=getCharNames();
+    for(var _cni=0;_cni<_callNames.length;_cni++){
+        try{
+            var _cne=_callNames[_cni].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+            var _cm=txt.match(new RegExp('\\['+_cne+'电话[：:](语音|视频)'));
+            if(_cm&&window.NcAPI){window.NcAPI.openCallUI(_cm[1]==='视频'?'video':'voice','in');break;}
+        }catch(e){}
+    }
+    // 兼容旧格式：[电话:语音] / [电话:视频]（默认角色来电）
     if(/\[电话[：:](语音|视频)/.test(txt)&&window.NcAPI){var cm=txt.match(/\[电话[：:](语音|视频)/);window.NcAPI.openCallUI(cm[1]==='视频'?'video':'voice','in');}
     if(/\[朋友圈[：:]/.test(txt)&&window.NcAPI){var pm=txt.match(/\[朋友圈[：:]([^\]|]+)(?:\|([^\]]+))?/);if(pm)window.NcAPI.addPyq(pm[1]||'',pm[2]||'');}
     // 区分角色/用户的朋友圈
@@ -2162,8 +2211,8 @@ function ncInlineBubbleHTML(type,content,isUser){
         }
     }catch(e){}
     var avHtml='';
-    if(av){var avUrl=av.replace(/'/g,'%27').replace(/"/g,'&quot;');avHtml='<div class="nc-inline-av-wrap"><div class="nc-inline-av" style="background-image:url(\''+avUrl+'\')"></div><div class="nc-inline-name">'+name+'</div></div>';}
-    else{avHtml='<div class="nc-inline-av-wrap"><div class="nc-inline-av">'+(name?name.charAt(0).toUpperCase():'?')+'</div><div class="nc-inline-name">'+name+'</div></div>';}
+    if(av){var avUrl=av.replace(/'/g,'%27').replace(/"/g,'&quot;');avHtml='<div class="nc-inline-av-wrap"><div class="nc-inline-av" style="background-image:url(\''+avUrl+'\')"></div></div>';}
+    else{avHtml='<div class="nc-inline-av-wrap"><div class="nc-inline-av">'+(name?name.charAt(0).toUpperCase():'?')+'</div></div>';}
     var bub='';
     if(type==='voice'){
         var parts=content.split('|');var dur=parts[0].trim()||'3"';var vtxt=parts[1]?parts[1].trim():'';
@@ -2184,7 +2233,8 @@ function ncInlineBubbleHTML(type,content,isUser){
         var safeTxt=content.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
         bub='<div class="nc-inline-bub" style="background:'+bubColor+';color:#222;">'+safeTxt+'</div>';
     }
-    return '<div class="nc-inline-row '+dir+'">'+avHtml+bub+'</div>';
+    var nameHtml='<div class="nc-inline-name">'+name+'</div>';
+    return '<div class="nc-inline-row '+dir+'">'+avHtml+'<div class="nc-inline-content">'+nameHtml+bub+'</div></div>';
 }
 function ncRenderInlineBubbles(node){
     if(!node||node.nodeType!==1) return;
@@ -2197,7 +2247,7 @@ function ncRenderInlineBubbles(node){
     try{console.log('[Nicole] ncRenderInlineBubbles called, node:',node.tagName,'class:',node.className,'html前50:',html.substring(0,50));}catch(e){}
     // 支持{{char}}占位符，替换为当前角色名
     if(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'){html=html.replace(/\{\{char\}\}/g,finalLName);}
-    var hasInlineM=/\[(微信|语音|红包|图片|转账|手机|微信文字|微信消息|手机消息|角色|我|角色语音|角色红包|角色图片|角色转账|角色表情|我语音|我红包|我图片|我转账|我表情)[：:]/.test(html);if(!hasInlineM&&finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'){try{hasInlineM=new RegExp('\\['+finalLName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'[：:]').test(html);}catch(e){}}if(!hasInlineM) return;
+    var hasInlineM=/\[(微信|语音|红包|图片|转账|手机|微信文字|微信消息|手机消息|角色|我|角色语音|角色红包|角色图片|角色转账|角色表情|我语音|我红包|我图片|我转账|我表情|我电话|电话)[：:]/.test(html);if(!hasInlineM){var _cn=getCharNames();for(var _hi=0;_hi<_cn.length;_hi++){try{if(new RegExp('\\['+_cn[_hi].replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'[：:]').test(html)){hasInlineM=true;break;}}catch(e){}}}if(!hasInlineM) return;
     var isUser=ncGuessIsUser(node);
     // ===== 我专用（优先匹配，强制右侧）=====
     try{console.log('[Nicole] 开始匹配我格式, html包含[我::',html.indexOf('[我:')>-1);}catch(e){}
@@ -2207,10 +2257,11 @@ function ncRenderInlineBubbles(node){
     html=html.replace(/\[我转账[：:]([^\]]*?)\]/g,'');
     html=html.replace(/\[我表情[：:]([^\]]*)\]/g,function(m,t){return ncInlineBubbleHTML('image',t.trim(),true);});
     html=html.replace(/\[我[：:]([\s\S]*?)\]/g,function(m,t){return ncInlineBubbleHTML('text',t.trim(),true);});
-    // ===== 动态角色名格式（强制左侧）=====
-    if(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'&&finalLName!=='我'){
+    // ===== 动态角色名格式（强制左侧）- 遍历所有别名 =====
+    var charNames2=getCharNames();
+    for(var cni2=0;cni2<charNames2.length;cni2++){
         try{
-            var cnEsc2=finalLName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+            var cnEsc2=charNames2[cni2].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
             // 表情包格式：[角色名表情:URL] 或 [角色名表情:说明|URL]
             html=html.replace(new RegExp('\\['+cnEsc2+'表情[：:]([^\\]]*)\\]','g'),function(m,t){return ncInlineBubbleHTML('image',t.trim(),false);});
             html=html.replace(new RegExp('\\['+cnEsc2+'语音[：:]([^\\]]*?)\\]','g'),function(m,t){return ncInlineBubbleHTML('voice',t.trim(),false);});
@@ -2233,6 +2284,17 @@ function ncRenderInlineBubbles(node){
     html=html.replace(/\[(微信图片|图片)[：:]([^\]]*?)\]/g,function(m,k,t){return ncInlineBubbleHTML('image',t.trim(),isUser);});
     html=html.replace(/\[(微信转账|转账)[：:]([^\]]*?)\]/g,'');
     html=html.replace(/\[(微信文字|微信消息|微信|手机消息|手机)[：:]([\s\S]*?)\]/g,function(m,k,t){return ncInlineBubbleHTML('text',t.trim(),isUser);});
+    // 用户纯文本消息自动渲染成右侧气泡（没有标记格式的用户消息）
+    if(isUser&&!html.includes('[我:')&&!html.includes('[我语音:')&&!html.includes('[我表情:')&&!html.includes('[我图片:')){
+        var pureText=textEl.textContent||textEl.innerText||'';
+        if(pureText&&pureText.trim().length>0&&pureText.trim().length<500&&!pureText.includes('[')&&!pureText.includes('{')&&!pureText.includes('#')&&!pureText.includes('```')){
+            try{
+                var safePure=pureText.trim().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+                html=ncInlineBubbleHTML('text',safePure,true);
+                console.log('[Nicole] 用户纯文本消息自动渲染气泡');
+            }catch(e){}
+        }
+    }
     textEl.innerHTML=html;
     node.setAttribute('data-nc-inline-done','1');
 }
