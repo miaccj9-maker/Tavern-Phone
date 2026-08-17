@@ -466,6 +466,7 @@ input[type=number]{-moz-appearance:textfield;}
     let chatBox = null;
     let callBubsBox = null;
     let pendingReply = '';
+    let rawRel = '', rawCSign = '', rawUSign = '';
     let langMap = [{ l: 'zh-CN', n: '中' }];
     let langIdx = 0;
 
@@ -483,9 +484,14 @@ input[type=number]{-moz-appearance:textfield;}
     };
 
     // DOM 查询封装（限定在组件内）
-    function Q(s) { return scope.querySelector(s); }
-    function QA(s) { return scope.querySelectorAll(s); }
-
+    function Q(s) {
+        if(!scope) return null;
+        return scope.querySelector(s);
+    }
+    function QA(s) {
+        if(!scope) return [];
+        return scope.querySelectorAll(s);
+    }
     function nowTime() {
         var d = new Date();
         return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
@@ -1620,9 +1626,10 @@ micBtn.addEventListener('click', function(e){
     }
 }
 
+function bindExtraEvents() {
 Q('.Qixian-jmuaddbtn').addEventListener('click', function(){
-    var name = Q('.Qixian-jmuname').value.trim() || '未知歌曲';
-    var artist = Q('.Qixian-jmuartist').value.trim() || '未知歌手';
+    var name = Q('.Qixian-jmuname').value.trim() || '未知歌曲';  
+  var artist = Q('.Qixian-jmuartist').value.trim() || '未知歌手';
     var cover = Q('.Qixian-jmucover').value.trim() || '';
     var url = Q('.Qixian-jmuinp').value.trim() || '';
     if(name) {
@@ -1881,6 +1888,7 @@ if(savedPyqUav) {
         el.style.backgroundImage = 'url(\''+savedPyqUav.replace(/'/g,'%27')+'\')';
     });
 }
+   }
       // ===================== 7. 主入口 =====================
 
     function buildHTML() {
@@ -2071,6 +2079,7 @@ if(savedPyqUav) {
         if(callNm) callNm.textContent = finalLName;
         // 绑定事件
         bindAllEvents();
+        bindExtraEvents();
         // 初始化数据
         initCpData();
         renderMuList();
