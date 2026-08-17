@@ -1,4 +1,4 @@
-/* Nicole Phone - SillyTavern Extension v2.0 */
+/* Nico2 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1894,20 +1894,22 @@ async function doInit(){
             if(ua&&ua.trim())userInfo.avatar=ua.trim();
         }
         currentCharName=charInfo.name;
-        initPhone(built.panel,charInfo,userInfo);
-        console.log('[nicoPhone] 初始化完成，角色：'+charInfo.name);
+        // 先显示浮动按钮，确保即使面板初始化失败也能看到
+        try{built.floatEl.style.display='block';built.btn.style.display='flex';}catch(e){}
+        try{
+            initPhone(built.panel,charInfo,userInfo);
+            console.log('[nicoPhone] 初始化完成，角色：'+charInfo.name);
+        }catch(e){
+            console.error('[nicoPhone] 面板初始化错误:',e);
+        }
         window.NcAPI={
             openCallUI:function(type,dir){try{var call=document.querySelector('.Nicole-jcall');if(call){call.classList.remove('state-out','state-in','video');call.classList.add(dir==='in'?'state-in':'state-out');if(type==='video')call.classList.add('video');call.classList.add('show');var st=call.querySelector('.Nicole-jcall-st');if(st)st.textContent=dir==='in'?'对方发起通话...':'正在呼叫...';var nm=call.querySelector('.Nicole-jcall-nm');if(nm)nm.textContent=finalLName;}}catch(e){}},
             addPyq:function(txt,img){try{var modal=document.querySelector('.Nicole-jpyqsendtxt');if(modal)modal.value=txt||'';var imgInp=document.querySelector('.Nicole-jpyqsendimg');if(imgInp)imgInp.value=img||'';var btn=document.querySelector('.Nicole-jpyqsendok');if(btn)btn.click();}catch(e){}},
             renderSysMsg:function(txt){try{renderSysMsg(txt);}catch(e){}}
         };
         startStoryListener();
-        // 确保浮动按钮可见
-        setTimeout(function(){
-            var f=document.getElementById(FLOAT_ID);
-            if(f){f.style.display='block';console.log('[nicoPhone] 浮动按钮已显示');}
-            else{console.error('[nicoPhone] 浮动按钮不存在');}
-        },300);
+        // 浮动按钮已在前面显示，这里只做日志
+        console.log('[nicoPhone] 浮动按钮已显示');
     }catch(e){
         console.error('[nicoPhone] 初始化错误:',e);
     }
