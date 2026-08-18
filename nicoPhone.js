@@ -745,7 +745,7 @@ input[type=number]{-moz-appearance:textfield;}
 .Nicole-chatlist-hd .add{cursor:pointer;margin-left:auto;display:flex;}
 .Nicole-chatlist-body{flex:1;overflow-y:auto;}
 .Nicole-chatlist-item{position:relative;overflow:hidden;cursor:pointer;border-bottom:1px solid #eee;background:#fff;}
-.Nicole-chatlist-inner{display:flex;align-items:center;padding:12px 16px;background:#fff;position:relative;z-index:2;transition:transform .3s cubic-bezier(.2,.8,.2,1);}
+.Nicole-chatlist-inner{display:flex;align-items:center;padding:12px 16px;background:#fff;position:relative;z-index:2;transition:transform .3s cubic-bezier(.2,.8,.2,1);width:100%;box-sizing:border-box;}
 .Nicole-chatlist-del{position:absolute;right:0;top:0;bottom:0;width:70px;background:#ff3b30;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;z-index:1;}
 .Nicole-chatlist-del svg{width:20px;height:20px;}
 .Nicole-chatlist-del span{font-size:11px;font-weight:500;}
@@ -755,7 +755,7 @@ input[type=number]{-moz-appearance:textfield;}
 .Nicole-chatlist-name{font-size:15px;font-weight:500;color:#222;margin-bottom:3px;}
 .Nicole-chatlist-msg{font-size:12px;color:#999;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .Nicole-chatlist-item{position:relative;overflow:hidden;}
-.Nicole-chatlist-inner{display:flex;align-items:center;padding:12px 16px;transition:transform .3s cubic-bezier(.2,.8,.2,1);background:var(--card-bg);position:relative;z-index:2;}
+.Nicole-chatlist-inner{display:flex;align-items:center;padding:12px 16px;transition:transform .3s cubic-bezier(.2,.8,.2,1);background:#fff;position:relative;z-index:2;width:100%;box-sizing:border-box;}
 .Nicole-chatlist-del{position:absolute;right:0;top:0;bottom:0;width:70px;background:linear-gradient(135deg,#ff6b6b,#ee5a5a);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;z-index:1;opacity:.9;}
 .Nicole-chatlist-del svg{width:20px;height:20px;}
 .Nicole-chatlist-del span{font-size:11px;font-weight:500;}
@@ -1137,7 +1137,7 @@ input[type=number]{-moz-appearance:textfield;}
     .Nicole-mh{height:36px;font-size:13px;}
     .Nicole-act-btn{padding:8px 12px;font-size:11px;}
     .Nicole-sys-msg{font-size:10px;padding:4px 8px;}
-    .Nicole-chatlist-item{padding:8px 10px;gap:8px;}
+    .Nicole-chatlist-item{position:relative;overflow:hidden;padding:8px 10px;gap:8px;}
     .Nicole-chatlist-av{width:36px;height:36px;}
     .Nicole-chatlist-name{font-size:12px;}
     .Nicole-chatlist-msg{font-size:10px;}
@@ -1360,7 +1360,8 @@ function buildExtension(){
             '.Nicole-pyq-addbtn, .Nicole-pyq-back, .Nicole-pyq-delbtn, .Nicole-pyq-btn, .Nicole-mu-item, ' +
             '.Nicole-mu-btn, .Nicole-mu-add, .Nicole-mu-invbtn, .Nicole-emo-card, .Nicole-emo-gamebtn, ' +
             '.Nicole-cp-thing, .Nicole-cp-addrow button, .Nicole-cp-album-card, .Nicole-loc-send, ' +
-            '.Nicole-draw-tools, .Nicole-draw-btn-icon')) {
+            '.Nicole-draw-tools, .Nicole-draw-btn-icon, ' +
+            '.Nicole-chatlist-screen, .Nicole-chatlist-item, .Nicole-chatlist-inner, .Nicole-chatlist-del, .Nicole-chatlist-body, .Nicole-chatlist-hd')) {
             return;
         }
         startDrag(e, panel);
@@ -1889,7 +1890,7 @@ if(collapseBtn){
     // ===== EMOJI =====
     var baseEmojiArr=[{i:'https://tuchuang.org.cn/imgs/2026/03/26/8abc1e15982dce90.png',t:'宝宝我惹你了吗？'},{i:'https://tuchuang.org.cn/imgs/2026/03/29/28482bc17ee1902a.png',t:'兄弟，我长得太帅被人打了'},{i:'https://tuchuang.org.cn/imgs/2026/03/29/c8edbc471b99ec2d.png',t:'分享位置，床上'},{i:'https://tuchuang.org.cn/imgs/2026/03/29/108aa5ff7f102a0f.png',t:'听说你要洗澡'},{i:'https://tuchuang.org.cn/imgs/2026/03/29/14bc30cf3153af0f.png',t:'不乘，打屁屁咯'},{i:'https://tuchuang.org.cn/imgs/2026/03/29/f28c9fdf5230efc0.png',t:'你也很为我着迷吧？'},{i:'https://tuchuang.org.cn/imgs/2026/03/29/603a9d2dd3ba1db1.png',t:'偶哭叻，你满意了吧？'},{i:'https://tuchuang.org.cn/imgs/2026/03/29/56d88bd75de484f0.png',t:'电你，在心跳吗？'},{i:'https://tuchuang.org.cn/imgs/2026/03/26/a2350084ec1eb9e1.jpg',t:'淦他妈的，我要吃软饭'},{i:'https://tuchuang.org.cn/imgs/2026/03/26/9638432efdd2a0dc.png',t:'哞哞哒[么么哒]'},{i:'https://tuchuang.org.cn/imgs/2026/03/26/ecc00661053e774d.png',t:'吐舌'},{i:'https://tuchuang.org.cn/imgs/2026/03/26/1a553718ed2b2347.png',t:'这个世界有问题'},{i:'https://tuchuang.org.cn/imgs/2026/03/27/d38af7021b9631f1.png',t:'让我喊出我爱你'},{i:'https://tuchuang.org.cn/imgs/2026/03/27/b68c231476fd9735.png',t:'一张古早叼花漫画图'},{i:'https://tuchuang.org.cn/imgs/2026/03/27/29907ae552edde90.png',t:'一张抽象的人物图'},{i:'https://tuchuang.org.cn/imgs/2026/03/27/a082ed0adae88380.png',t:'一张抽象龙图拿着杯子'},{i:'https://tuchuang.org.cn/imgs/2026/03/27/ca976c11387dc5e8.png',t:'一张龙图鄙夷的表情'},{i:'https://tuchuang.org.cn/imgs/2026/03/27/422696afc246a494.png',t:'一只猴子苍蝇搓手'},{i:'https://tuchuang.org.cn/imgs/2026/03/27/c21b68dbdf340f36.png',t:'一张搞怪龙图'},{i:'https://tuchuang.org.cn/imgs/2026/03/28/f369ba2676f4283c.png',t:'沸羊羊耍帅'},{i:'https://tuchuang.org.cn/imgs/2026/03/28/be2862ca6b4b0c3a.png',t:'一个抽象的简笔画'},{i:'https://tuchuang.org.cn/imgs/2026/03/28/e7362ce1784f5c46.png',t:'我要去找上帝告状'},{i:'https://pic1.imgdb.cn/item/6a4cab64531aaa3c3f265491.jpg',t:'简笔画龙图'},{i:'https://pic1.imgdb.cn/item/6a4caf33531aaa3c3f26590d.jpg',t:'出来亲嘴'}];
     var customEmoStr=NcStore.get('Nc-custom-emos');var customEmoArr=customEmoStr?JSON.parse(customEmoStr):[];
-    function renderEmoList(){var all=customEmoArr.concat(baseEmojiArr);var html=all.map(function(x){return '<div class="Nicole-emo-card" data-url="'+x.i+'" data-txt="'+x.t+'"><img class="Nicole-emo-img" src="'+x.i+'"><div class="Nicole-emo-t">'+x.t+'</div></div>';}).join('');Q('.Nicole-jemolist').innerHTML=html;QA('.Nicole-emo-card').forEach(function(c){c.addEventListener('click',function(){renderRight('<img src="'+this.getAttribute('data-url')+'" class="Nicole-img" alt="'+this.getAttribute('data-txt')+'">',true,isBlkRight);playSwoosh();appendCmd(isBlkRight?'!['+this.getAttribute('data-txt')+'](发送失败)':'!['+this.getAttribute('data-txt')+']('+this.getAttribute('data-url')+')');Q('.Nicole-jemomodal').classList.remove('show');});});}
+    function renderEmoList(){var all=customEmoArr.concat(baseEmojiArr);var html=all.map(function(x){return '<div class="Nicole-emo-card" data-url="'+x.i+'" data-txt="'+x.t+'"><img class="Nicole-emo-img" src="'+x.i+'"><div class="Nicole-emo-t">'+x.t+'</div></div>';}).join('');Q('.Nicole-jemolist').innerHTML=html;QA('.Nicole-emo-card').forEach(function(c){c.addEventListener('click',function(){renderRight('<img src="'+this.getAttribute('data-url')+'" class="Nicole-img" alt="'+this.getAttribute('data-txt')+'">',true,isBlkRight);playSwoosh();appendCmd(isBlkRight?'$[发送失败]':'[我表情:'+this.getAttribute('data-txt')+'|'+this.getAttribute('data-url')+']');Q('.Nicole-jemomodal').classList.remove('show');});});}
     renderEmoList();
     Q('.Nicole-jaddemobtn').addEventListener('click',function(){Q('.Nicole-jaddemomodal').classList.add('show');Q('.Nicole-jemomodal').classList.remove('show');});
     Q('.Nicole-jaddemocancel').addEventListener('click',function(){Q('.Nicole-jaddemomodal').classList.remove('show');Q('.Nicole-jemomodal').classList.add('show');});
@@ -2463,6 +2464,7 @@ function renderChatListScreen(){
             var delWidth=70;
             // 触摸左滑
             inner.addEventListener('touchstart',function(e){
+                e.stopPropagation();
                 startX=e.touches[0].clientX;startY=e.touches[0].clientY;curX=isOpen?-delWidth:0;isDragging=true;
                 inner.style.transition='none';
             },{passive:true});
@@ -2492,6 +2494,7 @@ function renderChatListScreen(){
             var mouseDown=false;
             inner.addEventListener('mousedown',function(e){
                 if(e.button!==0)return;
+                e.stopPropagation();
                 startX=e.clientX;startY=e.clientY;curX=isOpen?-delWidth:0;isDragging=true;mouseDown=true;
                 inner.style.transition='none';
                 e.preventDefault();
