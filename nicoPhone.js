@@ -1,4 +1,4 @@
-/* Nico2 Phone - SillyTavern Extension v2.0 */
+/* Nico22 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1076,8 +1076,8 @@ input[type=number]{-moz-appearance:textfield;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
     position:fixed;
-    inset: 0;          /* 上下左右全部拉伸 */
-    margin: auto;      /* 自动居中对齐 */
+    inset: 0;
+    margin: auto;
     width:90%;
     max-width:360px;
     height:80dvh;
@@ -1085,6 +1085,7 @@ input[type=number]{-moz-appearance:textfield;}
     border-radius:16px;
     overflow:hidden;
     box-shadow:0 10px 40px rgba(0,0,0,.3);
+    background: #f2f2f7; /* 新增：强制底色，防止变透明 */
 }
     #nicole-phone-panel.show{display:flex;flex-direction:column;}
     .Nicole-stage{width:100%;padding:6px 0;}
@@ -1229,11 +1230,12 @@ function buildExtension(){
     (document.documentElement||document.body).appendChild(floatEl);
     // 动态计算位置，用left/top而不是bottom/right，避免transform影响
     function positionFloatBtn(){
-        try{
-            // 面板打开时不重新定位，避免覆盖用户拖动位置
-            var panel=document.getElementById(PANEL_ID);
-            if(panel&&panel.classList.contains('show')) return;
-            var btnW=48, btnH=48, left, top;
+    try{
+        // 面板打开时不重新定位，避免覆盖用户拖动位置
+        var panel=document.getElementById(PANEL_ID);
+        if(panel&&panel.classList.contains('show')) return;
+        var btnW=48, btnH=48, left, top;
+        // ... 后面不用管
             // 电脑端和手机端都找底部输入框，放在输入框上方
             var input=null, maxTop=0;
             var cands=document.querySelectorAll('#txt_prompt,#txt_prompt_wrap,[class*="input-group"],[class*="input-area"],[class*="send-message"],textarea');
@@ -1268,19 +1270,19 @@ function buildExtension(){
         panel.classList.add('show');
         btn.style.display='none'; // 展开时隐藏按钮
         // 显示后面板确保在视口内（移动端必须跳过，避免破坏inset居中）
-        setTimeout(function(){
-            if (window.innerWidth <= 768) return; // 移动端绝不修正位置
-            try{
-                var r=floatEl.getBoundingClientRect();
-                var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
-                var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
-                var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
-                if(adjLeft!==r.left||adjTop!==r.top){
-                    floatEl.style.left=adjLeft+'px';
-                    floatEl.style.top=adjTop+'px';
-                }
-            }catch(e){}
-        },50);
+      setTimeout(function(){
+    if (window.innerWidth <= 768) return; // 新增：移动端必须跳过，防止覆盖CSS的inset:0居中
+    try{
+        var r=floatEl.getBoundingClientRect();
+        var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
+        var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
+        var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
+        if(adjLeft!==r.left||adjTop!==r.top){
+            floatEl.style.left=adjLeft+'px';
+            floatEl.style.top=adjTop+'px';
+        }
+    }catch(e){}
+},50);
     });
     // 拖动变量（保留按钮和面板共用）
     var isDragging=false,startX=0,startY=0,origLeft=0,origTop=0,dragTarget=null;
