@@ -1,4 +1,4 @@
-/* Nico22 Phone - SillyTavern Extension v2.0 */
+/* Nico2 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1227,7 +1227,42 @@ function buildExtension(){
     panel.innerHTML=HTML;
     floatEl.appendChild(panel);
     floatEl.appendChild(btn);
-    document.body.appendChild(floatEl);
+    // 添加到html标签，避免body的transform影响fixed定位
+    (document.documentElement||document.body).appendChild(floatEl);
+    // 动态计算位置，用left/top而不是bottom/right，避免transform影响
+    function positionFloatBtn(){
+        try{
+            var isMobile=window.innerWidth<=768;
+            var btnW=48, btnH=48;
+            var left, top;
+            if(isMobile){
+                // 手机端：放在输入框上方
+                var input=document.querySelector('#txt_prompt_wrap,[class*="input-area"],[class*="prompt"],textarea,[class*="send"]');
+                if(input){
+                    var r=input.getBoundingClientRect();
+                    left=r.right-btnW-10;
+                    top=r.top-btnH-10;
+                    if(top<10) top=10;
+                    if(left<10) left=window.innerWidth-btnW-10;
+                }else{
+                    left=window.innerWidth-btnW-16;
+                    top=window.innerHeight-btnH-100;
+                }
+            }else{
+                // 电脑端：右下角
+                left=window.innerWidth-btnW-20;
+                top=window.innerHeight-btnH-20;
+            }
+            floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;z-index:2147483647!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
+        }catch(e){console.error('[nicoPhone] 定位失败:',e);}
+    }
+    btn.style.cssText='width:48px!important;height:48px!important;border-radius:50%!important;background:rgba(255,255,255,.95)!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 16px rgba(0,0,0,.15)!important;cursor:pointer!important;';
+    positionFloatBtn();
+    window.addEventListener('resize',positionFloatBtn);
+    window.addEventListener('scroll',positionFloatBtn,true);
+    setTimeout(positionFloatBtn,500);
+    setTimeout(positionFloatBtn,1500);
+    console.log('[nicoPhone] 浮动按钮已创建，位置:',floatEl.getBoundingClientRect());
     // 点击图标：图标消失，手机显示
     btn.addEventListener('click',function(e){
         if(btn._dragged){btn._dragged=false;return;}
@@ -1910,7 +1945,12 @@ async function doInit(){
         }
         currentCharName=charInfo.name;
         // 先显示浮动按钮，确保即使面板初始化失败也能看到
-        try{built.floatEl.style.display='block';built.btn.style.display='flex';}catch(e){}
+        try{
+            if(typeof positionFloatBtn==='function') positionFloatBtn();
+            built.floatEl.style.display='block';
+            built.btn.style.display='flex';
+            console.log('[nicoPhone] 浮动按钮位置:',built.floatEl.getBoundingClientRect());
+        }catch(e){console.error('[nicoPhone] 显示浮动按钮失败:',e);}
         try{
             initPhone(built.panel,charInfo,userInfo);
             console.log('[nicoPhone] 初始化完成，角色：'+charInfo.name);
