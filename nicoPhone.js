@@ -1,4 +1,4 @@
-/* Nico2 Phone - SillyTavern Extension v2.0 */
+/* Nico22 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1202,14 +1202,17 @@ function getTavernUser(){
 }
 
 function buildExtension(){
-    if(document.getElementById(FLOAT_ID)) return;
+    if(document.getElementById(FLOAT_ID)){console.log('[nicoPhone] 浮动按钮已存在，跳过');return {panel:document.getElementById(PANEL_ID),floatEl:document.getElementById(FLOAT_ID),btn:document.getElementById(TOGGLE_ID)};}
+    if(!document.body){console.error('[nicoPhone] document.body不存在');return null;}
     // inject css
-    if(!document.getElementById(CSS_ID)){
-        var st=document.createElement('style');
-        st.id=CSS_ID;
-        st.textContent=CSS;
-        document.head.appendChild(st);
-    }
+    try{
+        if(!document.getElementById(CSS_ID)){
+            var st=document.createElement('style');
+            st.id=CSS_ID;
+            st.textContent=CSS;
+            (document.head||document.documentElement).appendChild(st);
+        }
+    }catch(e){console.error('[nicoPhone] CSS注入失败:',e);}
     // float container
     var floatEl=document.createElement('div');
     floatEl.id=FLOAT_ID;
@@ -1967,25 +1970,39 @@ function checkCharSwitch(){
 }
 
 // wait for DOM ready
+// 健壮的初始化：等待document.body准备好，多次尝试
+function safeInit(){
+    try{
+        if(!document.body){setTimeout(safeInit,100);return;}
+        doInit();
+    }catch(e){
+        console.error('[nicoPhone] safeInit错误:',e);
+        setTimeout(safeInit,500);
+    }
+}
 if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',doInit);
+    document.addEventListener('DOMContentLoaded',safeInit);
 }else{
-    doInit();
+    safeInit();
 }
 // poll for char switch every 2 seconds
 setInterval(checkCharSwitch,2000);
 
-// 兜底：5秒后检查浮动按钮是否存在
-setTimeout(function(){
-    var f=document.getElementById('nicole-float');
-    if(!f){
-        console.error('[nicoPhone] 浮动按钮未创建，尝试重新初始化');
-        try{doInit();}catch(e){console.error('[nicoPhone] 重新初始化失败:',e);}
-    }else{
-        f.style.display='block';
-        console.log('[nicoPhone] 浮动按钮确认存在');
-    }
-},5000);
+// 多重兜底：1秒、3秒、5秒、10秒后检查浮动按钮
+[1000,3000,5000,10000].forEach(function(t){
+    setTimeout(function(){
+        var f=document.getElementById('nicole-float');
+        if(!f){
+            console.warn('[nicoPhone] '+t+'ms 浮动按钮未创建，重试');
+            try{safeInit();}catch(e){console.error('[nicoPhone] 重试失败:',e);}
+        }else{
+            f.style.display='block';
+            var btn=document.getElementById('nicole-toggle-btn');
+            if(btn)btn.style.display='flex';
+            console.log('[nicoPhone] '+t+'ms 浮动按钮已显示');
+        }
+    },t);
+});
 
 
 // ========== 剧情联动：支持多种消息类型，区分用户/角色 ==========
