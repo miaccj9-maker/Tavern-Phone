@@ -1,4 +1,4 @@
-/* Nico22 Phone - SillyTavern Extension v2.0 */
+/* Nico222 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1071,7 +1071,7 @@ input[type=number]{-moz-appearance:textfield;}
 
 /* ============ 移动端适配 ============ */
 @media (max-width:768px){
-    #nicole-float{position:fixed !important;bottom:20px !important;right:20px !important;width:38px !important;height:38px !important;z-index:999999!important;}
+    #nicole-float{position:fixed !important;left:auto !important;top:auto !important;bottom:20px !important;right:20px !important;width:38px !important;height:38px !important;z-index:999999!important;}
     #nicole-toggle-btn{width:38px;height:38px;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
@@ -1506,6 +1506,51 @@ function initPhone(scope, charInfo, userInfo){
             inputEl.dispatchEvent(new Event('input',{bubbles:true}));
         }catch(e){inputEl.value=(inputEl.value||'')+'\n'+cmd;}
     }
+    // ===== 输入框粘贴格式自动转换 =====
+    function setupPasteConverter(){
+        var inputEl=document.querySelector('#send_textarea')||document.querySelector('.commentInput')||document.querySelector('textarea');
+        if(!inputEl){setTimeout(setupPasteConverter,1000);return;}
+        inputEl.addEventListener('paste',function(e){
+            var pastedText=(e.clipboardData||window.clipboardData).getData('text');
+            if(!pastedText)return;
+            e.preventDefault();
+            var converted=convertPasteFormat(pastedText);
+            // 插入到光标位置
+            var start=inputEl.selectionStart||0,end=inputEl.selectionEnd||0;
+            inputEl.value=inputEl.value.substring(0,start)+converted+inputEl.value.substring(end);
+            inputEl.selectionStart=inputEl.selectionEnd=start+converted.length;
+            inputEl.dispatchEvent(new Event('input',{bubbles:true}));
+        });
+    }
+    function convertPasteFormat(text){
+        // 格式1: $[语音:3"|内容] → [我语音:3"|内容]
+        // 格式1: $[表情:url] → [我表情:url]
+        // 格式1: $[红包:金额|备注] → [我红包:金额|备注]
+        // 格式1: $[转账:金额|说明] → [我转账:金额|说明]
+        // 格式1: $[电话:语音] → [我电话:语音]
+        // 格式1: $[朋友圈:内容] → [我朋友圈:内容]
+        // 格式1: $[拍一拍:肩膀] → [我拍一拍:肩膀]
+        // 格式1: $[其他] → [我:其他]（纯文本）
+        text=text.replace(/\$\[([^\]]+)\]/g,function(m,p1){
+            var type=p1.split(':')[0].split('：')[0];
+            var knownTypes=['语音','表情','图片','红包','转账','电话','朋友圈','拍一拍','拉黑','取消拉黑','加好友','系统','撤回'];
+            if(knownTypes.indexOf(type)>=0){
+                return '[我'+p1+']';
+            }
+            return '[我:'+p1+']';
+        });
+        // 格式2: 我 | 222 → [我:222]（纯文本）
+        text=text.replace(/^我\s*\|\s*(.+)$/gm,'[我:$1]');
+        // 格式3: 角色名 | 内容 → [角色名:内容]
+        text=text.replace(/^([^\[\n|]+?)\s*\|\s*(.+)$/gm,function(m,name,content){
+            name=name.trim();
+            if(name && name!=='我') return '['+name+':'+content+']';
+            return m;
+        });
+        return text;
+    }
+    setupPasteConverter();
+
     function getRealImgUrl(url){if(url&&url.startsWith('local-draw-')){return NcStore.get('Nc-'+url)||url;}return url;}
 
     var homeScreen=Q('.Nicole-jhome');
