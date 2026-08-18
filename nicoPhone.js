@@ -1,4 +1,4 @@
-/* Nico2 Phone - SillyTavern Extension v2.0 */
+/* Nico22 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1076,17 +1076,18 @@ input[type=number]{-moz-appearance:textfield;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
         position:fixed;
-        bottom:0;
-        right:0;
-        left:0;
-        top:auto;
-        width:100%;
-        max-width:100%;
-        height:88vh;
-        max-height:88vh;
-        border-radius:14px 14px 0 0;
-        transform:none;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:90%;
+        max-width:360px;
+        height:80vh;
+        max-height:80vh;
+        bottom:auto;
+        right:auto;
+        border-radius:16px;
         overflow:hidden;
+        box-shadow:0 10px 40px rgba(0,0,0,.3);
     }
     #nicole-phone-panel.show{display:flex;flex-direction:column;}
     .Nicole-stage{width:100%;padding:6px 0;}
@@ -1232,26 +1233,25 @@ function buildExtension(){
     // 动态计算位置，用left/top而不是bottom/right，避免transform影响
     function positionFloatBtn(){
         try{
-            var isMobile=window.innerWidth<=768;
-            var btnW=48, btnH=48;
-            var left, top;
-            if(isMobile){
-                // 手机端：放在输入框上方
-                var input=document.querySelector('#txt_prompt_wrap,[class*="input-area"],[class*="prompt"],textarea,[class*="send"]');
-                if(input){
-                    var r=input.getBoundingClientRect();
-                    left=r.right-btnW-10;
-                    top=r.top-btnH-10;
-                    if(top<10) top=10;
-                    if(left<10) left=window.innerWidth-btnW-10;
-                }else{
-                    left=window.innerWidth-btnW-16;
-                    top=window.innerHeight-btnH-100;
+            var btnW=48, btnH=48, left, top;
+            // 电脑端和手机端都找底部输入框，放在输入框上方
+            var input=null, maxTop=0;
+            var cands=document.querySelectorAll('#txt_prompt,#txt_prompt_wrap,[class*="input-group"],[class*="input-area"],[class*="send-message"],textarea');
+            for(var i=0;i<cands.length;i++){
+                var r=cands[i].getBoundingClientRect();
+                if(r.top>window.innerHeight*0.3 && r.top<window.innerHeight && r.width>50){
+                    if(r.top>maxTop){maxTop=r.top;input=cands[i];}
                 }
+            }
+            if(input){
+                var r=input.getBoundingClientRect();
+                left=r.right-btnW-10;
+                top=r.top-btnH-10;
+                if(top<10) top=10;
+                if(left<10) left=window.innerWidth-btnW-10;
             }else{
-                // 电脑端：右下角
                 left=window.innerWidth-btnW-20;
-                top=window.innerHeight-btnH-20;
+                top=window.innerHeight-btnH-100;
             }
             floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;z-index:2147483647!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
         }catch(e){console.error('[nicoPhone] 定位失败:',e);}
