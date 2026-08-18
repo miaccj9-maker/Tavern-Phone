@@ -1,4 +1,4 @@
-/* Nico22 Phone - SillyTavern Extension v2.0 */
+/* Nico222 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1269,16 +1269,8 @@ function buildExtension(){
     panel.classList.add('show');
     btn.style.display='none'; // 展开时隐藏按钮
 
-    // 手机端：只清空残留定位，让面板自己用 CSS 的 inset:0 居中
-    if (window.innerWidth <= 768) {
-        floatEl.style.left = '';
-        floatEl.style.top = '';
-        floatEl.style.right = '';
-        floatEl.style.bottom = '';
-        floatEl.style.width = '';
-        floatEl.style.height = '';
-        return; // 手机端处理完毕，直接结束
-    }
+    // 手机端：不清空任何样式，让CSS的bottom/right控制定位
+    // （已移除清空width/height的逻辑，避免按钮和面板消失）
 
     // 电脑端修正位置（保持原有逻辑）
     setTimeout(function(){
@@ -1614,15 +1606,8 @@ if(collapseBtn){
             b.style.display='flex';
             b.style.opacity='1';
             b.style.visibility='visible';
-            // 移动端收起后，清空JS定位，让CSS的inset:0 margin:auto居中
-if (window.innerWidth <= 768) {
-    floatEl.style.left = '';
-    floatEl.style.top = '';
-    floatEl.style.right = '';
-    floatEl.style.bottom = '';
-    floatEl.style.width = '';
-    floatEl.style.height = '';
-}
+            // 移动端收起后，不清空任何样式，让CSS控制定位
+            // （已移除清空width/height的逻辑，避免按钮消失）
         }
         console.log('[Nicole] 收起手机，图标恢复');
     });
