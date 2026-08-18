@@ -1,4 +1,4 @@
-/* Nico22 Phone - SillyTavern Extension v2.0 */
+/* Nico222 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1267,6 +1267,14 @@ function buildExtension(){
         if(btn._dragged){btn._dragged=false;return;}
         panel.classList.add('show');
         btn.style.display='none'; // 展开时隐藏按钮
+        // 无论何种设备，展开时都强制清空外层容器的一切JS定位干扰，
+// 这样移动端能让CSS的inset:0完美生效，电脑端也能避免残留定位。
+floatEl.style.left = '';
+floatEl.style.top = '';
+floatEl.style.right = '';
+floatEl.style.bottom = '';
+floatEl.style.width = '';
+floatEl.style.height = '';
         // 显示后面板确保在视口内（移动端必须跳过，避免破坏inset居中）
         setTimeout(function(){
             if (window.innerWidth <= 768) return; // 移动端绝不修正位置
@@ -1285,7 +1293,7 @@ function buildExtension(){
     // 拖动变量（保留按钮和面板共用）
     var isDragging=false,startX=0,startY=0,origLeft=0,origTop=0,dragTarget=null;
     function startDrag(e,target){
-        // 新增：点击交互元素禁止拖拽，防止按钮误触发
+        // 点击交互元素禁止拖拽，防止按钮误触发
         if (e.target.closest('input, textarea, button, select, a, ' +
             '.Nicole-jchat, .Nicole-jpyqpanel, .Nicole-japp-panel, .Nicole-jset, .Nicole-jcall, ' +
             '.Nicole-jpanel, .Nicole-jrepbar, .Nicole-ft, .Nicole-hd-mid, .Nicole-ubox, ' +
@@ -1303,29 +1311,24 @@ function buildExtension(){
     var _dragMoved=false;
     // ===== 完全重写 moveDrag，解决面板拖飞出界问题 =====
     function moveDrag(e){
-        if(!isDragging)return;
-        var t=e.touches?e.touches[0]:e;
-        var dx=t.clientX-startX,dy=t.clientY-startY;
-        if(Math.abs(dx)>3||Math.abs(dy)>3){
-            if(dragTarget)dragTarget._dragged=true;
-            _dragMoved=true;
-            var newLeft=origLeft+dx, newTop=origTop+dy;
-            // 边界限制：严格根据当前拖拽的物体计算尺寸
-            var elW = floatEl.offsetWidth || 48;
-            var elH = floatEl.offsetHeight || 48;
-            var panel = document.getElementById(PANEL_ID);
-            // 如果面板打开并且是电脑端（允许拖拽），按面板尺寸限制边界
-            if (panel && panel.classList.contains('show') && window.innerWidth > 768) {
-                elW = panel.offsetWidth || elW;
-                elH = panel.offsetHeight || elH;
-            }
-            // 强制边界：绝不让任何一部分飞出屏幕
-            newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - elW));
-            newTop = Math.max(0, Math.min(newTop, window.innerHeight - elH));
-            floatEl.style.left=newLeft+'px';floatEl.style.top=newTop+'px';
-            floatEl.style.right='auto';floatEl.style.bottom='auto';
-        }
+    if(!isDragging)return;
+    var t=e.touches?e.touches[0]:e;
+    var dx=t.clientX-startX,dy=t.clientY-startY;
+    if(Math.abs(dx)>3||Math.abs(dy)>3){
+        if(dragTarget)dragTarget._dragged=true;
+        _dragMoved=true;
+        var newLeft=origLeft+dx, newTop=origTop+dy;
+        // 使用 getBoundingClientRect 获取当前真实的宽高（面板打开时就是面板尺寸）
+        var rect = floatEl.getBoundingClientRect();
+        var elW = rect.width;
+        var elH = rect.height;
+        // 强制边界：不让任何一部分飞出屏幕，同时留出1px安全边距
+        newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - elW - 1));
+        newTop = Math.max(0, Math.min(newTop, window.innerHeight - elH - 1));
+        floatEl.style.left=newLeft+'px';floatEl.style.top=newTop+'px';
+        floatEl.style.right='auto';floatEl.style.bottom='auto';
     }
+}
     function endDrag(){
         isDragging=false;dragTarget=null;
         // 绝不重置位置，让面板停留在最后一次拖拽的位置
