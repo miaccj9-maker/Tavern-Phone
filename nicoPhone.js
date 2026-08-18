@@ -1,4 +1,4 @@
-/* Nico2 Phone - SillyTavern Extension v2.0 */
+/* Nico222 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1271,6 +1271,19 @@ function buildExtension(){
         if(btn._dragged){btn._dragged=false;return;}
         panel.classList.add('show');
         btn.style.display='none';
+        // 显示后面板确保在视口内
+        setTimeout(function(){
+            try{
+                var r=floatEl.getBoundingClientRect();
+                var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
+                var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
+                var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
+                if(adjLeft!==r.left||adjTop!==r.top){
+                    floatEl.style.left=adjLeft+'px';
+                    floatEl.style.top=adjTop+'px';
+                }
+            }catch(e){}
+        },50);
     });
     // 拖动（图标和手机都可拖）
     var isDragging=false,startX=0,startY=0,origLeft=0,origTop=0,dragTarget=null;
@@ -1291,7 +1304,17 @@ function buildExtension(){
         if(Math.abs(dx)>3||Math.abs(dy)>3){
             if(dragTarget)dragTarget._dragged=true;
             _dragMoved=true;
-            floatEl.style.left=(origLeft+dx)+'px';floatEl.style.top=(origTop+dy)+'px';
+            var newLeft=origLeft+dx, newTop=origTop+dy;
+            // 边界限制：确保不溢出视口
+            var elW=floatEl.offsetWidth||48, elH=floatEl.offsetHeight||48;
+            var panel=document.getElementById(PANEL_ID);
+            if(panel&&panel.classList.contains('show')){
+                elW=panel.offsetWidth||elW;
+                elH=panel.offsetHeight||elH;
+            }
+            newLeft=Math.max(0, Math.min(newLeft, window.innerWidth-elW));
+            newTop=Math.max(0, Math.min(newTop, window.innerHeight-elH));
+            floatEl.style.left=newLeft+'px';floatEl.style.top=newTop+'px';
             floatEl.style.right='auto';floatEl.style.bottom='auto';
         }
     }
