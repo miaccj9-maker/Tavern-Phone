@@ -1230,13 +1230,11 @@ function buildExtension(){
     (document.documentElement||document.body).appendChild(floatEl);
     // 动态计算位置，用left/top而不是bottom/right，避免transform影响
     function positionFloatBtn(){
-    try{
-        // 面板打开时不重新定位，避免覆盖用户拖动位置
-        var panel=document.getElementById(PANEL_ID);
-        if(panel&&panel.classList.contains('show')) return;
+        if (window.innerWidth <= 768) return; // 移动端直接返回，不给任何定位机会
         var btnW=48, btnH=48, left, top;
-        // ... 后面不用管
-            // 电脑端和手机端都找底部输入框，放在输入框上方
+        try{
+            var panel=document.getElementById(PANEL_ID);
+            if(panel&&panel.classList.contains('show')) return;
             var input=null, maxTop=0;
             var cands=document.querySelectorAll('#txt_prompt,#txt_prompt_wrap,[class*="input-group"],[class*="input-area"],[class*="send-message"],textarea');
             for(var i=0;i<cands.length;i++){
@@ -1270,23 +1268,31 @@ function buildExtension(){
         panel.classList.add('show');
         btn.style.display='none'; // 展开时隐藏按钮
         // 显示后面板确保在视口内（移动端必须跳过，避免破坏inset居中）
-      setTimeout(function(){
-    if (window.innerWidth <= 768) return; // 新增：移动端必须跳过，防止覆盖CSS的inset:0居中
-    try{
-        var r=floatEl.getBoundingClientRect();
-        var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
-        var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
-        var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
-        if(adjLeft!==r.left||adjTop!==r.top){
-            floatEl.style.left=adjLeft+'px';
-            floatEl.style.top=adjTop+'px';
-        }
-    }catch(e){}
-},50);
+        setTimeout(function(){
+            if (window.innerWidth <= 768) return; // 移动端绝不修正位置
+            try{
+                var r=floatEl.getBoundingClientRect();
+                var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
+                var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
+                var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
+                if(adjLeft!==r.left||adjTop!==r.top){
+                    floatEl.style.left=adjLeft+'px';
+                    floatEl.style.top=adjTop+'px';
+                }
+            }catch(e){}
+        },50);
     });
     // 拖动变量（保留按钮和面板共用）
     var isDragging=false,startX=0,startY=0,origLeft=0,origTop=0,dragTarget=null;
     function startDrag(e,target){
+        // 新增：点击交互元素禁止拖拽，防止按钮误触发
+        if (e.target.closest('input, textarea, button, select, a, ' +
+            '.Nicole-jchat, .Nicole-jpyqpanel, .Nicole-japp-panel, .Nicole-jset, .Nicole-jcall, ' +
+            '.Nicole-jpanel, .Nicole-jrepbar, .Nicole-ft, .Nicole-hd-mid, .Nicole-ubox, ' +
+            '.Nicole-waves, .Nicole-icons-rt, .Nicole-icbtn, .Nicole-dock-icon, .Nicole-hd-back, ' +
+            '.Nicole-home-screen, .Nicole-ios-statusbar, .Nicole-sticky-note, .Nicole-sticky-textarea, .Nicole-sticky-btn')) {
+            return;
+        }
         isDragging=true;dragTarget=target;
         var t=e.touches?e.touches[0]:e;
         startX=t.clientX;startY=t.clientY;
@@ -1322,10 +1328,8 @@ function buildExtension(){
     }
     function endDrag(){
         isDragging=false;dragTarget=null;
-        if(!_dragMoved){
-            floatEl.style.left='';floatEl.style.top='';
-            floatEl.style.right='';floatEl.style.bottom='';
-        }
+        // 绝不重置位置，让面板停留在最后一次拖拽的位置
+        // 如果点击按钮时没有拖动，位置保持不变，解决“跳回”问题
     }
     // 按钮拖拽（保留，两边都能拖）
     btn.addEventListener('mousedown',function(e){startDrag(e,btn);});
@@ -1334,13 +1338,19 @@ function buildExtension(){
     panel.addEventListener('mousedown',function(e){
         // 移动端直接禁用面板拖拽（保护 inset 居中）
         if (window.innerWidth <= 768) return;
-        // 电脑端：点击交互元素时禁止拖拽
+        // 电脑端：点击任何交互元素都禁止拖拽
         var target = e.target;
         if (target.closest('input, textarea, button, select, a, ' +
             '.Nicole-jchat, .Nicole-jpyqpanel, .Nicole-japp-panel, .Nicole-jset, .Nicole-jcall, ' +
             '.Nicole-jpanel, .Nicole-jrepbar, .Nicole-ft, .Nicole-hd-mid, .Nicole-ubox, ' +
             '.Nicole-waves, .Nicole-icons-rt, .Nicole-icbtn, .Nicole-dock-icon, .Nicole-hd-back, ' +
-            '.Nicole-home-screen, .Nicole-ios-statusbar, .Nicole-sticky-note, .Nicole-sticky-textarea, .Nicole-sticky-btn')) {
+            '.Nicole-home-screen, .Nicole-ios-statusbar, .Nicole-sticky-note, .Nicole-sticky-textarea, .Nicole-sticky-btn, ' +
+            '.Nicole-ptab, .Nicole-dial-key, .Nicole-dial-callbtn, .Nicole-contact-detail, .Nicole-c-av, ' +
+            '.Nicole-c-input, .Nicole-c-btn, .Nicole-list-item, .Nicole-pyq-cover, .Nicole-pyq-uav, ' +
+            '.Nicole-pyq-addbtn, .Nicole-pyq-back, .Nicole-pyq-delbtn, .Nicole-pyq-btn, .Nicole-mu-item, ' +
+            '.Nicole-mu-btn, .Nicole-mu-add, .Nicole-mu-invbtn, .Nicole-emo-card, .Nicole-emo-gamebtn, ' +
+            '.Nicole-cp-thing, .Nicole-cp-addrow button, .Nicole-cp-album-card, .Nicole-loc-send, ' +
+            '.Nicole-draw-tools, .Nicole-draw-btn-icon')) {
             return;
         }
         startDrag(e, panel);
