@@ -1,4 +1,4 @@
-/* Nico222 Phone - SillyTavern Extension v2.0 */
+/* Nico22 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1071,7 +1071,7 @@ input[type=number]{-moz-appearance:textfield;}
 
 /* ============ 移动端适配 ============ */
 @media (max-width:768px){
-    #nicole-float{bottom:calc(12px + env(safe-area-inset-bottom,0px));right:10px;z-index:999999!important;}
+    #nicole-float{position:fixed !important;inset:0 !important;margin:auto !important;width:38px !important;height:38px !important;z-index:999999!important;}
     #nicole-toggle-btn{width:38px;height:38px;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
@@ -1230,32 +1230,36 @@ function buildExtension(){
     (document.documentElement||document.body).appendChild(floatEl);
     // 动态计算位置，用left/top而不是bottom/right，避免transform影响
     function positionFloatBtn(){
-        if (window.innerWidth <= 768) return; // 移动端直接返回，不给任何定位机会
-        var btnW=48, btnH=48, left, top;
-        try{
-            var panel=document.getElementById(PANEL_ID);
-            if(panel&&panel.classList.contains('show')) return;
-            var input=null, maxTop=0;
-            var cands=document.querySelectorAll('#txt_prompt,#txt_prompt_wrap,[class*="input-group"],[class*="input-area"],[class*="send-message"],textarea');
-            for(var i=0;i<cands.length;i++){
-                var r=cands[i].getBoundingClientRect();
-                if(r.top>window.innerHeight*0.3 && r.top<window.innerHeight && r.width>50){
-                    if(r.top>maxTop){maxTop=r.top;input=cands[i];}
-                }
-            }
-            if(input){
-                var r=input.getBoundingClientRect();
-                left=r.right-btnW-10;
-                top=r.top-btnH-10;
-                if(top<10) top=10;
-                if(left<10) left=window.innerWidth-btnW-10;
-            }else{
-                left=window.innerWidth-btnW-20;
-                top=window.innerHeight-btnH-100;
-            }
-            floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;z-index:2147483647!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
-        }catch(e){console.error('[nicoPhone] 定位失败:',e);}
+    // 移动端强制按钮钉在屏幕正中央，不受任何干扰
+    if (window.innerWidth <= 768) {
+        floatEl.style.cssText = 'position:fixed!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;z-index:2147483647!important;display:block!important;width:38px!important;height:38px!important;';
+        return;
     }
+    var btnW=48, btnH=48, left, top;
+    try{
+        var panel=document.getElementById(PANEL_ID);
+        if(panel&&panel.classList.contains('show')) return;
+        var input=null, maxTop=0;
+        var cands=document.querySelectorAll('#txt_prompt,#txt_prompt_wrap,[class*="input-group"],[class*="input-area"],[class*="send-message"],textarea');
+        for(var i=0;i<cands.length;i++){
+            var r=cands[i].getBoundingClientRect();
+            if(r.top>window.innerHeight*0.3 && r.top<window.innerHeight && r.width>50){
+                if(r.top>maxTop){maxTop=r.top;input=cands[i];}
+            }
+        }
+        if(input){
+            var r=input.getBoundingClientRect();
+            left=r.right-btnW-10;
+            top=r.top-btnH-10;
+            if(top<10) top=10;
+            if(left<10) left=window.innerWidth-btnW-10;
+        }else{
+            left=window.innerWidth-btnW-20;
+            top=window.innerHeight-btnH-100;
+        }
+        floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;z-index:2147483647!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
+    }catch(e){console.error('[nicoPhone] 定位失败:',e);}
+}
     btn.style.cssText='width:48px!important;height:48px!important;border-radius:50%!important;background:rgba(255,255,255,.95)!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 16px rgba(0,0,0,.15)!important;cursor:pointer!important;';
     positionFloatBtn();
     window.addEventListener('resize',positionFloatBtn);
@@ -1264,32 +1268,36 @@ function buildExtension(){
     console.log('[nicoPhone] 浮动按钮已创建，位置:',floatEl.getBoundingClientRect());
     // 点击图标：图标消失，手机显示
     btn.addEventListener('click',function(e){
-        if(btn._dragged){btn._dragged=false;return;}
-        panel.classList.add('show');
-        btn.style.display='none'; // 展开时隐藏按钮
-        // 无论何种设备，展开时都强制清空外层容器的一切JS定位干扰，
-// 这样移动端能让CSS的inset:0完美生效，电脑端也能避免残留定位。
-floatEl.style.left = '';
-floatEl.style.top = '';
-floatEl.style.right = '';
-floatEl.style.bottom = '';
-floatEl.style.width = '';
-floatEl.style.height = '';
-        // 显示后面板确保在视口内（移动端必须跳过，避免破坏inset居中）
-        setTimeout(function(){
-            if (window.innerWidth <= 768) return; // 移动端绝不修正位置
-            try{
-                var r=floatEl.getBoundingClientRect();
-                var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
-                var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
-                var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
-                if(adjLeft!==r.left||adjTop!==r.top){
-                    floatEl.style.left=adjLeft+'px';
-                    floatEl.style.top=adjTop+'px';
-                }
-            }catch(e){}
-        },50);
-    });
+    if(btn._dragged){btn._dragged=false;return;}
+    panel.classList.add('show');
+    btn.style.display='none'; // 展开时隐藏按钮
+
+    // 手机端：只清空残留定位，让面板自己用 CSS 的 inset:0 居中
+    if (window.innerWidth <= 768) {
+        floatEl.style.left = '';
+        floatEl.style.top = '';
+        floatEl.style.right = '';
+        floatEl.style.bottom = '';
+        floatEl.style.width = '';
+        floatEl.style.height = '';
+        return; // 手机端处理完毕，直接结束
+    }
+
+    // 电脑端修正位置（保持原有逻辑）
+    setTimeout(function(){
+        if (window.innerWidth <= 768) return;
+        try{
+            var r=floatEl.getBoundingClientRect();
+            var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
+            var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
+            var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
+            if(adjLeft!==r.left||adjTop!==r.top){
+                floatEl.style.left=adjLeft+'px';
+                floatEl.style.top=adjTop+'px';
+            }
+        }catch(e){}
+    },50);
+});
     // 拖动变量（保留按钮和面板共用）
     var isDragging=false,startX=0,startY=0,origLeft=0,origTop=0,dragTarget=null;
     function startDrag(e,target){
@@ -1318,13 +1326,13 @@ floatEl.style.height = '';
         if(dragTarget)dragTarget._dragged=true;
         _dragMoved=true;
         var newLeft=origLeft+dx, newTop=origTop+dy;
-        // 使用 getBoundingClientRect 获取当前真实的宽高（面板打开时就是面板尺寸）
+        // 用 getBoundingClientRect 获取当前真实宽高（面板打开时就是面板尺寸）
         var rect = floatEl.getBoundingClientRect();
         var elW = rect.width;
         var elH = rect.height;
-        // 强制边界：不让任何一部分飞出屏幕，同时留出1px安全边距
-        newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - elW - 1));
-        newTop = Math.max(0, Math.min(newTop, window.innerHeight - elH - 1));
+        // 强制边界：不允许任何部分飞出屏幕
+        newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - elW));
+        newTop = Math.max(0, Math.min(newTop, window.innerHeight - elH));
         floatEl.style.left=newLeft+'px';floatEl.style.top=newTop+'px';
         floatEl.style.right='auto';floatEl.style.bottom='auto';
     }
@@ -1600,7 +1608,22 @@ function initPhone(scope, charInfo, userInfo){
     });
     // 收起手机
     var collapseBtn=Q('.Nicole-jcollapse');
-    if(collapseBtn){collapseBtn.addEventListener('click',function(){var p=document.getElementById(PANEL_ID);var b=document.getElementById(TOGGLE_ID);if(p)p.classList.remove('show');if(b){b.style.display='flex';b.style.opacity='1';b.style.visibility='visible';}console.log('[Nicole] 收起手机，图标恢复');});
+if(collapseBtn){
+    collapseBtn.addEventListener('click',function(){
+        var p=document.getElementById(PANEL_ID);
+        var b=document.getElementById(TOGGLE_ID);
+        if(p)p.classList.remove('show');
+        if(b){
+            b.style.display='flex';
+            b.style.opacity='1';
+            b.style.visibility='visible';
+            // 移动端收起后，强制按钮回正中央
+            if (window.innerWidth <= 768) {
+                floatEl.style.cssText = 'position:fixed!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;z-index:2147483647!important;display:flex!important;width:38px!important;height:38px!important;';
+            }
+        }
+        console.log('[Nicole] 收起手机，图标恢复');
+    });
 }
     // 清空当前聊天记录
     var clearChatBtn=Q('.Nicole-jclear-chat');
