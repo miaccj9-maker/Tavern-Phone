@@ -1071,7 +1071,7 @@ input[type=number]{-moz-appearance:textfield;}
 
 /* ============ 移动端适配 ============ */
 @media (max-width:768px){
-    #nicole-float{bottom:calc(12px + env(safe-area-inset-bottom,0px));right:10px;z-index:99999;}
+    #nicole-float{bottom:calc(12px + env(safe-area-inset-bottom,0px));right:10px;z-index:999999!important;}
     #nicole-toggle-btn{width:38px;height:38px;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
@@ -1157,7 +1157,7 @@ input[type=number]{-moz-appearance:textfield;}
     .Nicole-au,.Nicole-bub,.Nicole-call,.Nicole-mbox,.Nicole-set,.Nicole-mf,.Nicole-stage,.Nicole-phone-wrap{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 }
 @media (max-width:480px){
-    #nicole-float{bottom:calc(12px + env(safe-area-inset-bottom,0px));right:10px;}
+    #nicole-float{bottom:calc(12px + env(safe-area-inset-bottom,0px));right:10px;z-index:999999!important;}
     #nicole-toggle-btn{width:38px;height:38px;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
 }
@@ -1238,18 +1238,30 @@ function buildExtension(){
         var t=e.touches?e.touches[0]:e;
         startX=t.clientX;startY=t.clientY;
         var rect=floatEl.getBoundingClientRect();origLeft=rect.left;origTop=rect.top;
-        floatEl.style.left=origLeft+'px';floatEl.style.top=origTop+'px';
-        floatEl.style.right='auto';floatEl.style.bottom='auto';
+        // 不在start时改变位置，避免点击就移位
+        _dragMoved=false;
         if(!e.touches)e.preventDefault();
     }
+    var _dragMoved=false;
     function moveDrag(e){
         if(!isDragging)return;
         var t=e.touches?e.touches[0]:e;
         var dx=t.clientX-startX,dy=t.clientY-startY;
-        if(Math.abs(dx)>3||Math.abs(dy)>3){if(dragTarget)dragTarget._dragged=true;}
-        floatEl.style.left=(origLeft+dx)+'px';floatEl.style.top=(origTop+dy)+'px';
+        if(Math.abs(dx)>3||Math.abs(dy)>3){
+            if(dragTarget)dragTarget._dragged=true;
+            _dragMoved=true;
+            floatEl.style.left=(origLeft+dx)+'px';floatEl.style.top=(origTop+dy)+'px';
+            floatEl.style.right='auto';floatEl.style.bottom='auto';
+        }
     }
-    function endDrag(){isDragging=false;dragTarget=null;}
+    function endDrag(){
+        isDragging=false;dragTarget=null;
+        // 如果没有拖动，恢复右下角定位
+        if(!_dragMoved){
+            floatEl.style.left='';floatEl.style.top='';
+            floatEl.style.right='';floatEl.style.bottom='';
+        }
+    }
     btn.addEventListener('mousedown',function(e){startDrag(e,btn);});
     panel.addEventListener('mousedown',function(e){
         if(e.target.closest('input,textarea,button,select,a,.Nicole-jchat,.Nicole-jpyqpanel,.Nicole-japp-panel,.Nicole-jset,.Nicole-jcall,.Nicole-jpanel,.Nicole-jrepbar'))return;
