@@ -1,4 +1,4 @@
-/* Nico222 Phone - SillyTavern Extension v2.0 */
+/* Nico22 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1071,13 +1071,14 @@ input[type=number]{-moz-appearance:textfield;}
 
 /* ============ 移动端适配 ============ */
 @media (max-width:768px){
-    #nicole-float{position:fixed !important;inset:0 !important;margin:auto !important;width:38px !important;height:38px !important;z-index:999999!important;}
+    #nicole-float{position:fixed !important;bottom:20px !important;right:20px !important;width:38px !important;height:38px !important;z-index:999999!important;}
     #nicole-toggle-btn{width:38px;height:38px;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
     position:fixed;
-    inset: 0;
-    margin: auto;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
     width:90%;
     max-width:360px;
     height:80dvh;
