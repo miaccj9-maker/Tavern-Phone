@@ -1,4 +1,4 @@
-/* Nico222 Phone - SillyTavern Extension v2.0 */
+/* Nico2 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1075,20 +1075,17 @@ input[type=number]{-moz-appearance:textfield;}
     #nicole-toggle-btn{width:38px;height:38px;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
-        position:fixed;
-        top:50%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        width:90%;
-        max-width:360px;
-        height:80vh;
-        max-height:80vh;
-        bottom:auto;
-        right:auto;
-        border-radius:16px;
-        overflow:hidden;
-        box-shadow:0 10px 40px rgba(0,0,0,.3);
-    }
+    position:fixed;
+    inset: 0;          /* 上下左右全部拉伸 */
+    margin: auto;      /* 自动居中对齐 */
+    width:90%;
+    max-width:360px;
+    height:80dvh;
+    max-height:80dvh;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
     #nicole-phone-panel.show{display:flex;flex-direction:column;}
     .Nicole-stage{width:100%;padding:6px 0;}
     .Nicole-phone-wrap{padding:4px;max-width:100%;border-radius:28px;}
@@ -1262,7 +1259,6 @@ function buildExtension(){
     btn.style.cssText='width:48px!important;height:48px!important;border-radius:50%!important;background:rgba(255,255,255,.95)!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 16px rgba(0,0,0,.15)!important;cursor:pointer!important;';
     positionFloatBtn();
     window.addEventListener('resize',positionFloatBtn);
-    // 移除scroll监听，避免滚动时频繁重定位导致乱动
     setTimeout(positionFloatBtn,500);
     setTimeout(positionFloatBtn,1500);
     console.log('[nicoPhone] 浮动按钮已创建，位置:',floatEl.getBoundingClientRect());
@@ -1270,9 +1266,10 @@ function buildExtension(){
     btn.addEventListener('click',function(e){
         if(btn._dragged){btn._dragged=false;return;}
         panel.classList.add('show');
-        btn.style.display='none';
-        // 显示后面板确保在视口内
+        btn.style.display='none'; // 展开时隐藏按钮
+        // 显示后面板确保在视口内（移动端必须跳过，避免破坏inset居中）
         setTimeout(function(){
+            if (window.innerWidth <= 768) return; // 移动端绝不修正位置
             try{
                 var r=floatEl.getBoundingClientRect();
                 var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
@@ -1285,18 +1282,18 @@ function buildExtension(){
             }catch(e){}
         },50);
     });
-    // 拖动（图标和手机都可拖）
+    // 拖动变量（保留按钮和面板共用）
     var isDragging=false,startX=0,startY=0,origLeft=0,origTop=0,dragTarget=null;
     function startDrag(e,target){
         isDragging=true;dragTarget=target;
         var t=e.touches?e.touches[0]:e;
         startX=t.clientX;startY=t.clientY;
         var rect=floatEl.getBoundingClientRect();origLeft=rect.left;origTop=rect.top;
-        // 不在start时改变位置，避免点击就移位
         _dragMoved=false;
         if(!e.touches)e.preventDefault();
     }
     var _dragMoved=false;
+    // ===== 完全重写 moveDrag，解决面板拖飞出界问题 =====
     function moveDrag(e){
         if(!isDragging)return;
         var t=e.touches?e.touches[0]:e;
@@ -1305,44 +1302,58 @@ function buildExtension(){
             if(dragTarget)dragTarget._dragged=true;
             _dragMoved=true;
             var newLeft=origLeft+dx, newTop=origTop+dy;
-            // 边界限制：确保不溢出视口
-            var elW=floatEl.offsetWidth||48, elH=floatEl.offsetHeight||48;
-            var panel=document.getElementById(PANEL_ID);
-            if(panel&&panel.classList.contains('show')){
-                elW=panel.offsetWidth||elW;
-                elH=panel.offsetHeight||elH;
+            // 边界限制：严格根据当前拖拽的物体计算尺寸
+            var elW = floatEl.offsetWidth || 48;
+            var elH = floatEl.offsetHeight || 48;
+            var panel = document.getElementById(PANEL_ID);
+            // 如果面板打开并且是电脑端（允许拖拽），按面板尺寸限制边界
+            if (panel && panel.classList.contains('show') && window.innerWidth > 768) {
+                elW = panel.offsetWidth || elW;
+                elH = panel.offsetHeight || elH;
             }
-            newLeft=Math.max(0, Math.min(newLeft, window.innerWidth-elW));
-            newTop=Math.max(0, Math.min(newTop, window.innerHeight-elH));
+            // 强制边界：绝不让任何一部分飞出屏幕
+            newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - elW));
+            newTop = Math.max(0, Math.min(newTop, window.innerHeight - elH));
             floatEl.style.left=newLeft+'px';floatEl.style.top=newTop+'px';
             floatEl.style.right='auto';floatEl.style.bottom='auto';
         }
     }
     function endDrag(){
         isDragging=false;dragTarget=null;
-        // 如果没有拖动，恢复右下角定位
         if(!_dragMoved){
             floatEl.style.left='';floatEl.style.top='';
             floatEl.style.right='';floatEl.style.bottom='';
         }
     }
+    // 按钮拖拽（保留，两边都能拖）
     btn.addEventListener('mousedown',function(e){startDrag(e,btn);});
+    btn.addEventListener('touchstart',function(e){startDrag(e,btn);},{passive:true});
+    // ===== 面板拖拽（电脑端严格过滤，移动端彻底禁掉） =====
     panel.addEventListener('mousedown',function(e){
-        if(e.target.closest('input,textarea,button,select,a,.Nicole-jchat,.Nicole-jpyqpanel,.Nicole-japp-panel,.Nicole-jset,.Nicole-jcall,.Nicole-jpanel,.Nicole-jrepbar'))return;
-        startDrag(e,panel);
+        // 移动端直接禁用面板拖拽（保护 inset 居中）
+        if (window.innerWidth <= 768) return;
+        // 电脑端：点击交互元素时禁止拖拽
+        var target = e.target;
+        if (target.closest('input, textarea, button, select, a, ' +
+            '.Nicole-jchat, .Nicole-jpyqpanel, .Nicole-japp-panel, .Nicole-jset, .Nicole-jcall, ' +
+            '.Nicole-jpanel, .Nicole-jrepbar, .Nicole-ft, .Nicole-hd-mid, .Nicole-ubox, ' +
+            '.Nicole-waves, .Nicole-icons-rt, .Nicole-icbtn, .Nicole-dock-icon, .Nicole-hd-back, ' +
+            '.Nicole-home-screen, .Nicole-ios-statusbar, .Nicole-sticky-note, .Nicole-sticky-textarea, .Nicole-sticky-btn')) {
+            return;
+        }
+        startDrag(e, panel);
     });
+    // 移动端触摸面板：彻底禁止拖拽（只靠 CSS inset 居中）
+    panel.addEventListener('touchstart',function(e){
+        return; // 手机端完全禁用，防止固定定位乱漂
+    },{passive:true});
+    // 全局鼠标/触屏移动事件
     document.addEventListener('mousemove',moveDrag);
     document.addEventListener('mouseup',endDrag);
-    btn.addEventListener('touchstart',function(e){startDrag(e,btn);},{passive:true});
-    panel.addEventListener('touchstart',function(e){
-        if(e.target.closest('input,textarea,button,select,a,.Nicole-jchat,.Nicole-jpyqpanel,.Nicole-japp-panel,.Nicole-jset,.Nicole-jcall,.Nicole-jpanel,.Nicole-jrepbar'))return;
-        startDrag(e,panel);
-    },{passive:true});
     document.addEventListener('touchmove',moveDrag,{passive:true});
     document.addEventListener('touchend',endDrag);
     return {floatEl:floatEl, panel:panel, btn:btn};
 }
-
 /* ============ CORE LOGIC (adapted from original) ============ */
 function initPhone(scope, charInfo, userInfo){
     var Q=function(s){return scope.querySelector(s);};
@@ -1574,7 +1585,8 @@ function initPhone(scope, charInfo, userInfo){
     });
     // 收起手机
     var collapseBtn=Q('.Nicole-jcollapse');
-    if(collapseBtn){collapseBtn.addEventListener('click',function(){var p=document.getElementById(PANEL_ID);var b=document.getElementById(TOGGLE_ID);if(p)p.classList.remove('show');if(b){b.style.display='flex';b.style.opacity='1';b.style.visibility='visible';}console.log('[Nicole] 收起手机，图标恢复');});}
+    if(collapseBtn){collapseBtn.addEventListener('click',function(){var p=document.getElementById(PANEL_ID);var b=document.getElementById(TOGGLE_ID);if(p)p.classList.remove('show');if(b){b.style.display='flex';b.style.opacity='1';b.style.visibility='visible';}console.log('[Nicole] 收起手机，图标恢复');});
+}
     // 清空当前聊天记录
     var clearChatBtn=Q('.Nicole-jclear-chat');
     if(clearChatBtn){clearChatBtn.addEventListener('click',function(){if(!confirm('确定清空当前聊天记录？'))return;var panel=document.getElementById(PANEL_ID);if(panel){var cb=panel.querySelector('.Nicole-jchat');if(cb)cb.innerHTML='';}var cname=currentCharName||finalLName||'';if(cname){try{var key='Nc-chat-'+cname;localStorage.removeItem(key);}catch(e){}}});}
