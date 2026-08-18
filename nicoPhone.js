@@ -1,4 +1,4 @@
-/* Nico222 Phone - SillyTavern Extension v2.0 */
+/* Nico22 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1088,7 +1088,7 @@ input[type=number]{-moz-appearance:textfield;}
     box-shadow:0 10px 40px rgba(0,0,0,.3);
     background: #f2f2f7; /* 新增：强制底色，防止变透明 */
 }
-    #nicole-phone-panel.show{display:flex;flex-direction:column;}
+    #nicole-phone-panel.show{display:block;}
     .Nicole-stage{width:100%;padding:6px 0;}
     .Nicole-phone-wrap{padding:4px;max-width:100%;border-radius:28px;}
     .Nicole-phone{height:100%;max-height:100%;border-radius:24px;font-size:12px;}
