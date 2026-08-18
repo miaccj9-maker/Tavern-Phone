@@ -1,4 +1,4 @@
-/* Nico22 Phone - SillyTavern Extension v2.0 */
+/* Nico2 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1233,6 +1233,9 @@ function buildExtension(){
     // 动态计算位置，用left/top而不是bottom/right，避免transform影响
     function positionFloatBtn(){
         try{
+            // 面板打开时不重新定位，避免覆盖用户拖动位置
+            var panel=document.getElementById(PANEL_ID);
+            if(panel&&panel.classList.contains('show')) return;
             var btnW=48, btnH=48, left, top;
             // 电脑端和手机端都找底部输入框，放在输入框上方
             var input=null, maxTop=0;
@@ -1259,7 +1262,7 @@ function buildExtension(){
     btn.style.cssText='width:48px!important;height:48px!important;border-radius:50%!important;background:rgba(255,255,255,.95)!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 16px rgba(0,0,0,.15)!important;cursor:pointer!important;';
     positionFloatBtn();
     window.addEventListener('resize',positionFloatBtn);
-    window.addEventListener('scroll',positionFloatBtn,true);
+    // 移除scroll监听，避免滚动时频繁重定位导致乱动
     setTimeout(positionFloatBtn,500);
     setTimeout(positionFloatBtn,1500);
     console.log('[nicoPhone] 浮动按钮已创建，位置:',floatEl.getBoundingClientRect());
