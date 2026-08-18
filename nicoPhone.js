@@ -1,4 +1,4 @@
-/* Nico22 Phone - SillyTavern Extension v2.0 */
+/* Nico222 Phone - SillyTavern Extension v2.0 */
 (function(){
 'use strict';
 
@@ -1230,11 +1230,7 @@ function buildExtension(){
     (document.documentElement||document.body).appendChild(floatEl);
     // 动态计算位置，用left/top而不是bottom/right，避免transform影响
     function positionFloatBtn(){
-    // 移动端强制按钮钉在屏幕正中央，不受任何干扰
-    if (window.innerWidth <= 768) {
-        floatEl.style.cssText = 'position:fixed!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;z-index:2147483647!important;display:block!important;width:38px!important;height:38px!important;';
-        return;
-    }
+    if (window.innerWidth <= 768) return; // 移动端不执行任何JS定位，完全依靠CSS居中
     var btnW=48, btnH=48, left, top;
     try{
         var panel=document.getElementById(PANEL_ID);
@@ -1617,10 +1613,15 @@ if(collapseBtn){
             b.style.display='flex';
             b.style.opacity='1';
             b.style.visibility='visible';
-            // 移动端收起后，强制按钮回正中央
-            if (window.innerWidth <= 768) {
-                floatEl.style.cssText = 'position:fixed!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;z-index:2147483647!important;display:flex!important;width:38px!important;height:38px!important;';
-            }
+            // 移动端收起后，清空JS定位，让CSS的inset:0 margin:auto居中
+if (window.innerWidth <= 768) {
+    floatEl.style.left = '';
+    floatEl.style.top = '';
+    floatEl.style.right = '';
+    floatEl.style.bottom = '';
+    floatEl.style.width = '';
+    floatEl.style.height = '';
+}
         }
         console.log('[Nicole] 收起手机，图标恢复');
     });
