@@ -2455,20 +2455,6 @@ function renderChatListScreen(){
         body.innerHTML=html;
         var homeEl=panel.querySelector('.Nicole-jhome');
         var chatlistEl=panel.querySelector('.Nicole-jchatlist-screen');
-        body.querySelectorAll('.Nicole-chatlist-del').forEach(function(delBtn){
-            delBtn.addEventListener('click',function(e){
-                e.stopPropagation();
-                var name=this.getAttribute('data-name');
-                if(name&&confirm('删除与「'+name+'」的聊天记录？')){
-                    var list=JSON.parse(localStorage.getItem('Nc-chat-list')||'[]');
-                    list=list.filter(function(n){return n!==name;});
-                    localStorage.setItem('Nc-chat-list',JSON.stringify(list));
-                    localStorage.removeItem('Nc-chat-'+name);
-                    if(finalLName===name){finalLName='';currentCharName='';}
-                    renderChatListScreen();
-                }
-            });
-        });
         body.querySelectorAll('.Nicole-chatlist-item').forEach(function(item){
             var inner=item.querySelector('.Nicole-chatlist-inner');
             var delBtn=item.querySelector('.Nicole-chatlist-del');
