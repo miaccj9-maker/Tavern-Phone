@@ -1110,8 +1110,8 @@ input[type=number]{-moz-appearance:textfield;}
     .Nicole-stage{width:360px!important;height:510px!important;margin:0!important;max-width:none!important;zoom:0.9!important;transform:none!important;}
     .Nicole-phone{height:100%!important;max-height:100%!important;}
     /* phone-wrap保持原始样式，不覆盖，由stage整体缩放 */
-    /* 移除移动端backdrop-filter避免透明问题 */
-    .Nicole-au,.Nicole-bub,.Nicole-call,.Nicole-mbox,.Nicole-set,.Nicole-mf,.Nicole-stage,.Nicole-phone-wrap{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+    /* 移动端全面禁用backdrop-filter，避免GPU过载导致滚动卡顿 */
+    .Nicole-stage *,.Nicole-au,.Nicole-bub,.Nicole-call,.Nicole-mbox,.Nicole-set,.Nicole-mf,.Nicole-stage,.Nicole-phone-wrap,.Nicole-sticky-note,.Nicole-sticky-tape,.Nicole-dock,.Nicole-sys-app-hd,.Nicole-phone-tabbar,.Nicole-hd,.Nicole-hd-pull,.Nicole-txt-img,.Nicole-tf,.Nicole-link-card,.Nicole-gift-card,.Nicole-loc-card,.Nicole-food-card,.Nicole-cp-qacard,.Nicole-ft,.Nicole-reply-bar,.Nicole-cb,.Nicole-call-inrow,.Nicole-music-share-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 }
 @media (max-width:480px){
     #nicole-float{bottom:calc(12px + env(safe-area-inset-bottom,0px));right:10px;z-index:999999!important;}
@@ -1423,46 +1423,73 @@ function initPhone(scope, charInfo, userInfo){
     // 从页面真实角色头像复制（不依赖酒馆自动填充，因为浮动容器不在聊天区）
     function syncAvatarsFromPage(){
         try{
-            // 找页面上真实的角色头像（排除手机组件内部的）
             var floatEl=document.getElementById(FLOAT_ID);
-            var allImgs=document.querySelectorAll('img');
-            var bestChar=null,bestCharArea=0;
-            var bestUser=null,bestUserArea=0;
-            for(var i=0;i<allImgs.length;i++){
-                var img=allImgs[i];
-                if(floatEl&&floatEl.contains(img)) continue;
-                var src=img.src||'';
-                if(!src||src.indexOf('data:image/gif')===0||src.indexOf('svg')!==-1) continue;
-                var w=img.naturalWidth||img.width||0;
-                var h=img.naturalHeight||img.height||0;
-                if(w<40||h<40) continue;
-                var area=w*h;
-                var rect=img.getBoundingClientRect();
-                // 角色头像通常在页面上半部分/左侧，用户头像通常在下半部分
-                if(rect.top<window.innerHeight*0.6&&area>bestCharArea){
-                    bestChar=src;bestCharArea=area;
-                }
-                if(rect.top>window.innerHeight*0.3&&area>bestUserArea){
-                    bestUser=src;bestUserArea=area;
-                }
-            }
-            // 也从 background-image 找
-            var allEls=document.querySelectorAll('[class*="avatar"],[id*="avatar"],[class*="Avatar"],[id*="Avatar"]');
-            for(var j=0;j<allEls.length;j++){
-                var el=allEls[j];
-                if(floatEl&&floatEl.contains(el)) continue;
-                var bg=window.getComputedStyle(el).backgroundImage;
-                var bm=bg.match(/url\(["']?([^"')]+)["']?\)/);
-                if(bm&&bm[1]&&bm[1].indexOf('data:image/gif')===-1&&bm[1].length>20){
-                    var r2=el.getBoundingClientRect();
-                    var a2=(el.offsetWidth||40)*(el.offsetHeight||40);
-                    if(r2.top<window.innerHeight*0.6&&a2>bestCharArea){bestChar=bm[1];bestCharArea=a2;}
-                    if(r2.top>window.innerHeight*0.3&&a2>bestUserArea){bestUser=bm[1];bestUserArea=a2;}
-                }
-            }
-            // 手动上传的头像优先，不被DOM抓取覆盖
+            function inFloat(el){return floatEl&&floatEl.contains(el);}
+            function extractBg(el){try{var bg=window.getComputedStyle(el).backgroundImage;var bm=bg.match(/url\(["']?([^"')]+)["']?\)/);if(bm&&bm[1]&&bm[1].length>10&&bm[1].indexOf('data:image/gif')===-1)return bm[1];}catch(e){}return '';}
+            // 手动上传的头像优先
             var mAvL='',mAvR='';
             try{mAvL=localStorage.getItem('Nc-av-left')||'';mAvR=localStorage.getItem('Nc-av-right')||'';}catch(e){}
+            var bestChar='',bestUser='';
+            // ===== 第一优先：从酒馆特定DOM精准获取角色卡头像 =====
+            var charSels=['#avatar_img','#avatar img','.char-avatar img','.avatar.avatar_char img','#char-avatar img','.character-avatar img','.avatar_char img'];
+            for(var ci=0;ci<charSels.length;ci++){
+                var cEl=document.querySelector(charSels[ci]);
+                if(cEl&&!inFloat(cEl)&&cEl.src&&cEl.src.length>10&&cEl.src.indexOf('data:image/gif')===-1&&cEl.src.indexOf('svg')===-1){bestChar=cEl.src;break;}
+            }
+            if(!bestChar){
+                var charBgSels=['#avatar','.char-avatar','.avatar.avatar_char','#char-avatar','.character-avatar','.avatar_char'];
+                for(var cbi=0;cbi<charBgSels.length;cbi++){
+                    var cbEl=document.querySelector(charBgSels[cbi]);
+                    if(cbEl&&!inFloat(cbEl)){var bgUrl=extractBg(cbEl);if(bgUrl){bestChar=bgUrl;break;}}
+                }
+            }
+            // ===== 第一优先：从酒馆用户消息精准获取用户面具头像 =====
+            var userMsg=document.querySelector('.mes[is_user="true"] .avatar, .mes[is_user="True"] .avatar, .user_mes .avatar, .mes.right .avatar, .right_mes .avatar');
+            if(userMsg&&!inFloat(userMsg)){
+                var uBg=extractBg(userMsg);
+                if(uBg)bestUser=uBg;
+                else{
+                    var uImg=userMsg.querySelector('img');
+                    if(uImg&&uImg.src&&uImg.src.length>10&&uImg.src.indexOf('data:image/gif')===-1)bestUser=uImg.src;
+                }
+            }
+            if(!bestUser){
+                var userAvatarSels=['#user_avatar img','.user-avatar img','.user_icon img','.avatar.avatar_user img','.persona-avatar img','#persona-avatar img'];
+                for(var ui=0;ui<userAvatarSels.length;ui++){
+                    var uEl=document.querySelector(userAvatarSels[ui]);
+                    if(uEl&&!inFloat(uEl)&&uEl.src&&uEl.src.length>10&&uEl.src.indexOf('data:image/gif')===-1&&uEl.src.indexOf('svg')===-1){bestUser=uEl.src;break;}
+                }
+            }
+            // ===== 第二优先（兜底）：全页扫描，仅在精准获取失败时才执行 =====
+            if(!bestChar||!bestUser){
+                var allImgs=document.querySelectorAll('img');
+                var bestCharArea=0,bestUserArea=0;
+                for(var i=0;i<allImgs.length;i++){
+                    var img=allImgs[i];
+                    if(inFloat(img))continue;
+                    var src=img.src||'';
+                    if(!src||src.indexOf('data:image/gif')===0||src.indexOf('svg')!==-1)continue;
+                    var w=img.naturalWidth||img.width||0,h=img.naturalHeight||img.height||0;
+                    if(w<40||h<40)continue;
+                    var area=w*h,rect=img.getBoundingClientRect();
+                    if(!bestChar&&rect.top<window.innerHeight*0.6&&area>bestCharArea){bestChar=src;bestCharArea=area;}
+                    if(!bestUser&&rect.top>window.innerHeight*0.3&&area>bestUserArea){bestUser=src;bestUserArea=area;}
+                }
+                if(!bestChar||!bestUser){
+                    var allEls=document.querySelectorAll('[class*="avatar"],[id*="avatar"],[class*="Avatar"],[id*="Avatar"]');
+                    for(var j=0;j<allEls.length;j++){
+                        var el=allEls[j];
+                        if(inFloat(el))continue;
+                        var bgUrl2=extractBg(el);
+                        if(bgUrl2){
+                            var r2=el.getBoundingClientRect(),a2=(el.offsetWidth||40)*(el.offsetHeight||40);
+                            if(!bestChar&&r2.top<window.innerHeight*0.6&&a2>bestCharArea){bestChar=bgUrl2;bestCharArea=a2;}
+                            if(!bestUser&&r2.top>window.innerHeight*0.3&&a2>bestUserArea){bestUser=bgUrl2;bestUserArea=a2;}
+                        }
+                    }
+                }
+            }
+            // 应用头像（手动上传优先）
             if(bestChar&&!mAvL){
                 safeLAv=bestChar.replace(/'/g,'%27');
                 QA('.Nicole-bind-lav, .Nicole-bind-lav-bg').forEach(function(el){el.style.backgroundImage="url('"+safeLAv+"')";});
@@ -1491,7 +1518,7 @@ function initPhone(scope, charInfo, userInfo){
     setTimeout(syncAvatarsFromPage,500);
     setTimeout(syncAvatarsFromPage,1500);
     if(!window.NcAvatarSyncTimer){
-        window.NcAvatarSyncTimer=setInterval(syncAvatarsFromPage,3000);
+        window.NcAvatarSyncTimer=setInterval(syncAvatarsFromPage,30000);
     }
 
     var finalCPat='的肩膀', finalUPat='的脑袋';
@@ -2160,7 +2187,7 @@ if(document.readyState==='loading'){
     safeInit();
 }
 // poll for char switch every 2 seconds
-setInterval(checkCharSwitch,2000);
+setInterval(checkCharSwitch,5000);
 
 // 多重兜底：1秒、3秒、5秒、10秒后检查浮动按钮
 [1000,3000,5000,10000].forEach(function(t){
@@ -2188,24 +2215,30 @@ function startStoryListener(){
     ncObserverReady=false;
     setTimeout(function(){ncObserverReady=true;console.log('[Nicole] 剧情监听器就绪');},3000);
     try{
+        var ncObserveTimer=null,ncPendingMutations=[];
         storyObserver2=new MutationObserver(function(mutations){
             if(!ncObserverReady) return;
-            for(var mi=0;mi<mutations.length;mi++){
-                var added=mutations[mi].addedNodes;
-                for(var ai=0;ai<added.length;ai++){
-                    var node=added[ai];
-                    if(node.nodeType!==1) continue;
-                    if(node.closest&&node.closest('#'+PANEL_ID)) continue;
-                    scanNodeForPhoneMsg2(node);
-                    if(node.querySelectorAll){
-                        var children=node.querySelectorAll('div,p,span,li');
-                        for(var ci=0;ci<children.length;ci++){
-                            if(children[ci].closest&&children[ci].closest('#'+PANEL_ID)) continue;
-                            scanNodeForPhoneMsg2(children[ci]);
+            ncPendingMutations=ncPendingMutations.concat(mutations);
+            if(ncObserveTimer) clearTimeout(ncObserveTimer);
+            ncObserveTimer=setTimeout(function(){
+                var pending=ncPendingMutations;ncPendingMutations=[];
+                for(var mi=0;mi<pending.length;mi++){
+                    var added=pending[mi].addedNodes;
+                    for(var ai=0;ai<added.length;ai++){
+                        var node=added[ai];
+                        if(node.nodeType!==1) continue;
+                        if(node.closest&&node.closest('#'+PANEL_ID)) continue;
+                        scanNodeForPhoneMsg2(node);
+                        if(node.querySelectorAll){
+                            var children=node.querySelectorAll('div,p,span,li');
+                            for(var ci=0;ci<children.length;ci++){
+                                if(children[ci].closest&&children[ci].closest('#'+PANEL_ID)) continue;
+                                scanNodeForPhoneMsg2(children[ci]);
+                            }
                         }
                     }
                 }
-            }
+            },250);
         });
         storyObserver2.observe(document.body,{childList:true,subtree:true});
         console.log('[Nicole] 剧情监听器已启动（3秒冷却中）');
