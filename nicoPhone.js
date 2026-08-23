@@ -1080,88 +1080,36 @@ input[type=number]{-moz-appearance:textfield;}
 
 /* ============ 移动端适配 ============ */
 @media (max-width:768px){
-    #nicole-float{position:fixed !important;left:auto !important;top:auto !important;bottom:20px !important;right:20px !important;width:38px !important;height:38px !important;z-index:999999!important;}
-    #nicole-toggle-btn{width:38px;height:38px;}
+    #nicole-float{position:fixed !important;left:auto !important;top:auto !important;bottom:20px !important;right:20px !important;width:38px !important;height:38px !important;z-index:999999!important;pointer-events:none !important;}
+    #nicole-toggle-btn{width:38px;height:38px;pointer-events:auto !important;}
     #nicole-toggle-btn svg{width:18px;height:18px;}
     #nicole-phone-panel{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-    max-width:360px;
-    height:80dvh;
-    max-height:80dvh;
-    border-radius:16px;
+    position:fixed !important;
+    top:8px !important;
+    left:50% !important;
+    transform:translateX(-50%) !important;
+    width:216px !important;
+    height:306px !important;
+    max-width:none !important;
+    max-height:none !important;
+    bottom:auto !important;
+    right:auto !important;
+    border-radius:12px;
     overflow:hidden;
-    box-shadow:0 10px 40px rgba(0,0,0,.3);
-    background: #f2f2f7; /* 新增：强制底色，防止变透明 */
+    box-shadow:none;
+    background: transparent;
+    /* 所有默认隐藏的绝对定位弹窗强制不拦截点击，只在show时恢复 */
+    .Nicole-call:not(.show),.Nicole-set:not(.show),.Nicole-pyq-panel:not(.show),.Nicole-sys-app:not(.show),.Nicole-home-screen:not(.show),.Nicole-chatlist-screen:not(.show),.Nicole-txt-zoom:not(.show),.Nicole-mf:not(.show),.Nicole-cen:not(.show),.Nicole-addchar-modal:not(.show){pointer-events:none!important;}
+    .Nicole-chat,.Nicole-ft{pointer-events:auto!important;position:relative;z-index:10!important;}
 }
     #nicole-phone-panel.show{display:block;}
-    .Nicole-stage{width:100%;padding:6px 0;}
-    .Nicole-phone-wrap{padding:4px;max-width:100%;border-radius:28px;}
-    .Nicole-phone{height:100%;max-height:100%;border-radius:24px;font-size:12px;}
-    .Nicole-ios-statusbar{height:20px;font-size:10px;}
-    .Nicole-home-screen{font-size:11px;}
-    .Nicole-app-icon{width:42px;height:42px;font-size:9px;}
-    .Nicole-app-name{font-size:9px;}
-    .Nicole-dock{height:48px;padding:6px;}
-    .Nicole-chat-hd{height:44px;font-size:13px;}
-    .Nicole-jchat{padding:8px 6px;}
-    .Nicole-row{margin:4px 0;gap:6px;}
-    .Nicole-row .Nicole-lav,.Nicole-row .Nicole-rav{width:28px;height:28px;min-width:28px;}
-    .Nicole-bub{padding:7px 10px;font-size:12px;max-width:70%;}
-    .Nicole-au{padding:7px 10px;font-size:11px;}
-    .Nicole-au-dur{font-size:10px;}
-    .Nicole-au-txt{font-size:11px;}
-    .Nicole-meta{font-size:9px;}
-    .Nicole-ft{height:44px;padding:6px 8px;gap:6px;}
-    .Nicole-input{height:32px;font-size:12px;padding:0 10px;}
-    .Nicole-ft button{width:32px;height:32px;font-size:14px;}
-    .Nicole-call{font-size:12px;}
-    .Nicole-call-nm{font-size:14px;}
-    .Nicole-call-timer{font-size:11px;}
-    .Nicole-call-st{font-size:10px;}
-    .Nicole-call-bubs{padding:8px;}
-    .Nicole-cb{padding:6px 10px;font-size:12px;max-width:75%;}
-    .Nicole-call-ft{height:44px;padding:6px 8px;}
-    .Nicole-call-in{height:32px;font-size:12px;}
-    .Nicole-call-btn{width:44px;height:44px;}
-    .Nicole-call-btn svg{width:20px;height:20px;}
-    .Nicole-set{font-size:11px;}
-    .Nicole-set-h{height:36px;font-size:13px;}
-    .Nicole-set-r{padding:8px 10px;gap:6px;}
-    .Nicole-set input,.Nicole-set select{height:30px;font-size:11px;}
-    .Nicole-mf{font-size:11px;}
-    .Nicole-mbox{padding:12px;}
-    .Nicole-mh{height:36px;font-size:13px;}
-    .Nicole-act-btn{padding:8px 12px;font-size:11px;}
-    .Nicole-sys-msg{font-size:10px;padding:4px 8px;}
-    .Nicole-chatlist-item{position:relative;overflow:hidden;padding:8px 10px;gap:8px;}
-    .Nicole-chatlist-av{width:36px;height:36px;}
-    .Nicole-chatlist-name{font-size:12px;}
-    .Nicole-chatlist-msg{font-size:10px;}
-    .Nicole-pyq-item{padding:8px 10px;gap:8px;}
-    .Nicole-pyq-uav{width:32px;height:32px;}
-    .Nicole-pyq-txt{font-size:11px;}
-    .Nicole-mu-list{max-height:180px!important;}
-    .Nicole-mu-item{padding:8px 10px;font-size:11px;}
-    .Nicole-mu-ctrl{gap:4px;}
-    .Nicole-mu-btn{width:28px;height:28px;}
-    .Nicole-mu-btn svg{width:14px;height:14px;}
-    .Nicole-sticky-note{font-size:11px;padding:8px;}
-    .Nicole-loc-wrap{height:200px;}
-    .Nicole-draw-canvas{height:200px;}
-    .Nicole-img{max-width:120px;}
-    .Nicole-tf{padding:8px 10px;font-size:11px;}
-    .Nicole-tf-ic{width:32px;height:32px;font-size:14px;}
-    .Nicole-link-card{padding:8px 10px;font-size:11px;}
-    .Nicole-gift-card{padding:8px 10px;font-size:11px;}
-    .Nicole-food-card{padding:8px 10px;font-size:11px;}
-    .nc-inline-row{max-width:85%;}
-    .nc-inline-bub{padding:6px 10px;font-size:12px;}
-    .nc-inline-av{width:28px;height:28px;font-size:11px;}
-    .nc-inline-name{font-size:10px;}
+    /* 面板容器不拦截穿透点击，内部元素恢复交互 */
+    #nicole-phone-panel{pointer-events:none;}
+    #nicole-phone-panel *{pointer-events:auto;}
+    /* ===== 整体缩放方案：用zoom替代transform:scale，zoom会同时缩放布局和点击区域 ===== */
+    .Nicole-stage{width:360px!important;height:510px!important;margin:0!important;max-width:none!important;zoom:0.6!important;transform:none!important;}
+    .Nicole-phone{height:100%!important;max-height:100%!important;}
+    /* phone-wrap保持原始样式，不覆盖，由stage整体缩放 */
     /* 移除移动端backdrop-filter避免透明问题 */
     .Nicole-au,.Nicole-bub,.Nicole-call,.Nicole-mbox,.Nicole-set,.Nicole-mf,.Nicole-stage,.Nicole-phone-wrap{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 }
@@ -1241,7 +1189,23 @@ function buildExtension(){
 
     // 动态计算位置，用left/top而不是bottom/right，避免transform影响
     function positionFloatBtn(){
-    if (window.innerWidth <= 768) return; // 移动端不执行任何JS定位，完全依靠CSS居中
+    if (window.innerWidth <= 768){
+        // 移动端：用left/top像素定位，避免html的transform导致bottom/right相对于html而非视口计算
+        var btnW=38, btnH=38;
+        var left = Math.max(0, window.innerWidth - btnW - 20);
+        var top = Math.max(0, window.innerHeight - btnH - 20);
+        floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;right:auto!important;bottom:auto!important;z-index:999999!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
+        // 强制设置面板位置为顶部，避免旧inline style或拖动位置残留
+        var panelEl = document.getElementById(PANEL_ID);
+        if(panelEl){
+            panelEl.style.setProperty('top','8px','important');
+            panelEl.style.setProperty('left','50%','important');
+            panelEl.style.setProperty('transform','translateX(-50%)','important');
+            panelEl.style.setProperty('right','auto','important');
+            panelEl.style.setProperty('bottom','auto','important');
+        }
+        return;
+    }
     var btnW=48, btnH=48, left, top;
     try{
         var panel=document.getElementById(PANEL_ID);
@@ -1264,11 +1228,20 @@ function buildExtension(){
             left=window.innerWidth-btnW-20;
             top=window.innerHeight-btnH-100;
         }
-        floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;z-index:2147483647!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
+        floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;z-index:999999!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
     }catch(e){console.error('[nicoPhone] 定位失败:',e);}
 }
-    btn.style.cssText='width:48px!important;height:48px!important;border-radius:50%!important;background:rgba(255,255,255,.95)!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 16px rgba(0,0,0,.15)!important;cursor:pointer!important;';
+    btn.style.cssText='border-radius:50%!important;background:rgba(255,255,255,.95)!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 16px rgba(0,0,0,.15)!important;cursor:pointer!important;';
     positionFloatBtn();
+    // 移动端强制设置面板位置为顶部，避免被旧 inline style 或其他规则覆盖
+    if(window.innerWidth <= 768){
+        panel.style.setProperty('top','8px','important');
+        panel.style.setProperty('left','50%','important');
+        panel.style.setProperty('transform','translateX(-50%)','important');
+        panel.style.setProperty('right','auto','important');
+        panel.style.setProperty('bottom','auto','important');
+        console.log('[nicoPhone] 移动端面板位置已强制设为顶部');
+    }
     window.addEventListener('resize',positionFloatBtn);
     setTimeout(positionFloatBtn,500);
     setTimeout(positionFloatBtn,1500);
@@ -1279,8 +1252,9 @@ function buildExtension(){
     panel.classList.add('show');
     btn.style.display='none'; // 展开时隐藏按钮
 
-    // 手机端：不清空任何样式，让CSS的bottom/right控制定位
-    // （已移除清空width/height的逻辑，避免按钮和面板消失）
+    // 修复：清除容器固定宽高（48x48），让面板完整显示不飘出界面
+    floatEl.style.width='auto';
+    floatEl.style.height='auto';
 
     // 电脑端修正位置（保持原有逻辑）
     setTimeout(function(){
@@ -1290,18 +1264,16 @@ function buildExtension(){
             var pw=panel.offsetWidth||360, ph=panel.offsetHeight||600;
             var adjLeft=Math.max(0, Math.min(r.left, window.innerWidth-pw));
             var adjTop=Math.max(0, Math.min(r.top, window.innerHeight-ph));
-            if(adjLeft!==r.left||adjTop!==r.top){
-                floatEl.style.left=adjLeft+'px';
-                floatEl.style.top=adjTop+'px';
-            }
+            floatEl.style.left=adjLeft+'px';
+            floatEl.style.top=adjTop+'px';
         }catch(e){}
     },50);
 });
     // 拖动变量（保留按钮和面板共用）
     var isDragging=false,startX=0,startY=0,origLeft=0,origTop=0,dragTarget=null;
-    function startDrag(e,target){
-        // 点击交互元素禁止拖拽，防止按钮误触发
-        if (e.target.closest('input, textarea, button, select, a, ' +
+    function startDrag(e,target,skipFilter){
+        // 点击交互元素禁止拖拽，防止按钮误触发（顶部栏拖动手柄可跳过）
+        if(!skipFilter && e.target.closest('input, textarea, button, select, a, ' +
             '.Nicole-jchat, .Nicole-jpyqpanel, .Nicole-japp-panel, .Nicole-jset, .Nicole-jcall, ' +
             '.Nicole-jpanel, .Nicole-jrepbar, .Nicole-ft, .Nicole-hd-mid, .Nicole-ubox, ' +
             '.Nicole-waves, .Nicole-icons-rt, .Nicole-icbtn, .Nicole-dock-icon, .Nicole-hd-back, ' +
@@ -1311,7 +1283,10 @@ function buildExtension(){
         isDragging=true;dragTarget=target;
         var t=e.touches?e.touches[0]:e;
         startX=t.clientX;startY=t.clientY;
-        var rect=floatEl.getBoundingClientRect();origLeft=rect.left;origTop=rect.top;
+        // 移动端拖动面板时，用面板的真实位置作为起点
+        var isMobilePanel = (window.innerWidth <= 768 && target === panel);
+        var rect = isMobilePanel ? panel.getBoundingClientRect() : floatEl.getBoundingClientRect();
+        origLeft=rect.left;origTop=rect.top;
         _dragMoved=false;
         if(!e.touches)e.preventDefault();
     }
@@ -1325,15 +1300,23 @@ function buildExtension(){
         if(dragTarget)dragTarget._dragged=true;
         _dragMoved=true;
         var newLeft=origLeft+dx, newTop=origTop+dy;
-        // 用 getBoundingClientRect 获取当前真实宽高（面板打开时就是面板尺寸）
-        var rect = floatEl.getBoundingClientRect();
+        // 移动端拖动面板时，直接操作面板位置（面板是position:fixed，不跟随floatEl）
+        var isMobilePanelDrag = (window.innerWidth <= 768 && dragTarget === panel);
+        var targetEl = isMobilePanelDrag ? panel : floatEl;
+        var rect = targetEl.getBoundingClientRect();
         var elW = rect.width;
         var elH = rect.height;
         // 强制边界：不允许任何部分飞出屏幕
         newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - elW));
         newTop = Math.max(0, Math.min(newTop, window.innerHeight - elH));
-        floatEl.style.left=newLeft+'px';floatEl.style.top=newTop+'px';
-        floatEl.style.right='auto';floatEl.style.bottom='auto';
+        // 统一用setProperty+important，覆盖positionFloatBtn设置的cssText !important
+        targetEl.style.setProperty('left',newLeft+'px','important');
+        targetEl.style.setProperty('top',newTop+'px','important');
+        targetEl.style.setProperty('right','auto','important');
+        targetEl.style.setProperty('bottom','auto','important');
+        if(isMobilePanelDrag){
+            targetEl.style.setProperty('transform','none','important');
+        }
     }
 }
     function endDrag(){
@@ -1344,12 +1327,16 @@ function buildExtension(){
     // 按钮拖拽（保留，两边都能拖）
     btn.addEventListener('mousedown',function(e){startDrag(e,btn);});
     btn.addEventListener('touchstart',function(e){startDrag(e,btn);},{passive:true});
-    // ===== 面板拖拽（电脑端严格过滤，移动端彻底禁掉） =====
-    panel.addEventListener('mousedown',function(e){
-        // 移动端直接禁用面板拖拽（保护 inset 居中）
-        if (window.innerWidth <= 768) return;
-        // 电脑端：点击任何交互元素都禁止拖拽
+    // ===== 面板拖拽（电脑端和移动端都启用，顶部栏作为拖动手柄） =====
+    function tryPanelDrag(e){
         var target = e.target;
+        // 顶部栏空白区域作为拖动手柄（排除按钮/输入框/头像等交互元素）
+        var hd = target.closest('.Nicole-hd');
+        if(hd && !target.closest('input, textarea, button, select, a, .Nicole-icbtn, .Nicole-hd-back, .Nicole-icons-rt, .Nicole-ubox, .Nicole-hd-mid')){
+            startDrag(e, panel, true);
+            return;
+        }
+        // 其他区域严格过滤交互元素
         if (target.closest('input, textarea, button, select, a, ' +
             '.Nicole-jchat, .Nicole-jpyqpanel, .Nicole-japp-panel, .Nicole-jset, .Nicole-jcall, ' +
             '.Nicole-jpanel, .Nicole-jrepbar, .Nicole-ft, .Nicole-hd-mid, .Nicole-ubox, ' +
@@ -1365,11 +1352,10 @@ function buildExtension(){
             return;
         }
         startDrag(e, panel);
-    });
-    // 移动端触摸面板：彻底禁止拖拽（只靠 CSS inset 居中）
-    panel.addEventListener('touchstart',function(e){
-        return; // 手机端完全禁用，防止固定定位乱漂
-    },{passive:true});
+    }
+    panel.addEventListener('mousedown',function(e){tryPanelDrag(e);});
+    // 移动端触摸面板：启用拖拽（通过顶部栏或空白区域）
+    panel.addEventListener('touchstart',function(e){tryPanelDrag(e);},{passive:true});
     // 全局鼠标/触屏移动事件
     document.addEventListener('mousemove',moveDrag);
     document.addEventListener('mouseup',endDrag);
@@ -1381,6 +1367,21 @@ function buildExtension(){
 function initPhone(scope, charInfo, userInfo){
     var Q=function(s){return scope.querySelector(s);};
     var QA=function(s){return scope.querySelectorAll(s);};
+
+    // ===== 初始化：强制重置所有弹窗/界面状态，避免旧状态残留遮挡 =====
+    try{
+        QA('.Nicole-call').forEach(function(el){el.classList.remove('show','minimized','active','video','state-in','state-out');});
+        QA('.Nicole-set').forEach(function(el){el.classList.remove('show');});
+        QA('.Nicole-pyq-panel').forEach(function(el){el.classList.remove('show');});
+        QA('.Nicole-sys-app').forEach(function(el){el.classList.remove('show');});
+        QA('.Nicole-mf').forEach(function(el){el.classList.remove('show');el.style.display='';});
+        QA('.Nicole-cen').forEach(function(el){el.classList.remove('show');el.style.display='';});
+        QA('.Nicole-txt-zoom').forEach(function(el){el.classList.remove('show');});
+        QA('.Nicole-addchar-modal').forEach(function(el){el.classList.remove('show');});
+        // 重置通话拖拽位置
+        var callEl=Q('.Nicole-jcall');
+        if(callEl){callEl.style.transform='';callEl.style.left='';callEl.style.top='';}
+    }catch(e){console.log('[Nicole] reset UI state error:',e);}
 
     var rawLAv=charInfo.avatar||'', rawLName=charInfo.name||'角色';
     var rawRAv=userInfo.avatar||'', rawRName=userInfo.name||'我';
@@ -1661,13 +1662,22 @@ if(collapseBtn){
     collapseBtn.addEventListener('click',function(){
         var p=document.getElementById(PANEL_ID);
         var b=document.getElementById(TOGGLE_ID);
+        var f=document.getElementById(FLOAT_ID);
         if(p)p.classList.remove('show');
         if(b){
             b.style.display='flex';
             b.style.opacity='1';
             b.style.visibility='visible';
-            // 移动端收起后，不清空任何样式，让CSS控制定位
-            // （已移除清空width/height的逻辑，避免按钮消失）
+        }
+        // 修复：收起后恢复容器尺寸并重新定位按钮
+        if(f){
+            if(window.innerWidth > 768){
+                f.style.width='48px';
+                f.style.height='48px';
+            }
+            setTimeout(function(){
+                try{ window.dispatchEvent(new Event('resize')); }catch(e){}
+            },50);
         }
         console.log('[Nicole] 收起手机，图标恢复');
     });
