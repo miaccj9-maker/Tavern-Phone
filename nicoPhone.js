@@ -1088,8 +1088,8 @@ input[type=number]{-moz-appearance:textfield;}
     top:8px !important;
     left:50% !important;
     transform:translateX(-50%) !important;
-    width:216px !important;
-    height:306px !important;
+    width:324px !important;
+    height:459px !important;
     max-width:none !important;
     max-height:none !important;
     bottom:auto !important;
@@ -1107,7 +1107,7 @@ input[type=number]{-moz-appearance:textfield;}
     #nicole-phone-panel{pointer-events:none;}
     #nicole-phone-panel *{pointer-events:auto;}
     /* ===== 整体缩放方案：用zoom替代transform:scale，zoom会同时缩放布局和点击区域 ===== */
-    .Nicole-stage{width:360px!important;height:510px!important;margin:0!important;max-width:none!important;zoom:0.6!important;transform:none!important;}
+    .Nicole-stage{width:360px!important;height:510px!important;margin:0!important;max-width:none!important;zoom:0.9!important;transform:none!important;}
     .Nicole-phone{height:100%!important;max-height:100%!important;}
     /* phone-wrap保持原始样式，不覆盖，由stage整体缩放 */
     /* 移除移动端backdrop-filter避免透明问题 */
