@@ -35,19 +35,68 @@ var CSS = `.Nicole-mu-inp-wrap,.Nicole-mu-ctrl,.Nicole-mu-time-disp,.Nicole-mu-n
 
 .Nicole-ios-battery-level{background:var(--hdr-txt,#222);height:100%;width:85%;border-radius:1px;}
 
-.Nicole-sticky-note{position:absolute;top:80px;left:50%;transform:translateX(-50%);width:80%;max-width:280px;background:rgba(255,255,255,.95);border-radius:4px;box-shadow:2px 6px 16px rgba(0,0,0,.06);padding:24px 16px 16px;display:flex;flex-direction:column;z-index:50;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+.Nicole-sticky-note{position:absolute;top:54px;left:8px;right:auto;transform:none;width:48%;max-width:172px;min-width:140px;background:rgba(255,255,255,.96);border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.1);padding:12px 10px 10px;display:flex;flex-direction:column;z-index:50;}
 
-.Nicole-sticky-tape{position:absolute;top:-14px;left:50%;transform:translateX(-50%) rotate(-3deg);width:110px;height:32px;background:rgba(255,255,255,.35);box-shadow:0 1px 3px rgba(0,0,0,.05);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.4);border-radius:2px;pointer-events:none;z-index:51;}
+.Nicole-sticky-tape{position:absolute;top:-10px;left:50%;transform:translateX(-50%) rotate(-3deg);width:64px;height:20px;background:rgba(255,255,255,.4);box-shadow:0 1px 2px rgba(0,0,0,.05);border:1px solid rgba(255,255,255,.4);border-radius:2px;pointer-events:none;z-index:51;}
 
-.Nicole-sticky-textarea{width:100%;min-height:140px;border:none;background:transparent;resize:none;outline:none;font-size:15px;color:#333;line-height:1.6;font-family:'Kaiti','Comic Sans MS',-apple-system,sans-serif;overflow-y:auto;scrollbar-width:none;font-weight:500;}
+.Nicole-sticky-textarea{width:100%;min-height:72px;border:none;background:transparent;resize:none;outline:none;font-size:12px;color:#333;line-height:1.5;font-family:'Kaiti','Comic Sans MS',-apple-system,sans-serif;overflow-y:auto;scrollbar-width:none;font-weight:500;}
 
 .Nicole-sticky-textarea::-webkit-scrollbar{display:none;}
 
-.Nicole-sticky-btn{align-self:flex-end;margin-top:8px;background:#222;color:#fff;border:none;border-radius:14px;padding:6px 16px;font-size:12px;cursor:pointer;opacity:0;transition:opacity .3s,transform .1s;font-weight:500;}
+.Nicole-sticky-btn{align-self:flex-end;margin-top:6px;background:#222;color:#fff;border:none;border-radius:12px;padding:4px 12px;font-size:11px;cursor:pointer;opacity:0;transition:opacity .3s,transform .1s;font-weight:500;}
+
+.Nicole-calendar{position:absolute;bottom:104px;right:14px;width:56%;max-width:200px;min-width:160px;background:rgba(255,255,255,.96);border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.1);padding:10px 8px 8px;display:flex;flex-direction:column;z-index:50;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;}
+.Nicole-cal-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;padding:0 2px;}
+.Nicole-cal-title{font-size:11px;font-weight:600;color:#222;letter-spacing:.3px;cursor:pointer;flex:1;text-align:center;transition:opacity .2s;}
+.Nicole-cal-title:active{opacity:.5;}
+.Nicole-cal-dateinput{width:100%;border:1px solid #ddd;border-radius:4px;padding:2px 4px;font-size:10px;color:#333;text-align:center;outline:none;background:#fafafa;font-family:inherit;}
+.Nicole-cal-nav{display:flex;gap:2px;}
+.Nicole-cal-navbtn{width:16px;height:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#999;font-size:13px;border-radius:3px;transition:background .2s;line-height:1;}
+.Nicole-cal-navbtn:active{background:#eee;color:#222;}
+.Nicole-cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;margin-bottom:3px;}
+.Nicole-cal-wd{text-align:center;font-size:9px;color:#bbb;font-weight:500;padding:1px 0;}
+.Nicole-cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;}
+.Nicole-cal-day{text-align:center;font-size:10px;color:#444;padding:3px 0;cursor:pointer;border-radius:3px;transition:background .15s;font-weight:400;}
+.Nicole-cal-day.empty{cursor:default;}
+.Nicole-cal-day.today{background:#222;color:#fff;font-weight:600;}
+.Nicole-cal-day.selected{background:#e8e8e8;color:#222;font-weight:600;}
+.Nicole-cal-day:active:not(.empty){background:#f0f0f0;}
+.Nicole-cal-day.today:active{background:#333;}
+.Nicole-cal-foot{margin-top:6px;padding-top:5px;border-top:.5px solid #eee;font-size:9px;color:#999;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.2px;}
+
+.Nicole-home-apps{position:absolute;left:8px;bottom:104px;width:36%;max-width:130px;min-width:110px;height:190px;display:grid;grid-template-columns:1fr 1fr;gap:10px;justify-items:center;align-content:center;z-index:50;}
+.Nicole-home-app{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:transform .1s,opacity .15s;}
+.Nicole-home-app:active{transform:scale(.9);opacity:.75;}
+.Nicole-home-app svg{width:22px;height:22px;stroke:#333;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
 
 .Nicole-sticky-note:focus-within .Nicole-sticky-btn{opacity:1;}
 
 .Nicole-sticky-btn:active{transform:scale(.95);}
+
+/* ===== MP3播放器 (iOS通知栏毛玻璃风格) ===== */
+.Nicole-mp3-player{position:absolute;top:60px;left:50%;transform:translateX(-50%);width:80%;max-width:290px;min-width:200px;background:rgba(28,28,30,0.55);backdrop-filter:blur(28px) saturate(180%)!important;-webkit-backdrop-filter:blur(28px) saturate(180%)!important;border-radius:22px;padding:16px 18px;display:flex;align-items:center;gap:14px;z-index:50;box-shadow:0 10px 40px rgba(0,0,0,.3);border:1px solid rgba(255,255,255,0.12);}
+.Nicole-mp3-cover{position:relative;width:58px;height:58px;border-radius:14px;overflow:hidden;flex-shrink:0;background:#333;box-shadow:0 4px 12px rgba(0,0,0,.3);}
+.Nicole-mp3-cover-img{width:100%;height:100%;background-size:cover;background-position:center;background:linear-gradient(135deg,#3a3a3c,#1c1c1e);display:flex;align-items:center;justify-content:center;}
+.Nicole-mp3-cover-img::after{content:'♪';font-size:26px;color:rgba(255,255,255,.2);font-weight:300;}
+.Nicole-mp3-vinyl{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;background:#0a0a0a;border:2px solid #2a2a2a;opacity:0;transition:opacity .3s;pointer-events:none;}
+.Nicole-mp3-player.playing .Nicole-mp3-vinyl{opacity:1;animation:mp3-spin 3s linear infinite;}
+@keyframes mp3-spin{from{transform:translate(-50%,-50%) rotate(0);}to{transform:translate(-50%,-50%) rotate(360deg);}}
+.Nicole-mp3-main{flex:1;min-width:0;}
+.Nicole-mp3-info{margin-bottom:8px;}
+.Nicole-mp3-title{font-size:14px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.2px;}
+.Nicole-mp3-artist{font-size:11px;color:rgba(255,255,255,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px;font-weight:400;}
+.Nicole-mp3-progress{position:relative;height:4px;background:rgba(255,255,255,.18);border-radius:2px;cursor:pointer;margin-bottom:6px;overflow:visible;}
+.Nicole-mp3-bar{height:100%;width:0%;background:rgba(255,255,255,.85);border-radius:2px;transition:width .15s linear;}
+.Nicole-mp3-dot{position:absolute;top:50%;left:0%;transform:translate(-50%,-50%);width:10px;height:10px;border-radius:50%;background:#fff;opacity:0;transition:opacity .2s;box-shadow:0 1px 4px rgba(0,0,0,.4);}
+.Nicole-mp3-progress:hover .Nicole-mp3-dot{opacity:1;}
+.Nicole-mp3-time{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.4);font-weight:500;letter-spacing:.3px;}
+.Nicole-mp3-ctrl{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.Nicole-mp3-btn{width:30px;height:30px;border-radius:50%;background:transparent;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.7);transition:color .15s,transform .1s;padding:0;}
+.Nicole-mp3-btn:active{transform:scale(.88);color:#fff;}
+.Nicole-mp3-btn svg{width:16px;height:16px;fill:currentColor;stroke:none;}
+.Nicole-mp3-btn.play{width:38px;height:38px;background:rgba(255,255,255,.9);color:#1c1c1e;box-shadow:0 2px 10px rgba(0,0,0,.25);}
+.Nicole-mp3-btn.play svg{width:18px;height:18px;}
+.Nicole-mp3-btn.play:active{background:#fff;}
 
 .Nicole-dock{position:absolute;bottom:24px;left:20px;right:20px;height:68px;background:rgba(255,255,255,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;display:flex;justify-content:space-evenly;align-items:center;padding:0 10px;box-shadow:0 4px 20px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.02);}
 
@@ -95,6 +144,144 @@ var CSS = `.Nicole-mu-inp-wrap,.Nicole-mu-ctrl,.Nicole-mu-time-disp,.Nicole-mu-n
 
 .Nicole-item-sub{font-size:12px;color:#888;margin-top:4px;}
 
+.Nicole-api-input{width:100%;padding:10px 12px;border:1px solid #e5e5e5;border-radius:8px;font-size:13px;color:#333;outline:none;transition:border-color .2s,background .2s;background:#fafafa;box-sizing:border-box;font-family:inherit;}
+.Nicole-api-input:focus{border-color:#222;background:#fff;}
+.Nicole-api-input::placeholder{color:#ccc;}
+.Nicole-api-btn{flex:1;padding:11px 0;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s,transform .1s;font-family:inherit;letter-spacing:.3px;}
+.Nicole-api-btn.test{background:#f2f2f2;color:#333;}
+.Nicole-api-btn.save{background:#222;color:#fff;}
+.Nicole-api-btn:active{opacity:.75;transform:scale(.97);}
+.Nicole-api-label{font-size:11px;color:#999;display:block;margin-bottom:6px;font-weight:500;letter-spacing:.2px;}
+.Nicole-api-section{margin-bottom:14px;}
+.Nicole-api-status{font-size:11px;text-align:center;padding:8px 0;margin-bottom:14px;min-height:16px;letter-spacing:.2px;transition:color .2s;}
+
+/* ===== 通用App内容面板 ===== */
+.Nicole-app-panel{position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;z-index:300;display:none;flex-direction:column;}
+.Nicole-app-panel.show{display:flex;}
+.Nicole-app-hd{display:flex;align-items:center;padding:14px 16px;border-bottom:.5px solid #f0f0f0;flex-shrink:0;}
+.Nicole-app-title{flex:1;text-align:center;font-size:15px;font-weight:600;color:#222;letter-spacing:.3px;}
+.Nicole-app-body{flex:1;overflow-y:auto;scrollbar-width:none;background:#fafafa;}
+.Nicole-app-body::-webkit-scrollbar{display:none;}
+
+/* ===== 抖音视频界面 ===== */
+.Nicole-dy-feed{width:100%;height:100%;position:relative;background:#000;overflow:hidden;}
+.Nicole-dy-video{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center;}
+.Nicole-dy-video-bg{width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0;filter:brightness(.7);}
+.Nicole-dy-video-placeholder{width:100%;height:100%;position:absolute;top:0;left:0;background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);display:flex;align-items:center;justify-content:center;}
+.Nicole-dy-video-placeholder .Nicole-dy-char-avatar{width:120px;height:120px;border-radius:50%;background-size:cover;background-position:center;border:3px solid rgba(255,255,255,.2);box-shadow:0 0 60px rgba(255,255,255,.1);}
+.Nicole-dy-text-img{width:85%;max-width:280px;padding:24px 20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:16px;color:#fff;font-size:15px;line-height:1.7;text-align:center;font-weight:500;letter-spacing:.3px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);word-break:break-word;max-height:60%;overflow-y:auto;scrollbar-width:none;}
+.Nicole-dy-text-img::-webkit-scrollbar{display:none;}
+.Nicole-dy-video-overlay{position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(transparent,rgba(0,0,0,.7));pointer-events:none;}
+.Nicole-dy-topbar{position:absolute;top:0;left:0;right:0;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;z-index:10;background:linear-gradient(rgba(0,0,0,.3),transparent);}
+.Nicole-dy-topbar-title{font-size:16px;font-weight:700;color:#fff;letter-spacing:.5px;}
+.Nicole-dy-refresh{cursor:pointer;padding:7px 14px;background:rgba(255,255,255,.12);border-radius:16px;font-size:12px;color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);transition:background .2s;}
+.Nicole-dy-refresh:active{background:rgba(255,255,255,.25);}
+.Nicole-dy-right-bar{position:absolute;right:10px;bottom:110px;display:flex;flex-direction:column;align-items:center;gap:20px;z-index:10;}
+.Nicole-dy-action{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;transition:transform .1s;}
+.Nicole-dy-action:active{transform:scale(.85);}
+.Nicole-dy-action svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:1.5;}
+.Nicole-dy-action.liked svg{fill:#fe2c55;stroke:#fe2c55;}
+.Nicole-dy-action span{font-size:11px;color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.3);}
+.Nicole-dy-avatar{width:42px;height:42px;border-radius:50%;border:2px solid #fff;background-size:cover;background-position:center;margin-bottom:4px;}
+.Nicole-dy-bottom-info{position:absolute;bottom:24px;left:14px;right:72px;z-index:10;}
+.Nicole-dy-author{font-size:15px;font-weight:700;color:#fff;margin-bottom:7px;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+.Nicole-dy-desc{font-size:13px;color:#fff;line-height:1.5;margin-bottom:10px;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+.Nicole-dy-music{font-size:12px;color:#fff;display:flex;align-items:center;gap:6px;text-shadow:0 1px 3px rgba(0,0,0,.4);}
+.Nicole-dy-music svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:1.5;animation:dy-music-spin 3s linear infinite;}
+@keyframes dy-music-spin{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+/* 弹幕 */
+.Nicole-dy-danmaku{position:absolute;top:40px;left:0;width:100%;height:55%;pointer-events:none;z-index:5;overflow:hidden;}
+.Nicole-dy-danmaku-item{position:absolute;white-space:nowrap;color:#fff;font-size:13px;text-shadow:0 1px 3px rgba(0,0,0,.6),0 0 4px rgba(0,0,0,.3);font-weight:500;padding:4px 10px;background:rgba(0,0,0,.2);border-radius:12px;backdrop-filter:blur(4px);}
+@keyframes dy-danmaku-scroll{from{transform:translateX(100vw);}to{transform:translateX(-100%);}}
+.Nicole-dy-loading{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:14px;z-index:20;text-align:center;}
+.Nicole-dy-loading-spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:dy-spin .8s linear infinite;margin:0 auto 10px;}
+@keyframes dy-spin{to{transform:rotate(360deg);}}
+.Nicole-dy-empty{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:rgba(255,255,255,.6);font-size:13px;z-index:20;text-align:center;width:80%;}
+.Nicole-dy-empty button{margin-top:14px;padding:8px 20px;background:#fe2c55;color:#fff;border:none;border-radius:18px;font-size:13px;font-weight:600;cursor:pointer;}
+
+/* ===== 相册/Ins/微博 通用简洁界面 ===== */
+.Nicole-simple-app{padding:16px;}
+.Nicole-simple-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.Nicole-simple-card{background:#fff;border-radius:12px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.04);cursor:pointer;transition:transform .1s;}
+.Nicole-simple-card:active{transform:scale(.97);}
+.Nicole-simple-card-icon{width:36px;height:36px;border-radius:10px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.Nicole-simple-card-icon svg{width:20px;height:20px;stroke:#333;fill:none;stroke-width:1.5;}
+.Nicole-simple-card-title{font-size:13px;font-weight:600;color:#222;margin-bottom:3px;}
+.Nicole-simple-card-sub{font-size:11px;color:#999;}
+.Nicole-simple-header{font-size:18px;font-weight:700;color:#222;margin-bottom:14px;letter-spacing:.3px;}
+
+/* ===== App通用刷新栏 ===== */
+.Nicole-app-refreshbar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:#fff;border-bottom:.5px solid #f0f0f0;position:sticky;top:0;z-index:10;}
+.Nicole-app-refreshbar-title{font-size:15px;font-weight:600;color:#222;}
+.Nicole-app-refreshbtn{cursor:pointer;padding:6px 14px;background:#222;color:#fff;border-radius:14px;font-size:12px;font-weight:500;border:none;transition:opacity .15s;}
+.Nicole-app-refreshbtn:active{opacity:.7;}
+.Nicole-app-loading{text-align:center;padding:40px 20px;color:#999;font-size:13px;}
+.Nicole-app-empty{text-align:center;padding:40px 20px;color:#bbb;font-size:13px;}
+.Nicole-app-empty button{margin-top:14px;padding:8px 20px;background:#222;color:#fff;border:none;border-radius:16px;font-size:13px;cursor:pointer;}
+
+/* ===== 抖音评论弹窗 ===== */
+.Nicole-dy-comment-panel{position:absolute;bottom:0;left:0;width:100%;height:60%;background:#fff;border-radius:16px 16px 0 0;z-index:50;display:none;flex-direction:column;animation:dy-slide-up .3s ease;}
+.Nicole-dy-comment-panel.show{display:flex;}
+@keyframes dy-slide-up{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.Nicole-dy-comment-hd{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:.5px solid #f0f0f0;}
+.Nicole-dy-comment-hd span{font-size:14px;font-weight:600;color:#222;}
+.Nicole-dy-comment-close{cursor:pointer;font-size:20px;color:#999;width:24px;text-align:center;}
+.Nicole-dy-comment-list{flex:1;overflow-y:auto;scrollbar-width:none;padding:8px 16px;}
+.Nicole-dy-comment-list::-webkit-scrollbar{display:none;}
+.Nicole-dy-comment-item{display:flex;gap:10px;padding:10px 0;border-bottom:.5px solid #f5f5f5;}
+.Nicole-dy-comment-av{width:32px;height:32px;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0;}
+.Nicole-dy-comment-body{flex:1;}
+.Nicole-dy-comment-user{font-size:12px;color:#999;margin-bottom:4px;font-weight:500;}
+.Nicole-dy-comment-text{font-size:13px;color:#333;line-height:1.5;}
+.Nicole-dy-comment-time{font-size:11px;color:#ccc;margin-top:4px;}
+.Nicole-dy-video-indicator{position:absolute;top:50%;left:6px;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:10;}
+.Nicole-dy-video-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4);transition:all .2s;}
+.Nicole-dy-video-dot.active{background:#fff;height:16px;border-radius:2px;}
+.Nicole-dy-video-nav{position:absolute;top:0;bottom:0;width:30%;z-index:8;cursor:pointer;}
+.Nicole-dy-video-nav.prev{left:0;}
+.Nicole-dy-video-nav.next{right:0;}
+
+/* ===== 情侣问答App ===== */
+.Nicole-couple-list{padding:12px;}
+.Nicole-couple-card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.04);}
+.Nicole-couple-q{font-size:14px;font-weight:600;color:#222;margin-bottom:10px;line-height:1.5;}
+.Nicole-couple-qnum{display:inline-block;width:22px;height:22px;border-radius:50%;background:#222;color:#fff;font-size:11px;text-align:center;line-height:22px;margin-right:8px;font-weight:600;}
+.Nicole-couple-input{width:100%;padding:9px 12px;border:1px solid #e5e5e5;border-radius:8px;font-size:13px;color:#333;outline:none;resize:none;box-sizing:border-box;font-family:inherit;transition:border-color .2s;background:#fafafa;}
+.Nicole-couple-input:focus{border-color:#222;background:#fff;}
+.Nicole-couple-btn{margin-top:8px;padding:7px 16px;background:#222;color:#fff;border:none;border-radius:14px;font-size:12px;font-weight:500;cursor:pointer;transition:opacity .15s;}
+.Nicole-couple-btn:active{opacity:.7;}
+.Nicole-couple-btn.revealed{background:#f2f2f2;color:#999;}
+.Nicole-couple-answer{margin-top:10px;padding:10px 12px;background:linear-gradient(135deg,#fff5f5,#fff0f6);border-radius:8px;border-left:3px solid #fe2c55;display:none;}
+.Nicole-couple-answer.show{display:block;animation:couple-fade .3s ease;}
+@keyframes couple-fade{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+.Nicole-couple-answer-label{font-size:11px;color:#fe2c55;font-weight:600;margin-bottom:4px;}
+.Nicole-couple-answer-text{font-size:13px;color:#333;line-height:1.6;}
+.Nicole-couple-match{margin-top:6px;font-size:11px;color:#999;}
+
+/* ===== 备忘录App (iOS风格) ===== */
+.Nicole-memo-list{padding:0;}
+.Nicole-memo-item{padding:14px 16px;border-bottom:.5px solid #f0f0f0;cursor:pointer;transition:background .15s;background:#fff;}
+.Nicole-memo-item:active{background:#f5f5f5;}
+.Nicole-memo-item-title{font-size:15px;font-weight:600;color:#222;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.Nicole-memo-item-preview{font-size:12px;color:#999;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.Nicole-memo-item-date{font-size:11px;color:#ccc;margin-top:2px;}
+.Nicole-memo-item.voice .Nicole-memo-item-title::before{content:'🎙 ';font-size:13px;}
+.Nicole-memo-detail{padding:20px 16px;min-height:100%;background:#fff;}
+.Nicole-memo-detail-title{font-size:20px;font-weight:700;color:#222;margin-bottom:6px;line-height:1.4;}
+.Nicole-memo-detail-date{font-size:12px;color:#999;margin-bottom:16px;}
+.Nicole-memo-detail-body{font-size:14px;color:#333;line-height:1.8;white-space:pre-wrap;}
+.Nicole-memo-voice-player{display:flex;align-items:center;gap:12px;padding:14px;background:#f5f5f5;border-radius:12px;margin-bottom:16px;}
+.Nicole-memo-voice-play{width:40px;height:40px;border-radius:50%;background:#222;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.Nicole-memo-voice-play:active{opacity:.7;}
+.Nicole-memo-voice-wave{flex:1;height:30px;display:flex;align-items:center;gap:2px;}
+.Nicole-memo-voice-bar{flex:1;background:#ddd;border-radius:1px;animation:voice-wave 1.2s ease-in-out infinite;}
+.Nicole-memo-voice-bar:nth-child(odd){animation-delay:.3s;}
+.Nicole-memo-voice-bar:nth-child(3n){animation-delay:.6s;}
+@keyframes voice-wave{0%,100%{height:20%;}50%{height:100%;}}
+.Nicole-memo-voice-time{font-size:12px;color:#999;flex-shrink:0;}
+.Nicole-memo-back{cursor:pointer;padding:6px 12px;color:#ff9500;font-size:15px;font-weight:400;display:flex;align-items:center;gap:2px;}
+.Nicole-memo-back:active{opacity:.6;}
+
 .Nicole-item-arrow svg{width:16px;height:16px;stroke:#ccc;fill:none;stroke-width:1.5;}
 
 .Nicole-contact-detail{padding:20px;display:flex;flex-direction:column;gap:20px;animation:Nicole-pop .3s forwards;}
@@ -134,7 +321,9 @@ var CSS = `.Nicole-mu-inp-wrap,.Nicole-mu-ctrl,.Nicole-mu-time-disp,.Nicole-mu-n
 .Nicole-dial-callbtn svg{width:30px;height:30px;stroke:#fff;stroke-width:1.5;fill:none;}
 
 
-.Nicole-stage{width:90%;display:flex;justify-content:center;padding:10px 0;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;touch-action:pan-y;--wrap-bg:#e0e0e0;--hdr-bg:rgba(255,255,255,.85);--ftr-bg:rgba(255,255,255,.9);--bub-r:rgba(245,245,245,.9);--bub-l:rgba(255,255,255,.9);--txt-main:#222;--wv-bg:#aaa;--sys-txt:#888;--card-txt:#222;--hdr-txt:#333;--hdr-ic:#333;--card-ic:#333;--pull-bg:rgba(200,200,200,.3);--card-bg:rgba(255,255,255,.7);--call-bub-l:rgba(250,250,250,.9);--call-bub-r:rgba(240,240,240,.9);--call-bub-txt:#222;--blur-val:16px;}
+.Nicole-stage{width:90%;display:flex;justify-content:center;padding:10px 0;font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;touch-action:pan-y;--wrap-bg:#e0e0e0;--hdr-bg:rgba(255,255,255,.85);--ftr-bg:rgba(255,255,255,.9);--bub-r:rgba(245,245,245,.9);--bub-l:rgba(255,255,255,.9);--txt-main:#222;--wv-bg:#aaa;--sys-txt:#888;--card-txt:#222;--hdr-txt:#333;--hdr-ic:#333;--card-ic:#333;--pull-bg:rgba(200,200,200,.3);--card-bg:rgba(255,255,255,.7);--call-bub-l:rgba(250,250,250,.9);--call-bub-r:rgba(240,240,240,.9);--call-bub-txt:#222;--blur-val:16px;background:transparent;border:none!important;outline:none!important;box-shadow:none!important;}
+
+.Nicole-phone-wrap{padding:6px;background:var(--wrap-bg);border-radius:42px;display:flex;justify-content:center;align-items:center;width:100%;max-width:360px;transition:background .3s;border:none!important;outline:none!important;box-shadow:none!important;background-clip:padding-box;}
 
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;}
 
@@ -150,9 +339,7 @@ input[type=number]{-moz-appearance:textfield;}
 
 .Nicole-root.av-sq .Nicole-call.minimized:not(.video) .Nicole-call-av{border-radius:6px!important;}
 
-.Nicole-phone-wrap{padding:6px;background:var(--wrap-bg);border-radius:42px;display:flex;justify-content:center;align-items:center;width:100%;max-width:360px;transition:background .3s;}
-
-.Nicole-phone{width:100%;height:510px;background:#fdfdfd;border-radius:36px;position:relative;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);transform:translateZ(0);display:flex;flex-direction:column;box-sizing:border-box;}
+.Nicole-phone{width:100%;height:510px;background:#fdfdfd;border-radius:36px;position:relative;overflow:hidden;-webkit-mask-image:-webkit-radial-gradient(white,black);transform:translateZ(0);display:flex;flex-direction:column;box-sizing:border-box;border:none;outline:none;box-shadow:none;}
 
 .Nicole-bg{position:absolute;inset:-2px;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;background-color:#f7f7f7;transition:background-image .3s;border-radius:inherit;}
 
@@ -187,6 +374,37 @@ input[type=number]{-moz-appearance:textfield;}
 .Nicole-wave:nth-child(2){animation-delay:.3s} .Nicole-wave:nth-child(3){animation-delay:.15s} .Nicole-wave:nth-child(4){animation-delay:.5s} .Nicole-wave:nth-child(5){animation-delay:.25s} .Nicole-wave:nth-child(6){animation-delay:.4s}
 
 @keyframes Nicole-jp{0%{height:4px}100%{height:16px}}
+
+/* 群聊模式 - 隐藏头像，只显示群名 */
+.Nicole-hd.group-mode .Nicole-ubox{display:none!important;}
+.Nicole-hd.group-mode .Nicole-waves{display:none!important;}
+.Nicole-hd.group-mode .Nicole-hd-mid{justify-content:center;}
+.Nicole-hd.group-mode .Nicole-group-name{display:block;font-size:15px;font-weight:600;color:var(--hdr-txt,#222);text-align:center;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.Nicole-group-name{display:none;}
+
+/* 群聊设置面板 - 模仿微信，黑白灰配色 */
+.Nicole-group-setting{position:absolute;top:0;left:0;right:0;bottom:0;background:#f5f5f5;z-index:200;display:none;flex-direction:column;}
+.Nicole-group-setting.show{display:flex;}
+.Nicole-group-setting-hd{display:flex;align-items:center;padding:12px 16px;background:#fff;border-bottom:.5px solid #e5e5e5;gap:12px;}
+.Nicole-group-setting-back{cursor:pointer;color:#333;font-size:20px;flex-shrink:0;}
+.Nicole-group-setting-title{flex:1;text-align:center;font-size:15px;font-weight:600;color:#222;}
+.Nicole-group-setting-body{flex:1;overflow-y:auto;padding:12px;}
+.Nicole-group-section{background:#fff;border-radius:10px;margin-bottom:12px;overflow:hidden;}
+.Nicole-group-section-title{padding:10px 14px;font-size:12px;color:#999;font-weight:400;}
+.Nicole-group-member-item{display:flex;align-items:center;padding:10px 14px;gap:12px;border-top:.5px solid #f0f0f0;}
+.Nicole-group-member-item:first-child{border-top:none;}
+.Nicole-group-member-av{width:36px;height:36px;border-radius:50%;background:#ddd;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;flex-shrink:0;}
+.Nicole-group-member-name{flex:1;font-size:14px;color:#222;font-weight:400;}
+.Nicole-group-member-role{font-size:11px;color:#999;margin-left:6px;}
+.Nicole-group-kick-btn{background:none;border:none;color:#ff3b30;font-size:13px;cursor:pointer;padding:4px 8px;border-radius:6px;transition:background .2s;}
+.Nicole-group-kick-btn:hover{background:#fff0f0;}
+.Nicole-group-add-btn{display:flex;align-items:center;justify-content:center;padding:12px;color:#07c160;font-size:14px;cursor:pointer;gap:6px;transition:background .2s;}
+.Nicole-group-add-btn:hover{background:#f0fff4;}
+.Nicole-group-info-row{display:flex;align-items:center;padding:12px 14px;gap:12px;border-top:.5px solid #f0f0f0;}
+.Nicole-group-info-label{font-size:14px;color:#333;width:80px;flex-shrink:0;}
+.Nicole-group-info-value{flex:1;font-size:14px;color:#666;text-align:right;}
+.Nicole-group-dismiss-btn{display:block;width:100%;padding:14px;background:#fff;color:#ff3b30;font-size:15px;border:none;border-radius:10px;cursor:pointer;margin-top:8px;transition:background .2s;}
+.Nicole-group-dismiss-btn:hover{background:#fff0f0;}
 
 .Nicole-icons-rt{display:flex;gap:6px;align-items:center;}
 
@@ -308,7 +526,7 @@ input[type=number]{-moz-appearance:textfield;}
 
 .Nicole-tick{color:#aaa;font-size:11px;letter-spacing:-1.5px;font-weight:400;}
 
-.Nicole-tf,.Nicole-link-card,.Nicole-gift-card,.Nicole-mu-invite-card,.Nicole-loc-card,.Nicole-food-card{background:var(--card-bg);backdrop-filter:blur(var(--blur-val));-webkit-backdrop-filter:blur(var(--blur-val));border-radius:16px;padding:14px;display:flex;align-items:center;gap:12px;width:210px;cursor:pointer;text-decoration:none;transition:filter .2s,opacity .2s,background .3s;border:.5px solid rgba(0,0,0,.03);}
+.Nicole-tf,.Nicole-link-card,.Nicole-gift-card,.Nicole-mu-invite-card,.Nicole-loc-card,.Nicole-food-card,.Nicole-music-share-card{background:var(--card-bg);backdrop-filter:blur(var(--blur-val));-webkit-backdrop-filter:blur(var(--blur-val));border-radius:16px;padding:14px;display:flex;align-items:center;gap:12px;width:210px;cursor:pointer;text-decoration:none;transition:filter .2s,opacity .2s,background .3s;border:.5px solid rgba(0,0,0,.03);}
 
 .Nicole-tf-ic{width:34px;height:34px;background:rgba(0,0,0,.03);border-radius:50%;display:flex;justify-content:center;align-items:center;font-weight:400;font-size:15px;color:var(--card-ic,#222);flex-shrink:0;transition:all .3s;}
 
@@ -751,6 +969,8 @@ input[type=number]{-moz-appearance:textfield;}
 .Nicole-chatlist-del span{font-size:11px;font-weight:500;}
 .Nicole-chatlist-item:active{background:#f0f0f0;}
 .Nicole-chatlist-av{width:46px;height:46px;border-radius:50%;background:#ddd;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;color:#fff;margin-right:12px;flex-shrink:0;}
+.Nicole-chatlist-av.group-av{background:linear-gradient(135deg,#576b95,#3d5a80);border-radius:12px;color:#fff;}
+.Nicole-chatlist-av.group-av svg{width:22px;height:22px;stroke:#fff;}
 .Nicole-chatlist-info{flex:1;min-width:0;}
 .Nicole-chatlist-name{font-size:15px;font-weight:500;color:#222;margin-bottom:3px;}
 .Nicole-chatlist-msg{font-size:12px;color:#999;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -790,7 +1010,7 @@ input[type=number]{-moz-appearance:textfield;}
 
 .Nicole-mf.show{opacity:1;pointer-events:auto;}
 
-.Nicole-mbox{background:rgba(255,255,255,.98);height:75%;border-radius:28px 28px 0 0;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .3s;}
+.Nicole-mbox{background:rgba(255,255,255,.98);height:75%;border-radius:28px 28px 0 0;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .3s;overflow:hidden;}
 
 .Nicole-mf.show .Nicole-mbox{transform:translateY(0);}
 
@@ -878,7 +1098,7 @@ input[type=number]{-moz-appearance:textfield;}
 
 .Nicole-loc-send{margin-top:auto;background:#222;color:#fff;border-radius:18px;padding:14px 36px;font-size:14px;font-weight:500;cursor:pointer;border:none;}
 
-.Nicole-mu,.Nicole-cp,.Nicole-emo{flex:1;display:flex;flex-direction:column;padding:20px;gap:20px;overflow-y:auto;scrollbar-width:none;}
+.Nicole-mu,.Nicole-cp,.Nicole-emo{flex:1;display:flex;flex-direction:column;padding:20px;gap:20px;overflow-y:auto;scrollbar-width:none;min-height:0;}
 
 .Nicole-mu-stage{display:flex;justify-content:center;align-items:center;gap:16px;}
 
@@ -913,6 +1133,48 @@ input[type=number]{-moz-appearance:textfield;}
 .Nicole-mu-add{padding:0 16px;border:none;border-radius:12px;background:#222;color:#fff;font-size:13px;font-weight:500;}
 
 .Nicole-mu-invbtn{margin-top:auto;padding:14px;border-radius:16px;background:rgba(0,0,0,.03);color:#222;font-size:14px;font-weight:500;cursor:pointer;border:none;}
+
+/* 竖向输入框 */
+.Nicole-mu-inputs{display:flex;flex-direction:column;gap:8px;width:100%;}
+.Nicole-mu-inputs .Nicole-mu-name,.Nicole-mu-inputs .Nicole-mu-artist,.Nicole-mu-inputs .Nicole-mu-cover{width:100%;box-sizing:border-box;}
+.Nicole-mu-search-row{display:flex;gap:6px;width:100%;}
+.Nicole-mu-search-row .Nicole-mu-inp{flex:1;min-width:0;}
+.Nicole-mu-search{padding:0 12px;border:none;border-radius:12px;background:#555;color:#fff;font-size:12px;font-weight:500;cursor:pointer;flex-shrink:0;white-space:nowrap;}
+.Nicole-mu-search:active{background:#333;}
+.Nicole-mu-add{padding:0 14px;border:none;border-radius:12px;background:#222;color:#fff;font-size:12px;font-weight:500;cursor:pointer;flex-shrink:0;white-space:nowrap;}
+
+/* 歌单栏 */
+.Nicole-mu-playlist-bar{display:flex;gap:6px;align-items:center;width:100%;}
+.Nicole-mu-playlist-select{flex:1;min-width:0;border-radius:10px;padding:8px 10px;font-size:12px;background:rgba(0,0,0,.03);border:none;outline:none;color:#222;font-weight:400;cursor:pointer;}
+.Nicole-mu-playlist-add,.Nicole-mu-playlist-del{width:28px;height:28px;border:none;border-radius:8px;background:rgba(0,0,0,.05);color:#555;font-size:16px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;}
+.Nicole-mu-playlist-add:active,.Nicole-mu-playlist-del:active{background:rgba(0,0,0,.1);}
+
+/* 播放模式按钮 */
+.Nicole-mu-btn.Nicole-jmu-mode{width:36px;height:36px;}
+.Nicole-mu-btn.Nicole-jmu-mode svg{width:18px;height:18px;}
+.Nicole-mu-btn.Nicole-jmu-danmu{width:36px;height:36px;opacity:.4;transition:opacity .2s;}
+.Nicole-mu-btn.Nicole-jmu-danmu svg{width:18px;height:18px;}
+.Nicole-mu-btn.Nicole-jmu-danmu.active{opacity:1;}
+.Nicole-mu-btn.Nicole-jmu-danmu.active svg{stroke:#e91e63!important;}
+
+/* 歌词弹幕容器 - 固定在酒馆聊天界面上方 */
+.Nicole-danmu-container{position:fixed;top:0;left:0;right:0;height:100%;pointer-events:none;z-index:2147483647;overflow:hidden;}
+.Nicole-danmu-container.hidden{display:none;}
+/* 单条弹幕 - 模仿QQ音乐歌词弹幕样式 */
+.Nicole-danmu-item{position:absolute;white-space:nowrap;font-size:22px;font-weight:600;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.8),0 0 20px rgba(233,30,99,.4);letter-spacing:1px;pointer-events:none;animation:nicole-danmu-scroll linear forwards;will-change:transform;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;}
+.Nicole-danmu-item.gradient{background:linear-gradient(90deg,#ff6b6b,#feca57,#48dbfb,#ff9ff3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-shadow:none;}
+@keyframes nicole-danmu-scroll{from{transform:translateX(100vw);}to{transform:translateX(-100%);}}
+
+/* 歌曲列表项 - 竖向排列，歌手名在歌曲下方 */
+.Nicole-mu-item{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:10px 14px;background:rgba(250,250,250,.85);border-radius:12px;font-size:13px;color:#444;cursor:pointer;transition:background .2s,transform .1s;border:1px solid rgba(0,0,0,.02);flex-shrink:0;gap:2px;position:relative;overflow:hidden;}
+.Nicole-mu-item .mu-song-name{font-weight:500;color:#222;font-size:13px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3;}
+.Nicole-mu-item .mu-song-artist{font-size:11px;color:#888;font-weight:400;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.3;}
+.Nicole-mu-item .jmudel{position:absolute;top:8px;right:10px;color:#bbb;font-size:16px;cursor:pointer;line-height:1;padding:2px 6px;border-radius:6px;}
+.Nicole-mu-item .jmudel:hover{color:#666;background:rgba(0,0,0,.05);}
+.Nicole-mu-item.active{background:#333!important;}
+.Nicole-mu-item.active .mu-song-name{color:#fff!important;}
+.Nicole-mu-item.active .mu-song-artist{color:rgba(255,255,255,.6)!important;}
+.Nicole-mu-item.active .jmudel{color:rgba(255,255,255,.5)!important;}
 
 .Nicole-emo-games{display:flex;gap:10px;padding:12px 20px;flex-shrink:0;align-items:center;}
 
@@ -1121,10 +1383,10 @@ input[type=number]{-moz-appearance:textfield;}
 `;
 
 /* ============ HTML TEMPLATE ============ */
-var HTML = `<div class="Nicole-stage"><div class="Nicole-phone-wrap" id="Nc-Phone-Wrapper"><div class="Nicole-phone"><div class="Nicole-home-screen Nicole-jhome"><div class="Nicole-ios-statusbar"><div class="Nicole-jhome-time">12:00</div><div class="Nicole-ios-statusbar-right"><svg viewBox="0 0 24 24"><path d="M12 20h2V10h-2v10zm-4 0h2v-6H8v6zm8-14v14h2V6h-2zM4 20h2v-3H4v3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 3c-4.8 0-9.1 1.9-12.3 5l1.4 1.4C4.1 6.5 7.9 4.8 12 4.8s7.9 1.7 10.9 4.6l1.4-1.4C21.1 4.9 16.8 3 12 3zm0 5.5c-3.2 0-6.2 1.2-8.5 3.3l1.4 1.4c1.9-1.7 4.4-2.7 7.1-2.7s5.2 1 7.1 2.7l1.4-1.4C18.2 9.7 15.2 8.5 12 8.5zm0 5c-1.6 0-3.1.6-4.2 1.6l1.4 1.4c.8-.7 1.8-1 2.8-1s2 .3 2.8 1l1.4-1.4c-1.1-1-2.6-1.6-4.2-1.6zm0 4.5c-.8 0-1.5.7-1.5 1.5S11.2 21 12 21s1.5-.7 1.5-1.5S12.8 18 12 18z"/></svg><div class="Nicole-ios-battery"><div class="Nicole-ios-battery-level"></div></div></div></div><div class="Nicole-sticky-note"><div class="Nicole-sticky-tape"></div><textarea class="Nicole-sticky-textarea Nicole-jsticky-txt" placeholder="在这里写下便签..."></textarea><button class="Nicole-sticky-btn Nicole-jsticky-save">保存更新</button></div><div class="Nicole-dock"><div class="Nicole-dock-icon" id="app-wechat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="Nicole-dock-icon" id="app-phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div></div><div class="Nicole-chatlist-screen Nicole-jchatlist-screen"><div class="Nicole-chatlist-hd"><span class="back Nicole-jchatlist-back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></span>聊天列表<span class="add Nicole-jchatlist-add"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></div><div class="Nicole-chatlist-body Nicole-jchatlist-body"></div></div><div class="Nicole-addchar-modal Nicole-jaddchar-modal"><div class="Nicole-addchar-box"><h4>添加聊天人物</h4><input type="text" class="Nicole-jaddchar-input" placeholder="输入角色名字（如：沈又青）"><div class="Nicole-addchar-btns"><button class="cancel Nicole-jaddchar-cancel">取消</button><button class="ok Nicole-jaddchar-ok">添加</button></div></div></div><div class="Nicole-sys-app Nicole-japp-panel"><div class="Nicole-sys-app-hd"><div class="Nicole-japp-back" style="cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></div><span class="Nicole-japp-title" style="flex:1;text-align:center;padding-right:24px;">电话</span></div><div class="Nicole-sys-app-body Nicole-japp-body"><div class="Nicole-phone-app-container"><div class="Nicole-phone-content" id="phone-content"></div><div class="Nicole-phone-tabbar"><div class="Nicole-ptab active" data-target="recents"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>最近通话</div><div class="Nicole-ptab" data-target="contacts"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>联系人</div><div class="Nicole-ptab" data-target="dialpad"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"></circle><circle cx="12" cy="6" r="2"></circle><circle cx="18" cy="6" r="2"></circle><circle cx="6" cy="12" r="2"></circle><circle cx="12" cy="12" r="2"></circle><circle cx="18" cy="12" r="2"></circle><circle cx="6" cy="18" r="2"></circle><circle cx="12" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg>拨号键盘</div></div></div></div></div><div class="Nicole-content-layer Nicole-root"><div class="Nicole-bg Nicole-jbg"></div><div class="Nicole-call Nicole-jcall state-out"><div class="Nicole-call-mini-hint"></div><div class="Nicole-call-vbg Nicole-bind-lav-bg"></div><div class="Nicole-call-pip Nicole-bind-rav-bg"></div><div class="Nicole-call-mini-top Nicole-jcall-mini-top"><svg viewBox="0 0 24 24"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg></div><div class="Nicole-call-ct"><div class="Nicole-call-avs"><div class="Nicole-call-av Nicole-jcall-lav Nicole-bind-lav"></div><div class="Nicole-call-av Nicole-jcall-rav Nicole-bind-rav"></div></div><div class="Nicole-call-nm Nicole-jcall-nm Nicole-bind-lnm"></div><div class="Nicole-call-timer Nicole-jcall-timer">00:00</div><div class="Nicole-call-st Nicole-jcall-st">正在呼叫...</div><div class="Nicole-call-bubs Nicole-jcall-bubs"></div><div class="Nicole-call-ft"><div class="Nicole-call-btns btns-in"><div class="Nicole-call-btn hangup Nicole-jcall-reject"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><div class="Nicole-call-btn answer Nicole-jcall-answer"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div><div class="Nicole-call-btns btns-out"><div class="Nicole-call-btn cancel Nicole-jcall-cancel"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div></div><div class="Nicole-call-inrow"><div class="Nicole-call-btn hangup mini Nicole-jcall-end" title="挂断"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><input type="text" class="Nicole-call-in Nicole-jcall-in" placeholder="发送实时消息..."><button class="Nicole-call-send Nicole-jcall-send">发送</button></div></div></div></div><div class="Nicole-hd Nicole-jhd"><div class="Nicole-notch"></div><div class="Nicole-hd-back Nicole-jhd-back" title="返回主界面"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Nicole-hd-ph" style="display:none;"></div><div class="Nicole-hd-mid"><div class="Nicole-ubox Nicole-jpat-l"><div class="Nicole-uav Nicole-bind-lav" title="点击修改拍一拍"></div><div class="Nicole-uname Nicole-bind-lnm" title="点击修改对方备注"></div></div><div class="Nicole-waves"><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span></div><div class="Nicole-ubox Nicole-jpat-r"><div class="Nicole-uav Nicole-bind-rav" title="点击修改拍一拍"></div><div class="Nicole-uname Nicole-bind-rnm" title="点击修改自己备注"></div></div></div><div class="Nicole-icons-rt"><div class="Nicole-icbtn Nicole-jcollapse" title="收起手机" style="cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><div class="Nicole-icbtn pyq Nicole-jpyqbtn" title="朋友圈"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="Nicole-icbtn Nicole-jset-open" title="设置"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="19" r="2.5"/></svg></div></div><div class="Nicole-hd-pull Nicole-jhd-toggle"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div></div><div class="Nicole-chat Nicole-jchat"></div><div class="Nicole-pyq-panel Nicole-jpyqpanel"><div class="Nicole-pyq-hd"><div class="Nicole-pyq-back Nicole-jpyqback" title="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Nicole-pyq-addbtn Nicole-jpyqadd"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Nicole-pyq-scroll"><div class="Nicole-pyq-cover Nicole-jpyq-cover" title="点击更换背景"><div class="Nicole-pyq-user"><div class="Nicole-pyq-uname Nicole-bind-rnm"></div><div class="Nicole-pyq-uav Nicole-jpyq-uav" title="点击更换头像"></div></div></div><div class="Nicole-pyq-list Nicole-jpyqlist"></div></div></div><div class="Nicole-txt-zoom Nicole-jtxtzoom"><div class="Nicole-txt-zoom-in Nicole-jtxtzoomin"></div></div>
+var HTML = `<div class="Nicole-stage"><div class="Nicole-phone-wrap" id="Nc-Phone-Wrapper"><div class="Nicole-phone"><div class="Nicole-home-screen Nicole-jhome"><div class="Nicole-ios-statusbar"><div class="Nicole-jhome-time">12:00</div><div class="Nicole-ios-statusbar-right"><svg viewBox="0 0 24 24"><path d="M12 20h2V10h-2v10zm-4 0h2v-6H8v6zm8-14v14h2V6h-2zM4 20h2v-3H4v3z"/></svg><svg viewBox="0 0 24 24"><path d="M12 3c-4.8 0-9.1 1.9-12.3 5l1.4 1.4C4.1 6.5 7.9 4.8 12 4.8s7.9 1.7 10.9 4.6l1.4-1.4C21.1 4.9 16.8 3 12 3zm0 5.5c-3.2 0-6.2 1.2-8.5 3.3l1.4 1.4c1.9-1.7 4.4-2.7 7.1-2.7s5.2 1 7.1 2.7l1.4-1.4C18.2 9.7 15.2 8.5 12 8.5zm0 5c-1.6 0-3.1.6-4.2 1.6l1.4 1.4c.8-.7 1.8-1 2.8-1s2 .3 2.8 1l1.4-1.4c-1.1-1-2.6-1.6-4.2-1.6zm0 4.5c-.8 0-1.5.7-1.5 1.5S11.2 21 12 21s1.5-.7 1.5-1.5S12.8 18 12 18z"/></svg><div class="Nicole-ios-battery"><div class="Nicole-ios-battery-level"></div></div></div></div><div class="Nicole-mp3-player Nicole-jmp3"><div class="Nicole-mp3-cover"><div class="Nicole-mp3-cover-img Nicole-bind-lav" id="mp3-cover"></div><div class="Nicole-mp3-vinyl" id="mp3-vinyl"></div></div><div class="Nicole-mp3-main"><div class="Nicole-mp3-info"><div class="Nicole-mp3-title" id="mp3-title">未在播放</div><div class="Nicole-mp3-artist" id="mp3-artist">点击播放按钮开始</div></div><div class="Nicole-mp3-progress" id="mp3-progress"><div class="Nicole-mp3-bar" id="mp3-bar"></div><div class="Nicole-mp3-dot" id="mp3-dot"></div></div><div class="Nicole-mp3-time"><span id="mp3-cur">0:00</span><span id="mp3-total">0:00</span></div></div><div class="Nicole-mp3-ctrl"><button class="Nicole-mp3-btn" id="mp3-prev"><svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg></button><button class="Nicole-mp3-btn play" id="mp3-play"><svg viewBox="0 0 24 24" id="mp3-play-icon"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></button><button class="Nicole-mp3-btn" id="mp3-next"><svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg></button></div></div><div class="Nicole-home-apps"><div class="Nicole-home-app" id="app-couple" title="情侣问答"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div><div class="Nicole-home-app" id="app-memo" title="备忘录"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="8" y1="13" x2="16" y2="13"></line><line x1="8" y1="17" x2="13" y2="17"></line></svg></div><div class="Nicole-home-app" id="app-gallery" title="相册"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div><div class="Nicole-home-app" id="app-douyin" title="抖音"><svg viewBox="0 0 24 24"><path d="M9 3v12a3 3 0 1 1-3-3"></path><path d="M9 3c0 3 2 5 5 5v3c-3 0-5-2-5-5"></path><path d="M14 3v5c3 0 5 2 5 5"></path></svg></div><div class="Nicole-home-app" id="app-ins" title="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="#333" stroke="none"></circle></svg></div><div class="Nicole-home-app" id="app-weibo" title="微博"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="14" rx="7" ry="4.5"></ellipse><circle cx="10" cy="13.5" r="1.2" fill="#333" stroke="none"></circle><path d="M16 5c1.5 1 2 2.5 1.5 4"></path><path d="M18 3c2 1.5 3 4 1.5 6.5"></path></svg></div></div><div class="Nicole-calendar Nicole-jcal"><div class="Nicole-cal-hd"><div class="Nicole-cal-navbtn Nicole-jcal-prev">‹</div><div class="Nicole-cal-title Nicole-jcal-title" title="点击输入日期">2026年8月</div><input type="date" class="Nicole-cal-dateinput Nicole-jcal-dateinput" style="display:none;"><div class="Nicole-cal-navbtn Nicole-jcal-next">›</div></div><div class="Nicole-cal-weekdays"><div class="Nicole-cal-wd">日</div><div class="Nicole-cal-wd">一</div><div class="Nicole-cal-wd">二</div><div class="Nicole-cal-wd">三</div><div class="Nicole-cal-wd">四</div><div class="Nicole-cal-wd">五</div><div class="Nicole-cal-wd">六</div></div><div class="Nicole-cal-days Nicole-jcal-days"></div><div class="Nicole-cal-foot Nicole-jcal-foot">点击日期设置</div></div><div class="Nicole-dock"><div class="Nicole-dock-icon" id="app-wechat"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div><div class="Nicole-dock-icon Nicole-jdock-collapse" title="收起手机"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" stroke-width="2"/><polyline points="12 17 7 12 12 7" fill="none" stroke-width="2"/></svg></div><div class="Nicole-dock-icon" id="app-phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div></div><div class="Nicole-chatlist-screen Nicole-jchatlist-screen"><div class="Nicole-chatlist-hd"><span class="back Nicole-jchatlist-back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg></span>聊天列表<span class="add Nicole-jchatlist-add"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span></div><div class="Nicole-chatlist-body Nicole-jchatlist-body"></div></div><div class="Nicole-addchar-modal Nicole-jaddchar-modal"><div class="Nicole-addchar-box"><h4>添加聊天人物</h4><input type="text" class="Nicole-jaddchar-input" placeholder="输入角色名字（如：沈又青）"><div class="Nicole-addchar-btns"><button class="cancel Nicole-jaddchar-cancel">取消</button><button class="ok Nicole-jaddchar-ok">添加</button></div></div></div><div class="Nicole-addchar-modal Nicole-jchatlist-addmenu"><div class="Nicole-addchar-box"><h4>选择操作</h4><div style="display:flex;flex-direction:column;gap:10px;"><button class="ok Nicole-jaddmenu-addchar" style="width:100%;padding:10px;border:none;border-radius:8px;background:#07c160;color:#fff;font-size:14px;cursor:pointer;">添加联系人</button><button class="ok Nicole-jaddmenu-addgroup" style="width:100%;padding:10px;border:none;border-radius:8px;background:#576b95;color:#fff;font-size:14px;cursor:pointer;">创建群聊</button><button class="cancel Nicole-jaddmenu-cancel" style="width:100%;padding:10px;border:none;border-radius:8px;background:#f5f5f5;color:#333;font-size:14px;cursor:pointer;">取消</button></div></div></div><div class="Nicole-addchar-modal Nicole-jaddgroup-modal"><div class="Nicole-addchar-box"><h4>创建群聊</h4><input type="text" class="Nicole-jaddgroup-name" placeholder="群聊名称（如：快乐星球）"><div style="font-size:12px;color:#666;margin:10px 0 6px;text-align:left;">选择群成员（自动包含你和当前角色）</div><div class="Nicole-jaddgroup-members" style="max-height:180px;overflow-y:auto;border:1px solid #eee;border-radius:8px;padding:8px;"></div><div class="Nicole-addchar-btns"><button class="cancel Nicole-jaddgroup-cancel">取消</button><button class="ok Nicole-jaddgroup-ok">创建</button></div></div></div><div class="Nicole-sys-app Nicole-japp-panel"><div class="Nicole-sys-app-hd"><div class="Nicole-japp-back" style="cursor:pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></div><span class="Nicole-japp-title" style="flex:1;text-align:center;padding-right:24px;">电话</span></div><div class="Nicole-sys-app-body Nicole-japp-body"><div class="Nicole-phone-app-container"><div class="Nicole-phone-content" id="phone-content"></div><div class="Nicole-phone-tabbar"><div class="Nicole-ptab active" data-target="recents"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>最近通话</div><div class="Nicole-ptab" data-target="contacts"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>联系人</div><div class="Nicole-ptab" data-target="dialpad"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>设置</div></div></div></div></div><div class="Nicole-app-panel Nicole-japp2-panel"><div class="Nicole-app-hd"><div class="Nicole-app-back Nicole-japp2-back" style="cursor:pointer;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></div><span class="Nicole-app-title Nicole-japp2-title"></span><div style="width:20px;"></div></div><div class="Nicole-app-body Nicole-japp2-body"></div></div><div class="Nicole-content-layer Nicole-root"><div class="Nicole-bg Nicole-jbg"></div><div class="Nicole-call Nicole-jcall state-out"><div class="Nicole-call-mini-hint"></div><div class="Nicole-call-vbg Nicole-bind-lav-bg"></div><div class="Nicole-call-pip Nicole-bind-rav-bg"></div><div class="Nicole-call-mini-top Nicole-jcall-mini-top"><svg viewBox="0 0 24 24"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg></div><div class="Nicole-call-ct"><div class="Nicole-call-avs"><div class="Nicole-call-av Nicole-jcall-lav Nicole-bind-lav"></div><div class="Nicole-call-av Nicole-jcall-rav Nicole-bind-rav"></div></div><div class="Nicole-call-nm Nicole-jcall-nm Nicole-bind-lnm"></div><div class="Nicole-call-timer Nicole-jcall-timer">00:00</div><div class="Nicole-call-st Nicole-jcall-st">正在呼叫...</div><div class="Nicole-call-bubs Nicole-jcall-bubs"></div><div class="Nicole-call-ft"><div class="Nicole-call-btns btns-in"><div class="Nicole-call-btn hangup Nicole-jcall-reject"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><div class="Nicole-call-btn answer Nicole-jcall-answer"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div></div><div class="Nicole-call-btns btns-out"><div class="Nicole-call-btn cancel Nicole-jcall-cancel"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div></div><div class="Nicole-call-inrow"><div class="Nicole-call-btn hangup mini Nicole-jcall-end" title="挂断"><svg viewBox="0 0 24 24"><path d="M10.5 4.5l-2-2a2 2 0 0 0-2.83 0l-2 2a2 2 0 0 0 0 2.83l9 9a2 2 0 0 0 2.83 0l2-2a2 2 0 0 0 0-2.83z"/><path d="M14 8h5v5"/><path d="M19 8l-5 5"/></svg></div><input type="text" class="Nicole-call-in Nicole-jcall-in" placeholder="发送实时消息..."><button class="Nicole-call-send Nicole-jcall-send">发送</button></div></div></div></div><div class="Nicole-hd Nicole-jhd"><div class="Nicole-notch"></div><div class="Nicole-hd-back Nicole-jhd-back" title="返回主界面"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Nicole-hd-ph" style="display:none;"></div><div class="Nicole-hd-mid"><div class="Nicole-group-name Nicole-bind-gname"></div><div class="Nicole-ubox Nicole-jpat-l"><div class="Nicole-uav Nicole-bind-lav" title="点击修改拍一拍"></div><div class="Nicole-uname Nicole-bind-lnm" title="点击修改对方备注"></div></div><div class="Nicole-waves"><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span></div><div class="Nicole-ubox Nicole-jpat-r"><div class="Nicole-uav Nicole-bind-rav" title="点击修改拍一拍"></div><div class="Nicole-uname Nicole-bind-rnm" title="点击修改自己备注"></div></div></div><div class="Nicole-icons-rt"><div class="Nicole-icbtn Nicole-jcollapse" title="收起手机" style="cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><div class="Nicole-icbtn pyq Nicole-jpyqbtn" title="朋友圈"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="Nicole-icbtn Nicole-jset-open" title="设置"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="12" cy="19" r="2.5"/></svg></div></div><div class="Nicole-hd-pull Nicole-jhd-toggle"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></div></div><div class="Nicole-chat Nicole-jchat"></div><div class="Nicole-group-setting Nicole-jgroup-setting"><div class="Nicole-group-setting-hd"><div class="Nicole-group-setting-back Nicole-jgroup-setting-back">‹</div><div class="Nicole-group-setting-title">群聊信息</div><div style="width:20px;"></div></div><div class="Nicole-group-setting-body"><div class="Nicole-group-section"><div class="Nicole-group-section-title">群成员</div><div class="Nicole-group-members-list Nicole-jgroup-members"></div><div class="Nicole-group-add-btn Nicole-jgroup-add-member"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>添加成员</div></div><div class="Nicole-group-section"><div class="Nicole-group-info-row"><div class="Nicole-group-info-label">群聊名称</div><div class="Nicole-group-info-value Nicole-jgroup-name-display"></div></div><div class="Nicole-group-info-row"><div class="Nicole-group-info-label">群成员数</div><div class="Nicole-group-info-value Nicole-jgroup-count-display"></div></div></div><button class="Nicole-group-dismiss-btn Nicole-jgroup-dismiss">退出并删除群聊</button></div></div><div class="Nicole-pyq-panel Nicole-jpyqpanel"><div class="Nicole-pyq-hd"><div class="Nicole-pyq-back Nicole-jpyqback" title="返回"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="15 18 9 12 15 6"></polyline></svg></div><div class="Nicole-pyq-addbtn Nicole-jpyqadd"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Nicole-pyq-scroll"><div class="Nicole-pyq-cover Nicole-jpyq-cover" title="点击更换背景"><div class="Nicole-pyq-user"><div class="Nicole-pyq-uname Nicole-bind-rnm"></div><div class="Nicole-pyq-uav Nicole-jpyq-uav" title="点击更换头像"></div></div></div><div class="Nicole-pyq-list Nicole-jpyqlist"></div></div></div><div class="Nicole-txt-zoom Nicole-jtxtzoom"><div class="Nicole-txt-zoom-in Nicole-jtxtzoomin"></div></div>
 <div class="Nicole-set Nicole-jset"><div class="Nicole-set-h">视觉控制台<span class="Nicole-set-x Nicole-jset-close">&times;</span></div><div class="Nicole-set-r"><label>左侧名称</label><div class="Nicole-color-wrap"><input type="text" class="Nicole-hex-in Nicole-jset-lnm" placeholder="输入名称" style="width:100px;"></div></div><div class="Nicole-set-r"><label>右侧名称</label><div class="Nicole-color-wrap"><input type="text" class="Nicole-hex-in Nicole-jset-rnm" placeholder="输入名称" style="width:100px;"></div></div><div class="Nicole-set-r"><label>聊天记录</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jclear-chat" style="background:#ff6b6b;color:#fff;border:none;">清空当前聊天</button></div></div><div class="Nicole-set-r"><label>手机宽度</label><div class="Nicole-color-wrap"><input type="number" class="Nicole-hex-in Nicole-jset-phone-w" placeholder="360" style="width:80px;" min="240" max="500"><span style="font-size:11px;color:#999;">px</span></div></div><div class="Nicole-set-r"><label>手机高度</label><div class="Nicole-color-wrap"><input type="number" class="Nicole-hex-in Nicole-jset-phone-h" placeholder="680" style="width:80px;" min="400" max="900"><span style="font-size:11px;color:#999;">px</span></div></div><div class="Nicole-set-r"><label>拉黑拦截控制</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jblk-l" title="右侧拉黑左侧，左侧发出的消息带叹号">右侧拉黑左侧</button><button class="Nicole-bg-btn Nicole-jblk-r" title="左侧拉黑右侧，右侧发出的消息带叹号">左侧拉黑右侧</button></div></div><div class="Nicole-set-r"><label>左侧头像（角色）</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jav-l-upload">上传头像</button><button class="Nicole-bg-btn Nicole-jav-l-clear">恢复默认</button></div></div><div class="Nicole-set-r"><label>右侧头像（我）</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jav-r-upload">上传头像</button><button class="Nicole-bg-btn Nicole-jav-r-clear">恢复默认</button></div></div><div class="Nicole-set-r"><label>主页背景</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jbg-home-upload">上传/更换</button><button class="Nicole-bg-btn Nicole-jbg-home-clear">恢复默认</button></div></div><div class="Nicole-set-r"><label>聊天背景</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jbg-chat-upload">上传/更换</button><button class="Nicole-bg-btn Nicole-jbg-chat-clear">恢复默认</button></div></div><div class="Nicole-set-r"><label>头像形状</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jav-rnd active">圆形</button><button class="Nicole-bg-btn Nicole-jav-sq">方形</button></div></div><div class="Nicole-set-r"><label>质感风格</label><div class="Nicole-color-wrap"><button class="Nicole-bg-btn Nicole-jglass-glass active">毛玻璃</button><button class="Nicole-bg-btn Nicole-jglass-solid">纯实色</button></div></div><div class="Nicole-set-r"><label>手机外壳</label><div class="Nicole-color-wrap"><input type="text" id="Nc-wrap-txt" class="Nicole-hex-in"><input type="color" id="Nc-wrap"></div></div><div class="Nicole-set-r"><label>顶部栏背景</label><div class="Nicole-color-wrap"><input type="text" id="Nc-hdr-txt" class="Nicole-hex-in"><input type="color" id="Nc-hdr"></div></div><div class="Nicole-set-r"><label>顶部下拉键</label><div class="Nicole-color-wrap"><input type="text" id="Nc-pull-txt" class="Nicole-hex-in"><input type="color" id="Nc-pull"></div></div><div class="Nicole-set-r"><label>波浪呼吸条</label><div class="Nicole-color-wrap"><input type="text" id="Nc-wv-txt" class="Nicole-hex-in"><input type="color" id="Nc-wv"></div></div><div class="Nicole-set-r"><label>交互卡片底色</label><div class="Nicole-color-wrap"><input type="text" id="Nc-card-txt" class="Nicole-hex-in"><input type="color" id="Nc-card"></div></div><div class="Nicole-set-r"><label>底部输入区</label><div class="Nicole-color-wrap"><input type="text" id="Nc-ftr-txt" class="Nicole-hex-in"><input type="color" id="Nc-ftr"></div></div><div class="Nicole-set-r"><label>我方气泡</label><div class="Nicole-color-wrap"><input type="text" id="Nc-bub-txt" class="Nicole-hex-in"><input type="color" id="Nc-bub"></div></div><div class="Nicole-set-r"><label>对方气泡</label><div class="Nicole-color-wrap"><input type="text" id="Nc-bubl-txt" class="Nicole-hex-in"><input type="color" id="Nc-bubl"></div></div><div class="Nicole-set-r"><label>气泡文字</label><div class="Nicole-color-wrap"><input type="text" id="Nc-tm-txt" class="Nicole-hex-in"><input type="color" id="Nc-tm"></div></div><div class="Nicole-set-r"><label>交互卡片字</label><div class="Nicole-color-wrap"><input type="text" id="Nc-cdt-txt" class="Nicole-hex-in"><input type="color" id="Nc-cdt"></div></div><div class="Nicole-set-r"><label>交互卡片图标</label><div class="Nicole-color-wrap"><input type="text" id="Nc-cic-txt" class="Nicole-hex-in"><input type="color" id="Nc-cic"></div></div><div class="Nicole-set-r"><label>顶部栏文字</label><div class="Nicole-color-wrap"><input type="text" id="Nc-hdt-txt" class="Nicole-hex-in"><input type="color" id="Nc-hdt"></div></div><div class="Nicole-set-r"><label>顶部栏图标</label><div class="Nicole-color-wrap"><input type="text" id="Nc-hdi-txt" class="Nicole-hex-in"><input type="color" id="Nc-hdi"></div></div><div class="Nicole-set-r"><label>系统提示字</label><div class="Nicole-color-wrap"><input type="text" id="Nc-sys-txt" class="Nicole-hex-in"><input type="color" id="Nc-sys"></div></div><div class="Nicole-set-r"><label>通话左气泡</label><div class="Nicole-color-wrap"><input type="text" id="Nc-cbubl-txt" class="Nicole-hex-in"><input type="color" id="Nc-cbubl"></div></div><div class="Nicole-set-r"><label>通话右气泡</label><div class="Nicole-color-wrap"><input type="text" id="Nc-cbub-txt" class="Nicole-hex-in"><input type="color" id="Nc-cbub"></div></div><div class="Nicole-set-r"><label>通话气泡字</label><div class="Nicole-color-wrap"><input type="text" id="Nc-cbtxt-txt" class="Nicole-hex-in"><input type="color" id="Nc-cbtxt"></div></div></div><div class="Nicole-ft"><div class="Nicole-reply-bar Nicole-jrepbar"><span class="Nicole-reply-txt Nicole-jreptxt"></span><div class="Nicole-reply-close Nicole-jrepclose">×</div></div><div class="Nicole-in-area"><div class="Nicole-lang Nicole-jlang">CN</div><div class="Nicole-plus Nicole-jplus"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><input type="text" class="Nicole-input Nicole-jinput" placeholder="输入文字发送..."><div class="Nicole-mic Nicole-jmic"><svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg></div><div class="Nicole-send Nicole-jsend"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></div></div><div class="Nicole-panel Nicole-jpanel"><div class="Nicole-pi Nicole-jbtn-voice"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="Nicole-ptx">语音呼叫</div></div><div class="Nicole-pi Nicole-jbtn-video"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div><div class="Nicole-ptx">视频呼叫</div></div><div class="Nicole-pi Nicole-jimgbtn"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg></div><div class="Nicole-ptx">发原图</div></div><div class="Nicole-pi Nicole-jtxtimg"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg></div><div class="Nicole-ptx">发文字图</div></div><div class="Nicole-pi Nicole-jgiftbtn"><div class="Nicole-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg></div><div class="Nicole-ptx">送礼物</div></div><div class="Nicole-pi Nicole-jlinkbtn"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="Nicole-ptx">发链接</div></div><div class="Nicole-pi Nicole-jtf"><div class="Nicole-pic"><svg viewBox="0 0 24 24" class="fl"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg></div><div class="Nicole-ptx">转账</div></div><div class="Nicole-pi Nicole-jemo"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><div class="Nicole-ptx">表情包</div></div><div class="Nicole-pi Nicole-jmusic"><div class="Nicole-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg></div><div class="Nicole-ptx">一起听歌</div></div><div class="Nicole-pi Nicole-jcp"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="Nicole-ptx">情侣空间</div></div><div class="Nicole-pi Nicole-jbtn-loc"><div class="Nicole-pic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div class="Nicole-ptx">共享位置</div></div><div class="Nicole-pi Nicole-jbtn-food"><div class="Nicole-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></div><div class="Nicole-ptx">点外卖</div></div><div class="Nicole-pi Nicole-jbtn-draw"><div class="Nicole-pic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></div><div class="Nicole-ptx">手绘便签</div></div></div></div>
 <div class="Nicole-mf Nicole-jmsgact"><div class="Nicole-mbox" style="height:auto; padding-bottom:24px;"><div class="Nicole-act-btn Nicole-jact-reply">引用回复</div><div class="Nicole-act-btn Nicole-jact-revoke" style="display:none; color:#222;">撤回消息</div><div class="Nicole-act-btn Nicole-jact-delete" style="color:#ff3b30;">删除消息</div><div class="Nicole-act-space"></div><div class="Nicole-act-btn Nicole-jact-cancel" style="color:#888;">取消</div></div></div><div class="Nicole-cen Nicole-jaddfriendmodal w260"><div class="Nicole-cen-box"><h4>重新添加好友</h4><input type="text" class="Nicole-cen-inp Nicole-jaddgreet" placeholder="打个招呼吧..."><div class="Nicole-cen-btns"><button class="cc Nicole-jaddfcancel">取消</button><button class="ok Nicole-jaddfok">发送申请</button></div></div></div><div class="Nicole-cen Nicole-jtfactmodal w260"><div class="Nicole-cen-box"><h4>转账处理</h4><div style="font-size:13px;color:#888;text-align:center;font-weight:300;">请选择对该笔转账的操作</div><div class="Nicole-cen-btns"><button class="cc Nicole-jtfact-return">退回</button><button class="ok Nicole-jtfact-receive">收款</button></div><div class="Nicole-cen-btns" style="margin-top:-6px;"><button class="cc Nicole-jtfact-cancel" style="width:100%;">取消</button></div></div></div><div class="Nicole-cen Nicole-jlocinputmodal w260"><div class="Nicole-cen-box"><h4>发送位置分享</h4><input type="text" class="Nicole-cen-inp Nicole-jlocin-pos" placeholder="我的位置 (如:朝阳区)"><input type="text" class="Nicole-cen-inp Nicole-jlocin-dist" placeholder="相距距离 (如:12.5 km)"><div class="Nicole-cen-btns"><button class="cc Nicole-jlocincancel">取消</button><button class="ok Nicole-jlocinok">发送</button></div></div></div><div class="Nicole-cen Nicole-jdrawmodal w260"><div class="Nicole-cen-box" style="width:290px; padding:20px;"><h4>手绘涂鸦</h4><canvas class="Nicole-draw-canvas Nicole-jdrawcanvas" width="246" height="246"></canvas><div class="Nicole-draw-tools"><input type="color" class="Nicole-draw-color Nicole-jdrawcolor" value="#222222"><input type="range" class="Nicole-draw-range Nicole-jdrawwidth" min="1" max="20" value="3"><div class="Nicole-draw-btn-icon Nicole-jdraweraser" title="橡皮擦"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20H7L3 16C2.5 15.5 2.5 14.5 3 14L13 4C13.5 3.5 14.5 3.5 15 4L20 9C20.5 9.5 20.5 10.5 20 11L11 20H20V20Z"/></svg></div><div class="Nicole-draw-btn-icon Nicole-jdrawundo" title="撤销"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h10a5 5 0 0 1 5 5v2"/><polyline points="7 6 3 10 7 14"/></svg></div><div class="Nicole-draw-btn-icon Nicole-jdrawclear" title="清空画布"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div></div><div class="Nicole-cen-btns"><button class="cc Nicole-jdrawcancel">取消</button><button class="ok Nicole-jdrawok">发送</button></div></div></div><div class="Nicole-cen Nicole-jgiftmodal w260"><div class="Nicole-cen-box"><h4>送专属礼物</h4><input type="text" class="Nicole-cen-inp Nicole-jgiftdesc" placeholder="礼物名称或描述"><div class="Nicole-tf-grp"><span>¥</span><input type="number" class="Nicole-jgiftpr" placeholder="0.00"></div><input type="text" class="Nicole-cen-inp Nicole-jgiftnote" placeholder="备注留言"><div class="Nicole-cen-btns"><button class="cc Nicole-jgiftcancel">取消</button><button class="ok Nicole-jgiftok">送出</button></div></div></div><div class="Nicole-cen Nicole-jlinkmodal w260"><div class="Nicole-cen-box"><h4>分享外链</h4><input type="text" class="Nicole-cen-inp Nicole-jlinkurl" placeholder="网址URL..."><input type="text" class="Nicole-cen-inp Nicole-jlinktitle" placeholder="分享标题..."><div class="Nicole-cen-btns"><button class="cc Nicole-jlinkcancel">取消</button><button class="ok Nicole-jlinkok">分享</button></div></div></div><div class="Nicole-cen Nicole-jtfmodal"><div class="Nicole-cen-box"><h4>发起转账</h4><div class="Nicole-tf-grp"><span>¥</span><input type="number" class="Nicole-jtfamt" placeholder="0.00"></div><input type="text" class="Nicole-cen-inp Nicole-jtftitle" placeholder="转账说明"><div class="Nicole-cen-btns"><button class="cc Nicole-jtfcancel">取消</button><button class="ok Nicole-jtfok">确认</button></div></div></div><div class="Nicole-cen Nicole-jimgmodal w260"><div class="Nicole-cen-box"><h4>发送原图直链</h4><input type="text" class="Nicole-cen-inp Nicole-jimgurl" placeholder="图片URL直链/AI提示词..."><input type="text" class="Nicole-cen-inp Nicole-jimgdesc" placeholder="图片描述"><div class="Nicole-cen-btns"><button class="cc Nicole-jimgcancel">取消</button><button class="ok Nicole-jimgok">发送直链</button></div></div></div><div class="Nicole-cen Nicole-jtxtimgmodal w260"><div class="Nicole-cen-box"><h4>文字图气泡</h4><textarea class="Nicole-jtxtimgin" rows="3" placeholder="输入气泡中的文字..."></textarea><div class="Nicole-cen-btns"><button class="cc Nicole-jtxtimgcancel">取消</button><button class="ok Nicole-jtxtimgok">发送</button></div></div></div><div class="Nicole-cen Nicole-jfoodmodal w260"><div class="Nicole-cen-box"><h4>高级外卖</h4><input type="text" class="Nicole-cen-inp Nicole-jfoodshop" placeholder="店铺名称 (如: 肯德基)"><input type="text" class="Nicole-cen-inp Nicole-jfooditems" placeholder="外卖内容 (如: 炸鸡套餐)"><input type="text" class="Nicole-cen-inp Nicole-jfoodaddr" placeholder="配送地址"><input type="text" class="Nicole-cen-inp Nicole-jfoodname" placeholder="收件人姓名"><input type="text" class="Nicole-cen-inp Nicole-jfoodphone" placeholder="收件人电话"><div class="Nicole-cen-btns"><button class="cc Nicole-jfoodcancel">取消</button><button class="ok Nicole-jfoodok">下单并发送</button></div></div></div><div class="Nicole-cen Nicole-jvoicemodal w260"><div class="Nicole-cen-box"><h4>语音异常/降级</h4><textarea class="Nicole-jvoicetxt" rows="3" placeholder="麦克风受限，请输入文字..."></textarea><div class="Nicole-cen-btns"><button class="cc Nicole-jvoicecancel">取消</button><button class="ok Nicole-jvoiceok">生成语音条</button></div></div></div><div class="Nicole-cen Nicole-jpatmodal w260"><div class="Nicole-cen-box"><h4>修改拍一拍后缀</h4><div style="font-size:12px;color:#888;text-align:center;font-weight:300;">双击头像时生效</div><input type="text" class="Nicole-cen-inp Nicole-jpatin" placeholder="例如：的脑袋"><div class="Nicole-cen-btns"><button class="cc Nicole-jpatcancel">取消</button><button class="ok Nicole-jpatok">确定</button></div></div></div><div class="Nicole-cen Nicole-jaddemomodal w260"><div class="Nicole-cen-box"><h4>添加自定义表情</h4><input type="text" class="Nicole-cen-inp Nicole-jaddemourl" placeholder="图片URL直链..."><input type="text" class="Nicole-cen-inp Nicole-jaddemotxt" placeholder="说明文字"><div class="Nicole-cen-btns"><button class="cc Nicole-jaddemocancel">取消</button><button class="ok Nicole-jaddemook">保存</button></div></div></div><div class="Nicole-cen Nicole-jviewmodal w260"><div class="Nicole-cen-box"><h4>撤回原文</h4><textarea class="Nicole-cen-inp Nicole-jviewtxt" rows="4" readonly style="background:rgba(255,255,255,.8);"></textarea><div class="Nicole-cen-btns"><button class="ok Nicole-jviewclose" style="width:100%;">关闭</button></div></div></div><div class="Nicole-cen Nicole-jpyqsendmodal w260"><div class="Nicole-cen-box"><h4>发朋友圈</h4><textarea class="Nicole-cen-inp Nicole-jpyqsendtxt" rows="3" placeholder="这一刻的想法..."></textarea><input type="text" class="Nicole-cen-inp Nicole-jpyqsendimg" placeholder="配图URL直链 (可选)"><textarea class="Nicole-cen-inp Nicole-jpyqsendtxtimg" rows="2" placeholder="或者直接发文字图，输入内容..."></textarea><div class="Nicole-cen-btns"><button class="cc Nicole-jpyqsendcancel">取消</button><button class="ok Nicole-jpyqsendok">发表</button></div></div></div><div class="Nicole-cen Nicole-jpyqcommodal w260"><div class="Nicole-cen-box"><h4>评论动态</h4><textarea class="Nicole-cen-inp Nicole-jpyqcomtxt" rows="3" placeholder="说点什么..."></textarea><div class="Nicole-cen-btns"><button class="cc Nicole-jpyqcomcancel">取消</button><button class="ok Nicole-jpyqcomok">评论</button></div></div></div>
-<div class="Nicole-mf Nicole-jlocmodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>位置共享</span><div class="Nicole-mc Nicole-jlocclose">&times;</div></div><div class="Nicole-loc-wrap"><div class="Nicole-cp-top" style="z-index:10;"><div class="Nicole-cp-avs"><div class="Nicole-cp-face Nicole-bind-lav"></div><div class="Nicole-cp-face Nicole-jcpf2 Nicole-bind-rav"></div></div><div class="Nicole-loc-dist">相距 <span id="Nc-loc-dist">未知</span></div></div><div class="Nicole-radar"><div class="Nicole-radar-wave"></div><div class="Nicole-radar-wave w2"></div><div class="Nicole-anchor a1"><div class="Nicole-anchor-av Nicole-bind-lav"></div><div class="Nicole-anchor-tip t1">未获取位置</div></div><div class="Nicole-anchor a2"><div class="Nicole-anchor-av Nicole-bind-rav"></div><div class="Nicole-anchor-tip t2">未获取位置</div></div></div><button class="Nicole-loc-send Nicole-jlocsend">发送当前定位</button></div></div></div><div class="Nicole-mf Nicole-jemomodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>选择表情与互动</span><div class="Nicole-mc Nicole-jemoclose">&times;</div></div><div class="Nicole-emo-games"><div class="Nicole-emo-gamebtn jemo-poke"><svg viewBox="0 0 24 24"><path d="M11 2a2 2 0 0 0-2 2v5H6a2 2 0 0 0-2 2v2c0 4.4 3.6 8 8 8h3a5 5 0 0 0 5-5v-6a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-2-2z"/></svg>戳一戳</div><div class="Nicole-emo-gamebtn jemo-dice"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="8.5" r="1.5"/><circle cx="8.5" cy="15.5" r="1.5"/><circle cx="12" cy="12" r="1.5"/></svg>摇骰子</div><div class="Nicole-emo-gamebtn jemo-rps"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>猜拳</div><div class="Nicole-emo-addbtn Nicole-jaddemobtn" title="添加表情"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Nicole-emo Nicole-jemolist"></div></div></div><div class="Nicole-mf Nicole-jmumodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>一起听歌</span><div class="Nicole-mc Nicole-jmuclose">&times;</div></div><div class="Nicole-mu"><div class="Nicole-mu-stage"><div class="Nicole-mu-face Nicole-jmuf1 Nicole-bind-lav"></div><div class="Nicole-mu-waves Nicole-jmuwaves"><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span></div><div class="Nicole-mu-face Nicole-jmuf2 Nicole-bind-rav"></div></div><div class="Nicole-mu-time-disp">累计听歌: <span id="Nc-mutime-val">0</span> 分钟</div><div class="Nicole-mu-now Nicole-jmunow" style="text-align:center;font-size:13px;color:#555;font-weight:400;">未在播放</div><div class="Nicole-mu-ctrl"><div class="Nicole-mu-btn Nicole-jmuprev"><svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20" fill="none" stroke="#222" stroke-width="1.5"/><line x1="5" y1="19" x2="5" y2="5" stroke="#222" stroke-width="1.5"/></svg></div><div class="Nicole-mu-btn main Nicole-jmuplay"><svg class="Nicole-jmuicon" viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4" fill="#222"/></svg></div><div class="Nicole-mu-btn Nicole-jmunext"><svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4" fill="none" stroke="#222" stroke-width="1.5"/><line x1="19" y1="5" x2="19" y2="19" stroke="#222" stroke-width="1.5"/></svg></div></div><div class="Nicole-mu-inp-wrap"><input type="text" class="Nicole-mu-name Nicole-jmuname" placeholder="歌曲名称"><input type="text" class="Nicole-mu-artist Nicole-jmuartist" placeholder="歌手名"></div><div class="Nicole-mu-inp-wrap" style="margin-top:-8px;"><input type="text" class="Nicole-mu-cover Nicole-jmucover" placeholder="专辑封面URL直链 (可选)"></div><div class="Nicole-mu-inp-wrap" style="margin-top:-8px;"><input type="text" class="Nicole-mu-inp Nicole-jmuinp" placeholder="单曲直链或网易云ID"><button class="Nicole-mu-add Nicole-jmuaddbtn">添加</button></div><div class="Nicole-mu-list Nicole-jmulist"></div><button class="Nicole-mu-invbtn Nicole-jmuinv">发送一起听歌邀请</button></div></div></div><div class="Nicole-mf Nicole-jcpmodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>情侣空间</span><div class="Nicole-mc Nicole-jcpclose">&times;</div></div><div class="Nicole-cp"><div class="Nicole-cp-top"><div class="Nicole-cp-avs"><div class="Nicole-cp-face Nicole-bind-lav"></div><div class="Nicole-cp-face Nicole-jcpf2 Nicole-bind-rav"></div></div><div class="Nicole-cp-id-group"><span class="Nicole-bind-lnm"></span> & <span class="Nicole-bind-rnm"></span></div></div><div class="Nicole-cp-rel Nicole-jcprel"></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> 个性签名</div><div class="Nicole-sign-mod"><div class="Nicole-sign-hd"><div class="Nicole-cp-face Nicole-bind-lav" style="width:30px;height:30px;border-width:.5px;"></div><div class="Nicole-cp-id-group Nicole-bind-lnm" style="font-size:12px;"></div></div><div class="Nicole-sign-bd Nicole-jcsign"></div></div><div class="Nicole-sign-mod" style="margin-top:12px; background:rgba(255,255,255,.9); border:.5px solid rgba(0,0,0,.03);"><div class="Nicole-sign-hd"><div class="Nicole-cp-face Nicole-bind-rav" style="width:30px;height:30px;margin-left:0;border-width:.5px;"></div><div class="Nicole-cp-id-group Nicole-bind-rnm" style="font-size:12px;"></div><div class="Nicole-signdel Nicole-jsigndel" title="删除个签"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div></div><div class="Nicole-sign-bd Nicole-jusign-disp"></div><div class="Nicole-sign-act"><input type="text" class="Nicole-jusignin" placeholder="输入新签名..."><button class="Nicole-jusignsave">发布更新</button></div></div></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 想做的小事</div><div class="Nicole-cp-things Nicole-jcpthings"></div><div class="Nicole-cp-addrow"><select class="Nicole-jcpwho"><option value="Me">我</option><option value="You">对方</option></select><input type="text" class="Nicole-jcpthingin" placeholder="添加待办..."><button class="Nicole-jcpthingadd">加</button></div></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 纪念日</div><div class="Nicole-cp-days Nicole-jcpdays"></div><div class="Nicole-cp-addrow"><input type="text" class="Nicole-jcpdayname" placeholder="事件名称"><input type="date" class="Nicole-jcpdaydate"><button class="Nicole-jcpdayadd">加</button></div></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 相册与图文</div><div class="Nicole-cp-albums Nicole-jcpalbums"></div><div class="Nicole-cp-addrow"><input type="text" class="Nicole-jcpalbumtxt" placeholder="这一刻的想法..." style="min-width:30px;"><input type="text" class="Nicole-jcpalbumimg" placeholder="图片URL直链(可选)" style="min-width:50px;"><button class="Nicole-jcpalbumadd">上传</button></div></div></div></div></div></div></div></div>
+<div class="Nicole-mf Nicole-jlocmodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>位置共享</span><div class="Nicole-mc Nicole-jlocclose">&times;</div></div><div class="Nicole-loc-wrap"><div class="Nicole-cp-top" style="z-index:10;"><div class="Nicole-cp-avs"><div class="Nicole-cp-face Nicole-bind-lav"></div><div class="Nicole-cp-face Nicole-jcpf2 Nicole-bind-rav"></div></div><div class="Nicole-loc-dist">相距 <span id="Nc-loc-dist">未知</span></div></div><div class="Nicole-radar"><div class="Nicole-radar-wave"></div><div class="Nicole-radar-wave w2"></div><div class="Nicole-anchor a1"><div class="Nicole-anchor-av Nicole-bind-lav"></div><div class="Nicole-anchor-tip t1">未获取位置</div></div><div class="Nicole-anchor a2"><div class="Nicole-anchor-av Nicole-bind-rav"></div><div class="Nicole-anchor-tip t2">未获取位置</div></div></div><button class="Nicole-loc-send Nicole-jlocsend">发送当前定位</button></div></div></div><div class="Nicole-mf Nicole-jemomodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>选择表情与互动</span><div class="Nicole-mc Nicole-jemoclose">&times;</div></div><div class="Nicole-emo-games"><div class="Nicole-emo-gamebtn jemo-poke"><svg viewBox="0 0 24 24"><path d="M11 2a2 2 0 0 0-2 2v5H6a2 2 0 0 0-2 2v2c0 4.4 3.6 8 8 8h3a5 5 0 0 0 5-5v-6a2 2 0 0 0-2-2h-3V4a2 2 0 0 0-2-2z"/></svg>戳一戳</div><div class="Nicole-emo-gamebtn jemo-dice"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><circle cx="15.5" cy="15.5" r="1.5"/><circle cx="15.5" cy="8.5" r="1.5"/><circle cx="8.5" cy="15.5" r="1.5"/><circle cx="12" cy="12" r="1.5"/></svg>摇骰子</div><div class="Nicole-emo-gamebtn jemo-rps"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>猜拳</div><div class="Nicole-emo-addbtn Nicole-jaddemobtn" title="添加表情"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div></div><div class="Nicole-emo Nicole-jemolist"></div></div></div><div class="Nicole-mf Nicole-jmumodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>一起听歌</span><div class="Nicole-mc Nicole-jmuclose">&times;</div></div><div class="Nicole-mu"><div class="Nicole-mu-stage"><div class="Nicole-mu-face Nicole-jmuf1 Nicole-bind-lav"></div><div class="Nicole-mu-waves Nicole-jmuwaves"><span class="Nicole-wave"></span><span class="Nicole-wave"></span><span class="Nicole-wave"></span></div><div class="Nicole-mu-face Nicole-jmuf2 Nicole-bind-rav"></div></div><div class="Nicole-mu-time-disp">累计听歌: <span id="Nc-mutime-val">0</span> 分钟</div><div class="Nicole-mu-now Nicole-jmunow" style="text-align:center;font-size:13px;color:#555;font-weight:400;">未在播放</div><div class="Nicole-mu-ctrl"><div class="Nicole-mu-btn Nicole-jmuprev"><svg viewBox="0 0 24 24"><polygon points="19 20 9 12 19 4 19 20" fill="none" stroke="#222" stroke-width="1.5"/><line x1="5" y1="19" x2="5" y2="5" stroke="#222" stroke-width="1.5"/></svg></div><div class="Nicole-mu-btn main Nicole-jmuplay"><svg class="Nicole-jmuicon" viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4" fill="#222"/></svg></div><div class="Nicole-mu-btn Nicole-jmunext"><svg viewBox="0 0 24 24"><polygon points="5 4 15 12 5 20 5 4" fill="none" stroke="#222" stroke-width="1.5"/><line x1="19" y1="5" x2="19" y2="19" stroke="#222" stroke-width="1.5"/></svg></div><div class="Nicole-mu-btn Nicole-jmu-mode" title="播放模式"><svg class="Nicole-jmu-mode-icon" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4" fill="none" stroke="#222" stroke-width="1.5"/><path d="M3 11V9a4 4 0 0 1 4-4h14" fill="none" stroke="#222" stroke-width="1.5"/><path d="M7 23l-4-4 4-4" fill="none" stroke="#222" stroke-width="1.5"/><path d="M21 13v2a4 4 0 0 1-4 4H3" fill="none" stroke="#222" stroke-width="1.5"/></svg></div><div class="Nicole-mu-btn Nicole-jmu-danmu active" title="歌词弹幕"><svg viewBox="0 0 24 24"><path d="M3 6h18v10H7l-4 4V6z" fill="none" stroke="#222" stroke-width="1.5"/><line x1="7" y1="10" x2="17" y2="10" stroke="#222" stroke-width="1.5"/><line x1="7" y1="13" x2="13" y2="13" stroke="#222" stroke-width="1.5"/></svg></div></div><div class="Nicole-mu-playlist-bar"><select class="Nicole-mu-playlist-select Nicole-jmu-playlist-select"></select><button class="Nicole-mu-playlist-add Nicole-jmu-playlist-add" title="新建歌单">+</button><button class="Nicole-mu-playlist-del Nicole-jmu-playlist-del" title="删除歌单">×</button></div><div class="Nicole-mu-inputs"><input type="text" class="Nicole-mu-name Nicole-jmuname" placeholder="歌曲名称"><input type="text" class="Nicole-mu-artist Nicole-jmuartist" placeholder="歌手名"><input type="text" class="Nicole-mu-cover Nicole-jmucover" placeholder="专辑封面URL直链 (可选)"><div class="Nicole-mu-search-row"><input type="text" class="Nicole-mu-inp Nicole-jmuinp" placeholder="单曲直链或网易云ID"><button class="Nicole-mu-search Nicole-jmu-search">搜索</button><button class="Nicole-mu-add Nicole-jmuaddbtn">添加</button></div></div><div class="Nicole-mu-list Nicole-jmulist"></div><button class="Nicole-mu-invbtn Nicole-jmuinv">发送一起听歌邀请</button></div></div></div><div class="Nicole-mf Nicole-jcpmodal"><div class="Nicole-mbox"><div class="Nicole-mh"><span>情侣空间</span><div class="Nicole-mc Nicole-jcpclose">&times;</div></div><div class="Nicole-cp"><div class="Nicole-cp-top"><div class="Nicole-cp-avs"><div class="Nicole-cp-face Nicole-bind-lav"></div><div class="Nicole-cp-face Nicole-jcpf2 Nicole-bind-rav"></div></div><div class="Nicole-cp-id-group"><span class="Nicole-bind-lnm"></span> & <span class="Nicole-bind-rnm"></span></div></div><div class="Nicole-cp-rel Nicole-jcprel"></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg> 个性签名</div><div class="Nicole-sign-mod"><div class="Nicole-sign-hd"><div class="Nicole-cp-face Nicole-bind-lav" style="width:30px;height:30px;border-width:.5px;"></div><div class="Nicole-cp-id-group Nicole-bind-lnm" style="font-size:12px;"></div></div><div class="Nicole-sign-bd Nicole-jcsign"></div></div><div class="Nicole-sign-mod" style="margin-top:12px; background:rgba(255,255,255,.9); border:.5px solid rgba(0,0,0,.03);"><div class="Nicole-sign-hd"><div class="Nicole-cp-face Nicole-bind-rav" style="width:30px;height:30px;margin-left:0;border-width:.5px;"></div><div class="Nicole-cp-id-group Nicole-bind-rnm" style="font-size:12px;"></div><div class="Nicole-signdel Nicole-jsigndel" title="删除个签"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></div></div><div class="Nicole-sign-bd Nicole-jusign-disp"></div><div class="Nicole-sign-act"><input type="text" class="Nicole-jusignin" placeholder="输入新签名..."><button class="Nicole-jusignsave">发布更新</button></div></div></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> 想做的小事</div><div class="Nicole-cp-things Nicole-jcpthings"></div><div class="Nicole-cp-addrow"><select class="Nicole-jcpwho"><option value="Me">我</option><option value="You">对方</option></select><input type="text" class="Nicole-jcpthingin" placeholder="添加待办..."><button class="Nicole-jcpthingadd">加</button></div></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 纪念日</div><div class="Nicole-cp-days Nicole-jcpdays"></div><div class="Nicole-cp-addrow"><input type="text" class="Nicole-jcpdayname" placeholder="事件名称"><input type="date" class="Nicole-jcpdaydate"><button class="Nicole-jcpdayadd">加</button></div></div><div class="Nicole-cp-sec"><div class="Nicole-cp-h"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> 相册与图文</div><div class="Nicole-cp-albums Nicole-jcpalbums"></div><div class="Nicole-cp-addrow"><input type="text" class="Nicole-jcpalbumtxt" placeholder="这一刻的想法..." style="min-width:30px;"><input type="text" class="Nicole-jcpalbumimg" placeholder="图片URL直链(可选)" style="min-width:50px;"><button class="Nicole-jcpalbumadd">上传</button></div></div></div></div></div></div></div></div>
 
 <div id="Nc-Data-1" style="display:none;">$1</div><div id="Nc-Data-2" style="display:none;">$2</div><div id="Nc-Data-3" style="display:none;">$3</div><div id="Nc-Data-4" style="display:none;">$4</div><div id="Nc-Data-5" style="display:none;">$5</div><div id="Nc-Data-6" style="display:none;">$6</div><div id="Nc-Data-7" style="display:none;">$7</div><div id="Nc-Data-8" style="display:none;">$8</div><div id="Nc-Data-9" style="display:none;">$9</div><div id="Nc-Data-10" style="display:none;">$10</div><div id="Nc-Data-11" style="display:none;">$11</div><div id="Nc-Data-12" style="display:none;">$12</div><div id="Nc-Data-13" style="display:none;">$13</div><div id="Nc-Data-14" style="display:none;">$14</div><div id="Nc-Data-15" style="display:none;">$15</div></div>`;
 function getTavernChar(){
@@ -1192,8 +1454,8 @@ function buildExtension(){
     if (window.innerWidth <= 768){
         // 移动端：用left/top像素定位，避免html的transform导致bottom/right相对于html而非视口计算
         var btnW=38, btnH=38;
-        var left = Math.max(0, window.innerWidth - btnW - 20);
-        var top = Math.max(0, window.innerHeight - btnH - 20);
+        var left = Math.max(0, window.innerWidth - btnW - 16);
+        var top = Math.max(0, window.innerHeight - btnH - 96);
         floatEl.style.cssText='position:fixed!important;left:'+left+'px!important;top:'+top+'px!important;right:auto!important;bottom:auto!important;z-index:999999!important;display:block!important;width:'+btnW+'px!important;height:'+btnH+'px!important;';
         // 强制设置面板位置为顶部，避免旧inline style或拖动位置残留
         var panelEl = document.getElementById(PANEL_ID);
@@ -1529,11 +1791,79 @@ function initPhone(scope, charInfo, userInfo){
         var c=getCtx();if(!c)return;
         try{if(c.state==='suspended')c.resume();var o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(600,c.currentTime);o.frequency.exponentialRampToValueAtTime(1200,c.currentTime+0.1);g.gain.setValueAtTime(0,c.currentTime);g.gain.linearRampToValueAtTime(0.2,c.currentTime+0.05);g.gain.linearRampToValueAtTime(0,c.currentTime+0.1);o.connect(g);g.connect(c.destination);o.start();o.stop(c.currentTime+0.1);}catch(e){}
     }
-    var customRingUrl='https://img.tofaka.com/autoupload/fr/FEa8MSJpCzGxfJi7iutvFIt1IPL8766yrPDdOXw-v_Gyl5f0KlZfm6UsKj-HyTuv/20260710/p0sY/fbeb6ae52fc3e760622f341158564a53.mp3';
-    var callRingMp3=null;
-    try{callRingMp3=new Audio(customRingUrl);callRingMp3.loop=true;}catch(e){}
-    function playRing(){if(callRingMp3){callRingMp3.play().catch(function(e){});}}
-    function stopRing(){if(callRingMp3){callRingMp3.pause();callRingMp3.currentTime=0;}}
+    var customRingUrl='https://audio.fukit.cn/autoupload/f/hMNqtPtx-G5PCe5Tdk4NxqNdx9J-4ccugcpyhybV9Yo/20260526/XyjZ/4b534499b26185b288e0fe1650638afa.mp3';
+    var callRingMp3=null,ringRetryTimer=null,ringCtx=null,ringOsc=null,ringGain=null,ringInterval=null;
+    try{callRingMp3=new Audio();callRingMp3.src=customRingUrl;callRingMp3.loop=true;callRingMp3.volume=0.8;callRingMp3.preload='auto';callRingMp3.crossOrigin='anonymous';}catch(e){}
+    // Web Audio API 兜底铃声（振荡器模拟电话铃声）
+    function startWebAudioRing(){
+        try{
+            if(!ringCtx){ringCtx=new (window.AudioContext||window.webkitAudioContext)();}
+            if(ringCtx.state==='suspended')ringCtx.resume();
+            stopWebAudioRing();
+            var pattern=0;
+            ringInterval=setInterval(function(){
+                try{
+                    if(ringOsc){try{ringOsc.stop();}catch(e){}}
+                    ringOsc=ringCtx.createOscillator();
+                    ringGain=ringCtx.createGain();
+                    ringOsc.type='sine';
+                    // 交替频率模拟电话铃声：嘟-嘟-嘟
+                    ringOsc.frequency.setValueAtTime(pattern%2===0?620:480,ringCtx.currentTime);
+                    ringGain.gain.setValueAtTime(0,ringCtx.currentTime);
+                    ringGain.gain.linearRampToValueAtTime(0.3,ringCtx.currentTime+0.02);
+                    ringGain.gain.linearRampToValueAtTime(0,ringCtx.currentTime+0.4);
+                    ringOsc.connect(ringGain);ringGain.connect(ringCtx.destination);
+                    ringOsc.start(ringCtx.currentTime);
+                    ringOsc.stop(ringCtx.currentTime+0.45);
+                    pattern++;
+                }catch(e){}
+            },500);
+        }catch(e){}
+    }
+    function stopWebAudioRing(){
+        if(ringInterval){clearInterval(ringInterval);ringInterval=null;}
+        if(ringOsc){try{ringOsc.stop();}catch(e){}ringOsc=null;}
+        if(ringGain){try{ringGain.disconnect();}catch(e){}ringGain=null;}
+    }
+    function playRing(){
+        // 先强制解锁音频
+        unlockAudio();
+        if(!callRingMp3){try{callRingMp3=new Audio();callRingMp3.src=customRingUrl;callRingMp3.loop=true;callRingMp3.volume=0.8;callRingMp3.crossOrigin='anonymous';}catch(e){}}
+        // 先启动Web Audio兜底（确保一定有声音）
+        startWebAudioRing();
+        // 再尝试HTMLAudioElement播放用户的mp3
+        try{
+            callRingMp3.currentTime=0;
+            var p=callRingMp3.play();
+            if(p&&typeof p.catch==='function'){
+                p.then(function(){
+                    // HTMLAudio播放成功，停止Web Audio兜底
+                    stopWebAudioRing();
+                }).catch(function(){
+                    // HTMLAudio播放失败，继续用Web Audio兜底
+                    console.log('[nicoPhone] 铃声mp3播放失败，使用Web Audio兜底');
+                });
+            }
+        }catch(e){console.log('[nicoPhone] 铃声播放异常，使用Web Audio兜底',e);}
+    }
+    function stopRing(){if(callRingMp3){callRingMp3.pause();callRingMp3.currentTime=0;}if(ringRetryTimer){clearTimeout(ringRetryTimer);ringRetryTimer=null;}stopWebAudioRing();}
+    // 用户交互解锁音频（浏览器自动播放策略）- 每次交互都尝试，确保来电时能播放
+    var audioUnlocked=false;
+    function unlockAudio(){
+        try{
+            // 解锁HTMLAudioElement
+            if(callRingMp3){callRingMp3.muted=true;callRingMp3.play().then(function(){callRingMp3.pause();callRingMp3.currentTime=0;callRingMp3.muted=false;audioUnlocked=true;}).catch(function(){});}
+            // 解锁Web Audio API
+            if(!ringCtx){try{ringCtx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}
+            if(ringCtx&&ringCtx.state==='suspended'){ringCtx.resume().then(function(){audioUnlocked=true;}).catch(function(){});}
+            // 解锁音乐播放器
+            if(typeof muAudio!=='undefined'&&muAudio){muAudio.muted=true;muAudio.play().then(function(){muAudio.pause();muAudio.muted=false;}).catch(function(){});}
+        }catch(e){}
+    }
+    document.addEventListener('click',unlockAudio);
+    document.addEventListener('touchstart',unlockAudio);
+    document.addEventListener('keydown',unlockAudio);
+    document.addEventListener('scroll',unlockAudio);
 
     function appendCmd(cmd){
         var inputEl=document.querySelector('#send_textarea')||document.querySelector('.commentInput')||document.querySelector('textarea');
@@ -1612,6 +1942,75 @@ function initPhone(scope, charInfo, userInfo){
         stickyBtn.addEventListener('click',function(){var val=stickyTxt.value;NcStore.set('Nc-sticky-note',val);playSwoosh();appendCmd('$[更新便签:'+val+']');renderSysMsg('主界面便签已更新并同步');stickyTxt.blur();});
     }
 
+    // ===== 日历组件（黑白灰高级简洁）=====
+    var calCurDate=new Date();
+    var calSelected=null;
+    function renderCalendar(){
+        try{
+            var year=calCurDate.getFullYear();
+            var month=calCurDate.getMonth();
+            var titleEl=Q('.Nicole-jcal-title');
+            if(titleEl)titleEl.textContent=year+'年'+(month+1)+'月';
+            var firstDay=new Date(year,month,1).getDay();
+            var daysInMonth=new Date(year,month+1,0).getDate();
+            var today=new Date();
+            var html='';
+            for(var ci=0;ci<firstDay;ci++){html+='<div class="Nicole-cal-day empty"></div>';}
+            for(var cd=1;cd<=daysInMonth;cd++){
+                var cIsToday=(today.getFullYear()===year&&today.getMonth()===month&&today.getDate()===cd);
+                var cIsSel=(calSelected&&calSelected.getFullYear()===year&&calSelected.getMonth()===month&&calSelected.getDate()===cd);
+                html+='<div class="Nicole-cal-day'+(cIsToday?' today':'')+(cIsSel?' selected':'')+'" data-day="'+cd+'">'+cd+'</div>';
+            }
+            var daysEl=Q('.Nicole-jcal-days');
+            if(daysEl)daysEl.innerHTML=html;
+            QA('.Nicole-cal-day:not(.empty)').forEach(function(el){
+                el.addEventListener('click',function(){
+                    var day=parseInt(this.getAttribute('data-day'));
+                    calSelected=new Date(year,month,day);
+                    var saved=calSelected.getFullYear()+'-'+String(calSelected.getMonth()+1).padStart(2,'0')+'-'+String(calSelected.getDate()).padStart(2,'0');
+                    NcStore.set('Nc-cal-selected',saved);
+                    var footEl=Q('.Nicole-jcal-foot');
+                    if(footEl)footEl.textContent='已设: '+saved;
+                    renderCalendar();
+                });
+            });
+        }catch(e){console.log('[Nicole] calendar render error:',e);}
+    }
+    var calPrev=Q('.Nicole-jcal-prev'),calNext=Q('.Nicole-jcal-next'),calTitle=Q('.Nicole-jcal-title'),calDateInput=Q('.Nicole-jcal-dateinput');
+    if(calPrev)calPrev.addEventListener('click',function(){calCurDate.setMonth(calCurDate.getMonth()-1);renderCalendar();});
+    if(calNext)calNext.addEventListener('click',function(){calCurDate.setMonth(calCurDate.getMonth()+1);renderCalendar();});
+    // 点击标题切换为日期输入框
+    if(calTitle&&calDateInput){
+        calTitle.addEventListener('click',function(){
+            calTitle.style.display='none';
+            calDateInput.style.display='block';
+            var y=calCurDate.getFullYear(),m=String(calCurDate.getMonth()+1).padStart(2,'0'),d=String(calCurDate.getDate()).padStart(2,'0');
+            calDateInput.value=y+'-'+m+'-'+d;
+            setTimeout(function(){calDateInput.focus();calDateInput.showPicker&&calDateInput.showPicker();},50);
+        });
+        function applyDateInput(){
+            var val=calDateInput.value;
+            if(val){
+                var parts=val.split('-');
+                var y=parseInt(parts[0]),m=parseInt(parts[1])-1,d=parseInt(parts[2]);
+                calCurDate=new Date(y,m,1);
+                calSelected=new Date(y,m,d);
+                NcStore.set('Nc-cal-selected',val);
+                var cfootEl=Q('.Nicole-jcal-foot');
+                if(cfootEl)cfootEl.textContent='已设: '+val;
+                renderCalendar();
+            }
+            calDateInput.style.display='none';
+            calTitle.style.display='';
+        }
+        calDateInput.addEventListener('change',applyDateInput);
+        calDateInput.addEventListener('blur',function(){setTimeout(function(){if(calDateInput.style.display!=='none'){calDateInput.style.display='none';calTitle.style.display='';}},150);});
+        calDateInput.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();applyDateInput();}});
+    }
+    var savedCal=NcStore.get('Nc-cal-selected');
+    if(savedCal){try{var cparts=savedCal.split('-');calSelected=new Date(parseInt(cparts[0]),parseInt(cparts[1])-1,parseInt(cparts[2]));var cfootEl=Q('.Nicole-jcal-foot');if(cfootEl)cfootEl.textContent='已设: '+savedCal;}catch(e){}}
+    renderCalendar();
+
     Q('.Nicole-jhd-back').addEventListener('click',function(){
         var cls=Q('.Nicole-jchatlist-screen');
         if(cls){renderChatListScreen();cls.classList.add('show');}
@@ -1619,6 +2018,550 @@ function initPhone(scope, charInfo, userInfo){
     Q('#app-wechat').addEventListener('click',function(){if(homeScreen)homeScreen.classList.remove('active');renderChatListScreen();var cls=Q('.Nicole-jchatlist-screen');if(cls)cls.classList.add('show');});
     Q('.Nicole-japp-back').addEventListener('click',function(){appPanel.classList.remove('show');});
     Q('#app-phone').addEventListener('click',function(){appPanel.classList.add('show');renderPhoneTab('recents');});
+    // ===== 主桌面四个App =====
+    var app2Panel=Q('.Nicole-japp2-panel'),app2Title=Q('.Nicole-japp2-title'),app2Body=Q('.Nicole-japp2-body');
+    Q('.Nicole-japp2-back').addEventListener('click',function(){app2Panel.classList.remove('show');stopDyDanmaku();});
+    function openApp(type){
+        app2Panel.classList.add('show');
+        if(type==='gallery'){app2Title.textContent='相册';renderGalleryApp();}
+        else if(type==='douyin'){app2Title.textContent='抖音';renderDouyinApp();}
+        else if(type==='ins'){app2Title.textContent='Instagram';renderInsApp();}
+        else if(type==='weibo'){app2Title.textContent='微博';renderWeiboApp();}
+        else if(type==='couple'){app2Title.textContent='情侣问答';renderCoupleApp();}
+        else if(type==='memo'){app2Title.textContent='备忘录';renderMemoApp();}
+    }
+    Q('#app-gallery').addEventListener('click',function(){playSwoosh();openApp('gallery');});
+    Q('#app-douyin').addEventListener('click',function(){playSwoosh();openApp('douyin');});
+    Q('#app-ins').addEventListener('click',function(){playSwoosh();openApp('ins');});
+    Q('#app-weibo').addEventListener('click',function(){playSwoosh();openApp('weibo');});
+    Q('#app-couple').addEventListener('click',function(){playSwoosh();openApp('couple');});
+    Q('#app-memo').addEventListener('click',function(){playSwoosh();openApp('memo');});
+
+    // ===== 音乐搜索播放核心引擎 (多引擎兜底搜索+真实Audio播放) =====
+    var MUSIC_API='https://music-api.gdstudio.xyz/api.php';
+    var muAudio=new Audio();muAudio.loop=false;muAudio.volume=0.6;
+    // 带超时的fetch辅助函数
+    function muFetch(url,timeout){var c=new AbortController();var tm=setTimeout(function(){c.abort();},timeout||8000);return fetch(url,{signal:c.signal}).then(function(r){clearTimeout(tm);return r;}).catch(function(e){clearTimeout(tm);throw e;});}
+    function muCheckUrl(url){return new Promise(function(res){if(!url)return res(false);var t=new Audio();t.muted=true;t.crossOrigin='anonymous';var tm=setTimeout(function(){res(false);},2000);t.oncanplay=function(){clearTimeout(tm);res(t.duration>2);};t.onerror=function(){clearTimeout(tm);res(false);};t.src=url;});}
+    // 搜索关键词清洗：去掉括号/特殊字符，提高命中率
+    function muCleanQuery(q){return q.replace(/\([^)]*\)/g,'').replace(/\[.*?\]/g,'').replace(/[^\w\u4e00-\u9fa5\s.-]/g,'').trim();}
+    // 搜索结果缓存（内存）
+    var muSearchCache={};
+    // 并行搜索所有引擎，取第一个成功的结果
+    async function muResolve(query){
+        var cleanQ=muCleanQuery(query);
+        if(!cleanQ)cleanQ=query;
+        var cacheKey=cleanQ.toLowerCase();
+        if(muSearchCache[cacheKey])return muSearchCache[cacheKey];
+        var engines=[
+            {name:'网易云',fn:function(){return muSearchGD('netease',cleanQ);}},
+            {name:'QQ音乐',fn:function(){return muSearchGD('tencent',cleanQ);}},
+            {name:'酷狗',fn:function(){return muSearchGD('kugou',cleanQ);}},
+            {name:'酷我',fn:function(){return muSearchGD('kuwo',cleanQ);}},
+            {name:'Joox',fn:function(){return muSearchGD('joox',cleanQ);}},
+            {name:'Qijieya',fn:function(){return muSearchQj(cleanQ);}}
+        ];
+        return new Promise(function(resolve){
+            var done=false,finished=0;
+            engines.forEach(function(eng){
+                eng.fn().then(function(hit){
+                    if(!done&&hit){done=true;muSearchCache[cacheKey]=hit;resolve(hit);}
+                }).catch(function(){}).finally(function(){
+                    finished++;
+                    if(finished===engines.length&&!done)resolve(null);
+                });
+            });
+            // 10秒总超时保护
+            setTimeout(function(){if(!done){done=true;resolve(null);}},10000);
+        });
+    }
+    async function muSearchGD(source,query){
+        try{
+            var sr=await muFetch(MUSIC_API+'?types=search&count=8&source='+source+'&name='+encodeURIComponent(query)).then(function(r){return r.json();});
+            if(!sr||!sr.length)return null;
+            for(var i=0;i<sr.length;i++){
+                var item=sr[i],finalUrl='';
+                if(source==='netease'){
+                    try{
+                        var rr=await muFetch('https://v.iarc.top/?type=url&id='+item.id,6000);
+                        if(rr.ok){
+                            var ct=rr.headers.get('content-type')||'';
+                            if(rr.url&&rr.url!=='https://v.iarc.top/?type=url='+item.id&&!ct.includes('json')){finalUrl=rr.url;}
+                            else{var jr=await rr.json();finalUrl=(Array.isArray(jr)&&jr[0])?jr[0].url:(jr.url||(jr.data&&jr.data.url));}
+                        }
+                    }catch(e){}
+                    if(finalUrl&&finalUrl.indexOf('http://')===0)finalUrl=finalUrl.replace('http://','https://');
+                }else{
+                    try{
+                        var ur=await muFetch(MUSIC_API+'?types=url&source='+source+'&id='+item.id+'&br=320',6000).then(function(r){return r.json();});
+                        if(ur&&ur.url)finalUrl=ur.url;
+                    }catch(e){}
+                }
+                if(finalUrl&&await muCheckUrl(finalUrl))return {url:finalUrl,name:item.name,artist:item.artist||item.author||'',source:source,id:item.id};
+            }
+        }catch(e){}return null;
+    }
+    async function muSearchQj(query){
+        try{
+            var sr=await muFetch('https://api.qijieya.cn/meting/?server=netease&type=search&name='+encodeURIComponent(query)).then(function(r){return r.json();});
+            if(!sr||!sr.length)return null;
+            for(var i=0;i<sr.length;i++){
+                if(sr[i].url&&await muCheckUrl(sr[i].url))return {url:sr[i].url,name:sr[i].name,artist:sr[i].artist||sr[i].author||'',source:'qijieya',id:sr[i].id||sr[i].lrc_id};
+            }
+        }catch(e){}return null;
+    }
+
+    // ===== MP3播放器逻辑 (iOS通知栏风格，歌曲从聊天一起听同步) =====
+    var mp3Songs=[{title:'未在播放',artist:'聊天界面一起听歌后自动同步',duration:1,cover:''}];
+    var mp3Idx=0,mp3Playing=false,mp3Timer=null,mp3Cur=0,mp3LastSynced='';
+    function mp3Fmt(s){s=Math.floor(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+    function mp3UpdateUI(){
+        var s=mp3Songs[mp3Idx];
+        Q('#mp3-title').textContent=s.title;
+        Q('#mp3-artist').textContent=s.artist;
+        Q('#mp3-total').textContent=mp3Fmt(s.duration);
+        Q('#mp3-cur').textContent=mp3Fmt(mp3Cur);
+        var pct=s.duration>1?(mp3Cur/s.duration)*100:0;
+        Q('#mp3-bar').style.width=pct+'%';
+        Q('#mp3-dot').style.left=pct+'%';
+        var player=Q('.Nicole-mp3-player');
+        if(player)player.classList.toggle('playing',mp3Playing);
+        var icon=Q('#mp3-play-icon');
+        if(icon){icon.innerHTML=mp3Playing?'<rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect>':'<polygon points="6 4 20 12 6 20 6 4"></polygon>';}
+    }
+    function mp3Play(){
+        var s=mp3Songs[mp3Idx];
+        if(s.duration<=1&&!s.url)return;
+        if(s.url&&muAudio.src!==s.url){muAudio.src=s.url;}
+        if(!s.url&&s.title&&s.title!=='未在播放'){
+            mp3SearchAndPlay(s.title+(s.artist&&s.artist!=='未知歌手'?' '+s.artist:''));
+            return;
+        }
+        muAudio.play().catch(function(){});
+        mp3Playing=true;mp3UpdateUI();
+        // 启动歌词弹幕
+        if(s.title&&s.title!=='未在播放'){fetchDanmuLyrics(s.title,s.artist);startDanmuTimer();}
+    }
+    function mp3Pause(){muAudio.pause();mp3Playing=false;stopDanmuTimer();mp3UpdateUI();}
+    function mp3Toggle(){if(mp3Playing){mp3Pause();}else{mp3Play();}}
+    function mp3Next(){if(mp3Songs.length<=1){muAudio.currentTime=0;mp3UpdateUI();return;}mp3Idx=(mp3Idx+1)%mp3Songs.length;if(mp3Playing){mp3Play();}else{mp3UpdateUI();}}
+    function mp3Prev(){if(mp3Songs.length<=1){muAudio.currentTime=0;mp3UpdateUI();return;}mp3Idx=(mp3Idx-1+mp3Songs.length)%mp3Songs.length;if(mp3Playing){mp3Play();}else{mp3UpdateUI();}}
+    async function mp3SearchAndPlay(query){
+        var titleEl=Q('#mp3-title');if(titleEl)titleEl.textContent='搜索中...';
+        var hit=await muResolve(query);
+        if(hit){
+            mp3Songs=[{title:hit.name,artist:hit.artist||'未知歌手',duration:240,cover:'',url:hit.url}];
+            mp3Idx=0;muAudio.src=hit.url;muAudio.play().catch(function(){});mp3Playing=true;
+            // 启动歌词弹幕
+            fetchDanmuLyrics(hit.name,hit.artist);startDanmuTimer();
+        }else{
+            if(titleEl)titleEl.textContent='未找到音源';
+            setTimeout(function(){mp3UpdateUI();},1500);
+        }
+        mp3UpdateUI();
+    }
+    muAudio.addEventListener('timeupdate',function(){
+        if(!muAudio.duration)return;
+        mp3Cur=muAudio.currentTime;
+        var pct=(muAudio.currentTime/muAudio.duration)*100;
+        Q('#mp3-bar').style.width=pct+'%';
+        Q('#mp3-dot').style.left=pct+'%';
+        Q('#mp3-cur').textContent=mp3Fmt(muAudio.currentTime);
+        Q('#mp3-total').textContent=mp3Fmt(muAudio.duration);
+    });
+    muAudio.addEventListener('play',function(){mp3Playing=true;mp3UpdateUI();});
+    muAudio.addEventListener('pause',function(){mp3Playing=false;mp3UpdateUI();});
+    muAudio.addEventListener('ended',function(){mp3Next();});
+    function mp3SyncFromChat(){
+        try{
+            var nameEl=Q('.Nicole-jmuname'),artistEl=Q('.Nicole-jmuartist'),coverEl=Q('.Nicole-jmucover'),urlEl=Q('.Nicole-jmuinp');
+            var name=nameEl?nameEl.value.trim():'',artist=artistEl?artistEl.value.trim():'',cover=coverEl?coverEl.value.trim():'';
+            var url=urlEl?urlEl.value.trim():'';
+            // 只在歌名变化时才同步，避免干扰顶部播放器的独立播放
+            if(name&&name!==mp3LastSynced){
+                mp3LastSynced=name;
+                mp3Songs=[{title:name,artist:artist||'未知歌手',duration:240,cover:cover,url:url}];
+                mp3Idx=0;mp3Cur=0;
+                var playIcon=Q('.Nicole-jmuicon');
+                var isPlaying=playIcon&&(playIcon.innerHTML.indexOf('pause')>-1||playIcon.innerHTML.indexOf('rect')>-1);
+                if(isPlaying){
+                    // 一起听在播放，同步播放并启动弹幕
+                    if(url){muAudio.src=url;muAudio.play().catch(function(){});}
+                    else{mp3SearchAndPlay(name+(artist?' '+artist:''));}
+                    fetchDanmuLyrics(name,artist);startDanmuTimer();
+                }
+                // 一起听没播放时，不要暂停顶部播放器，让它独立播放
+            }
+        }catch(e){}
+    }
+    Q('#mp3-play').addEventListener('click',function(){mp3Toggle();});
+    Q('#mp3-next').addEventListener('click',function(){mp3Next();});
+    Q('#mp3-prev').addEventListener('click',function(){mp3Prev();});
+    Q('#mp3-progress').addEventListener('click',function(e){
+        if(!muAudio.duration)return;
+        var rect=this.getBoundingClientRect();
+        var pct=(e.clientX-rect.left)/rect.width;
+        muAudio.currentTime=muAudio.duration*pct;
+    });
+    // 点击歌名/歌手名搜索
+    Q('#mp3-title').addEventListener('click',function(){
+        var q=prompt('输入歌曲名（可加歌手名）：',mp3Songs[mp3Idx].title==='未在播放'?'':mp3Songs[mp3Idx].title);
+        if(q&&q.trim()){mp3LastSynced=q.trim();mp3SearchAndPlay(q.trim());}
+    });
+    Q('#mp3-artist').addEventListener('click',function(){
+        var q=prompt('输入歌曲名（可加歌手名）：',mp3Songs[mp3Idx].title==='未在播放'?'':mp3Songs[mp3Idx].title);
+        if(q&&q.trim()){mp3LastSynced=q.trim();mp3SearchAndPlay(q.trim());}
+    });
+    Q('#mp3-title').style.cursor='pointer';
+    Q('#mp3-artist').style.cursor='pointer';
+    setInterval(mp3SyncFromChat,2000);
+    mp3UpdateUI();
+
+    // ===== 抖音App =====
+    var dyDanmakuTimer=null,dyVideos=[],dyCurIdx=0;
+    function stopDyDanmaku(){if(dyDanmakuTimer){clearInterval(dyDanmakuTimer);dyDanmakuTimer=null;}}
+    function getCharInfo(){
+        var name='未知角色',desc='',worldInfo='',personality='',scenario='',firstMes='';
+        try{if(window.character&&window.character.name)name=window.character.name;}catch(e){}
+        try{if(window.character&&window.character.description)desc=window.character.description.substring(0,800);}catch(e){}
+        try{if(window.character&&window.character.personality)personality=window.character.personality.substring(0,500);}catch(e){}
+        try{if(window.character&&window.character.scenario)scenario=window.character.scenario.substring(0,500);}catch(e){}
+        try{if(window.character&&window.character.first_mes)firstMes=window.character.first_mes.substring(0,300);}catch(e){}
+        try{
+            if(window.character){
+                var wi=window.character.world_info||window.character.worldInfo||window.character.character_book||'';
+                if(wi&&typeof wi==='string')worldInfo=wi.substring(0,1000);
+                else if(wi&&wi.entries){try{worldInfo=JSON.stringify(wi.entries).substring(0,1000);}catch(e){}}
+            }
+        }catch(e){}
+        if(!name||name==='未知角色'){var ne=document.querySelector('.char-name,#ch_name,.character-name');if(ne&&ne.textContent)name=ne.textContent.trim();}
+        return {name:name,desc:desc,worldInfo:worldInfo,personality:personality,scenario:scenario,firstMes:firstMes};
+    }
+    function getStoryContext(){
+        try{
+            var msgs=document.querySelectorAll('#chat .mes, .chat-message, [class*="message"]');
+            var arr=[];
+            for(var i=Math.max(0,msgs.length-8);i<msgs.length;i++){
+                var t=msgs[i].textContent||'';
+                if(t&&t.trim().length>0&&t.trim().length<300)arr.push(t.trim().substring(0,150));
+            }
+            return arr.join('\n');
+        }catch(e){return '';}
+    }
+    function randUsername(){
+        var adjs=['迷路的','吃瓜的','熬夜的','摸鱼的','社恐的','话痨的','佛系的','暴躁的','温柔的','神秘的','摆烂的','卷王'];
+        var nouns=['小猫','小狗','兔子','狐狸','熊猫','企鹅','海豚','松鼠','刺猬','考拉','水獭','羊驼'];
+        return adjs[Math.floor(Math.random()*adjs.length)]+nouns[Math.floor(Math.random()*nouns.length)]+Math.floor(Math.random()*999);
+    }
+    function renderDouyinApp(){
+        stopDyDanmaku();var charInfo=getCharInfo();var avatarUrl=safeLAv||'';
+        var html='<div class="Nicole-dy-feed" id="dy-feed">';
+        html+='<div class="Nicole-dy-topbar"><span class="Nicole-dy-topbar-title">抖音</span><div class="Nicole-dy-refresh" id="dy-refresh">刷新</div></div>';
+        html+='<div class="Nicole-dy-video-nav prev" id="dy-prev"></div><div class="Nicole-dy-video-nav next" id="dy-next"></div>';
+        html+='<div class="Nicole-dy-video"><div class="Nicole-dy-video-placeholder"><div class="Nicole-dy-text-img" id="dy-text-img">点击「刷新」生成随机剧情相关内容</div></div><div class="Nicole-dy-video-overlay"></div></div>';
+        html+='<div class="Nicole-dy-video-indicator" id="dy-indicator"></div>';
+        html+='<div class="Nicole-dy-danmaku" id="dy-danmaku"></div>';
+        html+='<div class="Nicole-dy-right-bar">';
+        html+='<div class="Nicole-dy-action" id="dy-like"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg><span id="dy-like-count">0</span></div>';
+        html+='<div class="Nicole-dy-action" id="dy-comment-btn"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span id="dy-comment-count">0</span></div>';
+        html+='<div class="Nicole-dy-action"><svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg><span id="dy-share-count">0</span></div>';
+        html+='</div>';
+        html+='<div class="Nicole-dy-bottom-info"><div class="Nicole-dy-author" id="dy-author">@'+randUsername()+'</div>';
+        html+='<div class="Nicole-dy-desc" id="dy-desc">点击「刷新」随机生成剧情相关抖音视频（不少于5条），点击视频左右两侧切换</div>';
+        html+='<div class="Nicole-dy-music"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg><span id="dy-music">原声 - '+charInfo.name+'</span></div></div>';
+        html+='<div class="Nicole-dy-comment-panel" id="dy-comment-panel"><div class="Nicole-dy-comment-hd"><span id="dy-comment-title">评论</span><div class="Nicole-dy-comment-close" id="dy-comment-close">×</div></div><div class="Nicole-dy-comment-list" id="dy-comment-list"></div></div>';
+        html+='</div>';
+        app2Body.innerHTML=html;
+        Q('#dy-refresh').addEventListener('click',function(){dyGenerateContent();});
+        Q('#dy-like').addEventListener('click',function(){this.classList.toggle('liked');var c=Q('#dy-like-count');c.textContent=parseInt(c.textContent||0)+(this.classList.contains('liked')?1:-1);});
+        Q('#dy-comment-btn').addEventListener('click',function(){dyShowComments();});
+        Q('#dy-comment-close').addEventListener('click',function(){Q('#dy-comment-panel').classList.remove('show');});
+        Q('#dy-prev').addEventListener('click',function(){if(dyCurIdx>0){dyCurIdx--;dyShowVideo(dyCurIdx);}});
+        Q('#dy-next').addEventListener('click',function(){if(dyCurIdx<dyVideos.length-1){dyCurIdx++;dyShowVideo(dyCurIdx);}});
+        dyRenderIndicator();if(dyVideos.length>0){dyShowVideo(0);}
+    }
+    function dyRenderIndicator(){var ind=Q('#dy-indicator');if(!ind)return;var html='';for(var i=0;i<Math.max(dyVideos.length,1);i++){html+='<div class="Nicole-dy-video-dot'+(i===dyCurIdx?' active':'')+'"></div>';}ind.innerHTML=html;}
+    function dyShowVideo(idx){
+        if(!dyVideos[idx])return;dyCurIdx=idx;var v=dyVideos[idx];
+        if(Q('#dy-text-img'))Q('#dy-text-img').textContent=v.desc||'暂无内容';
+        if(Q('#dy-author'))Q('#dy-author').textContent='@'+(v.author||randUsername());
+        if(Q('#dy-desc'))Q('#dy-desc').textContent=v.desc||'';
+        if(Q('#dy-music'))Q('#dy-music').textContent=v.music||'原声';
+        if(Q('#dy-like-count'))Q('#dy-like-count').textContent=v.likes||0;
+        if(Q('#dy-comment-count'))Q('#dy-comment-count').textContent=v.comments?v.comments.length:0;
+        if(Q('#dy-share-count'))Q('#dy-share-count').textContent=v.shares||0;
+        dyRenderIndicator();stopDyDanmaku();if(v.danmaku&&v.danmaku.length>0){dyStartDanmaku(v.danmaku);}
+    }
+    function dyStartDanmaku(list){
+        var container=Q('#dy-danmaku');if(!container)return;container.innerHTML='';var idx=0;
+        dyDanmakuTimer=setInterval(function(){
+            if(!Q('#dy-danmaku')){stopDyDanmaku();return;}
+            var text=list[idx%list.length];idx++;
+            var item=document.createElement('div');item.className='Nicole-dy-danmaku-item';item.textContent=text;
+            item.style.top=(Math.random()*45+5)+'%';item.style.animationDuration=(Math.random()*4+6)+'s';item.style.animationName='dy-danmaku-scroll';
+            container.appendChild(item);setTimeout(function(){if(item.parentNode)item.parentNode.removeChild(item);},11000);
+        },2200);
+    }
+    function dyShowComments(){
+        var v=dyVideos[dyCurIdx];var panel=Q('#dy-comment-panel'),list=Q('#dy-comment-list'),title=Q('#dy-comment-title');
+        if(!panel||!list)return;
+        if(!v||!v.comments||v.comments.length===0){list.innerHTML='<div class="Nicole-app-empty">暂无评论</div>';}
+        else{
+            var html='';
+            v.comments.forEach(function(c){html+='<div class="Nicole-dy-comment-item"><div class="Nicole-dy-comment-body"><div class="Nicole-dy-comment-user">'+(c.user||randUsername())+'</div><div class="Nicole-dy-comment-text">'+(c.text||'')+'</div><div class="Nicole-dy-comment-time">刚刚</div></div></div>';});
+            list.innerHTML=html;
+        }
+        title.textContent='评论 ('+(v&&v.comments?v.comments.length:0)+')';panel.classList.add('show');
+    }
+    function dyGenerateContent(){
+        var charInfo=getCharInfo();var apiCfg=null;
+        try{var saved=NcStore.get('Nc-api-config');if(saved)apiCfg=JSON.parse(saved);}catch(e){}
+        if(!apiCfg||!apiCfg.url||!apiCfg.key){Q('#dy-desc').textContent='请先在「电话-设置」中配置API地址和密钥';return;}
+        Q('#dy-desc').textContent='正在随机生成剧情相关抖音内容（5条）...';stopDyDanmaku();
+        var prompt='你是抖音内容创作者。根据以下当前剧情上下文，随机生成5条抖音短视频内容，内容要和当前剧情/角色/场景相关，但风格随机、视角随机，可以是剧情片段、场景描写、角色独白、幕后花絮等。\n当前剧情上下文：\n'+(getStoryContext()||'暂无剧情')+'\n\n严格输出JSON数组，每条含：[{"desc":"视频文案，50字内","music":"BGM名","likes":点赞数,"shares":分享数,"danmaku":["弹幕1","弹幕2","弹幕3","弹幕4","弹幕5"],"comments":[{"user":"随机用户名","text":"评论文本"}]},...共5条]\n弹幕和评论要像真实观众反应，用户名随机。只输出JSON数组。';
+        var body=JSON.stringify({model:apiCfg.model||'gpt-4o-mini',messages:[{role:'user',content:prompt}],temperature:0.85,max_tokens:2000});
+        fetch(apiCfg.url.replace(/\/+$/,'')+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiCfg.key},body:body})
+            .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+            .then(function(res){
+                var content=res.choices&&res.choices[0]&&res.choices[0].message?res.choices[0].message.content:'';
+                var arrMatch=content.match(/\[[\s\S]*\]/);
+                if(arrMatch){try{var arr=JSON.parse(arrMatch[0]);if(Array.isArray(arr)&&arr.length>0){dyVideos=arr.slice(0,Math.max(arr.length,5));dyCurIdx=0;dyShowVideo(0);if(arr.length<5)Q('#dy-desc').textContent='仅生成'+arr.length+'条，建议重试';}else{Q('#dy-desc').textContent='生成为空，请重试';}}catch(e){Q('#dy-desc').textContent='解析失败，请重试';}}
+                else{Q('#dy-desc').textContent='格式异常，请重试';}
+            })
+            .catch(function(e){Q('#dy-desc').textContent='API失败: '+e.message;});
+    }
+
+    // ===== 通用App API调用 =====
+    function appApiCall(prompt,maxTokens,onSuccess,onError){
+        var apiCfg=null;try{var saved=NcStore.get('Nc-api-config');if(saved)apiCfg=JSON.parse(saved);}catch(e){}
+        if(!apiCfg||!apiCfg.url||!apiCfg.key){onError('请先在「电话-设置」配置API');return;}
+        var body=JSON.stringify({model:apiCfg.model||'gpt-4o-mini',messages:[{role:'user',content:prompt}],temperature:0.8,max_tokens:maxTokens||1500});
+        fetch(apiCfg.url.replace(/\/+$/,'')+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiCfg.key},body:body})
+            .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+            .then(function(res){
+                var content=res.choices&&res.choices[0]&&res.choices[0].message?res.choices[0].message.content:'';
+                var m=content.match(/\{[\s\S]*\}|\[[\s\S]*\]/);
+                if(m){try{onSuccess(JSON.parse(m[0]));}catch(e){onError('解析失败');}}else{onError('格式异常');}
+            })
+            .catch(function(e){onError('API失败: '+e.message);});
+    }
+
+    // ===== 相册App =====
+    var galleryPhotos=[];
+    function renderGalleryApp(){
+        var charInfo=getCharInfo();
+        var html='<div class="Nicole-app-refreshbar"><span class="Nicole-app-refreshbar-title" id="gallery-title">相册</span><div style="display:flex;gap:8px;"><button class="Nicole-app-refreshbtn" id="gallery-upload" style="background:#f2f2f2;color:#333;padding:6px 10px;font-size:16px;line-height:1;">+</button><button class="Nicole-app-refreshbtn" id="gallery-refresh">刷新</button></div></div>';
+        html+='<div style="padding:12px;">';
+        if(galleryPhotos.length===0){
+            html+='<div class="Nicole-app-empty">相册为空<br>点击「+」上传图片，或「刷新」随机生成剧情相关文字图<button id="gallery-gen">立即生成</button></div>';
+        }else{
+            html+='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;">';
+            galleryPhotos.forEach(function(p){
+                if(p.url&&p.url.startsWith('data:')){
+                    html+='<div style="aspect-ratio:1;background-image:url(\''+p.url+'\');background-size:cover;background-position:center;"></div>';
+                }else{
+                    var colors=['linear-gradient(135deg,#667eea,#764ba2)','linear-gradient(135deg,#f093fb,#f5576c)','linear-gradient(135deg,#4facfe,#00f2fe)','linear-gradient(135deg,#43e97b,#38f9d7)','linear-gradient(135deg,#fa709a,#fee140)','linear-gradient(135deg,#30cfd0,#330867)'];
+                    var bg=colors[Math.abs((p.title||'').length)%colors.length];
+                    html+='<div style="aspect-ratio:1;background:'+bg+';display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;color:#fff;font-size:11px;line-height:1.4;font-weight:500;word-break:break-word;text-shadow:0 1px 3px rgba(0,0,0,.3);">'+(p.title||'')+'</div>';
+                }
+            });
+            html+='</div>';
+        }
+        html+='</div>';app2Body.innerHTML=html;
+        var rf=Q('#gallery-refresh'),gn=Q('#gallery-gen'),up=Q('#gallery-upload');
+        if(rf)rf.addEventListener('click',function(){galleryGenerate();});
+        if(gn)gn.addEventListener('click',function(){galleryGenerate();});
+        if(up)up.addEventListener('click',function(){
+            var fi=document.createElement('input');fi.type='file';fi.accept='image/*';
+            fi.onchange=function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(re){galleryPhotos.unshift({url:re.target.result,title:'上传图片'});renderGalleryApp();};r.readAsDataURL(f);};fi.click();
+        });
+    }
+    function galleryGenerate(){
+        var charInfo=getCharInfo();Q('#gallery-title').textContent='生成中...';
+        var prompt='根据以下当前剧情上下文，随机列出6张和剧情/角色/场景相关的画面描述，风格随机，可以是场景截图、角色瞬间、物品特写、氛围画面等。\n当前剧情上下文：\n'+(getStoryContext()||'暂无剧情')+'\n\n输出JSON数组：[{"title":"画面描述，15字以内"}]\n只输出JSON数组。';
+        appApiCall(prompt,800,function(data){
+            if(Array.isArray(data)){
+                galleryPhotos=data.map(function(d){return {title:d.title||'剧情画面'};});
+                renderGalleryApp();
+            }else{Q('#gallery-title').textContent='生成失败';}
+        },function(err){Q('#gallery-title').textContent=err;});
+    }
+
+    // ===== Instagram App =====
+    var insPosts=[];
+    function renderInsApp(){
+        var charInfo=getCharInfo();
+        var html='<div class="Nicole-app-refreshbar"><span class="Nicole-app-refreshbar-title" id="ins-title">Instagram</span><button class="Nicole-app-refreshbtn" id="ins-refresh">刷新</button></div>';
+        if(insPosts.length===0){
+            html+='<div class="Nicole-app-empty">暂无动态<br>点击「刷新」随机生成剧情相关ins帖子<button id="ins-gen">立即生成</button></div>';
+        }else{
+            insPosts.forEach(function(p){
+                var colors=['linear-gradient(135deg,#667eea,#764ba2)','linear-gradient(135deg,#f093fb,#f5576c)','linear-gradient(135deg,#4facfe,#00f2fe)','linear-gradient(135deg,#43e97b,#38f9d7)','linear-gradient(135deg,#fa709a,#fee140)'];
+                var bg=colors[Math.abs((p.desc||'').length)%colors.length];
+                html+='<div style="background:#fff;margin-bottom:10px;">';
+                html+='<div style="display:flex;align-items:center;gap:8px;padding:10px 12px;"><div style="width:28px;height:28px;border-radius:50%;background:'+bg+';display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600;">'+(p.user||randUsername()).charAt(0)+'</div><div style="font-size:12px;font-weight:600;color:#222;">'+(p.user||randUsername())+'</div></div>';
+                html+='<div style="aspect-ratio:1;background:'+bg+';display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;color:#fff;font-size:14px;line-height:1.6;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,.3);word-break:break-word;">'+(p.imgText||p.desc||'')+'</div>';
+                html+='<div style="padding:10px 12px;"><div style="display:flex;gap:14px;margin-bottom:8px;font-size:13px;color:#333;"><span>♡ '+(p.likes||0)+'</span><span>💬 '+(p.comments||0)+'</span></div>';
+                html+='<div style="font-size:13px;color:#333;line-height:1.5;">'+(p.desc||'')+'</div></div></div>';
+            });
+        }
+        app2Body.innerHTML=html;
+        var rf=Q('#ins-refresh'),gn=Q('#ins-gen');
+        if(rf)rf.addEventListener('click',function(){insGenerate();});
+        if(gn)gn.addEventListener('click',function(){insGenerate();});
+    }
+    function insGenerate(){
+        var charInfo=getCharInfo();Q('#ins-title').textContent='生成中...';
+        var prompt='根据以下当前剧情上下文，随机生成5条ins风格动态帖子，内容和剧情/角色/场景相关，风格随机，用户名随机。\n当前剧情上下文：\n'+(getStoryContext()||'暂无剧情')+'\n\n输出JSON数组：[{"user":"随机用户名","desc":"帖子文案，30字内","imgText":"图片中的文字描述，15字内","likes":点赞数,"comments":评论数}]\n只输出JSON数组。';
+        appApiCall(prompt,1200,function(data){
+            if(Array.isArray(data)){
+                insPosts=data.map(function(d){return {user:d.user||randUsername(),desc:d.desc||'',imgText:d.imgText||d.desc||'',likes:d.likes||Math.floor(Math.random()*5000),comments:d.comments||Math.floor(Math.random()*200)};});
+                renderInsApp();
+            }else{Q('#ins-title').textContent='生成失败';}
+        },function(err){Q('#ins-title').textContent=err;});
+    }
+
+    // ===== 微博App =====
+    var weiboPosts=[];
+    function renderWeiboApp(){
+        var charInfo=getCharInfo();
+        var html='<div class="Nicole-app-refreshbar"><span class="Nicole-app-refreshbar-title" id="weibo-title">微博</span><button class="Nicole-app-refreshbtn" id="weibo-refresh">刷新</button></div>';
+        html+='<div style="padding:10px 12px;">';
+        if(weiboPosts.length===0){
+            html+='<div class="Nicole-app-empty">暂无微博<br>点击「刷新」随机生成剧情相关微博<button id="weibo-gen">立即生成</button></div>';
+        }else{
+            weiboPosts.forEach(function(p){
+                var uname=p.user||randUsername();
+                html+='<div style="background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.04);">';
+                html+='<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">';
+                html+='<div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:600;">'+uname.charAt(0)+'</div>';
+                html+='<div><div style="font-size:13px;font-weight:600;color:#222;">'+uname+'</div><div style="font-size:11px;color:#999;">'+(p.time||'刚刚')+'</div></div></div>';
+                html+='<div style="font-size:13px;color:#333;line-height:1.6;margin-bottom:10px;">'+(p.text||'')+'</div>';
+                html+='<div style="display:flex;justify-content:space-around;font-size:11px;color:#999;padding-top:8px;border-top:.5px solid #f0f0f0;">';
+                html+='<span>转发 '+(p.reposts||0)+'</span><span>评论 '+(p.comments||0)+'</span><span>赞 '+(p.likes||0)+'</span>';
+                html+='</div></div>';
+            });
+        }
+        html+='</div>';app2Body.innerHTML=html;
+        var rf=Q('#weibo-refresh'),gn=Q('#weibo-gen');
+        if(rf)rf.addEventListener('click',function(){weiboGenerate();});
+        if(gn)gn.addEventListener('click',function(){weiboGenerate();});
+    }
+    function weiboGenerate(){
+        var charInfo=getCharInfo();Q('#weibo-title').textContent='生成中...';
+        var prompt='根据以下当前剧情上下文，随机生成5条微博风格动态，内容和剧情/角色/场景相关，风格随机，用户名随机，可以是吐槽、爆料、感想、新闻等。\n当前剧情上下文：\n'+(getStoryContext()||'暂无剧情')+'\n\n输出JSON数组：[{"user":"随机用户名","text":"微博正文，80字内","reposts":转发数,"comments":评论数,"likes":点赞数}]\n只输出JSON数组。';
+        appApiCall(prompt,1200,function(data){
+            if(Array.isArray(data)){
+                weiboPosts=data.map(function(d){return {user:d.user||randUsername(),text:d.text||'',reposts:d.reposts||Math.floor(Math.random()*500),comments:d.comments||Math.floor(Math.random()*200),likes:d.likes||Math.floor(Math.random()*5000),time:['刚刚','5分钟前','1小时前','2小时前','昨天'][Math.floor(Math.random()*5)]};});
+                renderWeiboApp();
+            }else{Q('#weibo-title').textContent='生成失败';}
+        },function(err){Q('#weibo-title').textContent=err;});
+    }
+
+    // ===== 情侣问答App =====
+    var coupleQuestions=[];
+    function renderCoupleApp(){
+        var charInfo=getCharInfo();
+        var html='<div class="Nicole-app-refreshbar"><span class="Nicole-app-refreshbar-title" id="couple-title">情侣问答</span><button class="Nicole-app-refreshbtn" id="couple-refresh">刷新</button></div>';
+        html+='<div class="Nicole-couple-list" id="couple-list">';
+        if(coupleQuestions.length===0){
+            html+='<div class="Nicole-app-empty">暂无题目<br>点击「刷新」生成15道关于你和'+charInfo.name+'的情侣问答<button id="couple-gen">立即生成</button></div>';
+        }else{
+            coupleQuestions.forEach(function(q,i){
+                html+='<div class="Nicole-couple-card">';
+                html+='<div class="Nicole-couple-q"><span class="Nicole-couple-qnum">'+(i+1)+'</span>'+(q.question||'')+'</div>';
+                html+='<textarea class="Nicole-couple-input" id="couple-in-'+i+'" rows="2" placeholder="写下你的答案..."></textarea>';
+                html+='<button class="Nicole-couple-btn" id="couple-btn-'+i+'">显示'+charInfo.name+'的答案</button>';
+                html+='<div class="Nicole-couple-answer" id="couple-ans-'+i+'"><div class="Nicole-couple-answer-label">'+charInfo.name+'的答案</div><div class="Nicole-couple-answer-text">'+(q.answer||'')+'</div></div>';
+                html+='</div>';
+            });
+        }
+        html+='</div>';
+        app2Body.innerHTML=html;
+        var rf=Q('#couple-refresh'),gn=Q('#couple-gen');
+        if(rf)rf.addEventListener('click',function(){coupleGenerate();});
+        if(gn)gn.addEventListener('click',function(){coupleGenerate();});
+        coupleQuestions.forEach(function(q,i){
+            var btn=Q('#couple-btn-'+i);
+            if(btn)btn.addEventListener('click',function(){
+                var ans=Q('#couple-ans-'+i);
+                if(ans){ans.classList.toggle('show');this.textContent=ans.classList.contains('show')?'隐藏答案':'显示'+charInfo.name+'的答案';this.classList.toggle('revealed',ans.classList.contains('show'));}
+            });
+        });
+    }
+    function coupleGenerate(){
+        var charInfo=getCharInfo();Q('#couple-title').textContent='生成中...';
+        var userName='我';
+        try{userName=window.user_name||window.userName||'我';}catch(e){}
+        var prompt='你是情侣问答游戏出题人。根据以下角色完整信息，生成15道关于该角色和用户之间的情侣问答题，题目要有趣、走心、有梗，涵盖性格、喜好、回忆、假设、亲密互动等方面。每道题都要给出角色会给出的答案。\n\n角色名：'+charInfo.name+'\n角色描述：'+(charInfo.desc||'无')+'\n角色性格：'+(charInfo.personality||'无')+'\n场景设定：'+(charInfo.scenario||'无')+'\n世界书：'+(charInfo.worldInfo||'无')+'\n开场白：'+(charInfo.firstMes||'无')+'\n用户：'+userName+'\n\n严格输出JSON数组，共15项：[{"question":"问题文本","answer":"角色会给出的答案文本"}]\n答案要符合角色人设和语气。只输出JSON数组。';
+        appApiCall(prompt,2500,function(data){
+            if(Array.isArray(data)&&data.length>0){
+                coupleQuestions=data.slice(0,15);
+                while(coupleQuestions.length<15){coupleQuestions.push({question:'补充问题',answer:'补充答案'});}
+                renderCoupleApp();
+            }else{Q('#couple-title').textContent='生成失败';}
+        },function(err){Q('#couple-title').textContent=err;});
+    }
+
+    // ===== 备忘录App (iOS风格) =====
+    var memoList=[],memoView='list';
+    function renderMemoApp(){
+        memoView='list';
+        var charInfo=getCharInfo();
+        var html='<div class="Nicole-app-refreshbar"><span class="Nicole-app-refreshbar-title" id="memo-title">备忘录</span><button class="Nicole-app-refreshbtn" id="memo-refresh">刷新</button></div>';
+        html+='<div class="Nicole-memo-list" id="memo-list">';
+        if(memoList.length===0){
+            html+='<div class="Nicole-app-empty">暂无备忘录<br>点击「刷新」生成'+charInfo.name+'的备忘录<button id="memo-gen">立即生成</button></div>';
+        }else{
+            memoList.forEach(function(m,i){
+                html+='<div class="Nicole-memo-item '+(m.type==='voice'?'voice':'')+'" data-idx="'+i+'">';
+                html+='<div class="Nicole-memo-item-title">'+(m.title||'无标题')+'</div>';
+                html+='<div class="Nicole-memo-item-preview">'+(m.preview||(m.type==='voice'?'语音备忘录':m.content||''))+'</div>';
+                html+='<div class="Nicole-memo-item-date">'+(m.date||'今天')+'</div>';
+                html+='</div>';
+            });
+        }
+        html+='</div>';
+        app2Body.innerHTML=html;
+        var rf=Q('#memo-refresh'),gn=Q('#memo-gen');
+        if(rf)rf.addEventListener('click',function(){memoGenerate();});
+        if(gn)gn.addEventListener('click',function(){memoGenerate();});
+        QA('.Nicole-memo-item').forEach(function(el){
+            el.addEventListener('click',function(){var idx=parseInt(this.getAttribute('data-idx'));renderMemoDetail(idx);});
+        });
+    }
+    function renderMemoDetail(idx){
+        if(!memoList[idx])return;
+        memoView='detail';
+        var m=memoList[idx];
+        var html='<div class="Nicole-app-refreshbar"><span class="Nicole-memo-back" id="memo-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>备忘录</span><div style="width:60px;"></div></div>';
+        html+='<div class="Nicole-memo-detail">';
+        html+='<div class="Nicole-memo-detail-title">'+(m.title||'无标题')+'</div>';
+        html+='<div class="Nicole-memo-detail-date">'+(m.date||'今天')+(m.type==='voice'?' · 语音备忘录':'')+'</div>';
+        if(m.type==='voice'){
+            html+='<div class="Nicole-memo-voice-player"><div class="Nicole-memo-voice-play" id="memo-play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg></div><div class="Nicole-memo-voice-wave">';
+            for(var w=0;w<20;w++){html+='<div class="Nicole-memo-voice-bar" style="height:'+(20+Math.random()*80)+'%"></div>';}
+            html+='</div><div class="Nicole-memo-voice-time">'+(m.duration||'0:32')+'</div></div>';
+        }
+        html+='<div class="Nicole-memo-detail-body">'+(m.content||'')+'</div>';
+        html+='</div>';
+        app2Body.innerHTML=html;
+        var bk=Q('#memo-back');
+        if(bk)bk.addEventListener('click',function(){renderMemoApp();});
+        var pl=Q('#memo-play');
+        if(pl)pl.addEventListener('click',function(){this.classList.toggle('playing');var bars=QA('.Nicole-memo-voice-bar');bars.forEach(function(b){b.style.animationPlayState=b.style.animationPlayState==='paused'?'running':'paused';});});
+    }
+    function memoGenerate(){
+        var charInfo=getCharInfo();Q('#memo-title').textContent='生成中...';
+        var prompt='你是角色'+charInfo.name+'。根据以下角色完整信息，生成这个角色的备忘录内容，不少于6条，包括文本备忘录和语音备忘录。内容要符合角色人设，可以是待办、想法、回忆、提醒、秘密、碎碎念等。\n\n角色名：'+charInfo.name+'\n角色描述：'+(charInfo.desc||'无')+'\n角色性格：'+(charInfo.personality||'无')+'\n场景设定：'+(charInfo.scenario||'无')+'\n世界书：'+(charInfo.worldInfo||'无')+'\n开场白：'+(charInfo.firstMes||'无')+'\n\n严格输出JSON数组，每项含：[{"type":"text或voice","title":"备忘录标题","content":"备忘录正文内容","date":"日期如 今天/昨天/8月20日","preview":"列表预览文字20字内","duration":"语音时长如0:32，仅voice类型需要"}]\n至少6条，其中至少2条语音备忘录。只输出JSON数组。';
+        appApiCall(prompt,2000,function(data){
+            if(Array.isArray(data)&&data.length>0){
+                memoList=data.slice(0,Math.max(data.length,6));
+                renderMemoApp();
+            }else{Q('#memo-title').textContent='生成失败';}
+        },function(err){Q('#memo-title').textContent=err;});
+    }
+
     QA('.Nicole-ptab').forEach(function(tab){tab.addEventListener('click',function(){QA('.Nicole-ptab').forEach(function(t){t.classList.remove('active');});this.classList.add('active');renderPhoneTab(this.getAttribute('data-target'));});});
 
     function renderPhoneTab(tabType){
@@ -1630,12 +2573,39 @@ function initPhone(scope, charInfo, userInfo){
             var cHtml='';phoneContacts.forEach(function(c,i){cHtml+='<div class="Nicole-list-item j-contact" data-idx="'+i+'"><div class="Nicole-item-title">'+c.name+'</div></div>';});phoneContent.innerHTML=cHtml;
             QA('.j-contact').forEach(function(el){el.addEventListener('click',function(){var idx=parseInt(this.getAttribute('data-idx'));renderContactDetail(phoneContacts[idx],idx);});});
         }else if(tabType==='dialpad'){
-            var dHtml='<div style="text-align:center;font-size:32px;font-weight:300;margin:30px 0 20px;height:40px;letter-spacing:2px;color:#222;" id="dial-disp"></div><div class="Nicole-dial-grid">';
-            var keys=['1','2','3','4','5','6','7','8','9','*','0','#'];keys.forEach(function(k){dHtml+='<div class="Nicole-dial-key">'+k+'</div>';});
-            dHtml+='</div><div class="Nicole-dial-callbtn"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>';
-            phoneContent.innerHTML=dHtml;var ddisp=Q('#dial-disp');
-            QA('.Nicole-dial-key').forEach(function(el){el.addEventListener('click',function(){ddisp.textContent+=this.textContent;playSwoosh();});});
-            Q('.Nicole-dial-callbtn').addEventListener('click',function(){var num=ddisp.textContent;if(!num)return;var matchContact=phoneContacts.find(function(c){return c.phone===num;});triggerCall(matchContact?matchContact.name:num,num);});
+            var savedApi=NcStore.get('Nc-api-config');
+            var apiCfg=savedApi?JSON.parse(savedApi):{url:'',key:'',model:''};
+            var aHtml='<div style="padding:20px 16px 10px;">';
+            aHtml+='<div style="font-size:16px;font-weight:600;color:#222;margin-bottom:20px;text-align:center;letter-spacing:.5px;">API 连接设置</div>';
+            aHtml+='<div class="Nicole-api-section"><label class="Nicole-api-label">API 地址 (Base URL)</label>';
+            aHtml+='<input type="text" class="Nicole-api-input" id="api-url" value="'+apiCfg.url.replace(/"/g,'&quot;')+'" placeholder="https://api.openai.com/v1"></div>';
+            aHtml+='<div class="Nicole-api-section"><label class="Nicole-api-label">API 密钥 (API Key)</label>';
+            aHtml+='<input type="password" class="Nicole-api-input" id="api-key" value="'+apiCfg.key.replace(/"/g,'&quot;')+'" placeholder="sk-..."></div>';
+            aHtml+='<div class="Nicole-api-section"><label class="Nicole-api-label">模型名称 (Model)</label>';
+            aHtml+='<input type="text" class="Nicole-api-input" id="api-model" value="'+apiCfg.model.replace(/"/g,'&quot;')+'" placeholder="gpt-4o-mini"></div>';
+            aHtml+='<div class="Nicole-api-status" id="api-status" style="color:#bbb;">'+(apiCfg.url?'已保存配置，点击测试连接':'未配置')+'</div>';
+            aHtml+='<div style="display:flex;gap:10px;"><button class="Nicole-api-btn test" id="api-test">测试连接</button><button class="Nicole-api-btn save" id="api-save">保存设置</button></div>';
+            aHtml+='</div>';
+            phoneContent.innerHTML=aHtml;
+            Q('#api-save').addEventListener('click',function(){
+                var cfg={url:Q('#api-url').value.trim(),key:Q('#api-key').value.trim(),model:Q('#api-model').value.trim()};
+                NcStore.set('Nc-api-config',JSON.stringify(cfg));
+                var st=Q('#api-status');st.textContent='设置已保存 ✓';st.style.color='#4caf50';
+                playSwoosh();
+            });
+            Q('#api-test').addEventListener('click',function(){
+                var url=Q('#api-url').value.trim();
+                var key=Q('#api-key').value.trim();
+                var st=Q('#api-status');
+                if(!url){st.textContent='请先填写API地址';st.style.color='#ff6b6b';return;}
+                st.textContent='正在测试连接...';st.style.color='#999';
+                try{
+                    var testUrl=url.replace(/\/+$/,'')+'/models';
+                    fetch(testUrl,{headers:key?{'Authorization':'Bearer '+key}:{}})
+                        .then(function(r){if(r.ok){st.textContent='连接成功 ✓';st.style.color='#4caf50';}else{st.textContent='连接失败: HTTP '+r.status;st.style.color='#ff6b6b';}})
+                        .catch(function(e){st.textContent='连接错误: '+e.message;st.style.color='#ff6b6b';});
+                }catch(e){st.textContent='测试失败: '+e.message;st.style.color='#ff6b6b';}
+            });
         }
     }
     function renderContactDetail(contact,idx){
@@ -1652,8 +2622,93 @@ function initPhone(scope, charInfo, userInfo){
     }
 
     Q('.Nicole-jhd-toggle').addEventListener('click',function(){Q('.Nicole-jhd').classList.toggle('collapsed');Q('.Nicole-jchat').classList.toggle('collapsed');});
-    Q('.Nicole-jset-open').addEventListener('click',function(){Q('.Nicole-jset').classList.add('show');});
+    Q('.Nicole-jset-open').addEventListener('click',function(){
+        var hd=Q('.Nicole-hd');
+        if(hd&&hd.classList.contains('group-mode')){
+            // 群聊：打开群聊设置面板
+            openGroupSetting();
+        }else{
+            // 私聊：打开原设置
+            Q('.Nicole-jset').classList.add('show');
+        }
+    });
     Q('.Nicole-jset-close').addEventListener('click',function(){Q('.Nicole-jset').classList.remove('show');});
+    // 群聊设置面板
+    function openGroupSetting(){
+        var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
+        var group=groups.find(function(g){return g.id===finalLName;});
+        if(!group)return;
+        // 渲染群成员列表
+        var memberBox=Q('.Nicole-jgroup-members');
+        if(memberBox){
+            memberBox.innerHTML=group.members.map(function(m,idx){
+                var isMe=m==='我';
+                var role=isMe?'群主':(idx===0?'管理员':'成员');
+                return '<div class="Nicole-group-member-item"><div class="Nicole-group-member-av" style="background:'+(isMe?'#07c160':'#576b95')+';">'+m.charAt(0)+'</div><div class="Nicole-group-member-name">'+m+'<span class="Nicole-group-member-role">'+role+'</span></div>'+(isMe?'':'<button class="Nicole-group-kick-btn" data-name="'+m+'">踢人</button>')+'</div>';
+            }).join('');
+        }
+        // 显示群信息
+        var nameDisp=Q('.Nicole-jgroup-name-display');
+        if(nameDisp)nameDisp.textContent=group.name;
+        var countDisp=Q('.Nicole-jgroup-count-display');
+        if(countDisp)countDisp.textContent=group.members.length+'人';
+        // 显示面板
+        var panel=Q('.Nicole-jgroup-setting');
+        if(panel)panel.classList.add('show');
+    }
+    // 群聊设置返回按钮
+    Q('.Nicole-jgroup-setting-back').addEventListener('click',function(){Q('.Nicole-jgroup-setting').classList.remove('show');});
+    // 踢人
+    document.addEventListener('click',function(e){
+        if(e.target.classList.contains('Nicole-group-kick-btn')){
+            var name=e.target.getAttribute('data-name');
+            if(confirm('确定将「'+name+'」移出群聊？')){
+                var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
+                var group=groups.find(function(g){return g.id===finalLName;});
+                if(group){
+                    group.members=group.members.filter(function(m){return m!==name;});
+                    localStorage.setItem('Nc-group-list',JSON.stringify(groups));
+                    openGroupSetting();
+                    renderSysMsg('已将「'+name+'」移出群聊');
+                }
+            }
+        }
+    });
+    // 添加成员
+    Q('.Nicole-jgroup-add-member').addEventListener('click',function(){
+        var list=JSON.parse(localStorage.getItem('Nc-chat-list')||'[]');
+        var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
+        var group=groups.find(function(g){return g.id===finalLName;});
+        if(!group)return;
+        // 过滤已在群里的成员
+        var available=list.filter(function(n){return group.members.indexOf(n)===-1;});
+        if(available.length===0){renderSysMsg('所有联系人都已在群聊中');return;}
+        // 简单的选择弹窗
+        var name=prompt('选择要添加的联系人（输入名字）：\n\n可选：'+available.join('、'));
+        if(name&&name.trim()&&available.indexOf(name.trim())!==-1){
+            group.members.push(name.trim());
+            localStorage.setItem('Nc-group-list',JSON.stringify(groups));
+            openGroupSetting();
+            renderSysMsg('已添加「'+name.trim()+'」到群聊');
+        }else if(name&&name.trim()){
+            renderSysMsg('该联系人不在列表中或已在群聊');
+        }
+    });
+    // 退出并删除群聊
+    Q('.Nicole-jgroup-dismiss').addEventListener('click',function(){
+        if(confirm('确定退出并删除该群聊？聊天记录将被清除。')){
+            var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
+            groups=groups.filter(function(g){return g.id!==finalLName;});
+            localStorage.setItem('Nc-group-list',JSON.stringify(groups));
+            localStorage.removeItem('Nc-chat-'+finalLName);
+            Q('.Nicole-jgroup-setting').classList.remove('show');
+            var hd=Q('.Nicole-hd');
+            if(hd)hd.classList.remove('group-mode');
+            finalLName='';currentCharName='';
+            Q('.Nicole-jchat').innerHTML='';
+            renderSysMsg('已退出并删除群聊');
+        }
+    });
     // 手机宽高调节
     var panelEl2=document.getElementById(PANEL_ID);
     var setW=Q('.Nicole-jset-phone-w'),setH=Q('.Nicole-jset-phone-h');
@@ -1664,7 +2719,26 @@ function initPhone(scope, charInfo, userInfo){
     if(setH){setH.addEventListener('change',function(){var h=parseInt(this.value)||680;if(h<400)h=400;if(h>900)h=900;NcStore.set('Nc-phone-h',h);if(panelEl2)panelEl2.style.setProperty('--nc-phone-h',h+'px','important');});}
     // 聊天列表
     Q('.Nicole-jchatlist-back').addEventListener('click',function(){var cls=Q('.Nicole-jchatlist-screen');if(cls)cls.classList.remove('show');if(homeScreen)homeScreen.classList.add('active');});
-    Q('.Nicole-jchatlist-add').addEventListener('click',function(){Q('.Nicole-jaddchar-modal').classList.add('show');Q('.Nicole-jaddchar-input').value=finalLName||'';});
+    Q('.Nicole-jchatlist-add').addEventListener('click',function(){Q('.Nicole-jchatlist-addmenu').classList.add('show');});
+    Q('.Nicole-jaddmenu-addchar').addEventListener('click',function(){Q('.Nicole-jchatlist-addmenu').classList.remove('show');Q('.Nicole-jaddchar-modal').classList.add('show');Q('.Nicole-jaddchar-input').value=finalLName||'';});
+    Q('.Nicole-jaddmenu-addgroup').addEventListener('click',function(){
+        Q('.Nicole-jchatlist-addmenu').classList.remove('show');
+        Q('.Nicole-jaddgroup-modal').classList.add('show');
+        Q('.Nicole-jaddgroup-name').value='';
+        // 渲染当前聊天列表的联系人勾选框
+        var list=JSON.parse(localStorage.getItem('Nc-chat-list')||'[]');
+        var memberBox=Q('.Nicole-jaddgroup-members');
+        if(memberBox){
+            if(list.length===0){
+                memberBox.innerHTML='<div style="text-align:center;color:#999;padding:20px;font-size:12px;">暂无联系人，请先添加联系人</div>';
+            }else{
+                memberBox.innerHTML=list.map(function(name){
+                    return '<label style="display:flex;align-items:center;gap:8px;padding:6px 4px;cursor:pointer;border-bottom:1px solid #f5f5f5;"><input type="checkbox" class="Nicole-jaddgroup-check" value="'+name+'" style="width:16px;height:16px;"><span style="font-size:13px;color:#333;">'+name+'</span></label>';
+                }).join('');
+            }
+        }
+    });
+    Q('.Nicole-jaddmenu-cancel').addEventListener('click',function(){Q('.Nicole-jchatlist-addmenu').classList.remove('show');});
     Q('.Nicole-jaddchar-cancel').addEventListener('click',function(){Q('.Nicole-jaddchar-modal').classList.remove('show');});
     Q('.Nicole-jaddchar-ok').addEventListener('click',function(){
         var name=Q('.Nicole-jaddchar-input').value.trim();
@@ -1676,12 +2750,35 @@ function initPhone(scope, charInfo, userInfo){
             if(finalLName) saveChatForChar(finalLName);
             finalLName=name;currentCharName=name;ncManualChar=true;
             loadChatForChar(name);
+            // 私聊模式：移除group-mode类
+            var hd=Q('.Nicole-hd');
+            if(hd)hd.classList.remove('group-mode');
             scope.querySelectorAll('.Nicole-bind-lnm').forEach(function(el){el.textContent=name;});
             var cls3=Q('.Nicole-jchatlist-screen');
             if(cls3)cls3.classList.remove('show');
             if(homeScreen) homeScreen.classList.remove('active');
             Q('.Nicole-jaddchar-input').value='';
         }
+    });
+    // 创建群聊确认
+    Q('.Nicole-jaddgroup-cancel').addEventListener('click',function(){Q('.Nicole-jaddgroup-modal').classList.remove('show');});
+    Q('.Nicole-jaddgroup-ok').addEventListener('click',function(){
+        var gname=Q('.Nicole-jaddgroup-name').value.trim();
+        if(!gname){renderSysMsg('请输入群聊名称');return;}
+        // 从勾选框获取群成员
+        var checks=document.querySelectorAll('.Nicole-jaddgroup-check:checked');
+        var memberList=[];
+        checks.forEach(function(c){memberList.push(c.value);});
+        var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
+        var gid='group_'+Date.now();
+        // 自动添加当前角色和用户
+        if(finalLName&&memberList.indexOf(finalLName)===-1)memberList.unshift(finalLName);
+        if(memberList.indexOf('我')===-1)memberList.push('我');
+        groups.unshift({id:gid,name:gname,members:memberList,avatar:'',lastMsg:'群聊已创建',time:new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'})});
+        localStorage.setItem('Nc-group-list',JSON.stringify(groups));
+        Q('.Nicole-jaddgroup-modal').classList.remove('show');
+        renderChatListScreen();
+        renderSysMsg('群聊「'+gname+'」创建成功，共'+memberList.length+'人');
     });
     // 收起手机
     var collapseBtn=Q('.Nicole-jcollapse');
@@ -1709,6 +2806,31 @@ if(collapseBtn){
         console.log('[Nicole] 收起手机，图标恢复');
     });
 }
+    // 主桌面dock收起手机图标
+    var dockCollapseBtn=Q('.Nicole-jdock-collapse');
+    if(dockCollapseBtn){
+        dockCollapseBtn.addEventListener('click',function(){
+            var p=document.getElementById(PANEL_ID);
+            var b=document.getElementById(TOGGLE_ID);
+            var f=document.getElementById(FLOAT_ID);
+            if(p)p.classList.remove('show');
+            if(b){
+                b.style.display='flex';
+                b.style.opacity='1';
+                b.style.visibility='visible';
+            }
+            if(f){
+                if(window.innerWidth > 768){
+                    f.style.width='48px';
+                    f.style.height='48px';
+                }
+                setTimeout(function(){
+                    try{ window.dispatchEvent(new Event('resize')); }catch(e){}
+                },50);
+            }
+            console.log('[Nicole] 主桌面收起手机，图标恢复');
+        });
+    }
     // 清空当前聊天记录
     var clearChatBtn=Q('.Nicole-jclear-chat');
     if(clearChatBtn){clearChatBtn.addEventListener('click',function(){if(!confirm('确定清空当前聊天记录？'))return;var panel=document.getElementById(PANEL_ID);if(panel){var cb=panel.querySelector('.Nicole-jchat');if(cb)cb.innerHTML='';}var cname=currentCharName||finalLName||'';if(cname){try{var key='Nc-chat-'+cname;localStorage.removeItem(key);}catch(e){}}});}
@@ -1861,10 +2983,14 @@ if(collapseBtn){
     var callIntv=null,callSec=0,callState='none';
     function formatTime(sec){var m=String(Math.floor(sec/60)).padStart(2,'0');var s=String(sec%60).padStart(2,'0');return m+':'+s;}
     function openCallUI(type,state){
+        // 页面初始化保护：刷新后8秒内阻止历史消息触发电来电界面
+        if(state==='in'&&ncIsInitializing()){console.log('[nicoPhone] 初始化期间阻止来电界面弹出');return;}
         var c=Q('.Nicole-jcall');c.className='Nicole-call Nicole-jcall show state-'+state+(type==='video'?' video':'');c.style.transform='none';
         if(type==='video'){Q('.Nicole-call-vbg').style.backgroundImage='url(\''+safeRAv+'\')';Q('.Nicole-bind-rav-bg').style.backgroundImage='url(\''+safeLAv+'\')';}
         else{var savedBg=NcStore.get('Nc-bg-img');var defaultBg=window.getComputedStyle(Q('.Nicole-jbg')).backgroundImage;if(savedBg&&savedBg!=='none'){Q('.Nicole-call-vbg').style.backgroundImage='url(\''+savedBg.replace(/'/g,'%27')+'\')';}else if(defaultBg&&defaultBg!=='none'){Q('.Nicole-call-vbg').style.backgroundImage=defaultBg;}else{Q('.Nicole-call-vbg').style.backgroundImage='';}}
         callSec=0;callState=state;clearInterval(callIntv);
+        // 来电时播放铃声
+        if(state==='in'){try{playRing();}catch(e){}}
         // 清空之前的通话气泡
         try{var callBubs=document.querySelector('.Nicole-jcall-bubs');if(callBubs)callBubs.innerHTML='';}catch(e){}
         var panel=Q('.Nicole-jpanel');var plusBtn=Q('.Nicole-jplus');if(panel)panel.classList.remove('show');if(plusBtn)plusBtn.classList.remove('on');
@@ -1992,17 +3118,232 @@ if(collapseBtn){
     function startMediaRecord(){if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){var MR=window.MediaRecorder;mediaRec=new MR(stream);mediaRec.onstop=function(){var dur=Math.max(1,Math.round((Date.now()-recStartTime)/1000));stream.getTracks().forEach(function(t){t.stop();});tempVoiceDur=dur+'"';fallback('语音录制完毕 (真实时长: '+dur+'秒)');};recStartTime=Date.now();mediaRec.start();isRec=true;micBtn.classList.add('rec');}).catch(function(){fallback('麦克风被占用或拒绝');});}else{fallback('浏览器环境不支持录音');}}
     micBtn.addEventListener('click',function(e){e.preventDefault();if(isRec){isRec=false;micBtn.classList.remove('rec');if(window.voiceObj){try{window.voiceObj.stop();}catch(err){}}if(mediaRec&&mediaRec.state!=='inactive'){try{mediaRec.stop();}catch(err){}}}else{var isEdgeAndroid=navigator.userAgent.includes('EdgA');if(SR&&!isEdgeAndroid&&setupSR()){finalTxt='';try{window.voiceObj.lang=langMap[langIdx].l;window.voiceObj.start();isRec=true;micBtn.classList.add('rec');}catch(err){isRec=false;micBtn.classList.remove('rec');fallback('引擎启动异常');}}else{startMediaRecord();}}});
 
-    // ===== MUSIC =====
-    var muList=[],muIdx=0,muPlaying=false,muIntv=null,muSec=0;
-    function renderMuList(){var html=muList.map(function(s,i){return '<div class="Nicole-mu-item'+(i===muIdx?' active':'')+'" data-idx="'+i+'"><span>'+s.name+' - '+s.artist+'</span><span class="jmudel" data-idx="'+i+'">×</span></div>';}).join('');Q('.Nicole-jmulist').innerHTML=html||'<div style="text-align:center;color:#aaa;font-size:12px;padding:20px;">暂无歌曲</div>';QA('.Nicole-mu-item').forEach(function(el){el.addEventListener('click',function(e){if(e.target.classList.contains('jmudel')){e.stopPropagation();var di=parseInt(e.target.getAttribute('data-idx'));muList.splice(di,1);if(muIdx>=muList.length)muIdx=0;renderMuList();return;}muIdx=parseInt(this.getAttribute('data-idx'));playMu();});});}
-    function playMu(){if(muList.length===0)return;var s=muList[muIdx];Q('.Nicole-jmunow').textContent=s.name+' - '+s.artist;Q('.Nicole-jmuwaves').classList.add('playing');muPlaying=true;Q('.Nicole-jmuicon').innerHTML='<rect x="6" y="4" width="4" height="16" fill="#222"/><rect x="14" y="4" width="4" height="16" fill="#222"/>';if(s.cover){QA('.Nicole-jmuf1,.Nicole-jmuf2').forEach(function(el){el.style.backgroundImage='url('+s.cover+')';});}muSec=0;clearInterval(muIntv);muIntv=setInterval(function(){muSec++;var el=document.getElementById('Nc-mutime-val');if(el)el.textContent=Math.floor(muSec/60);},1000);}
-    function pauseMu(){muPlaying=false;Q('.Nicole-jmuwaves').classList.remove('playing');Q('.Nicole-jmuicon').innerHTML='<polygon points="7 4 19 12 7 20 7 4" fill="#222"/>';clearInterval(muIntv);}
+    // ===== MUSIC (歌单+播放模式+搜索) =====
+    var muPlaylists=JSON.parse(NcStore.get('Nc-mu-playlists')||'null')||[{name:'默认歌单',songs:[]}];
+    var muCurPlaylist=parseInt(NcStore.get('Nc-mu-cur')||'0');
+    if(muCurPlaylist>=muPlaylists.length)muCurPlaylist=0;
+    var muList=muPlaylists[muCurPlaylist].songs;
+    var muIdx=0,muPlaying=false,muSec=0;
+    var muPlayMode=NcStore.get('Nc-mu-mode')||'loop'; // loop/order/random
+    var muModeIcons={loop:'<path d="M17 1l4 4-4 4" fill="none" stroke="#222" stroke-width="1.5"/><path d="M3 11V9a4 4 0 0 1 4-4h14" fill="none" stroke="#222" stroke-width="1.5"/><path d="M7 23l-4-4 4-4" fill="none" stroke="#222" stroke-width="1.5"/><path d="M21 13v2a4 4 0 0 1-4 4H3" fill="none" stroke="#222" stroke-width="1.5"/>',order:'<polyline points="17 1 21 5 17 9" fill="none" stroke="#222" stroke-width="1.5"/><path d="M3 11V9a4 4 0 0 1 4-4h14" fill="none" stroke="#222" stroke-width="1.5"/><polyline points="7 23 3 19 7 15" fill="none" stroke="#222" stroke-width="1.5"/><path d="M21 13v2a4 4 0 0 1-4 4H3" fill="none" stroke="#222" stroke-width="1.5"/>',random:'<polyline points="16 3 21 3 21 8" fill="none" stroke="#222" stroke-width="1.5"/><line x1="4" y1="20" x2="21" y2="3" stroke="#222" stroke-width="1.5"/><polyline points="21 16 21 21 16 21" fill="none" stroke="#222" stroke-width="1.5"/><line x1="15" y1="15" x2="21" y2="21" stroke="#222" stroke-width="1.5"/><line x1="4" y1="4" x2="9" y2="9" stroke="#222" stroke-width="1.5"/>'};
+    var muModeNames={loop:'循环播放',order:'顺序播放',random:'随机播放'};
+    // ===== 歌词弹幕 =====
+    var DANMU_API='https://music-api.gdstudio.xyz/api.php';
+    var danmuEnabled=(NcStore.get('Nc-mu-danmu')||'1')==='1';
+    var danmuLyrics=[],danmuLastIdx=-1,danmuTimer=null,danmuSongKey='',danmuContainer=null;
+    function createDanmuContainer(){if(danmuContainer)return;danmuContainer=document.createElement('div');danmuContainer.className='Nicole-danmu-container'+(danmuEnabled?'':' hidden');document.body.appendChild(danmuContainer);}
+    function parseLRC(lrcText){if(!lrcText)return[];var res=[];var lines=lrcText.split('\n');lines.forEach(function(line){var m=line.match(/\[(\d{2}):(\d{2})\.(\d{2,3})\](.*)/);if(m){var t=parseInt(m[1])*60+parseInt(m[2])+parseInt(m[3].padEnd(3,'0'))/1000;var c=m[4].trim();if(c)res.push({time:t,text:c});}});return res.sort(function(a,b){return a.time-b.time;});}
+    function fetchDanmuLyrics(song,artist){
+        if(!song)return;
+        var key=song+'_'+(artist||'');
+        if(key===danmuSongKey&&danmuLyrics.length>0)return;
+        danmuSongKey=key;danmuLyrics=[];danmuLastIdx=-1;
+        var q=song+(artist?' '+artist:'');
+        // 多引擎并行搜索歌词
+        var sources=['netease','tencent','kugou'];
+        var found=false;
+        sources.forEach(function(src){
+            if(found)return;
+            muFetch(DANMU_API+'?types=search&count=3&source='+src+'&name='+encodeURIComponent(q),6000).then(function(r){return r.json();}).then(function(sr){
+                if(found||!sr||!sr.length)return;
+                var item=sr[0];
+                return muFetch(DANMU_API+'?types=lyric&id='+item.id+'&source='+src,6000).then(function(r){return r.json();}).then(function(lr){
+                    if(!found&&lr&&lr.lyric){found=true;danmuLyrics=parseLRC(lr.lyric);danmuLastIdx=-1;}
+                });
+            }).catch(function(){});
+        });
+        // 8秒后如果还没找到歌词，降级为只显示歌曲名弹幕
+        setTimeout(function(){
+            if(danmuLyrics.length===0&&!found){
+                // 降级：每隔一段时间显示歌曲名和歌手名
+                danmuLyrics=[{time:0,text:song+(artist?' - '+artist:'')}];
+                danmuLastIdx=-1;
+            }
+        },8000);
+    }
+    function sendDanmu(text,isGradient){
+        if(!danmuEnabled||!danmuContainer||!text)return;
+        // 限制同时显示的弹幕数量
+        var existing=danmuContainer.querySelectorAll('.Nicole-danmu-item');
+        if(existing.length>6)return;
+        var el=document.createElement('div');
+        el.className='Nicole-danmu-item'+(isGradient?' gradient':'');
+        el.textContent=text;
+        // 随机垂直位置（顶部10%-60%区域）
+        var topPct=10+Math.random()*50;
+        el.style.top=topPct+'%';
+        // 随机滚动速度（8-14秒）
+        var dur=8+Math.random()*6;
+        el.style.animationDuration=dur+'s';
+        // 随机字号
+        var fs=18+Math.random()*10;
+        el.style.fontSize=fs+'px';
+        danmuContainer.appendChild(el);
+        // 动画结束后移除
+        setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el);},dur*1000+500);
+    }
+    function updateDanmuLyrics(){
+        if(!danmuEnabled||danmuLyrics.length===0||muAudio.paused)return;
+        var ct=muAudio.currentTime;
+        // 降级模式：只有一条歌词（无歌词数据），每隔10秒重复显示
+        if(danmuLyrics.length===1){
+            if(!danmuLastSendTime||ct-danmuLastSendTime>=10){
+                danmuLastSendTime=ct;
+                sendDanmu(danmuLyrics[0].text,false);
+            }
+            return;
+        }
+        var idx=-1;
+        for(var i=0;i<danmuLyrics.length;i++){if(danmuLyrics[i].time<=ct+0.3)idx=i;else break;}
+        if(idx!==-1&&idx!==danmuLastIdx){
+            danmuLastIdx=idx;
+            var txt=danmuLyrics[idx].text;
+            // 每3句歌词用一次渐变色
+            var isGrad=(idx%3===0);
+            sendDanmu(txt,isGrad);
+        }
+    }
+    var danmuLastSendTime=0;
+    function startDanmuTimer(){if(danmuTimer)clearInterval(danmuTimer);danmuTimer=setInterval(updateDanmuLyrics,500);}
+    function stopDanmuTimer(){if(danmuTimer){clearInterval(danmuTimer);danmuTimer=null;}}
+    function clearDanmu(){if(danmuContainer)danmuContainer.innerHTML='';danmuLastIdx=-1;}
+    // 弹幕按钮切换
+    function toggleDanmuBtn(){var btn=Q('.Nicole-jmu-danmu');if(btn){btn.classList.toggle('active',danmuEnabled);btn.title=danmuEnabled?'歌词弹幕:开':'歌词弹幕:关';}}
+    // 初始化弹幕容器
+    try{createDanmuContainer();}catch(e){}
+    function muSavePlaylists(){NcStore.set('Nc-mu-playlists',JSON.stringify(muPlaylists));NcStore.set('Nc-mu-cur',String(muCurPlaylist));NcStore.set('Nc-mu-mode',muPlayMode);}
+    function muRenderPlaylistSelect(){var sel=Q('.Nicole-jmu-playlist-select');if(!sel)return;sel.innerHTML=muPlaylists.map(function(p,i){return '<option value="'+i+'"'+(i===muCurPlaylist?' selected':'')+'>'+p.name+' ('+p.songs.length+')</option>';}).join('');}
+    function muUpdateModeIcon(){var ic=Q('.Nicole-jmu-mode-icon');if(ic)ic.innerHTML=muModeIcons[muPlayMode];}
+    function renderMuList(){var html=muList.map(function(s,i){return '<div class="Nicole-mu-item'+(i===muIdx?' active':'')+'" data-idx="'+i+'"><div class="mu-song-name">'+s.name+'</div><div class="mu-song-artist">'+s.artist+'</div><span class="jmudel" data-idx="'+i+'">×</span></div>';}).join('');Q('.Nicole-jmulist').innerHTML=html||'<div style="text-align:center;color:#aaa;font-size:12px;padding:20px;">暂无歌曲</div>';QA('.Nicole-mu-item').forEach(function(el){el.addEventListener('click',function(e){if(e.target.classList.contains('jmudel')){e.stopPropagation();var di=parseInt(e.target.getAttribute('data-idx'));muList.splice(di,1);if(muIdx>=muList.length)muIdx=0;muSavePlaylists();renderMuList();return;}muIdx=parseInt(this.getAttribute('data-idx'));playMu();});});}
+    function muGetNextIdx(){if(muList.length===0)return 0;if(muPlayMode==='random'){var n=Math.floor(Math.random()*muList.length);if(n===muIdx&&muList.length>1)n=(n+1)%muList.length;return n;}return (muIdx+1)%muList.length;}
+    function muPlayUrl(url,retry){
+        if(!url)return;
+        if(retry===undefined)retry=0;
+        try{
+            if(muAudio.src!==url){muAudio.src=url;muAudio.load();}
+            var doPlay=function(){
+                var p=muAudio.play();
+                if(p&&typeof p.catch==='function'){
+                    p.catch(function(){
+                        if(retry<2){setTimeout(function(){muPlayUrl(url,retry+1);},300);}
+                    });
+                }
+            };
+            if(muAudio.readyState>=2){doPlay();}
+            else{
+                var onCan=function(){muAudio.removeEventListener('canplay',onCan);doPlay();};
+                muAudio.addEventListener('canplay',onCan);
+                setTimeout(function(){muAudio.removeEventListener('canplay',onCan);if(muAudio.paused&&retry<2){muPlayUrl(url,retry+1);}},5000);
+            }
+        }catch(e){if(retry<2)setTimeout(function(){muPlayUrl(url,retry+1);},300);}
+    }
+    function playMu(){
+        if(muList.length===0)return;
+        var s=muList[muIdx];
+        Q('.Nicole-jmunow').textContent=s.name+' - '+s.artist;
+        Q('.Nicole-jmuwaves').classList.add('playing');
+        muPlaying=true;
+        Q('.Nicole-jmuicon').innerHTML='<rect x="6" y="4" width="4" height="16" fill="#222"/><rect x="14" y="4" width="4" height="16" fill="#222"/>';
+        if(s.cover){QA('.Nicole-jmuf1,.Nicole-jmuf2').forEach(function(el){el.style.backgroundImage='url('+s.cover+')';});}
+        if(s.url){
+            muPlayUrl(s.url);
+            fetchDanmuLyrics(s.name,s.artist);startDanmuTimer();
+        }else{
+            var q=s.name+(s.artist&&s.artist!=='未知歌手'?' '+s.artist:'');
+            Q('.Nicole-jmunow').textContent='搜索中: '+q;
+            muResolve(q).then(function(hit){
+                if(hit){
+                    s.url=hit.url;s.name=hit.name||s.name;s.artist=hit.artist||s.artist;
+                    Q('.Nicole-jmunow').textContent=s.name+' - '+s.artist;
+                    muSavePlaylists();renderMuList();
+                    muPlayUrl(hit.url);
+                    fetchDanmuLyrics(s.name,s.artist);startDanmuTimer();
+                }else{
+                    // 降级：只搜歌名
+                    if(s.artist&&s.artist!=='未知歌手'){
+                        Q('.Nicole-jmunow').textContent='降级搜索中: '+s.name;
+                        muResolve(s.name).then(function(hit2){
+                            if(hit2){
+                                s.url=hit2.url;s.name=hit2.name||s.name;s.artist=hit2.artist||s.artist;
+                                Q('.Nicole-jmunow').textContent=s.name+' - '+s.artist;
+                                muSavePlaylists();renderMuList();
+                                muPlayUrl(hit2.url);
+                                fetchDanmuLyrics(s.name,s.artist);startDanmuTimer();
+                            }else{
+                                Q('.Nicole-jmunow').textContent='搜索失败: '+s.name;
+                                pauseMu();
+                            }
+                        });
+                    }else{
+                        Q('.Nicole-jmunow').textContent='搜索失败: '+s.name;
+                        pauseMu();
+                    }
+                }
+            });
+        }
+    }
+    function pauseMu(){muPlaying=false;muAudio.pause();stopDanmuTimer();Q('.Nicole-jmuwaves').classList.remove('playing');Q('.Nicole-jmuicon').innerHTML='<polygon points="7 4 19 12 7 20 7 4" fill="#222"/>';}
+    // 音频播放结束后根据播放模式切换
+    muAudio.addEventListener('ended',function(){
+        if(muPlayMode==='loop'){muAudio.currentTime=0;muAudio.play().catch(function(){});}
+        else if(muPlayMode==='order'){if(muIdx<muList.length-1){muIdx++;playMu();}else{pauseMu();}}
+        else{muIdx=muGetNextIdx();playMu();}
+    });
     Q('.Nicole-jmuplay').addEventListener('click',function(){if(muPlaying){pauseMu();}else{playMu();}});
     Q('.Nicole-jmuprev').addEventListener('click',function(){if(muList.length===0)return;muIdx=(muIdx-1+muList.length)%muList.length;playMu();});
-    Q('.Nicole-jmunext').addEventListener('click',function(){if(muList.length===0)return;muIdx=(muIdx+1)%muList.length;playMu();});
-    Q('.Nicole-jmuaddbtn').addEventListener('click',function(){var name=Q('.Nicole-jmuname').value.trim()||'未命名';var artist=Q('.Nicole-jmuartist').value.trim()||'未知歌手';var cover=Q('.Nicole-jmucover').value.trim();var url=Q('.Nicole-jmuinp').value.trim();muList.push({name:name,artist:artist,cover:cover,url:url});renderMuList();Q('.Nicole-jmuname').value='';Q('.Nicole-jmuartist').value='';Q('.Nicole-jmucover').value='';Q('.Nicole-jmuinp').value='';});
+    Q('.Nicole-jmunext').addEventListener('click',function(){if(muList.length===0)return;muIdx=muGetNextIdx();playMu();});
+    // 播放模式切换
+    Q('.Nicole-jmu-mode').addEventListener('click',function(){var modes=['loop','order','random'];var ci=modes.indexOf(muPlayMode);muPlayMode=modes[(ci+1)%modes.length];muUpdateModeIcon();muSavePlaylists();renderSysMsg('已切换为: '+muModeNames[muPlayMode]);});
+    // 歌词弹幕开关
+    Q('.Nicole-jmu-danmu').addEventListener('click',function(){danmuEnabled=!danmuEnabled;NcStore.set('Nc-mu-danmu',danmuEnabled?'1':'0');toggleDanmuBtn();if(danmuContainer){danmuContainer.classList.toggle('hidden',!danmuEnabled);}if(danmuEnabled&&muPlaying){startDanmuTimer();}else{stopDanmuTimer();clearDanmu();}renderSysMsg('歌词弹幕: '+(danmuEnabled?'开启':'关闭'));});
+    // 歌单切换
+    Q('.Nicole-jmu-playlist-select').addEventListener('change',function(){muCurPlaylist=parseInt(this.value);muList=muPlaylists[muCurPlaylist].songs;muIdx=0;pauseMu();muSavePlaylists();renderMuList();});
+    // 新建歌单
+    Q('.Nicole-jmu-playlist-add').addEventListener('click',function(){var name=prompt('输入新歌单名称:','歌单'+(muPlaylists.length+1));if(name&&name.trim()){muPlaylists.push({name:name.trim(),songs:[]});muCurPlaylist=muPlaylists.length-1;muList=muPlaylists[muCurPlaylist].songs;muIdx=0;muSavePlaylists();muRenderPlaylistSelect();renderMuList();}});
+    // 删除歌单
+    Q('.Nicole-jmu-playlist-del').addEventListener('click',function(){if(muPlaylists.length<=1){renderSysMsg('至少保留一个歌单');return;}if(confirm('确定删除歌单「'+muPlaylists[muCurPlaylist].name+'」？')){muPlaylists.splice(muCurPlaylist,1);muCurPlaylist=0;muList=muPlaylists[0].songs;muIdx=0;pauseMu();muSavePlaylists();muRenderPlaylistSelect();renderMuList();}});
+    // 搜索按钮 - 搜索成功后自动添加并播放，失败自动降级只搜歌名
+    Q('.Nicole-jmu-search').addEventListener('click',function(){
+        var name=Q('.Nicole-jmuname').value.trim();
+        var artist=Q('.Nicole-jmuartist').value.trim();
+        if(!name){renderSysMsg('请输入歌曲名称');return;}
+        var q=name+(artist?' '+artist:'');
+        Q('.Nicole-jmunow').textContent='搜索中(6引擎并行): '+q;
+        muResolve(q).then(function(hit){
+            if(hit){
+                var cover=Q('.Nicole-jmucover').value.trim();
+                muList.push({name:hit.name||name,artist:hit.artist||artist||'未知歌手',cover:cover,url:hit.url});
+                muIdx=muList.length-1;muSavePlaylists();renderMuList();
+                Q('.Nicole-jmuname').value='';Q('.Nicole-jmuartist').value='';Q('.Nicole-jmucover').value='';Q('.Nicole-jmuinp').value='';
+                Q('.Nicole-jmunow').textContent='正在播放: '+hit.name+' - '+(hit.artist||artist);
+                renderSysMsg('搜索成功('+hit.source+')，已添加并播放');
+                playMu();
+            }else if(artist){
+                // 降级：只搜歌名
+                Q('.Nicole-jmunow').textContent='降级搜索中(仅歌名): '+name;
+                muResolve(name).then(function(hit2){
+                    if(hit2){
+                        var cover=Q('.Nicole-jmucover').value.trim();
+                        muList.push({name:hit2.name||name,artist:hit2.artist||artist||'未知歌手',cover:cover,url:hit2.url});
+                        muIdx=muList.length-1;muSavePlaylists();renderMuList();
+                        Q('.Nicole-jmuname').value='';Q('.Nicole-jmuartist').value='';Q('.Nicole-jmucover').value='';Q('.Nicole-jmuinp').value='';
+                        Q('.Nicole-jmunow').textContent='正在播放: '+hit2.name+' - '+(hit2.artist||artist);
+                        renderSysMsg('降级搜索成功('+hit2.source+')，已添加并播放');
+                        playMu();
+                    }else{
+                        Q('.Nicole-jmunow').textContent='搜索失败: '+q;
+                        renderSysMsg('搜索失败，可能原因：①网络/VPN问题 ②API服务器限流 ③歌曲名不准确。建议：换关键词重试，或在"直链"框手动粘贴mp3地址');
+                    }
+                });
+            }else{
+                Q('.Nicole-jmunow').textContent='搜索失败: '+q;
+                renderSysMsg('搜索失败，可能原因：①网络/VPN问题 ②API服务器限流 ③歌曲名不准确。建议：换关键词重试，或在"直链"框手动粘贴mp3地址');
+            }
+        });
+    });
+    Q('.Nicole-jmuaddbtn').addEventListener('click',function(){var name=Q('.Nicole-jmuname').value.trim()||'未命名';var artist=Q('.Nicole-jmuartist').value.trim()||'未知歌手';var cover=Q('.Nicole-jmucover').value.trim();var url=Q('.Nicole-jmuinp').value.trim();muList.push({name:name,artist:artist,cover:cover,url:url});muSavePlaylists();renderMuList();Q('.Nicole-jmuname').value='';Q('.Nicole-jmuartist').value='';Q('.Nicole-jmucover').value='';Q('.Nicole-jmuinp').value='';});
     Q('.Nicole-jmuinv').addEventListener('click',function(){if(muList.length===0){renderSysMsg('请先添加歌曲');return;}var s=muList[muIdx];renderRight('<div class="Nicole-music-share-card"><div class="Nicole-msc-top"><div class="Nicole-msc-cover" style="background-image:url('+(s.cover||'')+')"><div class="Nicole-msc-playic"><svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg></div></div><div class="Nicole-msc-info"><div class="Nicole-msc-name">'+s.name+'</div><div class="Nicole-msc-artist">'+s.artist+'</div></div></div><div class="Nicole-msc-bot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>一起听歌</div></div>',true,isBlkRight);playSwoosh();appendCmd(isBlkRight?'$[发送失败]':'[我听歌:'+s.name+'|'+s.artist+']');Q('.Nicole-jmumodal').classList.remove('show');});
-    renderMuList();
+    muRenderPlaylistSelect();muUpdateModeIcon();toggleDanmuBtn();renderMuList();
 
     // ===== COUPLE SPACE =====
     var cpThings=JSON.parse(NcStore.get('Nc-cp-things')||'[]');
@@ -2210,6 +3551,8 @@ setInterval(checkCharSwitch,5000);
 var storyObserver2=null;
 var processedStoryNodes2=new WeakSet();
 var ncObserverReady=false;
+var ncPageLoadTime=Date.now();
+function ncIsInitializing(){return Date.now()-ncPageLoadTime<8000;}
 function startStoryListener(){
     if(storyObserver2){storyObserver2.disconnect();storyObserver2=null;}
     ncObserverReady=false;
@@ -2353,6 +3696,30 @@ function scanNodeForPhoneMsg2(node){
     if((fm=txt.match(/\[角色表情[：:]([^\]]*?)\]/))&&fm[1].trim()){renderPhoneMessage(fm[1].trim(),'image',false);}
     if(finalLName&&finalLName!=='角色'&&finalLName!=='Unknown'){try{var cnEmo=finalLName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');var emRe=new RegExp('\\['+cnEmo+'表情[：:](!\\[[^\\]]*\\]\\([^)]*\\)|[^\\]]*)\\]');var em=txt.match(emRe);if(em&&em[1].trim()){renderPhoneMessage(em[1].trim(),'image',false);}}catch(e){}}
     if((fm=txt.match(/\[角色[：:]([\s\S]*?)\]/))&&fm[1].trim()){renderPhoneMessage(fm[1].trim(),'text',false);}
+    // 角色一起听歌：[角色听歌:歌名|歌手名] / [角色名听歌:歌名|歌手名]
+    var charMusicRe=/\[(?:角色|([^\[\]:]+))听歌[：:]([^\]|]+)(?:\|([^\]]+))?\]/;
+    var cmMatch=txt.match(charMusicRe);
+    if(cmMatch){
+        var songName=(cmMatch[2]||'').trim();
+        var songArtist=(cmMatch[3]||'未知歌手').trim();
+        if(songName){
+            try{
+                var nameInp=Q('.Nicole-jmuname'),artistInp=Q('.Nicole-jmuartist');
+                if(nameInp)nameInp.value=songName;
+                if(artistInp)artistInp.value=songArtist;
+                // 添加到歌曲列表并播放
+                if(typeof muList!=='undefined'){
+                    muList.push({name:songName,artist:songArtist,cover:'',url:''});
+                    muIdx=muList.length-1;
+                    if(typeof renderMuList==='function')renderMuList();
+                    if(typeof playMu==='function')playMu();
+                }
+                // 渲染音乐分享卡片到左侧
+                renderLeft('<div class="Nicole-music-share-card"><div class="Nicole-msc-top"><div class="Nicole-msc-cover" style="background-image:url(\'\')"><div class="Nicole-msc-playic"><svg viewBox="0 0 24 24"><polygon points="7 4 19 12 7 20 7 4"/></svg></div></div><div class="Nicole-msc-info"><div class="Nicole-msc-name">'+songName+'</div><div class="Nicole-msc-artist">'+songArtist+'</div></div></div><div class="Nicole-msc-bot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>一起听歌</div></div>',true);
+                playSwoosh();
+            }catch(e){}
+        }
+    }
 
     // 功能触发 - 通话
     // 用户呼出：[我电话:语音] / [我电话:视频]
@@ -2485,7 +3852,16 @@ function renderChatListScreen(){
         var body=panel.querySelector('.Nicole-jchatlist-body');
         if(!body) return;
         var list=JSON.parse(localStorage.getItem('Nc-chat-list')||'[]');
+        var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
         var html='';
+        // 群聊列表
+        groups.forEach(function(g){
+            var memberCount=g.members?g.members.length:0;
+            var lastMsg=g.lastMsg||'暂无消息';
+            var avStyle='';
+            html+='<div class="Nicole-chatlist-item group-item" data-gid="'+g.id+'"><div class="Nicole-chatlist-inner"><div class="Nicole-chatlist-av group-av"'+avStyle+'><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="Nicole-chatlist-info"><div class="Nicole-chatlist-name">'+g.name+' <span style="font-size:11px;color:#999;font-weight:300;">('+memberCount+'人)</span></div><div class="Nicole-chatlist-msg">'+lastMsg+'</div></div></div><div class="Nicole-chatlist-del" data-gid="'+g.id+'"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span>删除</span></div></div>';
+        });
+        // 单聊列表
         list.forEach(function(name){
             var key='Nc-chat-'+name;
             var saved=localStorage.getItem(key)||'';
@@ -2568,6 +3944,17 @@ function renderChatListScreen(){
             delBtn.addEventListener('click',function(e){
                 e.stopPropagation();
                 var name=this.getAttribute('data-name');
+                var gid=this.getAttribute('data-gid');
+                if(gid){
+                    if(confirm('删除群聊「'+gid+'」？')){
+                        var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
+                        groups=groups.filter(function(g){return g.id!==gid;});
+                        localStorage.setItem('Nc-group-list',JSON.stringify(groups));
+                        localStorage.removeItem('Nc-chat-'+gid);
+                        renderChatListScreen();
+                    }
+                    return;
+                }
                 if(name&&confirm('删除与「'+name+'」的聊天记录？')){
                     var list=JSON.parse(localStorage.getItem('Nc-chat-list')||'[]');
                     list=list.filter(function(n){return n!==name;});
@@ -2584,10 +3971,31 @@ function renderChatListScreen(){
                     return;
                 }
                 var name=this.getAttribute('data-name');
+                var gid=this.getAttribute('data-gid');
+                if(gid){
+                    // 进入群聊
+                    var groups=JSON.parse(localStorage.getItem('Nc-group-list')||'[]');
+                    var group=groups.find(function(g){return g.id===gid;});
+                    if(group){
+                        if(finalLName) saveChatForChar(finalLName);
+                        finalLName=group.id;currentCharName=group.name;ncManualChar=true;
+                        loadChatForChar(group.id);
+                        // 设置群聊模式：隐藏头像，只显示群名
+                        var hd=document.querySelector('.Nicole-hd');
+                        if(hd)hd.classList.add('group-mode');
+                        document.querySelectorAll('.Nicole-bind-gname').forEach(function(el){el.textContent=group.name;});
+                        if(chatlistEl)chatlistEl.classList.remove('show');
+                        if(homeEl)homeEl.classList.remove('active');
+                    }
+                    return;
+                }
                 if(name){
                     if(finalLName) saveChatForChar(finalLName);
                     finalLName=name;currentCharName=name;ncManualChar=true;
                     loadChatForChar(name);
+                    // 私聊模式：移除group-mode类
+                    var hd=document.querySelector('.Nicole-hd');
+                    if(hd)hd.classList.remove('group-mode');
                     panel.querySelectorAll('.Nicole-bind-lnm').forEach(function(el){el.textContent=name;});
                     if(chatlistEl)chatlistEl.classList.remove('show');
                     if(homeEl)homeEl.classList.remove('active');
